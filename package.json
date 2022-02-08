@@ -20,7 +20,7 @@
     "test": "yarn lint && yarn type",
     "docs:dev": "vitepress dev demo",
     "docs:build": "vitepress build demo",
-    "docs:serve": "yarn demo-build && vitepress serve demo",
+    "docs:serve": "vitepress serve demo",
     "dev": "vitepress dev demo"
   },
   "dependencies": {
