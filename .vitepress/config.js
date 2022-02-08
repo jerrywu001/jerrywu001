@@ -67,7 +67,6 @@ module.exports = (async () => {
               { text: 'es-next-style-guide', link: '/code-styles/es-next-style-guide' },
               { text: 'html-style-guide', link: '/code-styles/html-style-guide' },
               { text: 'less-code-style', link: '/code-styles/less-code-style' },
-              { text: 'vue-style-guide', link: '/code-styles/vue-style-guide' },
             ],
           },
         ],
