@@ -10,7 +10,7 @@ function escapeHtml(html) {
   return html.replace(/[&<>"']/g, (chr) => htmlEscapes[chr])
 }
 
-module.exports = async (theme = 'material-palenight') => {
+module.exports = async (theme = 'material-ocean') => {
   const highlighter = await require('shiki').getHighlighter({
     theme
   })
