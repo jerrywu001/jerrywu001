@@ -6,7 +6,7 @@ Please note this theme is solely dedicated for `vuejs.org` and isn't meant to be
 
 ## Development Setup
 
-This repo can be developed on its own since it is a self-contained VitePress theme. Make sure to use [pnpm](https://pnpm.io/) as the package manager when installing deps. A demo app is available in `/demo` and can be run with `npm run dev`:
+This repo can be developed on its own since it is a self-contained VitePress theme. Make sure to use [pnpm](https://pnpm.io/) as the package manager when installing deps. A demo app is available in `/docs` and can be run with `npm run dev`:
 
 ```bash
 $ pnpm install

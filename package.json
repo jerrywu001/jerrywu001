@@ -18,10 +18,10 @@
     "lint:fail": "prettier --check --parser typescript \"{__tests__,docs,src,types}/**/*.ts\"",
     "type": "tsc --noEmit",
     "test": "yarn lint && yarn type",
-    "docs:dev": "vitepress dev demo",
-    "docs:build": "vitepress build demo",
-    "docs:serve": "vitepress serve demo",
-    "dev": "vitepress dev demo"
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:serve": "vitepress serve docs",
+    "dev": "vitepress dev docs"
   },
   "dependencies": {
     "@docsearch/css": "^3.0.0-alpha.50",
