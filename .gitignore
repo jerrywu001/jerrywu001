@@ -1,6 +1,7 @@
 /coverage
 /node_modules
-# dist
-docs/.vitepress/dist
+dist
+.vitepress/dist
+package-lock.json
 TODOs.md
 .DS_Store

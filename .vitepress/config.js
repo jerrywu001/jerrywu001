@@ -1,30 +1,15 @@
-const getBase = require('../../src/vitepress/config/baseConfig')
-const path = require('path')
+const getBase = require('../src/vitepress/config/baseConfig')
 
 module.exports = (async () => {
   const base = await getBase()
+
   return {
     ...base,
-
-    vite: {
-      ...base.vite,
-      build: {
-        minify: false
-      },
-      resolve: {
-        alias: {
-          '@vue/theme': path.join(__dirname, '../../src')
-        }
-      }
-    },
-
     lang: 'en-US',
     title: 'front-end-blog',
     description: 'front end blog',
 
     themeConfig: {
-      logo: '/img/logo-vue.svg',
-
       algolia: {
         indexName: 'vuejs-v3',
         appId: 'BH4D9OD16A',
@@ -32,7 +17,7 @@ module.exports = (async () => {
       },
 
       socialLinks: [
-        { icon: 'github', link: 'https://github.com/vuejs/vue' },
+        { icon: 'github', link: 'https://github.com/jerrywu001/jerrywu001' },
       ],
 
       nav: [

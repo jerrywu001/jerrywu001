@@ -1,8 +1,8 @@
 import { VPTheme } from '@vue/theme'
 import { h } from 'vue'
 
-// uncomment to test CSS variables override
 // import './override.css'
+import 'virtual:windi.css'
 
 export default {
   ...VPTheme,
