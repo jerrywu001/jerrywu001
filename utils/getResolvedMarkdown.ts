@@ -27,6 +27,8 @@ const docsDir = path.join(process.cwd(), 'docs');
 
 export const getResolvedMarkdown = async (category = '', name = '') => {
   const filePath = path.join(docsDir, `./${category}/${name}.md`);
+  console.log(docsDir);
+  console.log(filePath);
   if (!fs.existsSync(filePath)) {
     return { code: 404 };
   }
@@ -74,6 +76,7 @@ export const getResolvedMarkdown = async (category = '', name = '') => {
     .process(content);
   const hast = html2hast(String(file));
   const res = parse2json({ type: 'root', children: hast } as any);
+  console.log('has hast', res.children.length);
 
   console.error(reporter(file));
   return { data, content: (res.children || []) as IElement[] };
