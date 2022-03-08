@@ -1,0 +1,16 @@
+node_modules
+build
+dist
+.vscode
+.husky
+.nuxt
+.output
+coverage
+*.log*
+.DS_Store
+.code
+*.iml
+package-lock.json
+templates/*
+sw.js
+tsconfig.json

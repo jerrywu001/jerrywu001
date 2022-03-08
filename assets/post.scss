@@ -1,0 +1,71 @@
+@import url(./prism/index.scss);
+
+@import 'prose/a';
+@import 'prose/blockquote';
+@import 'prose/em';
+@import 'prose/h';
+@import 'prose/img';
+@import 'prose/li';
+@import 'prose/ol';
+@import 'prose/paragraph';
+@import 'prose/strong';
+@import 'prose/table';
+@import 'prose/ul';
+
+.article-scroll-box {
+  p,
+  div,
+  span {
+    & > a {
+      @apply border-transparent border-1 font-600 no-underline hover:underline;
+      color: var(--primary-500);
+    }
+  }
+}
+
+.table-of-contents {
+  .toc-link {
+    @apply block py-1 transition-colors duration-100 transform d-secondary-text hover:d-secondary-text-hover;
+  }
+}
+
+.code-copy-block {
+  @apply bg-transparent px-2 pt-2 pb-1 rounded-lg;
+
+  height: auto !important;
+  line-height: initial !important;
+  width: auto !important;
+  min-width: unset !important;
+
+  &::before {
+    @apply inline-block relative bg-center bg-no-repeat w-[22px] h-[22px];
+
+    content: '' !important;
+    background-image: url(./imgs/cc-copy.png);
+    background-size: 18px;
+
+    .dark & {
+      background-image: url(./imgs/cc-copy-white.png);
+    }
+  }
+
+  .dark & {
+    background-color: rgba(0, 53, 67, 1);
+  }
+
+  &.code-copied {
+    &::before {
+      background-image: url(./imgs/success.png);
+
+      .dark & {
+        background-image: url(./imgs/success-white.png);
+      }
+    }
+  }
+}
+
+.remark-highlight .filename {
+  .dark & {
+    color: white !important;
+  }
+}

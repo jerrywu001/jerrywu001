@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "antfu.unocss",
+    "voorjaar.windicss-intellisense",
+    "johnsoncodehk.volar",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "donjayamanne.githistory",
+    "yzhang.markdown-all-in-one"
+  ]
+}

@@ -1,4 +1,5 @@
-semi: false
-singleQuote: true
-printWidth: 80
-trailingComma: none
+{
+  "quoteProps": "as-needed",
+  "singleQuote": true,
+  "trailingComma": "es5"
+}

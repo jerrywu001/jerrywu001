@@ -1,0 +1,72 @@
+html:root {
+  --header-height: 56px;
+  --sidebar-width: 17rem;
+  --tocs-width: 230px;
+  --tocs-width-lg: calc(100vw - var(--tocs-width) - 50px);
+  --tocs-height-xl: calc(100vh - var(--header-height) - 8px);
+  --max-content-width: 1280px;
+  --sidebar-ml-xl: calc((100vw - var(--max-content-width)) / 2);
+  --tocs-ml-xl: calc(
+    var(--sidebar-ml-xl) + var(--max-content-width) - var(--tocs-width)
+  );
+  --docs-scroll-margin-block: calc(var(--header-height) + 4rem);
+  --blogpost-scroll-margin-block: calc(var(--header-height));
+  --primary-50: #f2fdf9;
+  --primary-100: #e6fcf3;
+  --primary-200: #bff6e0;
+  --primary-300: #99f1cd;
+  --primary-400: #4de7a8;
+  --primary-500: #00dc82;
+  --primary-600: #00c675;
+  --primary-700: #00844e;
+  --primary-800: #00633b;
+  --primary-900: #004227;
+}
+
+@screen sm {
+  /** scroll bar **/
+  .d-scrollbar {
+    --scrollbar-track: initial;
+    --scrollbar-thumb: #e4e4e7;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+    overflow: overlay;
+    scrollbar-width: thin;
+  }
+
+  .d-scrollbar::-webkit-scrollbar-track {
+    background-color: var(--scrollbar-track);
+  }
+
+  .d-scrollbar::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb);
+    border-radius: 0.25rem;
+  }
+
+  .d-scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .dark .d-scrollbar {
+    --scrollbar-thumb: #255461;
+  }
+}
+
+@screen xl {
+  /** scroll bar **/
+  .d-scrollbar {
+    --scrollbar-thumb: transparent;
+  }
+
+  .dark .d-scrollbar {
+    --scrollbar-thumb: transparent;
+  }
+}
+
+button:focus-visible,
+div:focus-visible,
+a:focus-visible {
+  outline: none;
+  border-radius: 2px;
+  box-shadow: 0 0 0 2px #00dc82;
+}

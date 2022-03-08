@@ -1,0 +1,21 @@
+.article {
+  table {
+    @apply leading-5 text-sm w-full table-auto text-left;
+    border-spacing: 0 !important;
+
+    td,
+    th {
+      @apply d-prose-tr-border;
+    }
+
+    td {
+      @apply align-top first: pl-0 last:pr-0 p-[0.5em];
+    }
+
+    thead {
+      th {
+        @apply font-semibold d-secondary-text p-2 pt-0 align-bottom first: pl-0 last:pr-0;
+      }
+    }
+  }
+}

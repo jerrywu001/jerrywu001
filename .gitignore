@@ -1,7 +1,44 @@
-/coverage
-/node_modules
-dist
-.vitepress/dist
-package-lock.json
-TODOs.md
+
+# misc
+.idea
 .DS_Store
+.code
+*.iml
+.static
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+package-lock.json
+yarn.lock
+*.tmp
+.eslintcache
+/.husky/_
+/.husky/.gitignore
+
+# testing
+/coverage
+
+# production
+/storybook-static
+/build
+/dist
+/dist-ssr
+.nuxt
+.output
+.vercel
+
+# log
+*.log
+
+# .env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

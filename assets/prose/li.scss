@@ -1,0 +1,28 @@
+.article {
+  li {
+    @apply relative my-[0.25em] pl-4 break-all;
+
+    p {
+      @apply my-[0.75em];
+    }
+  }
+
+  ul > li {
+    &::before {
+      @apply absolute left-0 top-[0.5em] d-secondary-bg rounded-full w-1.5 h-1.5;
+      content: '';
+    }
+  }
+
+  ol > li {
+    padding-left: 0;
+  }
+
+  li > ol > li {
+    margin-left: 1rem;
+  }
+
+  .nuxt-content-highlight {
+    @apply m-0;
+  }
+}

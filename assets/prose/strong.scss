@@ -1,0 +1,9 @@
+.article {
+  strong {
+    @apply font-semibold;
+  }
+
+  a strong {
+    @apply text-current;
+  }
+}
