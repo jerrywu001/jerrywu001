@@ -5,6 +5,7 @@ import path from 'path';
 async function main(req: IncomingMessage, res: ServerResponse) {
   const query = new URLSearchParams(req.url);
   let url = query.get('url');
+  const dir = query.get('dir');
   url = url || './docs/vue/test.md';
   const filePath0 = await path.resolve(url);
 
@@ -13,6 +14,7 @@ async function main(req: IncomingMessage, res: ServerResponse) {
     stat: {
       f0: fs.existsSync(filePath0),
     },
+    dirs: fs.readdirSync(dir),
   };
 }
 
