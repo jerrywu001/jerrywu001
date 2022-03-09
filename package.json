@@ -4,8 +4,7 @@
     "prepare": "husky install && chmod +x .husky/pre-commit",
     "dev": "nuxi dev",
     "build": "nuxi build",
-    "start": "node .output/server/index.mjs",
-    "serve": "node dist/server/index.mjs"
+    "start": "node .output/server/index.mjs"
   },
   "devDependencies": {
     "@iconify-json/carbon": "^1.1.1",
@@ -55,6 +54,7 @@
     "@nuxt/kit": "npm:@nuxt/kit-edge@^3.0.0-27430348.4ff1a95",
     "parse-numeric-range": "^1.3.0",
     "property-information": "^6.1.1",
+    "skeleton-elements": "^4.0.0",
     "unified-remark-prismjs": "^1.1.2",
     "unist-util-map": "^3.0.0"
   }

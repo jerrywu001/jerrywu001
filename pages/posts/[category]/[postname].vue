@@ -12,7 +12,12 @@
       :children="data?.tocs"
     />
     <div class="lg:ml-$sidebar-width">
-      <article-content class="xl:mr-$tocs-width" :children="data?.children" />
+      <Skeleton v-show="loading" />
+      <article-content
+        v-show="!loading"
+        class="xl:mr-$tocs-width"
+        :children="data?.children"
+      />
       <table-of-contents
         class="xl:h-$tocs-height-xl xl:w-$tocs-width xl:fixed xl:left-$tocs-ml-xl xl:top-$header-height <xl:hidden"
         :children="data?.tocs"
@@ -36,6 +41,13 @@
 import { useArticleScroll } from '~~/utils/toc';
 import Sidebar from '~~/components/Sidebar.vue';
 
+interface IData {
+  meta: any;
+  tocs: any[];
+  children: any[];
+  code: number;
+}
+
 definePageMeta({
   layout: 'page',
   pageTransition: false,
@@ -43,17 +55,28 @@ definePageMeta({
   key: (route) => route.fullPath,
 });
 
+const data = ref({} as IData);
+const loading = ref(true);
+
 const showSidebar = ref(false);
 const route = useRoute();
 const category = route.params.category;
 const postname = route.params.postname;
 
-const { data } = await useFetch<{
-  meta: any;
-  tocs: any[];
-  children: any[];
-  code: number;
-}>(`/api/post?category=${category}&postname=${postname}`);
+async function loadData() {
+  loading.value = true;
+  const res = await useFetch<{
+    meta: any;
+    tocs: any[];
+    children: any[];
+    code: number;
+  }>(`/api/post?category=${category}&postname=${postname}`);
+
+  data.value = res.data.value;
+  loading.value = false;
+}
+
+loadData();
 
 const title = computed(() => {
   return data.value.meta?.title || 'blog';

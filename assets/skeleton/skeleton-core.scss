@@ -1,0 +1,9 @@
+:root {
+  --skeleton-color: #eee;
+  --skeleton-block-radius: 8px;
+  --skeleton-icon-color: rgba(0, 0, 0, 0.25);
+}
+
+html.dark {
+  --skeleton-color: rgba(3, 58, 72, 0.53);
+}
