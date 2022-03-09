@@ -23,7 +23,7 @@ yarn.lock
 # production
 /storybook-static
 /build
-# /dist
+/dist
 /dist-ssr
 .nuxt
 .output
