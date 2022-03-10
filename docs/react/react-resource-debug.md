@@ -1,5 +1,6 @@
 ---
 title: React源码调试环境搭建
+cover: /articles/react/react-resource-debug.jpeg
 ---
 
 ## 创建react项目 {#create}

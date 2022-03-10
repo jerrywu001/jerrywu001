@@ -1,5 +1,6 @@
 ---
 title: full usage of this project
+cover: /articles/markdown-cheat-sheet1.png
 ---
 
 ## 内联code

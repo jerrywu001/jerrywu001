@@ -14,6 +14,14 @@
           </li>
           <li>
             <NuxtLink
+              to="/posts/code-styles/css-style-guide"
+              class="transition duration-100 relative inline-flex items-center justify-between pl-3 py-1 border-l border-gray-100 dark:border-dark-400 text-sm text-gray-700 dark:text-gray-400 hover:text-primary hover:dark:text-primary"
+            >
+              css
+            </NuxtLink>
+          </li>
+          <li>
+            <NuxtLink
               to="/posts/code-styles/html-style-guide"
               class="transition duration-100 relative inline-flex items-center justify-between pl-3 py-1 border-l border-gray-100 dark:border-dark-400 text-sm text-gray-700 dark:text-gray-400 hover:text-primary hover:dark:text-primary"
             >
@@ -64,14 +72,6 @@
         <ul class="mb-2">
           <li>
             <NuxtLink
-              to="/posts/vue/test"
-              class="transition duration-100 relative inline-flex items-center justify-between pl-3 py-1 border-l border-gray-100 dark:border-dark-400 text-sm text-gray-700 dark:text-gray-400 hover:text-primary hover:dark:text-primary"
-            >
-              vue test
-            </NuxtLink>
-          </li>
-          <li>
-            <NuxtLink
               to="/posts/vue/full"
               class="transition duration-100 relative inline-flex items-center justify-between pl-3 py-1 border-l border-gray-100 dark:border-dark-400 text-sm text-gray-700 dark:text-gray-400 hover:text-primary hover:dark:text-primary"
             >
@@ -80,10 +80,10 @@
           </li>
           <li>
             <NuxtLink
-              to="/posts/vue/uuu"
+              to="/posts/vue/test"
               class="transition duration-100 relative inline-flex items-center justify-between pl-3 py-1 border-l border-gray-100 dark:border-dark-400 text-sm text-gray-700 dark:text-gray-400 hover:text-primary hover:dark:text-primary"
             >
-              uuu
+              vue test
             </NuxtLink>
           </li>
         </ul>

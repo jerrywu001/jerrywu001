@@ -1,6 +1,7 @@
 ---
 title: CSS编码规范
 description: CSS 作为网页样式的描述语言，在百度一直有着广泛的应用。本文档的目标是使 CSS 代码风格保持一致，容易被理解和被维护。虽然本文档是针对 CSS 设计的，但是在使用各种 CSS 的预编译器(如 less、sass、stylus 等)时，适用的部分也应尽量遵循本文档的约定。
+cover: /articles/code-styles/css-syntax-structure.png
 ---
 
 # CSS编码规范

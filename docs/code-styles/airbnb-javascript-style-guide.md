@@ -1,5 +1,6 @@
 ---
 title: Airbnb JavaScript Style Guide
+cover: /articles/code-styles/javascript.png
 ---
 
 # Airbnb JavaScript Style Guide

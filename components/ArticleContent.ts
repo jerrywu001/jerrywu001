@@ -30,6 +30,10 @@ export default {
       const hasTitle = meta.hasTitle;
       const children = props.children as IElement[];
       const hasH1 = children.findIndex((v) => v.tag === 'h1') > -1;
+      const hasCover =
+        children.findIndex((v) => v.tag === 'img' && v.props.id === 'cover') >
+        -1;
+
       if (!hasTitle && !hasH1) {
         children.unshift({
           type: 'element',
@@ -43,6 +47,24 @@ export default {
           ],
         });
       }
+
+      if (meta.cover && !hasCover) {
+        children.unshift({
+          type: 'element',
+          tag: 'img',
+          props: {
+            id: 'cover',
+            // @ts-ignore
+            src: meta.cover,
+            style: {
+              marginTop: '0 !important',
+            },
+            className: ['article-cover w-full rounded-md'],
+          },
+          children: [],
+        });
+      }
+
       const childList = children.map((node) => processNode(node));
 
       return h(
