@@ -1,3 +1,8 @@
+---
+title: JavaScript 编码规范 - ESNext 补充篇
+description: 随着 ECMAScript 的不断发展，越来越多更新的语言特性将被使用，给应用的开发带来方便。本文档的目标是使 ECMAScript 新特性的代码风格保持一致，并给予一些实践建议。
+---
+
 # JavaScript 编码规范 - ESNext 补充篇
 
 ## 1 前言

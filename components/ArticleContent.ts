@@ -7,7 +7,7 @@ import List from './List.vue';
 import youtube from './youtube.vue';
 import embed from './embed.vue';
 import panel from './panel.vue';
-import { IElement } from '~~/types';
+import { IElement, IMeta } from '~~/types';
 
 export default {
   props: {
@@ -17,11 +17,34 @@ export default {
         return [];
       },
     },
+    meta: {
+      type: Object,
+      default() {
+        return {} as IMeta;
+      },
+    },
   },
-  setup(props, ctx) {
+  setup(props) {
     return () => {
+      const meta = props.meta as IMeta;
+      const hasTitle = meta.hasTitle;
       const children = props.children as IElement[];
+      const hasH1 = children.findIndex((v) => v.tag === 'h1') > -1;
+      if (!hasTitle && !hasH1) {
+        children.unshift({
+          type: 'element',
+          tag: 'h1',
+          props: {},
+          children: [
+            {
+              type: 'text',
+              value: meta.title,
+            } as IElement,
+          ],
+        });
+      }
       const childList = children.map((node) => processNode(node));
+
       return h(
         'div',
         {

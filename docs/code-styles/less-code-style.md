@@ -1,3 +1,8 @@
+---
+title: Less 编码规范
+description: 该文档主要的设计目标是提高 Less 文档的团队一致性与可维护性。Less 代码的基本规范和原则与 [CSS 编码规范]保持一致。
+---
+
 # Less 编码规范 (1.1)
 
 ## 简介
@@ -240,7 +245,7 @@ color: #fefefe;
 .warning {
   font-weight: 700;
 }
-    
+
   .comment-form {
     #comment:invalid {
       color: red;
@@ -257,7 +262,7 @@ color: #fefefe;
     .content {
         line-height: 1.5;
     }
-    
+
     .warning {
         font-weight: 700;
     }

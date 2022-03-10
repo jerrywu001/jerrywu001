@@ -1,3 +1,7 @@
+---
+title: Airbnb JavaScript Style Guide
+---
+
 # Airbnb JavaScript Style Guide
 
 *A mostly reasonable approach to JavaScript*

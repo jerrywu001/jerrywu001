@@ -1,7 +1,6 @@
 ---
 title: 6个关于react的友情提示
-description: 6个关于react的友情提示
-category: get-started
+description: 6个关于react代码编写的建议，帮助提高代码的可读性、可维护性。
 ---
 
 # 6个关于react的友情提示

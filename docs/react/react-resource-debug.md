@@ -1,7 +1,5 @@
 ---
 title: React源码调试环境搭建
-description: React源码调试环境搭建
-category: get-started
 ---
 
 ## 创建react项目 {#create}

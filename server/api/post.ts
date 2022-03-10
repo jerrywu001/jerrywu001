@@ -1,5 +1,5 @@
 import type { IncomingMessage, ServerResponse } from 'http';
-import { IElement, ITableOfContent } from '~~/types';
+import { IElement, IMeta, ITableOfContent } from '~~/types';
 import { getResolvedMarkdown } from '~~/utils/getResolvedMarkdown';
 
 function isToc(v = {} as IElement) {
@@ -33,7 +33,7 @@ function getTocMap(tocs: IElement[] = []) {
 }
 
 export default async (req: IncomingMessage, res: ServerResponse) => {
-  let meta = {};
+  let meta = {} as IMeta;
   let children: IElement[] = [];
   let code = 0;
   let tocs = [];
@@ -45,7 +45,7 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
     const res = await getResolvedMarkdown(category, postname);
     const toc = res.content.find((v) => isToc(v));
     code = res.code || 0;
-    meta = res.data;
+    meta = res.meta;
     children = res.content;
     tocs = toc ? toc.children : [];
   } catch (error) {

@@ -2,6 +2,7 @@
   <Html>
     <Head>
       <Title>{{ title }}</Title>
+      <Meta name="description" :content="description" />
     </Head>
   </Html>
   <header-nav @toggle-sidebar="toggleSidebar" />
@@ -9,18 +10,19 @@
   <article class="article">
     <table-of-contents
       class="tocs-sm xl:hidden lg:ml-$sidebar-width lg:w-$tocs-width-lg"
-      :children="data?.tocs"
+      :children="tocs"
     />
     <div class="lg:ml-$sidebar-width">
       <Skeleton v-show="loading" />
       <article-content
         v-show="!loading"
         class="xl:mr-$tocs-width"
-        :children="data?.children"
+        :children="children"
+        :meta="meta"
       />
       <table-of-contents
         class="xl:h-$tocs-height-xl xl:w-$tocs-width xl:fixed xl:left-$tocs-ml-xl xl:top-$header-height <xl:hidden"
-        :children="data?.tocs"
+        :children="tocs"
         :is-pc="true"
       />
     </div>
@@ -44,14 +46,9 @@ import {
   useArticleScroll,
 } from '~~/utils/toc';
 import Sidebar from '~~/components/Sidebar.vue';
+import { IArticleData, IElement, IMeta, ITableOfContent } from '~~/types';
 
-interface IData {
-  meta: any;
-  tocs: any[];
-  children: any[];
-  code: number;
-}
-
+/** ============= page meta define ============= */
 definePageMeta({
   layout: 'page',
   pageTransition: false,
@@ -59,30 +56,47 @@ definePageMeta({
   key: (route) => route.fullPath,
 });
 
+/** ============= route state ============= */
 const route = useRoute();
 const category = route.params.category;
 const postname = route.params.postname;
 
-const data = ref({} as IData);
+/** ============= data state ============= */
+const data = ref<IArticleData>();
 const loading = ref(true);
 const showSidebar = ref(false);
 
-const title = computed(() => {
-  return data.value?.meta?.title || '...';
+/** ============= computed state ============= */
+const children = computed<IElement[]>(() => {
+  return data.value?.children || [];
 });
 
+const tocs = computed<ITableOfContent[]>(() => {
+  return data.value?.tocs || [];
+});
+
+const meta = computed<IMeta>(() => {
+  return data.value?.meta || ({} as IMeta);
+});
+
+const title = computed(() => {
+  return meta.value.title || '...';
+});
+
+const description = computed(() => {
+  return meta.value.description || '...';
+});
+
+/** ============= methods ============= */
 function toggleSidebar() {
   showSidebar.value = !showSidebar.value;
 }
 
 async function loadData() {
   loading.value = true;
-  const res = await useFetch<{
-    meta: any;
-    tocs: any[];
-    children: any[];
-    code: number;
-  }>(`/api/post?category=${category}&postname=${postname}`);
+  const res = await useFetch<IArticleData>(
+    `/api/post?category=${category}&postname=${postname}`
+  );
 
   data.value = res.data.value;
   loading.value = false;
@@ -96,8 +110,10 @@ async function loadData() {
   }
 }
 
+/** ============= load data on init ============= */
 loadData();
 
+/** ============= hooks ============= */
 useArticleScroll();
 
 tryOnBeforeUnmount(() => {

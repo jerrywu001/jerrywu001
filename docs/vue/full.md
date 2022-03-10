@@ -1,6 +1,10 @@
-### Nuxi
+---
+title: full usage of this project
+---
 
-sdasd `const a = 1`
+## 内联code
+
+内联code `const a = 1`
 
 ```treeview[class=no-line-numbers]
 root_folder
@@ -106,3 +110,27 @@ span.bar {
 	border-color: transparent;
 }
 ```
+
+:::panel{title="view more info:"}
+  :::alert{icon=🎶}
+
+  Hello xxxxxxxx:
+
+  - one: ....
+  - two: ....
+
+    :::alert{type=warning}
+    warning !!!!
+
+      :::alert{icon=none type=danger}
+        danger list:
+        :::list{icon=🤣}
+        - I: sadfasd
+        - II: asdfasdgdddd
+
+:::
+
+::embed[]{href=https://windicss.org/play.html}
+
+
+::youtube[Video of a cat in a box]{#UmkEDc1G_7A}

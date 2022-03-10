@@ -21,3 +21,26 @@ export interface IElement {
   children: IElement[];
   content?: IElement[];
 }
+
+export interface IHast {
+  type: string;
+  tagName: string;
+  properties: IElementProps;
+  value?: any;
+  children?: IHast[];
+}
+
+export interface IMeta {
+  title: string;
+  description: string;
+  category: string;
+  hasTitle: boolean;
+  [key: string]: any;
+}
+
+export interface IArticleData {
+  meta: IMeta;
+  tocs: ITableOfContent[];
+  children: IElement[];
+  code: number;
+}

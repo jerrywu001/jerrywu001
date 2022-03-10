@@ -20,7 +20,7 @@ import { read } from 'to-vfile';
 import { reporter } from 'vfile-reporter';
 import { unified } from 'unified';
 import parse2json from './parse2json';
-import { IElement } from '~~/types';
+import { IElement, IHast, IMeta } from '~~/types';
 
 // https://github.com/remarkjs/remark/blob/HEAD/doc/plugins.md#list-of-plugins
 const docsDir = path.join(process.cwd(), 'docs');
@@ -33,6 +33,7 @@ export const getResolvedMarkdown = async (category = '', name = '') => {
 
   const str = await read(filePath, { encoding: 'utf-8' });
   const { content, data } = matter(String(str));
+  const meta = (data || {}) as IMeta;
   const file = await unified()
     .use(remarkParse)
     .use(remarkGfm)
@@ -72,9 +73,20 @@ export const getResolvedMarkdown = async (category = '', name = '') => {
     .use(rehypeFormat)
     .use(rehypeStringify)
     .process(content);
-  const hast = html2hast(String(file));
+  const hast = html2hast(String(file)) as IHast[];
   const res = parse2json({ type: 'root', children: hast } as any);
 
   console.error(reporter(file));
-  return { data, content: (res.children || []) as IElement[] };
+
+  const h1 = hast.find((v) => v.tagName === 'h1');
+  if (h1) {
+    meta.title = h1.children[0]?.value;
+    meta.hasTitle = true;
+  } else {
+    meta.hasTitle = false;
+  }
+
+  meta.description = meta.description || meta.title || '';
+  meta.category = meta.category || category || '';
+  return { meta, content: (res.children || []) as IElement[] };
 };
