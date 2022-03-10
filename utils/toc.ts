@@ -26,6 +26,39 @@ export function getScrollContainer() {
   return document.querySelector('.layout-container') as HTMLDivElement;
 }
 
+export function getVisibleTocContainer() {
+  let toc: HTMLDivElement = null;
+  const allTocs = document.querySelectorAll('.tocs');
+  for (const v of allTocs) {
+    if (v.classList.contains('<xl:hidden')) {
+      toc = v as HTMLDivElement;
+      break;
+    }
+  }
+  return toc;
+}
+
+export function updateArchorOffsetTop(
+  id = window.location.hash,
+  autoClose = false
+) {
+  const isPc = window.innerWidth >= 1280;
+  const toc = getVisibleTocContainer();
+  const tocs = !isPc ? toc : toc.querySelector('.tocs-btn');
+  const container = getScrollContainer();
+  const escapedId = id.replace(/\./g, '\\.').replace('#', '');
+  const archor = document.getElementById(decodeURIComponent(escapedId));
+  const offsetTop =
+    archor.offsetTop - tocs.clientHeight - headHeight - (isPc ? 20 : 50);
+  container.scrollTo({ top: offsetTop, behavior: 'smooth' });
+  autoHighlightArchor();
+
+  if (autoClose && !isPc) {
+    tocs.classList.remove('h-auto');
+    tocs.classList.add('h-10');
+  }
+}
+
 export function autoHighlightArchor() {
   const container = getScrollContainer();
   const targets = document.querySelectorAll('h2, h3, h4');

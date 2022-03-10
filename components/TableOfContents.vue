@@ -1,7 +1,6 @@
 <template>
   <div
     v-show="tocs.length > 0"
-    ref="toc"
     class="tocs overflow-hidden sticky bg-white/95 z-10 top-$header-height left-0 flex-none w-full text-xs lg:left-60 px-4 sm:px-6 dark:bg-[#001e26]/95"
     :class="`${isPc ? 'h-auto' : 'h-10'}`"
   >
@@ -35,12 +34,7 @@
             <a
               :href="item.archor"
               :class="item.class"
-              @click="
-                scrollToHeading($event, {
-                  archor: item.archor,
-                  autoClose: true,
-                })
-              "
+              @click="scrollToHeading($event, item.archor)"
             >
               {{ item.label }}
             </a>
@@ -52,12 +46,7 @@
                 <a
                   :href="child.archor"
                   :class="child.class"
-                  @click="
-                    scrollToHeading($event, {
-                      archor: child.archor,
-                      autoClose: true,
-                    })
-                  "
+                  @click="scrollToHeading($event, child.archor)"
                 >
                   {{ child.label }}
                 </a>
@@ -69,12 +58,7 @@
                     <a
                       :href="h4.archor"
                       :class="h4.class"
-                      @click="
-                        scrollToHeading($event, {
-                          archor: h4.archor,
-                          autoClose: true,
-                        })
-                      "
+                      @click="scrollToHeading($event, h4.archor)"
                     >
                       {{ h4.label }}
                     </a>
@@ -90,20 +74,14 @@
 </template>
 
 <script setup lang="ts">
-/* eslint-disable prettier/prettier */
 import { ITableOfContent } from '~~/types';
 import {
   getHeadings,
   getScrollContainer,
-  headHeight,
   toggleTocs,
   autoHighlightArchor,
+  updateArchorOffsetTop,
 } from '~~/utils/toc';
-
-interface IHeadProp {
-  autoClose?: boolean;
-  archor: string;
-}
 
 const props = defineProps({
   children: {
@@ -118,39 +96,13 @@ const props = defineProps({
   },
 });
 
-const toc = ref<HTMLDivElement>(null);
 const tocs = computed(() => (props.children as ITableOfContent[]) || []);
 
-function updateArchorOffsetTop(id = '', autoClose = false) {
-  const tocs = !props.isPc ? toc.value : toc.value.querySelector('.tocs-btn');
-  const container = getScrollContainer();
-  const escapedId = id.replace(/\./g, '\\.').replace('#', '');
-  const archor = document.getElementById(decodeURIComponent(escapedId));
-  const offsetTop =
-    archor.offsetTop - tocs.clientHeight - headHeight - (props.isPc ? 20 : 50);
-  container.scrollTo({ top: offsetTop, behavior: 'smooth' });
-  autoHighlightArchor();
-
-  if (autoClose && !props.isPc) {
-    tocs.classList.remove('h-auto');
-    tocs.classList.add('h-10');
-  }
-}
-
-function initScrollTopHandler(id = '') {
-  setTimeout(() => {
-    updateArchorOffsetTop(id);
-  });
-}
-
-function scrollToHeading(
-  event: MouseEvent,
-  { autoClose = false, archor: id }: IHeadProp
-) {
+function scrollToHeading(event: MouseEvent, id = '') {
   if (event) event.preventDefault();
   window.history.replaceState({}, '', id);
   setTimeout(() => {
-    updateArchorOffsetTop(id, autoClose);
+    updateArchorOffsetTop(id, true);
     autoHighlightArchor();
   });
 }
@@ -159,14 +111,14 @@ function doHeadScroll(e) {
   e.preventDefault();
   if (e.target.href) {
     const archor = '#' + e.target.href.split('#').pop();
-    scrollToHeading(e, { archor, autoClose: true });
+    scrollToHeading(e, archor);
   }
 }
 
 function initScrollTop() {
   const container = getScrollContainer();
   if (window.location.hash) {
-    initScrollTopHandler(window.location.hash);
+    updateArchorOffsetTop();
   } else {
     container.scrollTo({ top: 0 });
   }
@@ -175,14 +127,18 @@ function initScrollTop() {
 tryOnMounted(() => {
   if (process.client) {
     nextTick(() => {
-      setTimeout(() => {
-        const headings = getHeadings();
-        initScrollTop();
+      try {
+        setTimeout(() => {
+          const headings = getHeadings();
+          initScrollTop();
 
-        headings.forEach((heading) => {
-          heading.addEventListener('click', doHeadScroll, false);
-        });
-      }, 2000);
+          headings.forEach((heading) => {
+            heading.addEventListener('click', doHeadScroll, false);
+          });
+        }, 3000);
+      } catch (error) {
+        console.log(error);
+      }
     });
   }
 });
