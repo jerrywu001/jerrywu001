@@ -95,7 +95,7 @@
 <script lang="ts">
 export default {
   props: {},
-  onMounted() {
+  mounted() {
     console.log(111111111);
   },
 };

@@ -121,47 +121,52 @@ const props = defineProps({
 const toc = ref<HTMLDivElement>(null);
 const tocs = computed(() => (props.children as ITableOfContent[]) || []);
 
+function updateArchorOffsetTop(id = '', autoClose = false) {
+  const tocs = !props.isPc ? toc.value : toc.value.querySelector('.tocs-btn');
+  const container = getScrollContainer();
+  const escapedId = id.replace(/\./g, '\\.').replace('#', '');
+  const archor = document.getElementById(decodeURIComponent(escapedId));
+  const offsetTop =
+    archor.offsetTop - tocs.clientHeight - headHeight - (props.isPc ? 20 : 50);
+  container.scrollTo({ top: offsetTop, behavior: 'smooth' });
+  autoHighlightArchor();
+
+  if (autoClose && !props.isPc) {
+    tocs.classList.remove('h-auto');
+    tocs.classList.add('h-10');
+  }
+}
+
+function initScrollTopHandler(id = '') {
+  setTimeout(() => {
+    updateArchorOffsetTop(id);
+  });
+}
+
 function scrollToHeading(
   event: MouseEvent,
   { autoClose = false, archor: id }: IHeadProp
 ) {
-  const currentArchor = window.location.hash;
-  if (event) {
-    event.preventDefault();
-  }
-  if (id !== currentArchor || !autoClose) {
-    window.history.replaceState({}, '', id);
-    setTimeout(() => {
-      const tocs = !props.isPc
-        ? toc.value
-        : toc.value.querySelector('.tocs-btn');
-      const container = getScrollContainer();
-      const escapedId = id.replace(/\./g, '\\.').replace('#', '');
-      const archor = document.getElementById(decodeURIComponent(escapedId));
-      const offset = archor.offsetTop - tocs.clientHeight - headHeight - 30;
-      if (autoClose && !props.isPc) {
-        tocs.classList.remove('h-auto');
-        tocs.classList.add('h-10');
-      }
-      container.scrollTo({ top: offset });
-      autoHighlightArchor();
-    });
-  }
+  if (event) event.preventDefault();
+  window.history.replaceState({}, '', id);
+  setTimeout(() => {
+    updateArchorOffsetTop(id, autoClose);
+    autoHighlightArchor();
+  });
 }
 
 function doHeadScroll(e) {
   e.preventDefault();
   if (e.target.href) {
     const archor = '#' + e.target.href.split('#').pop();
-    scrollToHeading(undefined, { archor, autoClose: true });
+    scrollToHeading(e, { archor, autoClose: true });
   }
 }
 
 function initScrollTop() {
   const container = getScrollContainer();
   if (window.location.hash) {
-    const archor = window.location.hash;
-    scrollToHeading(undefined, { archor });
+    initScrollTopHandler(window.location.hash);
   } else {
     container.scrollTo({ top: 0 });
   }
@@ -169,11 +174,15 @@ function initScrollTop() {
 
 tryOnMounted(() => {
   if (process.client) {
-    const headings = getHeadings();
-    initScrollTop();
+    nextTick(() => {
+      setTimeout(() => {
+        const headings = getHeadings();
+        initScrollTop();
 
-    headings.forEach((heading) => {
-      heading.addEventListener('click', doHeadScroll, false);
+        headings.forEach((heading) => {
+          heading.addEventListener('click', doHeadScroll, false);
+        });
+      }, 2000);
     });
   }
 });
