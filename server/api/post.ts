@@ -1,6 +1,50 @@
 import type { IncomingMessage, ServerResponse } from 'http';
+import fs from 'fs';
+import path from 'path';
 import { ICategory, IElement, IMeta, ITableOfContent } from '~~/types';
 import { getResolvedMarkdown } from '~~/utils/getResolvedMarkdown';
+
+function setDirs(base = '', dirs = [] as ICategory[]) {
+  const files = fs.readdirSync(base);
+  files.forEach((item) => {
+    const fPath = path.join(base, item);
+    const stat = fs.statSync(fPath);
+    const parent = {
+      label: '',
+      children: [],
+    };
+    if (stat.isDirectory()) {
+      parent.label = fPath
+        .replace(/\\\\/g, '/')
+        .replace(/\\/g, '/')
+        .split('docs/')[1]
+        .replace(/-/g, ' ');
+      setDirs(fPath, parent.children);
+    }
+    if (stat.isFile()) {
+      let label = fPath
+        .replace(/\\\\/g, '/')
+        .replace(/\\/g, '/')
+        .split('docs/')[1]
+        .replace('.md', '')
+        .replace(/-/g, ' ');
+      label = label.substring(label.lastIndexOf('/') + 1);
+      dirs.push({
+        label,
+        url:
+          '/posts' +
+          fPath
+            .replace(/\\\\/g, '/')
+            .replace(/\\/g, '/')
+            .replace('.md', '')
+            .split('docs')[1],
+      });
+    }
+    if (parent.label) {
+      dirs.push(parent);
+    }
+  });
+}
 
 function isToc(v = {} as IElement) {
   return (
@@ -37,13 +81,16 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
   let children: IElement[] = [];
   let code = 0;
   let tocs = [];
+  const categories: ICategory[] = [];
   const query = new URLSearchParams(req.url);
   const category = query.get('category');
   const postname = query.get('postname');
+  const docsDir = path.join(process.cwd(), 'docs');
 
   try {
     const res = await getResolvedMarkdown(category, postname);
     const toc = res.content.find((v) => isToc(v));
+    setDirs(docsDir, categories);
     code = res.code || 0;
     meta = res.meta;
     children = res.content;
@@ -55,60 +102,7 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
   return {
     code,
     meta,
-    categories: [
-      // TODO:
-      {
-        label: 'Code styles',
-        children: [
-          {
-            label: 'less',
-            url: '/posts/code-styles/less-code-style',
-          },
-          {
-            label: 'css',
-            url: '/posts/code-styles/css-style-guide',
-          },
-          {
-            label: 'html',
-            url: '/posts/code-styles/html-style-guide',
-          },
-          {
-            label: 'airbnb javascript',
-            url: '/posts/code-styles/airbnb-javascript-style-guide',
-          },
-          {
-            label: 'esnext',
-            url: '/posts/code-styles/es-next-style-guide',
-          },
-        ],
-      },
-      {
-        label: 'React',
-        children: [
-          {
-            label: '关于React的6点建议',
-            url: '/posts/react/about-react',
-          },
-          {
-            label: 'React源码调试环境搭建',
-            url: '/posts/react/react-resource-debug',
-          },
-        ],
-      },
-      {
-        label: 'Vue',
-        children: [
-          {
-            label: 'full usage',
-            url: '/posts/vue/full',
-          },
-          {
-            label: 'vue test',
-            url: '/posts/vue/test',
-          },
-        ],
-      },
-    ] as ICategory[],
+    categories,
     tocs: getTocMap(
       tocs.filter(
         (v) => v.type !== 'text' && v.children && v.children.length > 0
