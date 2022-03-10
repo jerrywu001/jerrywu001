@@ -6,11 +6,7 @@
     </Head>
   </Html>
   <header-nav @toggle-sidebar="toggleSidebar" />
-  <sidebar
-    :visible="showSidebar"
-    :categories="categories"
-    @close="toggleSidebar"
-  />
+  <sidebar :visible="showSidebar" :categories="dirs" @close="toggleSidebar" />
   <article class="article">
     <table-of-contents
       class="tocs-sm xl:hidden lg:ml-$sidebar-width lg:w-$tocs-width-lg"
@@ -75,12 +71,9 @@ const postname = route.params.postname;
 const data = ref<IArticleData>();
 const loading = ref(true);
 const showSidebar = ref(false);
+const { dirs, updateDirs } = useCategories();
 
 /** ============= computed state ============= */
-const categories = computed<ICategory[]>(() => {
-  return data.value?.categories || [];
-});
-
 const children = computed<IElement[]>(() => {
   return data.value?.children || [];
 });
@@ -114,6 +107,11 @@ async function loadData() {
 
   data.value = res.data.value;
   loading.value = false;
+
+  if (!dirs.value.length) {
+    // 更新分类缓存
+    updateDirs(res.data.value.categories);
+  }
 
   if (data.value.code === 404) {
     window.location.href = '/404';
