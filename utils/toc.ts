@@ -1,4 +1,58 @@
-/* eslint-disable prettier/prettier */
+export function useArticleScroll() {
+  function getTopIcon() {
+    return document.querySelector('#back-2-top') as HTMLDivElement;
+  }
+
+  function doScroll() {
+    const container = getScrollContainer();
+    const topIcon = getTopIcon();
+    const scrollTop = container.scrollTop;
+
+    if (scrollTop > 200) {
+      topIcon.style.display = 'flex';
+    } else {
+      topIcon.style.display = 'none';
+    }
+
+    autoHighlightArchor();
+  }
+
+  function onClick() {
+    const container = getScrollContainer();
+    container.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function hideTocs(e: MouseEvent) {
+    const tocs = document.querySelector('.tocs-sm');
+    if (tocs) {
+      const classList = tocs.classList;
+      const isOpen = classList.contains('h-auto');
+      if (isOpen && !tocs.contains(e.target as HTMLElement)) {
+        tocs.classList.remove('h-auto');
+        tocs.classList.add('h-10');
+      }
+    }
+  }
+
+  tryOnMounted(() => {
+    const container = getScrollContainer();
+    const topIcon = getTopIcon();
+    topIcon.addEventListener('click', onClick, false);
+    container.addEventListener('scroll', doScroll, false);
+    document.body.addEventListener('click', hideTocs, false);
+  });
+
+  tryOnBeforeUnmount(() => {
+    const container = getScrollContainer();
+    const topIcon = getTopIcon();
+    topIcon.removeEventListener('click', onClick, false);
+    container.removeEventListener('scroll', doScroll, false);
+    document.body.removeEventListener('click', hideTocs, false);
+  });
+
+  return {};
+}
+
 export function toggleTocs() {
   const container = document.querySelector('.tocs');
   const classList = container.classList;
@@ -88,57 +142,45 @@ export function autoHighlightArchor() {
   }
 }
 
-export function useArticleScroll() {
-  function getTopIcon() {
-    return document.querySelector('#back-2-top') as HTMLDivElement;
-  }
-
-  function doScroll() {
-    const container = getScrollContainer();
-    const topIcon = getTopIcon();
-    const scrollTop = container.scrollTop;
-
-    if (scrollTop > 200) {
-      topIcon.style.display = 'flex';
-    } else {
-      topIcon.style.display = 'none';
-    }
-
+export function scrollToHeading(event: MouseEvent, id = '') {
+  if (event) event.preventDefault();
+  window.history.replaceState({}, '', id);
+  setTimeout(() => {
+    updateArchorOffsetTop(id, true);
     autoHighlightArchor();
-  }
-
-  function onClick() {
-    const container = getScrollContainer();
-    container.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  function hideTocs(e: MouseEvent) {
-    const tocs = document.querySelector('.tocs-sm');
-    if (tocs) {
-      const classList = tocs.classList;
-      const isOpen = classList.contains('h-auto');
-      if (isOpen && !tocs.contains(e.target as HTMLElement)) {
-        tocs.classList.remove('h-auto');
-        tocs.classList.add('h-10');
-      }
-    }
-  }
-
-  tryOnMounted(() => {
-    const container = getScrollContainer();
-    const topIcon = getTopIcon();
-    topIcon.addEventListener('click', onClick, false);
-    container.addEventListener('scroll', doScroll, false);
-    document.body.addEventListener('click', hideTocs, false);
   });
+}
 
-  tryOnBeforeUnmount(() => {
-    const container = getScrollContainer();
-    const topIcon = getTopIcon();
-    topIcon.removeEventListener('click', onClick, false);
-    container.removeEventListener('scroll', doScroll, false);
-    document.body.removeEventListener('click', hideTocs, false);
+export function initScrollTopByHash() {
+  const container = getScrollContainer();
+  if (window.location.hash) {
+    updateArchorOffsetTop();
+  } else {
+    container.scrollTo({ top: 0 });
+  }
+}
+
+export function doHeadScroll(e) {
+  e.preventDefault();
+  if (e.target.href) {
+    const archor = '#' + e.target.href.split('#').pop();
+    scrollToHeading(e, archor);
+  }
+}
+
+export function addArchorClickEvent() {
+  const headings = getHeadings();
+  initScrollTopByHash();
+
+  headings.forEach((heading) => {
+    heading.addEventListener('click', doHeadScroll, false);
   });
+}
 
-  return {};
+export function removeArchorClickEvent() {
+  const headings = getHeadings();
+
+  headings.forEach((heading) => {
+    heading.removeEventListener('click', doHeadScroll, false);
+  });
 }

@@ -13,7 +13,7 @@
         :class="`${visible ? '-translate-x-0' : '-translate-x-full'}`"
       >
         <div class="w-full h-full bg-white dark:bg-[#001e26]">
-          <div class="sticky h-full overflow-y-auto d-scrollbar">
+          <div class="h-full overflow-y-auto d-scrollbar">
             <categories />
           </div>
         </div>

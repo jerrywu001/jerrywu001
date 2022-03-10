@@ -38,7 +38,11 @@
 
 <script setup lang="ts">
 // https://www.cnblogs.com/guangzan/p/15021560.html
-import { useArticleScroll } from '~~/utils/toc';
+import {
+  addArchorClickEvent,
+  removeArchorClickEvent,
+  useArticleScroll,
+} from '~~/utils/toc';
 import Sidebar from '~~/components/Sidebar.vue';
 
 interface IData {
@@ -55,13 +59,21 @@ definePageMeta({
   key: (route) => route.fullPath,
 });
 
-const data = ref({} as IData);
-const loading = ref(true);
-
-const showSidebar = ref(false);
 const route = useRoute();
 const category = route.params.category;
 const postname = route.params.postname;
+
+const data = ref({} as IData);
+const loading = ref(true);
+const showSidebar = ref(false);
+
+const title = computed(() => {
+  return data.value?.meta?.title || '...';
+});
+
+function toggleSidebar() {
+  showSidebar.value = !showSidebar.value;
+}
 
 async function loadData() {
   loading.value = true;
@@ -74,23 +86,23 @@ async function loadData() {
 
   data.value = res.data.value;
   loading.value = false;
+
+  if (data.value.code === 404) {
+    window.location.href = '/404';
+  } else if (process.client) {
+    nextTick(() => {
+      addArchorClickEvent();
+    });
+  }
 }
 
 loadData();
 
-const title = computed(() => {
-  return data.value.meta?.title || 'blog';
-});
-
-if (data.value.code === 404) {
-  window.location.href = '/404';
-}
-
-function toggleSidebar() {
-  showSidebar.value = !showSidebar.value;
-}
-
 useArticleScroll();
+
+tryOnBeforeUnmount(() => {
+  removeArchorClickEvent();
+});
 </script>
 
 <style>

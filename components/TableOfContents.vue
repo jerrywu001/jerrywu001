@@ -75,13 +75,7 @@
 
 <script setup lang="ts">
 import { ITableOfContent } from '~~/types';
-import {
-  getHeadings,
-  getScrollContainer,
-  toggleTocs,
-  autoHighlightArchor,
-  updateArchorOffsetTop,
-} from '~~/utils/toc';
+import { toggleTocs, scrollToHeading } from '~~/utils/toc';
 
 const props = defineProps({
   children: {
@@ -97,59 +91,6 @@ const props = defineProps({
 });
 
 const tocs = computed(() => (props.children as ITableOfContent[]) || []);
-
-function scrollToHeading(event: MouseEvent, id = '') {
-  if (event) event.preventDefault();
-  window.history.replaceState({}, '', id);
-  setTimeout(() => {
-    updateArchorOffsetTop(id, true);
-    autoHighlightArchor();
-  });
-}
-
-function doHeadScroll(e) {
-  e.preventDefault();
-  if (e.target.href) {
-    const archor = '#' + e.target.href.split('#').pop();
-    scrollToHeading(e, archor);
-  }
-}
-
-function initScrollTop() {
-  const container = getScrollContainer();
-  if (window.location.hash) {
-    updateArchorOffsetTop();
-  } else {
-    container.scrollTo({ top: 0 });
-  }
-}
-
-tryOnMounted(() => {
-  if (process.client) {
-    nextTick(() => {
-      try {
-        setTimeout(() => {
-          const headings = getHeadings();
-          initScrollTop();
-
-          headings.forEach((heading) => {
-            heading.addEventListener('click', doHeadScroll, false);
-          });
-        }, 3000);
-      } catch (error) {
-        console.log(error);
-      }
-    });
-  }
-});
-
-tryOnBeforeUnmount(() => {
-  const headings = getHeadings();
-
-  headings.forEach((heading) => {
-    heading.removeEventListener('click', doHeadScroll, false);
-  });
-});
 </script>
 
 <style lang="postcss" scoped>
