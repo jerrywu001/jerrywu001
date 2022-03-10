@@ -154,7 +154,9 @@ export function scrollToHeading(event: MouseEvent, id = '') {
 export function initScrollTopByHash() {
   const container = getScrollContainer();
   if (window.location.hash) {
-    updateArchorOffsetTop();
+    setTimeout(() => {
+      updateArchorOffsetTop();
+    }, 600);
   } else {
     container.scrollTo({ top: 0 });
   }

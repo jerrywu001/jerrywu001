@@ -14,7 +14,7 @@
       >
         <div class="w-full h-full bg-white dark:bg-[#001e26]">
           <div class="h-full overflow-y-auto d-scrollbar">
-            <categories />
+            <categories :categories="props?.categories" />
           </div>
         </div>
       </div>
@@ -23,6 +23,8 @@
 </template>
 
 <script lang="ts" setup>
+import { ICategory } from '~~/types';
+
 interface IEmit {
   (event: 'close'): void;
 }
@@ -31,6 +33,12 @@ const props = defineProps({
   visible: {
     type: Boolean,
     default: false,
+  },
+  categories: {
+    type: Array,
+    default() {
+      return [] as ICategory[];
+    },
   },
 });
 

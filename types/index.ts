@@ -39,9 +39,16 @@ export interface IMeta {
   [key: string]: any;
 }
 
+export interface ICategory {
+  label?: string;
+  url?: string;
+  children?: ICategory[];
+}
+
 export interface IArticleData {
   meta: IMeta;
   tocs: ITableOfContent[];
   children: IElement[];
+  categories: ICategory[];
   code: number;
 }

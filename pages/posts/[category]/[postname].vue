@@ -6,7 +6,11 @@
     </Head>
   </Html>
   <header-nav @toggle-sidebar="toggleSidebar" />
-  <sidebar :visible="showSidebar" @close="toggleSidebar" />
+  <sidebar
+    :visible="showSidebar"
+    :categories="categories"
+    @close="toggleSidebar"
+  />
   <article class="article">
     <table-of-contents
       class="tocs-sm xl:hidden lg:ml-$sidebar-width lg:w-$tocs-width-lg"
@@ -46,7 +50,13 @@ import {
   useArticleScroll,
 } from '~~/utils/toc';
 import Sidebar from '~~/components/Sidebar.vue';
-import { IArticleData, IElement, IMeta, ITableOfContent } from '~~/types';
+import {
+  IArticleData,
+  ICategory,
+  IElement,
+  IMeta,
+  ITableOfContent,
+} from '~~/types';
 
 /** ============= page meta define ============= */
 definePageMeta({
@@ -67,6 +77,10 @@ const loading = ref(true);
 const showSidebar = ref(false);
 
 /** ============= computed state ============= */
+const categories = computed<ICategory[]>(() => {
+  return data.value?.categories || [];
+});
+
 const children = computed<IElement[]>(() => {
   return data.value?.children || [];
 });

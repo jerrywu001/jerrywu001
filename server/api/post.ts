@@ -1,5 +1,5 @@
 import type { IncomingMessage, ServerResponse } from 'http';
-import { IElement, IMeta, ITableOfContent } from '~~/types';
+import { ICategory, IElement, IMeta, ITableOfContent } from '~~/types';
 import { getResolvedMarkdown } from '~~/utils/getResolvedMarkdown';
 
 function isToc(v = {} as IElement) {
@@ -55,6 +55,60 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
   return {
     code,
     meta,
+    categories: [
+      // TODO:
+      {
+        label: 'Code styles',
+        children: [
+          {
+            label: 'less',
+            url: '/posts/code-styles/less-code-style',
+          },
+          {
+            label: 'css',
+            url: '/posts/code-styles/css-style-guide',
+          },
+          {
+            label: 'html',
+            url: '/posts/code-styles/html-style-guide',
+          },
+          {
+            label: 'airbnb javascript',
+            url: '/posts/code-styles/airbnb-javascript-style-guide',
+          },
+          {
+            label: 'esnext',
+            url: '/posts/code-styles/es-next-style-guide',
+          },
+        ],
+      },
+      {
+        label: 'React',
+        children: [
+          {
+            label: '关于React的6点建议',
+            url: '/posts/react/about-react',
+          },
+          {
+            label: 'React源码调试环境搭建',
+            url: '/posts/react/react-resource-debug',
+          },
+        ],
+      },
+      {
+        label: 'Vue',
+        children: [
+          {
+            label: 'full usage',
+            url: '/posts/vue/full',
+          },
+          {
+            label: 'vue test',
+            url: '/posts/vue/test',
+          },
+        ],
+      },
+    ] as ICategory[],
     tocs: getTocMap(
       tocs.filter(
         (v) => v.type !== 'text' && v.children && v.children.length > 0
