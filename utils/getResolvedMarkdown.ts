@@ -78,12 +78,13 @@ export const getResolvedMarkdown = async (category = '', name = '') => {
 
   console.error(reporter(file));
 
+  // # XXX 的优先级要低于meta.title
   const h1 = hast.find((v) => v.tagName === 'h1');
   if (h1) {
-    meta.title = h1.children[0]?.value;
     meta.hasTitle = true;
-  } else {
-    meta.hasTitle = false;
+    if (!meta.title) {
+      meta.title = h1.children[0]?.value;
+    }
   }
 
   meta.description = meta.description || meta.title || '';

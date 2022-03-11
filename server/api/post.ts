@@ -1,8 +1,13 @@
 import type { IncomingMessage, ServerResponse } from 'http';
 import fs from 'fs';
 import path from 'path';
+import matter from 'gray-matter';
 import { ICategory, IElement, IMeta, ITableOfContent } from '~~/types';
 import { getResolvedMarkdown } from '~~/utils/getResolvedMarkdown';
+
+const articlesCache = {};
+const categories: ICategory[] = [];
+const docsDir = path.join(process.cwd(), 'docs');
 
 function setDirs(base = '', dirs = [] as ICategory[]) {
   const files = fs.readdirSync(base);
@@ -22,15 +27,26 @@ function setDirs(base = '', dirs = [] as ICategory[]) {
       setDirs(fPath, parent.children);
     }
     if (stat.isFile()) {
-      let label = fPath
+      let title = '';
+      const str = fs.readFileSync(fPath, { encoding: 'utf-8' });
+      const { content, data } = matter(String(str));
+      const match = /# [\w\W]*/.exec(content);
+      const hasH1 = /\n# [\w\W]*/.test('\n' + content);
+      let folderName = fPath
         .replace(/\\\\/g, '/')
         .replace(/\\/g, '/')
         .split('docs/')[1]
         .replace('.md', '')
         .replace(/-/g, ' ');
-      label = label.substring(label.lastIndexOf('/') + 1);
+      folderName = folderName.substring(folderName.lastIndexOf('/') + 1);
+      title = data.title || '';
+      // # XXX 的优先级要高于meta.title
+      if (!title && match && hasH1) {
+        const temp = match[0].split('\n')[0] || '';
+        title = temp.split('{#')[0];
+      }
       dirs.push({
-        label,
+        label: (title || folderName).replace(/#\s*/g, ''),
         url:
           '/posts' +
           fPath
@@ -81,16 +97,23 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
   let children: IElement[] = [];
   let code = 0;
   let tocs = [];
-  const categories: ICategory[] = [];
   const query = new URLSearchParams(req.url);
   const category = query.get('category');
   const postname = query.get('postname');
-  const docsDir = path.join(process.cwd(), 'docs');
+  const key = category + postname;
+
+  if (articlesCache[key]) {
+    console.log('query article from cache:', key);
+    return { ...articlesCache[key] };
+  }
 
   try {
     const res = await getResolvedMarkdown(category, postname);
     const toc = res.content.find((v) => isToc(v));
-    setDirs(docsDir, categories);
+    if (!categories.length) {
+      console.log('haha===');
+      setDirs(docsDir, categories);
+    }
     code = res.code || 0;
     meta = res.meta;
     children = res.content;
@@ -99,7 +122,7 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
     console.error(error);
   }
 
-  return {
+  articlesCache[key] = {
     code,
     meta,
     categories,
@@ -110,4 +133,6 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
     ),
     children: children.filter((v) => !isToc(v)),
   };
+
+  return { ...articlesCache[key] };
 };

@@ -1,9 +1,9 @@
 ---
-title: Airbnb JavaScript Style Guide
+title: javascript airbnb 代码规范
 cover: /articles/code-styles/javascript.png
 ---
 
-# Airbnb JavaScript Style Guide
+# javascript airbnb 代码规范
 
 *A mostly reasonable approach to JavaScript*
 
