@@ -5,7 +5,7 @@
       <Meta name="description" :content="description" />
     </Head>
   </Html>
-  <header-nav @toggle-sidebar="toggleSidebar" />
+  <header-nav @toggle-sidebar="toggleSidebar" @toggle-theme="toggleDark" />
   <sidebar :visible="showSidebar" :categories="dirs" @close="toggleSidebar" />
   <article class="article">
     <table-of-contents
@@ -46,13 +46,7 @@ import {
   useArticleScroll,
 } from '~~/utils/toc';
 import Sidebar from '~~/components/Sidebar.vue';
-import {
-  IArticleData,
-  ICategory,
-  IElement,
-  IMeta,
-  ITableOfContent,
-} from '~~/types';
+import { IArticleData, IElement, IMeta, ITableOfContent } from '~~/types';
 
 /** ============= page meta define ============= */
 definePageMeta({
@@ -72,6 +66,7 @@ const data = ref<IArticleData>();
 const loading = ref(true);
 const showSidebar = ref(false);
 const { dirs, updateDirs } = useCategories();
+const { toggleDark } = useDarkTheme();
 
 /** ============= computed state ============= */
 const children = computed<IElement[]>(() => {

@@ -17,20 +17,17 @@
       />
       <span
         class="cursor-pointer mx-2 !w-6 !h-6 block text-gray-600 i-ph-sun-fill hover:opacity-80 dark:i-ph-moon-fill dark:text-[#92adad]"
-        @click="toggleDark()"
+        @click="emit('toggle-theme')"
       />
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { useTheme } from '~~/utils/useTheme';
-
 interface IEmit {
   (event: 'toggle-sidebar'): void;
+  (event: 'toggle-theme'): void;
 }
-
-const { toggleDark } = useTheme();
 
 const emit = defineEmits<IEmit>();
 </script>

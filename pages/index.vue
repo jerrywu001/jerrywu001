@@ -4,7 +4,9 @@
       <Title>index</Title>
     </Head>
   </Html>
-  <div class="bg-white-50 h-100vh p-6 font-montserrat">
+  <div
+    class="bg-white-50 h-100vh p-6 font-montserrat dark:bg-[#001e26]/95 dark:text-white/80"
+  >
     <div
       relative
       flex
@@ -17,6 +19,7 @@
       bg-gray-100
       hover:bg-gray-300
       p-8
+      class="dark:bg-[#1d5f72]/90 dark:hover:bg-[#1d5f72]"
     >
       <div flex items-center>
         Hover the icon:
@@ -51,7 +54,7 @@
           class="flex flex-1 pl-4 text-left flex-col"
         >
           <span class="font-bold text-base">Evan You</span>
-          <span class="text-sm text-cloud">Creator of Vue.js </span>
+          <span class="text-sm">Creator of Vue.js </span>
         </a>
         <a i-carbon-logo-github text-3xl />
       </div>
@@ -72,7 +75,15 @@
           The instant on-demand Atomic CSS engine.
         </div>
 
-        <button
+        <div flex class="dark:text-white/90 my-5 justify-center">
+          <span>toggle theme</span>
+          <span
+            class="cursor-pointer mx-2 !w-6 !h-6 block text-gray-600 i-ph-sun-fill hover:opacity-80 dark:i-ph-moon-fill dark:text-[#92adad]"
+            @click="toggleDark"
+          />
+        </div>
+
+        <NuxtLink
           bg-blue-400
           hover:bg-blue-500
           text-lg
@@ -80,15 +91,12 @@
           font-light
           py-2
           px-4
-          border-2
+          my-3
           rounded
-          border-blue-200
+          to="/posts/vue/full"
         >
-          Button
-        </button>
-        <div m2 flex justify-center text-2xl op30 hover:op80>
-          <a i-carbon-logo-github text-inherit />
-        </div>
+          view posts
+        </NuxtLink>
       </div>
     </div>
     <div absolute bottom-5 right-0 left-0 text-center op30 fw300>
@@ -99,11 +107,13 @@
 
 <script setup lang="ts">
 definePageMeta({
-  layout: 'page',
+  layout: false,
   key: 'index',
   pageTransition: false,
   layoutTransition: false,
 });
 
 const size = ref(13);
+
+const { toggleDark } = useDarkTheme();
 </script>
