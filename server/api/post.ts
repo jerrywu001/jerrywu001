@@ -5,9 +5,9 @@ import matter from 'gray-matter';
 import { ICategory, IElement, IMeta, ITableOfContent } from '~~/types';
 import { getResolvedMarkdown } from '~~/utils/getResolvedMarkdown';
 
-const articlesCache = {};
 const categories: ICategory[] = [];
 const docsDir = path.join(process.cwd(), 'docs');
+const outputDir = path.join(process.cwd(), '.nuxt/dist');
 
 function setDirs(base = '', dirs = [] as ICategory[]) {
   const files = fs.readdirSync(base);
@@ -101,17 +101,18 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
   const category = query.get('category');
   const postname = query.get('postname');
   const key = category + postname;
+  const cachedPath = path.join(outputDir, `${key}.json`);
 
-  if (articlesCache[key]) {
-    console.log('query article from cache:', key);
-    return { ...articlesCache[key] };
+  if (fs.existsSync(cachedPath)) {
+    const cache = fs.readFileSync(cachedPath);
+    const data = JSON.parse(String(cache));
+    return { ...data };
   }
 
   try {
     const res = await getResolvedMarkdown(category, postname);
     const toc = res.content.find((v) => isToc(v));
     if (!categories.length) {
-      console.log('haha===');
       setDirs(docsDir, categories);
     }
     code = res.code || 0;
@@ -122,7 +123,7 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
     console.error(error);
   }
 
-  articlesCache[key] = {
+  const result = {
     code,
     meta,
     categories,
@@ -134,5 +135,15 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
     children: children.filter((v) => !isToc(v)),
   };
 
-  return { ...articlesCache[key] };
+  fs.writeFile(
+    path.join(outputDir, `${key}.json`),
+    JSON.stringify(result),
+    function (err) {
+      if (err) {
+        console.log(err);
+      }
+    }
+  );
+
+  return { ...result };
 };
