@@ -102,8 +102,7 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
   const postname = query.get('postname');
   const key = category + postname;
   const cachedPath = path.join(outputDir, `${key}.json`);
-
-  if (fs.existsSync(cachedPath)) {
+  if (fs.existsSync(cachedPath) && process.env.NODE_ENV !== 'development') {
     const cache = fs.readFileSync(cachedPath);
     const data = JSON.parse(String(cache));
     return { ...data };
