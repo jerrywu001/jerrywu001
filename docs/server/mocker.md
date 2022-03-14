@@ -13,12 +13,12 @@ cover: /articles/mocker.jpeg
 
 ## 优点总结
 
-1. 集成于前端，不需要写node中间件（比如express, koa）
-2. 语法基本和express一致
-3. 直接**通过chrome快速debugger**
-4. 即可用于前端开发，也可**用于单元测试**，只需要写一份mocker
-5. **可在build环境使用mock**
-6. **不存在跨域问题**
+- 集成于前端，不需要写node中间件（比如express, koa）
+- 语法基本和express一致
+- 直接**通过chrome快速debugger**
+- 即可用于前端开发，也可**用于单元测试**，只需要写一份mocker
+- **可在build环境使用mock**
+- **不存在跨域问题**
 
 ## 安装方式
 
@@ -64,8 +64,8 @@ if (__ENV_DEV__ || __MOCK_IN_PRODUCTION__) {
 
 为什么这样做？
 
-1. vite默认不支持require
-2. 通过动态import可生成单独的chunk，结合全局替换变量，**可实现按需加载，且不会对代码打包体积造成影响**
+- vite默认不支持require
+- 通过动态import可生成单独的chunk，结合全局替换变量，**可实现按需加载，且不会对代码打包体积造成影响**
 
 ## 启动运行
 
