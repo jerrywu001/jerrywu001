@@ -21,6 +21,7 @@ export default defineNuxtConfig({
     'nuxt-windicss',
     '@unocss/nuxt',
     '@nuxtjs/eslint-module', // https://juejin.cn/post/7043762203740094477
+    './modules/content',
   ],
   css: ['~/assets/main.css', '~/assets/post.scss'],
   vueuse: {
