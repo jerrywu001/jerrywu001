@@ -23,6 +23,8 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
 
   console.info(chalk.blue(`fullPath: ${path}`));
 
+  console.info(chalk.blue(`host: ${process.env.HOST}`));
+
   try {
     const queryUrl = `${path}/content/${category}-${postname}.json`;
     const catlogs = await fetch(`${path}/content/categories.json`);
