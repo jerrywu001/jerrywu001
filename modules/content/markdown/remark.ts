@@ -1,6 +1,3 @@
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeFormat from 'rehype-format';
 import rehypeRaw from 'rehype-raw';
@@ -16,23 +13,28 @@ import remarkRehype from 'remark-rehype';
 import remarkSlug from 'remark-slug';
 import remarkSqueezeParagraphs from 'remark-squeeze-paragraphs';
 import { html2hast } from 'unified-remark-prismjs/src/core.js';
-import { read } from 'to-vfile';
 import { reporter } from 'vfile-reporter';
 import { unified } from 'unified';
 import parse2json from './parse2json';
 import { IElement, IHast, IMeta } from '~~/types';
 
+export function getArticleName(fPath = '') {
+  return fPath
+    .replace(/\\\\/g, '/')
+    .replace(/\\/g, '/')
+    .split('docs/')[1]
+    .replace('.md', '');
+}
+
 // https://github.com/remarkjs/remark/blob/HEAD/doc/plugins.md#list-of-plugins
-const docsDir = path.join(process.cwd(), 'docs');
 
-export const getResolvedMarkdown = async (category = '', name = '') => {
-  const filePath = path.join(docsDir, `./${category}/${name}.md`);
-  if (!fs.existsSync(filePath)) {
-    return { code: 404 };
-  }
-
-  const str = await read(filePath, { encoding: 'utf-8' });
-  const { content, data } = matter(String(str));
+export const getResolvedMarkdown = async (
+  content = '',
+  data = {} as any,
+  fPath: string
+) => {
+  const fileName = getArticleName(fPath);
+  const category = fileName.split('/')[0];
   const meta = (data || {}) as IMeta;
   const file = await unified()
     .use(remarkParse)
@@ -76,7 +78,9 @@ export const getResolvedMarkdown = async (category = '', name = '') => {
   const hast = html2hast(String(file)) as IHast[];
   const res = parse2json({ type: 'root', children: hast } as any);
 
-  console.error(reporter(file));
+  if (reporter(file) && !String(reporter(file)).includes('no issues found')) {
+    console.error(reporter(file));
+  }
 
   // # XXX 的优先级要低于meta.title
   const h1 = hast.find((v) => v.tagName === 'h1');

@@ -25,6 +25,7 @@ yarn.lock
 /build
 /dist
 /dist-ssr
+/public/content
 .nuxt
 .output
 .vercel
