@@ -2,9 +2,13 @@ import type { IncomingMessage, ServerResponse } from 'http';
 import fetch from 'node-fetch';
 import chalk from 'chalk';
 
-const protocol = process.env.API_HTTPS === 'false' ? 'http:' : 'https:';
-const host = process.env.API_HOST;
-const port = process.env.API_PORT;
+const protocol = 'http:';
+const host = 'localhost';
+const port = 3000;
+
+// const protocol = 'https:';
+// const host = 'jerrywu001-jerrywu001.vercel.app';
+// const port = 80;
 
 export default async (req: IncomingMessage, res: ServerResponse) => {
   let body = {} as any;
