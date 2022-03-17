@@ -109,7 +109,9 @@ async function loadData() {
   }
 
   if (data.value.code === 404) {
-    window.location.href = '/404';
+    if (process.client) {
+      window.location.href = '/404';
+    }
   } else if (process.client) {
     nextTick(() => {
       addArchorClickEvent();

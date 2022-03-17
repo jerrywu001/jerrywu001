@@ -19,7 +19,6 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
   const category = query.get('category');
   const postname = query.get('postname');
 
-  console.info(protocol, host, port);
   const thePort = String(port) === '80' ? '' : `:${String(port)}`;
   const path = `${protocol}//${host}${thePort}`;
 
@@ -29,12 +28,14 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
     const categories = await catlogs.json();
     const response = await fetch(queryUrl);
 
-    console.info(chalk.green(`path invoked: ${queryUrl}`));
-
-    body = await response.json();
-    if (body && categories) {
+    if (process.env.NODE_ENV !== 'development') {
+      console.info(chalk.green(`path invoked: ${queryUrl}`));
+    }
+    if (response.status === 200 && body && categories) {
+      body = await response.json();
       body.categories = categories;
     }
+    body.code = response.status;
   } catch (error) {
     console.error(error);
   }
