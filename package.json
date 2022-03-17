@@ -2,8 +2,8 @@
   "private": true,
   "scripts": {
     "prepare": "husky install && chmod +x .husky/pre-commit",
-    "dev": "nuxi dev",
     "build": "nuxi build",
+    "dev": "nuxi dev",
     "start": "node .output/server/index.mjs"
   },
   "devDependencies": {

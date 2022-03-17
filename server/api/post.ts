@@ -1,14 +1,16 @@
+/* eslint-disable prettier/prettier */
 import type { IncomingMessage, ServerResponse } from 'http';
 import fetch from 'node-fetch';
 import chalk from 'chalk';
 
-// const protocol = 'http:';
-// const host = 'localhost';
-// const port = 3000;
-
-const protocol = 'https:';
-const host = 'jerrywu001-jerrywu001.vercel.app';
-const port = 80;
+const protocol =
+  process.env.HTTPS === undefined
+    ? 'http:'
+    : process.env.HTTPS === 'false'
+    ? 'http:'
+    : 'https:';
+const host = process.env.HOST || 'localhost';
+const port = process.env.PORT || 3000;
 
 export default async (req: IncomingMessage, res: ServerResponse) => {
   let body = {} as any;
@@ -17,13 +19,9 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
   const category = query.get('category');
   const postname = query.get('postname');
 
-  const path = `${protocol}//${host}${
-    String(port) === '80' ? '' : `:${String(port)}`
-  }`;
-
-  console.info(chalk.blue(`fullPath: ${path}`));
-
-  console.info(chalk.blue(`host: ${process.env.HOST}`));
+  console.info(protocol, host, port);
+  const thePort = String(port) === '80' ? '' : `:${String(port)}`;
+  const path = `${protocol}//${host}${thePort}`;
 
   try {
     const queryUrl = `${path}/content/${category}-${postname}.json`;
@@ -40,5 +38,6 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
   } catch (error) {
     console.error(error);
   }
+
   return body;
 };
