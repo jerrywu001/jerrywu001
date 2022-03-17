@@ -37,7 +37,7 @@
     @apply tracking-tight leading-snug font-semibold <xl:mt-[0.5em] mb-[0.5em];
   }
 
-  h1 + *:not(h2) {
+  h1 + p {
     @apply d-heading-description;
   }
 

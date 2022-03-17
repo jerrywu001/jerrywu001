@@ -22,6 +22,9 @@ export default defineNuxtModule<Option>({
       rootDir,
       docsDir,
     });
+
+    nuxt.hook('close', () => md.close());
+
     try {
       md.init();
     } catch (error) {

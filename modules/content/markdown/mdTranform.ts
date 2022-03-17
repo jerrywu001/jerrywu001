@@ -1,7 +1,10 @@
+/* eslint-disable import/default */
+/* eslint-disable import/no-named-as-default-member */
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import chalk from 'chalk';
+import chokidar from 'chokidar';
 import { getArticleName, getResolvedMarkdown } from './remark';
 import { ICategory, IElement, IMeta, ITableOfContent } from '~~/types';
 
@@ -11,6 +14,7 @@ export interface MdOption {
 }
 
 export default class MdTransform {
+  watcher = null;
   rootDir = '';
   docsDir = '';
   outputDir = '';
@@ -22,16 +26,23 @@ export default class MdTransform {
     this.outputDir = path.join(this.rootDir, 'public/content');
   }
 
-  async init() {
-    const catlogs = await this.walk();
-
-    await fs.writeFileSync(
-      path.join(this.outputDir, 'categories.json'),
-      JSON.stringify(catlogs)
-    );
+  init() {
+    this.updateCategories();
+    this.watchDocs();
   }
 
-  async walk(base = this.docsDir, dirs = this.catlogs as ICategory[]) {
+  async updateCategories(build = true) {
+    const catlogs = await this.getCatlogs(undefined, undefined, build);
+    const catlogDir = path.join(this.outputDir, 'categories.json');
+
+    fs.writeFileSync(catlogDir, JSON.stringify(catlogs));
+  }
+
+  async getCatlogs(
+    base = this.docsDir,
+    dirs = this.catlogs as ICategory[],
+    build = true
+  ) {
     const files = await fs.readdirSync(base);
 
     files.forEach((item) => {
@@ -47,9 +58,9 @@ export default class MdTransform {
           .replace(/\\/g, '/')
           .split('docs/')[1]
           .replace(/-/g, ' ');
-        this.walk(fPath, parent.children);
+        this.getCatlogs(fPath, parent.children, build);
       }
-      if (stat.isFile()) {
+      if (stat.isFile() && fPath.endsWith('.md')) {
         let title = '';
         const str = fs.readFileSync(fPath, { encoding: 'utf-8' });
         const { content, data } = matter(String(str));
@@ -74,7 +85,9 @@ export default class MdTransform {
               .split('docs')[1],
         });
         // get article hast
-        this.saveArticle(content, data, fPath);
+        if (build) {
+          this.saveArticle(content, data, fPath);
+        }
       }
       if (parent.label) {
         dirs.push(parent);
@@ -83,15 +96,61 @@ export default class MdTransform {
     return this.catlogs;
   }
 
-  async saveArticle(content = '', data = {} as {}, fPath: string) {
+  watchDocs() {
+    this.watcher = chokidar
+      .watch(['**/*'], {
+        cwd: this.docsDir,
+        ignoreInitial: true,
+        ignored: /(^|[/\\])\../,
+      })
+      .on('change', (url) => {
+        this.updateTransform(url);
+      })
+      .on('add', async (url) => {
+        if (url.endsWith('.md')) {
+          this.catlogs = [];
+          await this.updateTransform(url);
+          this.updateCategories(false);
+        } else {
+          console.warn('只支持新增md格式文件');
+        }
+      })
+      .on('unlink', async (url) => {
+        if (url.endsWith('.md')) {
+          const mdPath = path.join(this.docsDir, url);
+          const fileName = getArticleName(mdPath).replace(/\//g, '-');
+
+          await fs.unlinkSync(path.join(this.outputDir, `${fileName}.json`));
+
+          this.catlogs = [];
+          this.updateCategories(false);
+        }
+      });
+  }
+
+  async updateTransform(url = '') {
+    const mdPath = path.join(this.docsDir, url);
+    const str = fs.readFileSync(mdPath, { encoding: 'utf-8' });
+    const { content, data } = matter(String(str));
+    await this.saveArticle(content, data, mdPath);
+  }
+
+  async close() {
+    if (this.watcher) {
+      await this.watcher.close();
+      this.watcher = null;
+    }
+  }
+
+  async saveArticle(content: string, data, mdPath = '') {
     let meta = {} as IMeta;
     let children: IElement[] = [];
     let tocs = [];
     const startTime = process.hrtime();
-    const fileName = getArticleName(fPath).replace(/\//g, '-');
+    const fileName = getArticleName(mdPath).replace(/\//g, '-');
 
     try {
-      const res = await getResolvedMarkdown(content, data, fPath);
+      const res = await getResolvedMarkdown(content, data, mdPath);
       const toc = res.content.find((v) => isToc(v));
       meta = res.meta;
       children = res.content;
@@ -120,13 +179,19 @@ export default class MdTransform {
     const [s, ns] = process.hrtime(startTime);
     console.info(
       chalk.blue(
-        `Parsed ${fPath.split('docs')[1]} files in ${chalk.green(
+        `Parsed ${mdPath.split('docs')[1]} files in ${chalk.green(
           `${s}.${Math.round(ns / 1e8)} seconds`
         )}`
       )
     );
   }
 }
+
+/**
+ * =============================
+ * some tools
+ * =============================
+ */
 
 function isToc(v = {} as IElement) {
   return (
