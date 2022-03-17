@@ -19,7 +19,7 @@
   div,
   span {
     & > a {
-      @apply border-transparent border-1 font-600 no-underline hover:underline;
+      @apply border-transparent border-1 font-600 no-underline hover:underline break-all whitespace-pre-wrap;
       color: var(--primary-500);
     }
   }

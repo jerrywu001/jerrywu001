@@ -128,6 +128,12 @@ export default class MdTransform {
   }
 }
 
+/**
+ * =============================
+ * some tools
+ * =============================
+ */
+
 function isToc(v = {} as IElement) {
   return (
     v.tag === 'ol' &&

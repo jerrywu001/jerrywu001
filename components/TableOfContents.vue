@@ -26,7 +26,7 @@
     </a>
     <div class="flex-col justify-between overflow-y-auto sticky pb-2">
       <div
-        class="overflow-x-hidden overflow-y-auto d-scrollbar"
+        class="overflow-x-hidden overflow-y-auto d-scrollbar pr-3 box-border"
         :class="`${!isPc ? 'max-h-[50vh]' : 'h-$tocs-height-xl'}`"
       >
         <ol class="table-of-contents">

@@ -52,17 +52,6 @@ html:root {
   }
 }
 
-@screen xl {
-  /** scroll bar **/
-  .d-scrollbar {
-    --scrollbar-thumb: transparent;
-  }
-
-  .dark .d-scrollbar {
-    --scrollbar-thumb: transparent;
-  }
-}
-
 button:focus-visible,
 div:focus-visible,
 a:focus-visible {

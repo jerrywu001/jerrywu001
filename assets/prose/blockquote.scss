@@ -1,8 +1,9 @@
 .article {
   blockquote {
-    @apply mt-[1.5em] mb-[1.5em] font-medium pl-4 d-prose-blockquote-text d-prose-blockquote-border;
+    @apply mt-[1.5em] mb-[1.5em] font-normal pl-4 d-prose-blockquote-text d-prose-blockquote-border;
     quotes: '201C' '201D' '2018' '2019';
     margin-left: 0;
+    font-size: 0.88rem !important;
   }
 
   blockquote p:first-of-type::before {

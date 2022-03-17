@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 export function useArticleScroll() {
   function getTopIcon() {
     return document.querySelector('#back-2-top') as HTMLDivElement;
@@ -6,7 +7,7 @@ export function useArticleScroll() {
   function doScroll() {
     const container = getScrollContainer();
     const topIcon = getTopIcon();
-    const scrollTop = container.scrollTop;
+    const scrollTop = container.scrollY;
 
     if (scrollTop > 200) {
       topIcon.style.display = 'flex';
@@ -77,7 +78,8 @@ export function getHeadings() {
 }
 
 export function getScrollContainer() {
-  return document.querySelector('.layout-container') as HTMLDivElement;
+  // return document.querySelector('.layout-container') as HTMLDivElement;
+  return window;
 }
 
 export function getVisibleTocContainer() {
@@ -125,8 +127,8 @@ export function autoHighlightArchor() {
     target.classList.remove('active');
 
     if (
-      target.offsetTop < container.scrollTop + headBoxHeight + 90 &&
-      target.offsetTop > container.scrollTop + headBoxHeight
+      target.offsetTop < container.scrollY + headBoxHeight + 90 &&
+      target.offsetTop > container.scrollY + headBoxHeight
     ) {
       tocLinks.forEach((dom) => {
         dom.classList.remove('active');

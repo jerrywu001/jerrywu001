@@ -1,13 +1,9 @@
 <template>
   <Body
-    class="d-body-bg d-body-text-color text-root min-w-base antialiased tracking-semitight min-w-xs"
+    class="d-body-bg d-body-text-color text-root min-w-base antialiased tracking-semitight d-scrollbar min-w-xs overflow-x-hidden"
   >
     <div
-      class="layout-container relative d-scrollbar"
-      font-montserrat
-      text-sm
-      overflow-x-hidden
-      xl:text-base
+      class="layout-container relative w-full font-montserrat text-sm xl:text-base"
     >
       <slot />
     </div>
@@ -19,8 +15,5 @@
   max-width: var(--max-content-width);
   margin-left: auto;
   margin-right: auto;
-  height: 100vh;
-  overflow-x: hidden;
-  overflow-y: auto;
 }
 </style>
