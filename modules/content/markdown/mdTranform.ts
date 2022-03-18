@@ -112,7 +112,10 @@ export default class MdTransform extends Hookable {
         }
         break;
       case 'change':
-        this.updateTransform(url);
+        await this.updateTransform(url);
+
+        this.catlogs = [];
+        this.updateCategories(false);
         break;
       case 'unlink':
         if (url.endsWith('.md')) {

@@ -141,7 +141,7 @@ if (process.client) {
     if (e.data && typeof e.data === 'string' && e.data.endsWith('.md')) {
       setTimeout(() => {
         loadData(true);
-      }, 600);
+      }, 900);
     }
   };
 }

@@ -7,7 +7,7 @@
         @click="toggle"
       >
         <a
-          class="text-sm text-black/80 mr-1"
+          class="text-sm !text-black/80 mr-1"
           :class="[
             visible ? 'i-carbon-chevron-down' : 'i-carbon-chevron-right',
           ]"

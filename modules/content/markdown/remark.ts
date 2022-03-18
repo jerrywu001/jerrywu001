@@ -8,6 +8,7 @@ import remarkDirectiveRehype from 'remark-directive-rehype';
 import remarkGfm from 'remark-gfm';
 import remarkHeadingId from 'remark-heading-id';
 import remarkParse from 'remark-parse';
+import remarkGemoji from 'remark-gemoji';
 import remarkPrism from 'unified-remark-prismjs';
 import remarkRehype from 'remark-rehype';
 import remarkSlug from 'remark-slug';
@@ -38,6 +39,7 @@ export const getResolvedMarkdown = async (
   const meta = (data || {}) as IMeta;
   const file = await unified()
     .use(remarkParse)
+    .use(remarkGemoji)
     .use(remarkGfm)
     .use(remarkSqueezeParagraphs)
     .use(remarkHeadingId)
@@ -51,10 +53,10 @@ export const getResolvedMarkdown = async (
         // 'autolinker',
         'data-uri-highlight',
         'inline-color',
-        // 'line-numbers',
+        'line-numbers',
         'diff-highlight',
         'treeview',
-        // 'command-line',
+        'command-line',
       ],
     })
     // @ts-ignore

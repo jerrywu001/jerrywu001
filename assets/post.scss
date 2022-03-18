@@ -17,17 +17,33 @@
 .article-scroll-box {
   p,
   div,
+  li,
+  strong,
   span {
     & > a {
-      @apply border-transparent border-1 font-600 no-underline hover:underline break-all whitespace-pre-wrap;
+      @apply border-transparent border-1 font-600 no-underline hover: underline break-all whitespace-pre-wrap;
       color: var(--primary-500);
+    }
+  }
+
+  ul,
+  ol {
+    @apply pl-6;
+    list-style-type: revert;
+
+    li {
+      padding-left: initial;
+
+      &::before {
+        display: none;
+      }
     }
   }
 }
 
 .table-of-contents {
   .toc-link {
-    @apply block py-1 transition-colors duration-100 transform d-secondary-text hover:d-secondary-text-hover;
+    @apply block py-1 transition-colors duration-100 transform d-secondary-text hover: d-secondary-text-hover;
   }
 }
 

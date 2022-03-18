@@ -36,6 +36,7 @@
     "rehype-toc": "^3.0.2",
     "remark-directive": "^2.0.1",
     "remark-directive-rehype": "^0.4.0",
+    "remark-gemoji": "^7.0.1",
     "remark-gfm": "^3.0.1",
     "remark-heading-id": "^1.0.0",
     "remark-parse": "^10.0.1",
