@@ -1,7 +1,7 @@
 ---
 title: vue3 jest单元测试环境搭建
 description: 本文介绍vue3 jest单元测试环境搭建
-cover: /articles/jest.jpeg
+cover: /articles/jest.png
 ---
 
 > 现阶段，对于vue项目，基于jest的单元测试封装工具主要有：vue-test-utils 和 vue-testing-library，接下来将详细介绍环境安装配置

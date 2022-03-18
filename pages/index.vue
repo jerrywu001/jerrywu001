@@ -93,9 +93,9 @@
           px-4
           my-3
           rounded
-          to="/posts/vue/full"
+          to="/posts/other/full"
         >
-          view posts
+          查看项目md语法
         </NuxtLink>
       </div>
     </div>
