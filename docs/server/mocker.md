@@ -5,6 +5,7 @@ cover: /articles/mocker.jpeg
 ---
 
 > 一个好的前端mock工具，可以有效的提高前端开发效率
+>
 > 常用的mock方案这里不做过多介绍，可以自行搜索
 
 本文要介绍的mock工具msw，它通过service worker来做请求拦截：

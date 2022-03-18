@@ -94,7 +94,7 @@ function toggleSidebar() {
   showSidebar.value = !showSidebar.value;
 }
 
-async function loadData() {
+async function loadData(forceUpdate = false) {
   loading.value = true;
   const res = await useFetch<IArticleData>(
     `/api/post?category=${category}&postname=${postname}`
@@ -103,7 +103,7 @@ async function loadData() {
   data.value = res.data.value;
   loading.value = false;
 
-  if (!dirs.value.length) {
+  if (!dirs.value.length || forceUpdate) {
     // 更新分类缓存
     updateDirs(res.data.value.categories);
   }
@@ -123,11 +123,28 @@ async function loadData() {
 loadData();
 
 /** ============= hooks ============= */
-useArticleScroll();
+useArticleScroll(); //
 
 tryOnBeforeUnmount(() => {
   removeArchorClickEvent();
 });
+
+if (process.client) {
+  const ws = new WebSocket('ws://localhost:8080');
+  ws.onclose = function (e) {
+    console.log('webscoket connect closed');
+  };
+  ws.onerror = function () {
+    console.log('webscoket connect failed');
+  };
+  ws.onmessage = (e) => {
+    if (e.data && typeof e.data === 'string' && e.data.endsWith('.md')) {
+      setTimeout(() => {
+        loadData(true);
+      }, 600);
+    }
+  };
+}
 </script>
 
 <style>

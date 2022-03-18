@@ -1,26 +1,26 @@
-/* eslint-disable import/default */
-/* eslint-disable import/no-named-as-default-member */
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import chalk from 'chalk';
-import chokidar from 'chokidar';
+import { Hookable } from 'hookable';
 import { getArticleName, getResolvedMarkdown } from './remark';
 import { ICategory, IElement, IMeta, ITableOfContent } from '~~/types';
+
+type WatchEvent = 'add' | 'addDir' | 'change' | 'unlink' | 'unlinkDir';
 
 export interface MdOption {
   rootDir: string;
   docsDir: string;
 }
 
-export default class MdTransform {
-  watcher = null;
+export default class MdTransform extends Hookable {
   rootDir = '';
   docsDir = '';
   outputDir = '';
   catlogs = [] as ICategory[];
 
   constructor(options: MdOption) {
+    super();
     this.rootDir = options.rootDir;
     this.docsDir = options.docsDir;
     this.outputDir = path.join(this.rootDir, 'public/content');
@@ -28,7 +28,6 @@ export default class MdTransform {
 
   init() {
     this.updateCategories();
-    this.watchDocs();
   }
 
   async updateCategories(build = true) {
@@ -96,17 +95,14 @@ export default class MdTransform {
     return this.catlogs;
   }
 
-  watchDocs() {
-    this.watcher = chokidar
-      .watch(['**/*'], {
-        cwd: this.docsDir,
-        ignoreInitial: true,
-        ignored: /(^|[/\\])\../,
-      })
-      .on('change', (url) => {
-        this.updateTransform(url);
-      })
-      .on('add', async (url) => {
+  async onFileChange(event: WatchEvent, url: string) {
+    await this.transformFileOnChange(event, url);
+    this.callHook('file:transformed', event, `docs${url}`);
+  }
+
+  async transformFileOnChange(event: WatchEvent, url: string) {
+    switch (event) {
+      case 'add':
         if (url.endsWith('.md')) {
           this.catlogs = [];
           await this.updateTransform(url);
@@ -114,8 +110,11 @@ export default class MdTransform {
         } else {
           console.warn('只支持新增md格式文件');
         }
-      })
-      .on('unlink', async (url) => {
+        break;
+      case 'change':
+        this.updateTransform(url);
+        break;
+      case 'unlink':
         if (url.endsWith('.md')) {
           const mdPath = path.join(this.docsDir, url);
           const fileName = getArticleName(mdPath).replace(/\//g, '-');
@@ -125,7 +124,10 @@ export default class MdTransform {
           this.catlogs = [];
           this.updateCategories(false);
         }
-      });
+        break;
+      default:
+        break;
+    }
   }
 
   async updateTransform(url = '') {
@@ -133,13 +135,6 @@ export default class MdTransform {
     const str = fs.readFileSync(mdPath, { encoding: 'utf-8' });
     const { content, data } = matter(String(str));
     await this.saveArticle(content, data, mdPath);
-  }
-
-  async close() {
-    if (this.watcher) {
-      await this.watcher.close();
-      this.watcher = null;
-    }
   }
 
   async saveArticle(content: string, data, mdPath = '') {
