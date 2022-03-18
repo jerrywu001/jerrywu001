@@ -277,11 +277,11 @@ test('Index add fun', () => {
 
 - 测试通过
 
-!()[https://pic2.zhimg.com/80/v2-6a03879d5d421cef0192e4aedf5aea51_720w.jpg]
+![](https://pic2.zhimg.com/80/v2-6a03879d5d421cef0192e4aedf5aea51_720w.jpg)
 
 
 - 测试失败
 
 > 组件中increment 改成了每次加2
 
-!()[https://pic2.zhimg.com/80/v2-8956cb1c67e1476ed74058156d5366ed_720w.jpg]
+![](https://pic2.zhimg.com/80/v2-8956cb1c67e1476ed74058156d5366ed_720w.jpg)
