@@ -44,6 +44,7 @@
 .table-of-contents {
   .toc-link {
     @apply block py-1 transition-colors duration-100 transform d-secondary-text hover: d-secondary-text-hover;
+    font-weight: 400;
   }
 }
 

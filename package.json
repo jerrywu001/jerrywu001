@@ -58,7 +58,7 @@
     "parse-numeric-range": "^1.3.0",
     "property-information": "^6.1.1",
     "skeleton-elements": "^4.0.0",
-    "unified-remark-prismjs": "^1.1.2",
+    "unified-remark-prismjs": "^1.1.3",
     "unist-util-map": "^3.0.0"
   }
 }

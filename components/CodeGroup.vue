@@ -1,11 +1,13 @@
 <template>
   <div ref="codeRef" class="code-group">
-    <div class="relative text-white rounded-t-lg d-code-group-header-bg">
-      <div ref="tabsRef" class="relative z-0 px-2">
+    <div
+      class="relative text-white rounded-t-lg d-code-group-header-bg overflow-x-auto"
+    >
+      <div ref="tabsRef" class="relative z-0 px-2 w-max">
         <button
           v-for="(label, i) in tabs"
           :key="`${i}${label}`"
-          class="relative px-3 py-1.5 xs:py-3 my-1.5 xs:my-0 text-sm font-medium tracking-tight focus:outline-none"
+          class="relative inline-block px-3 py-1.5 xs:py-3 my-1.5 xs:my-0 text-sm font-medium tracking-tight focus:outline-none"
           :class="[
             activeTabIndex === i
               ? 'active text-gray-800 dark:text-white'
@@ -90,6 +92,9 @@ function updateTabs(index = 0) {
     background-color: rgba(228, 228, 231, 1);
     .dark & {
       background-color: #003543;
+    }
+    &::-webkit-scrollbar {
+      display: none;
     }
   }
   button {

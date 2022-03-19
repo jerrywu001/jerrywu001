@@ -245,9 +245,16 @@ code[class*='language-'] {
   }
 }
 
-a code,
-p code {
-  padding: 3px 6px;
+a,
+p {
+  code {
+    padding: 3px 6px;
+  }
+  pre {
+    code {
+      padding: 3px 0;
+    }
+  }
 }
 
 a code {

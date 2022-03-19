@@ -95,7 +95,7 @@ const tocs = computed(() => (props.children as ITableOfContent[]) || []);
 
 <style lang="postcss" scoped>
 .toc-link.active {
-  font-weight: 700;
+  font-weight: bolder;
 }
 
 .dark {

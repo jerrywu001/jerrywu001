@@ -97,7 +97,7 @@ module.exports = {
 
 :::code-group
 
-```vue[class=no-command-line][filename="单文件组件代码"]
+```vue[class=no-line-numbers][filename="单文件组件代码"]
 <template>
   <div>
     <p data-testid="clicked" data-test="clicked">Times clicked: {{ count }}</p>
@@ -129,7 +129,7 @@ export default defineComponent({
 </script>
 ```
 
-```tsx[class=no-command-line][filename="tsx组件代码"]
+```tsx[class=no-line-numbers][filename="tsx组件代码"]
 import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
@@ -165,7 +165,7 @@ export default defineComponent({
 
 :::code-group
 
-```ts[class=no-command-line][filename="单文件组件测试用例"]
+```ts[class=no-line-numbers][filename="单文件组件测试用例"]
 import IncrementDemo from '../components/IncrementDemo.vue';
 import { fireEvent, render, screen } from '@testing-library/vue';
 
@@ -186,7 +186,7 @@ test('SFC: increments value on click', async () => {
 });
 ```
 
-```tsx[class=no-command-line][filename="tsx组件测试用例"]
+```tsx[class=no-line-numbers][filename="tsx组件测试用例"]
 import IncrementDemo from '../components/IncrementDemo';
 import { fireEvent, render, screen } from '@testing-library/vue';
 
@@ -214,7 +214,7 @@ test('tsx: increments value on click', async () => {
 
 :::code-group
 
-```ts[class=no-command-line][filename="单文件组件测试用例"]
+```ts[class=no-line-numbers][filename="单文件组件测试用例"]
 import IncrementDemo from 'components/IncrementDemo.vue';
 import { mount } from '@vue/test-utils';
 
@@ -236,7 +236,7 @@ test('SFC: increments value on click', async () => {
 });
 ```
 
-```tsx[class=no-command-line][filename="tsx组件测试用例"]
+```tsx[class=no-line-numbers][filename="tsx组件测试用例"]
 import IncrementDemo from 'components/IncrementDemo';
 import { mount } from '@vue/test-utils';
 
@@ -262,7 +262,7 @@ test('TSX: increments value on click', async () => {
 
 ## 普通js测试用例
 
-```js[class=no-command-line]
+```js[class=no-line-numbers]
 const add = (a: number, b: number) => a + b;
 
 test('Index add fun', () => {

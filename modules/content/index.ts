@@ -1,7 +1,7 @@
 import path from 'path';
 import chalk from 'chalk';
 import { defineNuxtModule } from '@nuxt/kit';
-import { WebSocketServer } from 'ws';
+import Websocket from 'ws';
 import MdTransform from './markdown/mdTranform';
 
 interface Option {}
@@ -32,8 +32,15 @@ export default defineNuxtModule<Option>({
       }
     }
 
+    nuxt.hook('builder:watch', (event, path) => {
+      if (path && path.startsWith('docs')) {
+        md.onFileChange(event, path.split('docs')[1]);
+      }
+    });
+
     if (process.env.NODE_ENV === 'development') {
-      const wss = new WebSocketServer({ port: 8080 });
+      // eslint-disable-next-line import/no-named-as-default-member
+      const wss = new Websocket.Server({ port: 8080 });
 
       wss.on('open', function open() {
         console.info('websocket connected');
@@ -51,12 +58,6 @@ export default defineNuxtModule<Option>({
           } catch (err) {
             // Ignore error (if client not ready to receive event)
           }
-        }
-      });
-
-      nuxt.hook('builder:watch', (event, path) => {
-        if (path && path.startsWith('docs')) {
-          md.onFileChange(event, path.split('docs')[1]);
         }
       });
 

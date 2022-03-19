@@ -33,11 +33,11 @@ see: [emoji](https://www.npmjs.com/package/remark-gemoji)
 
 > 1. **如果想全局禁用行号**
 >
-> 可以打开modules\content\markdown\remark.ts中"line-numbers"所在行的注释查看效果
+> 可以注释modules\content\markdown\remark.ts中"line-numbers"所在行查看效果
 >
 > 2. **如果想全局禁用bash commond-line**
 >
-> 可以打开modules\content\markdown\remark.ts中"command-line"所在行的注释查看效果
+> 可以注释modules\content\markdown\remark.ts中"command-line"所在行查看效果
 
 ### 内联code
 
@@ -298,7 +298,7 @@ create-react-app react-debug
 npm i create-react-app -g
 ```
 
-```bash[class=no-command-line][filename="use create-react-app"]
+```[class=no-command-line][filename="use create-react-app"]
 create-react-app react-debug
 ```
 
@@ -549,8 +549,8 @@ warning!!!
       :::alert{icon=none type=danger}
         danger list:
         :::list{icon=🤣}
-        - I: sadfasd
-        - II: asdfasdgdddd
+        - sadfasd
+        - asdfasdgdddd
 
 :::
 ```
@@ -569,8 +569,8 @@ warning!!!
       :::alert{icon=none type=danger}
         danger list:
         :::list{icon=🤣}
-        - I: sadfasd
-        - II: asdfasdgdddd
+        - sadfasd
+        - asdfasdgdddd
 
 :::
 
