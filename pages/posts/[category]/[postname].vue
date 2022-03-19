@@ -36,6 +36,19 @@
       ></span>
     </div>
   </article>
+  <!-- photo swipe -->
+  <div id="photo-swipe">
+    <a
+      v-for="(image, key) in imgs"
+      :key="key"
+      class="preview"
+      :href="image.largeURL"
+      :data-pswp-width="image.width"
+      :data-pswp-height="image.height"
+      target="_blank"
+      rel="noreferrer"
+    />
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -47,6 +60,7 @@ import {
 } from '~~/utils/toc';
 import Sidebar from '~~/components/Sidebar.vue';
 import { IArticleData, IElement, IMeta, ITableOfContent } from '~~/types';
+import useImgSwipe from '~~/utils/imgSwipe';
 
 /** ============= page meta define ============= */
 definePageMeta({
@@ -67,6 +81,7 @@ const loading = ref(true);
 const showSidebar = ref(false);
 const { dirs, updateDirs } = useCategories();
 const { toggleDark } = useDarkTheme();
+const { imgs } = useImgSwipe();
 
 /** ============= computed state ============= */
 const children = computed<IElement[]>(() => {
@@ -123,7 +138,7 @@ async function loadData(forceUpdate = false) {
 loadData();
 
 /** ============= hooks ============= */
-useArticleScroll(); //
+useArticleScroll();
 
 tryOnBeforeUnmount(() => {
   removeArchorClickEvent();

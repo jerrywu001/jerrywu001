@@ -241,7 +241,7 @@ export default function invariant(condition, format, a, b, c, d, e, f) {
 
 最后启动npm start即可进行调试了
 
-![run](https://pic4.zhimg.com/80/v2-83df4a2c8b8f9f0c1da6dc3da2d481eb_720w.jpg)
+![run](https://pic4.zhimg.com/80/v2-83df4a2c8b8f9f0c1da6dc3da2d481eb.jpg)
 
 ## 附：在线调试 {#online-demo}
 

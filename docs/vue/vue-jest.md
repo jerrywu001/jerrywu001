@@ -35,10 +35,10 @@ npm i babel-jest@26.0.0 jest@26.0.0 ts-jest@26.4.4 -D
 
 <small>vue-jest 依赖包所指定的版本要求</small>
 
-![](https://pic3.zhimg.com/80/v2-920eb1974b361401dded444fed10a2ee_720w.jpg)
+![](https://pic3.zhimg.com/80/v2-920eb1974b361401dded444fed10a2ee.jpg)
 
 
-![](https://pic4.zhimg.com/80/v2-7566f066a234d30d2dc2e7b654299747_720w.jpg)
+![](https://pic4.zhimg.com/80/v2-7566f066a234d30d2dc2e7b654299747.jpg)
 
 ## jest.config.js
 
@@ -277,11 +277,11 @@ test('Index add fun', () => {
 
 - 测试通过
 
-![](https://pic2.zhimg.com/80/v2-6a03879d5d421cef0192e4aedf5aea51_720w.jpg)
+![](https://pic2.zhimg.com/80/v2-6a03879d5d421cef0192e4aedf5aea51.jpg)
 
 
 - 测试失败
 
 > 组件中increment 改成了每次加2
 
-![](https://pic2.zhimg.com/80/v2-8956cb1c67e1476ed74058156d5366ed_720w.jpg)
+![](https://pic2.zhimg.com/80/v2-8956cb1c67e1476ed74058156d5366ed.jpg)
