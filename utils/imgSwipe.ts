@@ -4,7 +4,6 @@ import 'photoswipe/dist/photoswipe.css';
 import { Ref } from '@vue/runtime-dom';
 
 export default function useImgSwipe(loading: Ref<boolean>) {
-  const imgs = ref([]);
   const lightbox = ref(null);
 
   async function initImageSwipe() {
@@ -17,26 +16,23 @@ export default function useImgSwipe(loading: Ref<boolean>) {
             if (box) {
               console.log('start inint images swiper');
               const items = box.querySelectorAll('img');
-              const imgList = [];
-              items.forEach((img, index) => {
+              items.forEach((img) => {
                 if (img.id !== 'cover') {
-                  imgList.push({
-                    largeURL: img.src,
-                    width: img.width * 2.5,
-                    height: img.height * 2.5,
-                  });
-                  img.onclick = () => {
-                    const p = document.getElementById('photo-swipe');
-                    const ls = p.querySelectorAll('a');
-                    ls[index - 1].click();
-                  };
+                  const a = document.createElement('a');
+                  a.className = 'swiper-link';
+                  a.href = img.src;
+                  a.rel = 'noreferrer';
+                  a.target = '_blank';
+                  a.setAttribute('data-pswp-width', String(img.width * 2.5));
+                  a.setAttribute('data-pswp-height', String(img.height * 2.5));
+                  a.appendChild(img.cloneNode(true));
+                  img.replaceWith(a);
                 }
               });
-              imgs.value = imgList;
               if (!lightbox.value) {
                 lightbox.value = new PhotoSwipeLightbox({
-                  gallery: '#photo-swipe',
-                  children: 'a',
+                  gallery: '.article-scroll-box',
+                  children: '.swiper-link',
                   pswpModule: PhotoSwipe,
                   imageClickAction: 'close',
                   tapAction: 'close',
@@ -71,7 +67,7 @@ export default function useImgSwipe(loading: Ref<boolean>) {
     { immediate: true }
   );
 
-  return { imgs, lightbox, initImageSwipe };
+  return { lightbox, initImageSwipe };
 }
 
 function getAllImgsLoaded(callback) {

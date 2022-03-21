@@ -36,19 +36,6 @@
       ></span>
     </div>
   </article>
-  <!-- photo swipe -->
-  <div id="photo-swipe">
-    <a
-      v-for="(image, key) in imgs"
-      :key="key"
-      class="preview"
-      :href="image.largeURL"
-      :data-pswp-width="image.width"
-      :data-pswp-height="image.height"
-      target="_blank"
-      rel="noreferrer"
-    />
-  </div>
 </template>
 
 <script setup lang="ts">
@@ -81,7 +68,6 @@ const loading = ref(true);
 const showSidebar = ref(false);
 const { dirs, updateDirs } = useCategories();
 const { toggleDark } = useDarkTheme();
-const { imgs } = useImgSwipe(loading);
 
 /** ============= computed state ============= */
 const children = computed<IElement[]>(() => {
@@ -138,6 +124,7 @@ async function loadData(forceUpdate = false) {
 loadData();
 
 /** ============= hooks ============= */
+useImgSwipe(loading);
 useArticleScroll();
 
 tryOnBeforeUnmount(() => {

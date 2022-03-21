@@ -59,3 +59,11 @@ a:focus-visible {
   border-radius: 2px;
   box-shadow: 0 0 0 2px #00dc82;
 }
+
+.swiper-link {
+  border: none !important;
+
+  img {
+    margin: 0 !important;
+  }
+}
