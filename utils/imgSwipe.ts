@@ -14,7 +14,7 @@ export default function useImgSwipe(loading: Ref<boolean>) {
           getAllImgsLoaded(() => {
             const box = document.querySelector('.article-scroll-box');
             if (box) {
-              console.log('start inint images swiper');
+              console.log('start init images swiper');
               const items = box.querySelectorAll('img');
               items.forEach((img) => {
                 if (img.id !== 'cover') {
@@ -39,6 +39,11 @@ export default function useImgSwipe(loading: Ref<boolean>) {
                 });
                 lightbox.value.init();
               }
+
+              const pres = document.querySelectorAll('pre');
+              pres.forEach((pre) => {
+                pre.classList.add('d-scrollbar');
+              });
             }
           });
         }, 0);

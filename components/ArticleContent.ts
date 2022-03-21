@@ -48,6 +48,7 @@ export default {
         });
       }
 
+      // article cover image
       if (meta.cover && !hasCover) {
         children.unshift({
           type: 'element',

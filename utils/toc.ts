@@ -49,6 +49,7 @@ export function useArticleScroll() {
     topIcon.removeEventListener('click', onClick, false);
     container.removeEventListener('scroll', doScroll, false);
     document.body.removeEventListener('click', hideTocs, false);
+    removeArchorClickEvent();
   });
 
   return {};

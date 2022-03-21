@@ -25,11 +25,19 @@
         :children="tocs"
         :is-pc="true"
       />
+      <div
+        v-show="!loading && createTime"
+        class="flex flex-col justify-between mb-4 px-4 text-gray-500 dark:text-white/70"
+      >
+        <span class="flex text-xs items-center text-sm text-opacity-50">
+          create at {{ createTime }}
+        </span>
+      </div>
     </div>
 
     <div
       id="back-2-top"
-      class="fixed z-50 bottom-2 right-2 w-10 h-10 bg-black-500/50 rounded-full items-center justify-center hidden dark:bg-white/90"
+      class="fixed z-50 bottom-10 right-2 w-10 h-10 bg-black-500/50 rounded-full items-center justify-center hidden dark:bg-white/90"
     >
       <span
         class="i-carbon-back-to-top block !w-4 h-4 bg-white dark:bg-black/90"
@@ -40,11 +48,7 @@
 
 <script setup lang="ts">
 // https://www.cnblogs.com/guangzan/p/15021560.html
-import {
-  addArchorClickEvent,
-  removeArchorClickEvent,
-  useArticleScroll,
-} from '~~/utils/toc';
+import { addArchorClickEvent, useArticleScroll } from '~~/utils/toc';
 import Sidebar from '~~/components/Sidebar.vue';
 import { IArticleData, IElement, IMeta, ITableOfContent } from '~~/types';
 import useImgSwipe from '~~/utils/imgSwipe';
@@ -90,6 +94,19 @@ const description = computed(() => {
   return meta.value.description || '...';
 });
 
+const createTime = computed(() => {
+  const date = meta.value.createAt;
+  if (date) {
+    const dateObj = new Date(date);
+    let month = String(dateObj.getMonth() + 1);
+    let day = String(dateObj.getDate());
+    month = month.length === 1 ? `0${month}` : month;
+    day = day.length === 1 ? `0${day}` : day;
+    return `${dateObj.getFullYear()}-${month}-${day}`;
+  }
+  return '';
+});
+
 /** ============= methods ============= */
 function toggleSidebar() {
   showSidebar.value = !showSidebar.value;
@@ -126,10 +143,6 @@ loadData();
 /** ============= hooks ============= */
 useImgSwipe(loading);
 useArticleScroll();
-
-tryOnBeforeUnmount(() => {
-  removeArchorClickEvent();
-});
 
 if (process.client) {
   const ws = new WebSocket('ws://localhost:8080');

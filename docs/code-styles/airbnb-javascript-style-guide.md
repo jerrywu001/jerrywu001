@@ -1,6 +1,7 @@
 ---
 title: javascript airbnb 代码规范
 cover: /articles/code-styles/javascript.png
+createAt: 2017-01-07T16:00:00.000Z
 ---
 
 # javascript airbnb 代码规范

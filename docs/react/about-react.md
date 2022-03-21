@@ -2,6 +2,7 @@
 title: 6个关于react的友情提示
 description: 6个关于react代码编写的建议，帮助提高代码的可读性、可维护性。
 cover: /articles/react/about-react.png
+createAt: 2018-02-22T10:00:00.000Z
 ---
 
 # 6个关于react的友情提示

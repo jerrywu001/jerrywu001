@@ -2,6 +2,7 @@
 title: HTML编码规范
 description: HTML 作为描述网页结构的超文本标记语言，在百度一直有着广泛的应用。本文档的目标是使 HTML 代码风格保持一致，容易被理解和被维护。
 cover: /articles/code-styles/html.jpg
+createAt: 2017-01-07T16:00:00.000Z
 ---
 
 # HTML编码规范

@@ -34,6 +34,7 @@ export interface IMeta {
   title: string;
   description: string;
   category: string;
+  createAt: string;
   hasTitle: boolean;
   cover?: string;
   [key: string]: any;
