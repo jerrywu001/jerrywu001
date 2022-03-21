@@ -81,7 +81,7 @@ const loading = ref(true);
 const showSidebar = ref(false);
 const { dirs, updateDirs } = useCategories();
 const { toggleDark } = useDarkTheme();
-const { imgs } = useImgSwipe();
+const { imgs } = useImgSwipe(loading);
 
 /** ============= computed state ============= */
 const children = computed<IElement[]>(() => {
