@@ -10,7 +10,7 @@
       />
       <div
         id="sidebar-content"
-        class="fixed top-0 left-0 w-$sidebar-width h-full pointer-events-auto lg:sticky"
+        class="fixed top-0 left-0 w-$sidebar-width h-full pointer-events-auto !lg:transform-none !lg:transition-none lg:sticky"
       >
         <div class="w-full h-full bg-white dark:bg-[#001e26]">
           <div class="h-full overflow-y-auto d-scrollbar">
