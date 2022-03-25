@@ -41,6 +41,8 @@ export function useArticleScroll() {
     topIcon.addEventListener('click', onClick, false);
     container.addEventListener('scroll', doScroll, false);
     document.body.addEventListener('click', hideTocs, false);
+    document.documentElement.classList.remove('overflow-hidden');
+    document.documentElement.classList.remove('h-full');
   });
 
   tryOnBeforeUnmount(() => {
