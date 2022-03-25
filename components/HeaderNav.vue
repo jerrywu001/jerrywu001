@@ -1,4 +1,3 @@
-import { AlgoliaSearchOptions } from '~~/types';
 <template>
   <div
     class="header-box px-4 flex items-center justify-between top-0 w-full z-50 sticky bg-white/95 h-$header-height dark:bg-[#001e26]/95"
@@ -26,7 +25,7 @@ import { AlgoliaSearchOptions } from '~~/types';
 </template>
 
 <script lang="ts" setup>
-import { AlgoliaSearchOptions } from '~~/types';
+import type { DocSearchProps } from '@docsearch/react/dist/esm';
 
 interface IEmit {
   (event: 'toggle-sidebar'): void;
@@ -36,16 +35,79 @@ interface IEmit {
 const emit = defineEmits<IEmit>();
 
 const searchOptions = {
-  indexName: 'blog',
-  appId: '667T7RWHK3',
-  apiKey: '9691e71305a7c7c21c3780a5ff702cc6',
   // indexName: 'vuejs',
   // appId: 'ML0LEBN7FQ',
   // apiKey: 'f49cbd92a74532cc55cfbffa5e5a7d01',
-  searchParameters: {
-    facetFilters: ['category'],
-  },
-} as AlgoliaSearchOptions;
+  // searchParameters: {
+  //   facetFilters: ['version:v3'],
+  // },
+  indexName: 'blog',
+  appId: '667T7RWHK3',
+  apiKey: '9691e71305a7c7c21c3780a5ff702cc6',
+} as DocSearchProps;
+
+let lock = false;
+
+function toggleSidebar() {
+  if (lock) return;
+  lock = true;
+  const layer = document.getElementById('sidebar-layer');
+  const content = document.getElementById('sidebar-content');
+  const isVisible = content.classList.contains('x-full');
+  if (isVisible) {
+    document.documentElement.classList.remove('overflow-hidden');
+    document.documentElement.classList.remove('h-full');
+    content.classList.remove('x-full');
+    layer.classList.remove('fade-enter-active');
+    layer.classList.remove('fade-enter-to');
+    layer.classList.add('fade-leave-active');
+    layer.classList.add('fade-leave-to');
+    setTimeout(() => {
+      layer.classList.remove('show');
+      layer.classList.remove('fade-leave-active');
+      layer.classList.remove('fade-leave-to');
+      lock = false;
+    }, 500);
+  } else {
+    document.documentElement.classList.add('overflow-hidden');
+    document.documentElement.classList.add('h-full');
+    content.classList.add('x-full');
+    layer.classList.add('show');
+    setTimeout(() => {
+      layer.classList.remove('fade-leave-active');
+      layer.classList.remove('fade-leave-to');
+      layer.classList.add('fade-enter-active');
+      layer.classList.add('fade-enter-to');
+      lock = false;
+    }, 0);
+  }
+}
+
+tryOnMounted(() => {
+  if (process.client) {
+    const layer = document.getElementById('sidebar-layer');
+    const icon = document.querySelector('.i-carbon-list');
+    if (icon) {
+      icon.addEventListener('click', toggleSidebar, false);
+    }
+    if (layer) {
+      layer.addEventListener('click', toggleSidebar, false);
+    }
+  }
+});
+
+tryOnBeforeUnmount(() => {
+  if (process.client) {
+    const layer = document.getElementById('sidebar-layer');
+    const icon = document.querySelector('.i-carbon-list');
+    if (icon) {
+      icon.removeEventListener('click', toggleSidebar, false);
+    }
+    if (layer) {
+      layer.removeEventListener('click', toggleSidebar, false);
+    }
+  }
+});
 </script>
 
 <style lang="postcss">

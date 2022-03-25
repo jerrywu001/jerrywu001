@@ -2,10 +2,10 @@
 import docsearch from '@docsearch/js';
 import { getCurrentInstance, onMounted, watch } from 'vue';
 import type { DocSearchHit } from '@docsearch/react/dist/esm/types';
-import { AlgoliaSearchOptions } from '~~/types';
+import type { DocSearchProps } from '@docsearch/react/dist/esm';
 
 const props = defineProps<{
-  options: AlgoliaSearchOptions;
+  options: DocSearchProps;
   multilang?: boolean;
 }>();
 
@@ -46,7 +46,9 @@ function update(options: any) {
 const facetFilters: string[] = [];
 
 if (props.options.searchParameters?.facetFilters) {
-  facetFilters.push(...props.options.searchParameters.facetFilters);
+  facetFilters.push(
+    ...(props.options.searchParameters.facetFilters as string[])
+  );
 }
 
 function initialize(userOptions: any) {
@@ -65,6 +67,15 @@ function initialize(userOptions: any) {
           router.push(itemUrl);
         },
       },
+
+      // transformItems: (items: DocSearchHit[]) => {
+      //   console.log(items);
+      //   return items.map((item) => {
+      //     return Object.assign({}, item, {
+      //       type: 'content',
+      //     });
+      //   });
+      // },
 
       hitComponent: ({
         hit,
@@ -109,5 +120,6 @@ function initialize(userOptions: any) {
 </template>
 
 <style lang="scss">
+@import url('@docsearch/css');
 @import url('../assets/search.scss');
 </style>

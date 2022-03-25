@@ -9,10 +9,13 @@ export function useDarkTheme() {
     dark,
     () => {
       if (process.client && document) {
+        const doc = document.documentElement;
         if (dark.value) {
-          document.documentElement.classList.add('dark');
+          doc.dataset.theme = 'dark';
+          doc.classList.add('dark');
         } else {
-          document.documentElement.classList.remove('dark');
+          doc.dataset.theme = '';
+          doc.classList.remove('dark');
         }
       }
     },
