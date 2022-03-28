@@ -114,9 +114,7 @@ function toggleSidebar() {
 
 async function loadData(forceUpdate = false) {
   loading.value = true;
-  const res = await useFetch<IArticleData>(
-    `/api/post?category=${category}&postname=${postname}`
-  );
+  const res = await useFetch<IArticleData>(`/api/post?postname=${postname}`);
 
   data.value = res.data.value;
   loading.value = false;

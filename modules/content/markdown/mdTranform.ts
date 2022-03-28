@@ -46,12 +46,8 @@ export default class MdTransform extends Hookable {
       const stat = fs.statSync(fPath);
 
       if (stat.isDirectory()) {
-        const label = fPath
-          .replace(/\\\\/g, '/')
-          .replace(/\\/g, '/')
-          .split('docs/')[1]
-          .replace(/-/g, ' ');
-        const obj = { label, children: [] };
+        const { folder } = getStat(fPath);
+        const obj = { label: folder.replace(/-/g, ' '), children: [] };
         dirs.push(obj);
         this.travelDirs(fPath, obj.children, build);
       } else if (fPath.endsWith('.md')) {
@@ -69,15 +65,15 @@ export default class MdTransform extends Hookable {
           const temp = match[0].split('\n')[0] || '';
           title = temp.split('{#')[0];
         }
+
+        const url = fPath
+          .replace(/\\\\/g, '/')
+          .replace(/\\/g, '/')
+          .replace('.md', '')
+          .split('/docs')[1];
         dirs.push({
           label: (title || articleName).replace(/#\s*/g, ''),
-          url: `/posts${
-            fPath
-              .replace(/\\\\/g, '/')
-              .replace(/\\/g, '/')
-              .replace('.md', '')
-              .split('docs')[1]
-          }`,
+          url: `/posts/${url.substring(1).replace(/\//g, '_')}`,
           children: [],
         });
 
@@ -184,6 +180,24 @@ export default class MdTransform extends Hookable {
  * some tools
  * =============================
  */
+
+function getStat(fPath = '') {
+  let fileName = '';
+  const relativePath = fPath
+    .replace(/\\\\/g, '/')
+    .replace(/\\/g, '/')
+    .split('docs/')[1];
+  let relPath = relativePath;
+  const isFile = relativePath.includes('.');
+  if (isFile) {
+    fileName = relPath.substring(relPath.lastIndexOf('/') + 1);
+    relPath = relPath.substring(0, relPath.lastIndexOf('/'));
+  }
+  const folder = relPath.substring(relPath.lastIndexOf('/') + 1);
+  const temp = relPath.substring(0, relPath.lastIndexOf('/'));
+  const parentFolder = temp.substring(temp.lastIndexOf('/') + 1);
+  return { folder, parentFolder, fileName, relativePath };
+}
 
 function isToc(v = {} as IElement) {
   return (

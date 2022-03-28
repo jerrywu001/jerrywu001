@@ -16,14 +16,13 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
   let body = {} as any;
 
   const query = new URLSearchParams(req.url);
-  const category = query.get('category');
   const postname = query.get('postname');
 
   const thePort = String(port) === '80' ? '' : `:${String(port)}`;
   const path = `${protocol}//${host}${thePort}`;
 
   try {
-    const queryUrl = `${path}/content/${category}-${postname}.json`;
+    const queryUrl = `${path}/content/${postname.replace(/_/g, '-')}.json`;
     const catlogs = await fetch(`${path}/content/categories.json`);
     const categories = await catlogs.json();
     const response = await fetch(queryUrl);
