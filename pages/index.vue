@@ -93,7 +93,7 @@
           px-4
           my-3
           rounded
-          to="/posts/other/full"
+          to="/posts/other_full"
         >
           查看项目md语法
         </NuxtLink>
