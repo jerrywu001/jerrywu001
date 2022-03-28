@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
@@ -28,38 +29,32 @@ export default class MdTransform extends Hookable {
 
   init() {
     this.updateCategories();
+    console.dir(this.catlogs, { depth: Infinity });
   }
 
-  async updateCategories(build = true) {
-    const catlogs = await this.getCatlogs(undefined, undefined, build);
+  updateCategories(build = true) {
+    this.travelDirs(undefined, undefined, build);
     const catlogDir = path.join(this.outputDir, 'categories.json');
 
-    fs.writeFileSync(catlogDir, JSON.stringify(catlogs));
+    fs.writeFileSync(catlogDir, JSON.stringify(this.catlogs));
   }
 
-  async getCatlogs(
-    base = this.docsDir,
-    dirs = this.catlogs as ICategory[],
-    build = true
-  ) {
-    const files = await fs.readdirSync(base);
-
+  travelDirs(base = this.docsDir, dirs = this.catlogs, build = true) {
+    const files = fs.readdirSync(base);
     files.forEach((item) => {
       const fPath = path.join(base, item);
       const stat = fs.statSync(fPath);
-      const parent = {
-        label: '',
-        children: [],
-      };
+
       if (stat.isDirectory()) {
-        parent.label = fPath
+        const label = fPath
           .replace(/\\\\/g, '/')
           .replace(/\\/g, '/')
           .split('docs/')[1]
           .replace(/-/g, ' ');
-        this.getCatlogs(fPath, parent.children, build);
-      }
-      if (stat.isFile() && fPath.endsWith('.md')) {
+        const obj = { label, children: [] };
+        dirs.push(obj);
+        this.travelDirs(fPath, obj.children, build);
+      } else if (fPath.endsWith('.md')) {
         let title = '';
         const str = fs.readFileSync(fPath, { encoding: 'utf-8' });
         const { content, data } = matter(String(str));
@@ -68,6 +63,7 @@ export default class MdTransform extends Hookable {
         let articleName = getArticleName(fPath).replace(/-/g, ' ');
         articleName = articleName.substring(articleName.lastIndexOf('/') + 1);
         title = data.title || '';
+
         // # XXX 的优先级要低于meta.title
         if (!title && match && hasH1) {
           const temp = match[0].split('\n')[0] || '';
@@ -75,24 +71,22 @@ export default class MdTransform extends Hookable {
         }
         dirs.push({
           label: (title || articleName).replace(/#\s*/g, ''),
-          url:
-            '/posts' +
+          url: `/posts${
             fPath
               .replace(/\\\\/g, '/')
               .replace(/\\/g, '/')
               .replace('.md', '')
-              .split('docs')[1],
+              .split('docs')[1]
+          }`,
+          children: [],
         });
+
         // get article hast
         if (build) {
           this.saveArticle(content, data, fPath);
         }
       }
-      if (parent.label) {
-        dirs.push(parent);
-      }
     });
-    return this.catlogs;
   }
 
   async onFileChange(event: WatchEvent, url: string) {
