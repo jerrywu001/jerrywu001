@@ -35,27 +35,28 @@
   </ul>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { ICategory } from '~~/types';
 
+const props = defineProps({
+  children: {
+    type: Array,
+    default() {
+      return [] as ICategory[];
+    },
+  },
+});
+
+const route = useRoute();
+
+const levels = computed(() => (props.children as ICategory[]) || []);
+
+const currentPath = computed(() => route.path);
+</script>
+
+<script lang="ts">
 export default {
   name: 'SecondLevel',
-  props: {
-    children: {
-      type: Array,
-      default() {
-        return [] as ICategory[];
-      },
-    },
-  },
-  computed: {
-    levels() {
-      return [...(this.children || [])] as ICategory[];
-    },
-    currentPath() {
-      return this.$route.path;
-    },
-  },
 };
 </script>
 

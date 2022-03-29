@@ -187,7 +187,9 @@ export default class MdTransform extends Hookable implements MdOption {
       tocs: getTableOfContents(
         tocs.filter(
           (v) => v.type !== 'text' && v.children && v.children.length > 0
-        )
+        ),
+        1,
+        this.tocDepth
       ),
       children: children.filter((v) => !isToc(v)),
     };
@@ -243,7 +245,11 @@ function isToc(v = {} as IElement) {
   );
 }
 
-function getTableOfContents(tocs: IElement[] = [], depth = 1) {
+function getTableOfContents(
+  tocs: IElement[] = [],
+  depth: number,
+  tocDepth: number
+) {
   const result: ITableOfContent[] = [];
   for (let i = 0, len = tocs.length; i < len; i++) {
     const p = tocs[i];
@@ -251,12 +257,17 @@ function getTableOfContents(tocs: IElement[] = [], depth = 1) {
     const children = p.children || [];
     item.depth = depth;
     for (const c of children) {
-      if (c.tag === 'a') {
+      if (c.tag === 'a' && depth <= tocDepth) {
         item.class = (c.props.className || []).join(' ');
         item.label = c.children[0].value;
         item.archor = c.props.href;
-      } else if (['ol', 'ul'].includes(c.tag) && c.children.length > 1) {
-        item.children = getTableOfContents(c.children, depth + 1);
+      }
+      if (
+        ['ol', 'ul'].includes(c.tag) &&
+        c.children.length > 1 &&
+        depth <= tocDepth
+      ) {
+        item.children = getTableOfContents(c.children, depth + 1, tocDepth);
       }
     }
     if ('archor' in item) {

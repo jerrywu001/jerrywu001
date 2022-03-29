@@ -29,45 +29,7 @@
         class="overflow-x-hidden overflow-y-auto d-scrollbar pr-3 box-border"
         :class="`${!isPc ? 'max-h-[50vh]' : 'h-$tocs-height-xl'}`"
       >
-        <ol class="table-of-contents">
-          <li v-for="item in tocs" :key="item.archor">
-            <a
-              :href="item.archor"
-              :class="item.class"
-              @click="scrollToHeading($event, item.archor)"
-            >
-              {{ item.label }}
-            </a>
-            <ol
-              v-if="item.children && item.children.length > 0"
-              class="table-of-contents font-medium"
-            >
-              <li v-for="child in item.children" :key="child.archor">
-                <a
-                  :href="child.archor"
-                  :class="child.class"
-                  @click="scrollToHeading($event, child.archor)"
-                >
-                  {{ child.label }}
-                </a>
-                <ol
-                  v-if="child.children && child.children.length > 0"
-                  class="table-of-contents font-medium"
-                >
-                  <li v-for="h4 in child.children" :key="h4.archor">
-                    <a
-                      :href="h4.archor"
-                      :class="h4.class"
-                      @click="scrollToHeading($event, h4.archor)"
-                    >
-                      {{ h4.label }}
-                    </a>
-                  </li>
-                </ol>
-              </li>
-            </ol>
-          </li>
-        </ol>
+        <SecondTocs :children="tocs" />
       </div>
     </div>
   </div>
@@ -75,7 +37,7 @@
 
 <script setup lang="ts">
 import { ITableOfContent } from '~~/types';
-import { toggleTocs, scrollToHeading } from '~~/utils/toc';
+import { toggleTocs } from '~~/utils/toc';
 
 const props = defineProps({
   children: {
@@ -92,15 +54,3 @@ const props = defineProps({
 
 const tocs = computed(() => (props.children as ITableOfContent[]) || []);
 </script>
-
-<style lang="postcss" scoped>
-.toc-link.active {
-  font-weight: bolder;
-}
-
-.dark {
-  .toc-link.toc-link.active {
-    color: #fff;
-  }
-}
-</style>

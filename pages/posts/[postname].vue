@@ -49,7 +49,6 @@
 <script setup lang="ts">
 // https://www.cnblogs.com/guangzan/p/15021560.html
 import { addArchorClickEvent, useArticleScroll } from '~~/utils/toc';
-import Sidebar from '~~/components/Sidebar.vue';
 import { IArticleData, IElement, IMeta, ITableOfContent } from '~~/types';
 import useImgSwipe from '~~/utils/imgSwipe';
 
