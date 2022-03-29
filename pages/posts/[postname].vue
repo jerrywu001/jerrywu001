@@ -54,10 +54,13 @@
 <script setup lang="ts">
 /* eslint-disable prettier/prettier */
 // https://www.cnblogs.com/guangzan/p/15021560.html
-import { addArchorClickEvent, useArticleScroll } from '~~/utils/toc';
+import {
+  addArchorClickEvent,
+  useArticleScroll,
+  useGitTalk,
+} from '~~/utils/toc';
 import { IArticleData, IElement, IMeta, ITableOfContent } from '~~/types';
 import useImgSwipe from '~~/utils/imgSwipe';
-import { loadScript, loadStyle } from '~~/utils/utils';
 
 /** ============= page meta define ============= */
 definePageMeta({
@@ -146,32 +149,7 @@ loadData();
 /** ============= hooks ============= */
 useImgSwipe(loading);
 useArticleScroll();
-
-tryOnMounted(() => {
-  if (process.client) {
-    nextTick(() => {
-      setTimeout(async () => {
-        await loadScript('/gitalk.min.js', 'gittalk-script');
-        await loadStyle('/gitalk.css', 'gittalk');
-        // @ts-ignore
-        const gitalk = new Gitalk({
-          clientID: !process.dev
-            ? 'e4505f12aeb214a7d37b'
-            : '07e254c2c829e74832a7',
-          clientSecret: !process.dev
-            ? '2eacdd20118ad2c02ffcb93232998f4e65d08099'
-            : 'fec2210915e59194f214b51edcf7c78bb48f4436',
-          repo: 'jerrywu001',
-          owner: 'jerrywu001',
-          admin: ['jerrywu001'],
-          id: route.path,
-          distractionFreeMode: false,
-        });
-        gitalk.render('gitalk-container');
-      }, 600);
-    });
-  }
-});
+useGitTalk('gitalk-container');
 
 if (process.client) {
   const ws = new WebSocket('ws://localhost:8080');
@@ -199,48 +177,5 @@ if (process.client) {
 @import url('prismjs/plugins/command-line/prism-command-line.min.css');
 @import url('prismjs/plugins/show-invisibles/prism-show-invisibles.min.css');
 @import url('unified-remark-prismjs/src/style.css');
-
-.gt-container {
-  .gt-btn-preview {
-    display: none !important;
-  }
-  .gt-comment-admin {
-    .gt-comment-content {
-      border-radius: 5px;
-    }
-  }
-}
-
-.dark {
-  .gt-container {
-    .gt-header-textarea {
-      &,
-      &:hover {
-        color: #fff;
-        background-color: rgb(2, 65, 82, 0.59);
-        &::-webkit-input-placeholder {
-          @apply text-white/60;
-        }
-      }
-    }
-    .gt-btn {
-      &.gt-btn-public {
-        border: 1px solid #2a4470;
-        background-color: #2a4470;
-      }
-    }
-    .gt-comment-body {
-      color: rgb(255, 255, 255, 0.96) !important;
-    }
-    .gt-comment-date,
-    .gt-comment-text {
-      color: rgb(255, 255, 255, 0.65) !important;
-    }
-    .gt-comment-admin {
-      .gt-comment-content {
-        background-color: rgb(2, 65, 82, 0.59);
-      }
-    }
-  }
-}
+@import url('~~/assets/gittalk.scss');
 </style>

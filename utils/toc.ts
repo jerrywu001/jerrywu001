@@ -1,4 +1,38 @@
+import { loadScript, loadStyle } from './utils';
+
 /* eslint-disable prettier/prettier */
+export function useGitTalk(containerId: string) {
+  const route = useRoute();
+
+  tryOnMounted(() => {
+    if (process.client) {
+      nextTick(() => {
+        setTimeout(async () => {
+          await loadScript('/gitalk.min.js', 'gittalk-script');
+          await loadStyle('/gitalk.css', 'gittalk');
+          // @ts-ignore
+          const gitalk = new Gitalk({
+            clientID: !process.dev
+              ? 'e4505f12aeb214a7d37b'
+              : '07e254c2c829e74832a7',
+            clientSecret: !process.dev
+              ? '2eacdd20118ad2c02ffcb93232998f4e65d08099'
+              : 'fec2210915e59194f214b51edcf7c78bb48f4436',
+            repo: 'jerrywu001',
+            owner: 'jerrywu001',
+            admin: ['jerrywu001'],
+            id: route.path,
+            distractionFreeMode: false,
+          });
+          gitalk.render(containerId);
+        }, 300);
+      });
+    }
+  });
+
+  return {};
+}
+
 export function useArticleScroll() {
   function getTopIcon() {
     return document.querySelector('#back-2-top') as HTMLDivElement;

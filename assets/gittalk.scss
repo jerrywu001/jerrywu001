@@ -1,0 +1,53 @@
+.gt-container {
+  .gt-btn-preview {
+    display: none !important;
+  }
+
+  .gt-comment-admin {
+    .gt-comment-content {
+      border-radius: 5px;
+
+      &:hover {
+        box-shadow: none !important;
+      }
+    }
+  }
+}
+
+.dark {
+  .gt-container {
+    .gt-header-textarea {
+      &,
+      &:hover {
+        color: #fff;
+        background-color: rgb(2, 65, 82, 0.59);
+
+        &::-webkit-input-placeholder {
+          @apply text-white/60;
+        }
+      }
+    }
+
+    .gt-btn {
+      &.gt-btn-public {
+        border: 1px solid #2a4470;
+        background-color: #2a4470;
+      }
+    }
+
+    .gt-comment-body {
+      color: rgb(255, 255, 255, 0.96) !important;
+    }
+
+    .gt-comment-date,
+    .gt-comment-text {
+      color: rgb(255, 255, 255, 0.65) !important;
+    }
+
+    .gt-comment-admin {
+      .gt-comment-content {
+        background-color: rgb(2, 65, 82, 0.59);
+      }
+    }
+  }
+}
