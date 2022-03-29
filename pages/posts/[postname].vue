@@ -155,12 +155,10 @@ tryOnMounted(() => {
         await loadStyle('/gitalk.css', 'gittalk');
         // @ts-ignore
         const gitalk = new Gitalk({
-          clientID: process.dev
-            ? 'e4505f12aeb214a7d37b'
-            : '07e254c2c829e74832a7',
-          clientSecret: process.dev
-            ? '2eacdd20118ad2c02ffcb93232998f4e65d08099'
-            : 'fec2210915e59194f214b51edcf7c78bb48f4436',
+          // clientID: 'e4505f12aeb214a7d37b', // dev
+          // clientSecret: '2eacdd20118ad2c02ffcb93232998f4e65d08099', // dev
+          clientID: '07e254c2c829e74832a7', // prod
+          clientSecret: 'fec2210915e59194f214b51edcf7c78bb48f4436', // prod
           repo: 'jerrywu001',
           owner: 'jerrywu001',
           admin: ['jerrywu001'],
