@@ -5,6 +5,7 @@ export interface ITableOfContent {
   label: string;
   children: ITableOfContent[];
   class: string;
+  depth?: number;
 }
 
 export interface IElementProps extends HTMLAttributes {
@@ -43,6 +44,7 @@ export interface IMeta {
 export interface ICategory {
   label?: string;
   url?: string;
+  depth?: number;
   children?: ICategory[];
 }
 

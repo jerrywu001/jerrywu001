@@ -63,13 +63,11 @@ function initialize(userOptions: any) {
 
       navigator: {
         navigate: ({ itemUrl }: { itemUrl: string }) => {
-          console.log(itemUrl, route.path);
           router.push(itemUrl);
         },
       },
 
       // transformItems: (items: DocSearchHit[]) => {
-      //   console.log(items);
       //   return items.map((item) => {
       //     return Object.assign({}, item, {
       //       type: 'content',

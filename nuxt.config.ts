@@ -17,15 +17,18 @@ export default defineNuxtConfig({
     },
   },
   buildModules: [
-    '@vueuse/nuxt',
+    ['@vueuse/nuxt', { ssrHandlers: true }],
     'nuxt-windicss',
     '@unocss/nuxt',
     '@nuxtjs/eslint-module', // https://juejin.cn/post/7043762203740094477
-    './modules/content',
+    [
+      './modules/content',
+      {
+        dir: 'docs',
+        tocDepth: 3,
+        sidebarDepth: 3,
+      },
+    ],
   ],
   css: ['~/assets/main.css', '~/assets/post.scss'],
-  vueuse: {
-    ssrHandlers: true,
-  },
-  // extensions: ['.js', '.jsx', '.mjs', '.ts', '.tsx', '.vue', '.md'],
 });

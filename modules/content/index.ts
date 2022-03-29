@@ -4,7 +4,20 @@ import { defineNuxtModule } from '@nuxt/kit';
 import Websocket from 'ws';
 import MdTransform from './markdown/mdTranform';
 
-interface Option {}
+interface Option {
+  /** Directory used for writing content. */
+  dir: string;
+  /**
+   * You can change maximum heading depth to include in the table of contents
+   * @default 3
+   */
+  tocDepth: number;
+  /**
+   * You can change maximum depth to include in the sidebar
+   * @default 2
+   */
+  sidebarDepth: number;
+}
 
 export default defineNuxtModule<Option>({
   meta: {
@@ -14,14 +27,22 @@ export default defineNuxtModule<Option>({
       nuxt: '^3.0.0',
     },
   },
-  defaults: {},
+  defaults: {
+    dir: 'docs',
+    tocDepth: 3,
+    sidebarDepth: 2,
+  },
   hooks: {},
   setup(moduleOptions, nuxt) {
+    const docsDirName = moduleOptions.dir;
     const rootDir = nuxt.options.rootDir;
-    const docsDir = path.join(rootDir, 'docs');
+    const docsPath = path.join(rootDir, docsDirName);
     const md = new MdTransform({
       rootDir,
-      docsDir,
+      docsPath,
+      docsDirName,
+      sidebarDepth: moduleOptions.sidebarDepth,
+      tocDepth: moduleOptions.tocDepth,
     });
 
     try {
@@ -33,8 +54,8 @@ export default defineNuxtModule<Option>({
     }
 
     nuxt.hook('builder:watch', (event, path) => {
-      if (path && path.startsWith('docs')) {
-        md.onFileChange(event, path.split('docs')[1]);
+      if (path && path.startsWith(docsDirName)) {
+        md.onFileChange(event, path.split(docsDirName)[1]);
       }
     });
 

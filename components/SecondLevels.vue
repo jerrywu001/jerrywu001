@@ -1,9 +1,22 @@
 <template>
-  <ul class="mb-2">
+  <ul class="mb-2 pl-3 overflow-hidden">
     <li v-for="item in levels" :key="item.url">
-      <template v-if="!item.url">
-        <h5 class="transition duration-100 font-bold py-2">{{ item.label }}</h5>
-        <SecondLevels :children="item.children" />
+      <template v-if="!item.url && item.children">
+        <h5
+          v-show="item.children.length > 0"
+          :data-depth="`${item.depth}`"
+          class="sidebar-tag cursor-pointer transition duration-100 font-bold py-2 flex items-center opacity-95"
+        >
+          <span>{{ item.label }}</span>
+          <span
+            v-if="item.depth === 1"
+            class="icon i-carbon-chevron-down transform transition-transform rotate-0 w-4 h-4 inline-block"
+          />
+        </h5>
+        <SecondLevels
+          v-show="item.children.length > 0"
+          :children="item.children"
+        />
       </template>
       <template v-else>
         <NuxtLink
@@ -48,6 +61,6 @@ export default {
 
 <style>
 li ul.mb-2 {
-  padding-left: 12px;
+  transition: height 0.2s ease-in-out;
 }
 </style>
