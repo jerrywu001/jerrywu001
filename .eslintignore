@@ -6,6 +6,7 @@ dist
 .nuxt
 .output
 coverage
+public
 *.log*
 .DS_Store
 .code

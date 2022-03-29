@@ -380,10 +380,10 @@ warning!!!
 - 站内跳转
 
 ```md
-:button-link[站内跳转]{href="/posts/server/mocker"}
+:button-link[站内跳转]{href="/posts/server_mocker"}
 ```
 
-:button-link[站内跳转]{href="/posts/server/mocker"}
+:button-link[站内跳转]{href="/posts/server_mocker"}
 
 
 ### list
