@@ -44,7 +44,7 @@
     >
       <span
         class="i-carbon-back-to-top block !w-4 h-4 bg-white dark:bg-black/90"
-      ></span>
+      />
     </div>
 
     <div
@@ -54,7 +54,7 @@
     >
       <span
         class="i-carbon-document block !w-4 h-4 bg-white dark:bg-black/90"
-      ></span>
+      />
     </div>
   </article>
 </template>

@@ -16,7 +16,7 @@ const props = defineProps({
   },
 });
 
-const dirs = computed(() => ([...props.categories] || []) as ICategory[]);
+const dirs = computed(() => (props.categories || []) as ICategory[]);
 
 function toggleDirs(e: MouseEvent) {
   const target = e.currentTarget as HTMLHeadingElement;
@@ -41,15 +41,17 @@ function toggleDirs(e: MouseEvent) {
 
 tryOnMounted(() => {
   nextTick(() => {
-    const tags = document.querySelectorAll('.sidebar-tag');
-    for (const tag of tags) {
-      const ul = tag.nextElementSibling as HTMLUListElement;
-      if (ul && ul.tagName.toUpperCase() === 'UL') {
-        ul.style.height = `${ul.clientHeight}px`;
-        ul.dataset.height = `${ul.clientHeight}`;
-        tag.addEventListener('click', toggleDirs, false);
+    setTimeout(() => {
+      const tags = document.querySelectorAll('.sidebar-tag');
+      for (const tag of tags) {
+        const ul = tag.nextElementSibling as HTMLUListElement;
+        if (ul && ul.tagName.toUpperCase() === 'UL') {
+          ul.style.height = `${ul.clientHeight}px`;
+          ul.dataset.height = `${ul.clientHeight}`;
+          tag.addEventListener('click', toggleDirs, false);
+        }
       }
-    }
+    }, 300);
   });
 });
 
