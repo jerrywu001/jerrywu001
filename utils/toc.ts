@@ -1,30 +1,43 @@
 import { loadScript, loadStyle } from './utils';
 
+const gitalkContainerId = 'gitalk-container';
+
 /* eslint-disable prettier/prettier */
-export function useGitTalk(containerId: string) {
+export function useGitTalk() {
   const route = useRoute();
 
   tryOnMounted(() => {
     if (process.client) {
       nextTick(() => {
         setTimeout(async () => {
-          await loadScript('/gitalk.min.js', 'gittalk-script');
-          await loadStyle('/gitalk.css', 'gittalk');
-          // @ts-ignore
-          const gitalk = new Gitalk({
-            clientID: !process.dev
-              ? 'e4505f12aeb214a7d37b'
-              : '07e254c2c829e74832a7',
-            clientSecret: !process.dev
-              ? '2eacdd20118ad2c02ffcb93232998f4e65d08099'
-              : 'fec2210915e59194f214b51edcf7c78bb48f4436',
-            repo: 'jerrywu001',
-            owner: 'jerrywu001',
-            admin: ['jerrywu001'],
-            id: route.path,
-            distractionFreeMode: false,
-          });
-          gitalk.render(containerId);
+          const owner = 'jerrywu001';
+          const container = document.querySelector('.article-info');
+          if (container) {
+            const gittalkDom = document.createElement('div');
+            gittalkDom.id = gitalkContainerId;
+            gittalkDom.classList.add('px-4');
+            gittalkDom.classList.add('xl:mr-$tocs-width');
+            container.appendChild(gittalkDom);
+
+            await loadScript('/gitalk.min.js', 'gittalk-script');
+            await loadStyle('/gitalk.css', 'gittalk');
+
+            // @ts-ignore
+            const gitalk = new Gitalk({
+              clientID: !process.dev
+                ? 'e4505f12aeb214a7d37b'
+                : '07e254c2c829e74832a7',
+              clientSecret: !process.dev
+                ? '2eacdd20118ad2c02ffcb93232998f4e65d08099'
+                : 'fec2210915e59194f214b51edcf7c78bb48f4436',
+              repo: owner,
+              owner,
+              admin: [owner],
+              id: route.path,
+              distractionFreeMode: false,
+            });
+            gitalk.render(gittalkDom.id);
+          }
         }, 300);
       });
     }
@@ -36,6 +49,10 @@ export function useGitTalk(containerId: string) {
 export function useArticleScroll() {
   function getTopIcon() {
     return document.querySelector('#back-2-top') as HTMLDivElement;
+  }
+
+  function getCommentIcon() {
+    return document.querySelector('#comment') as HTMLDivElement;
   }
 
   function doScroll() {
@@ -52,9 +69,14 @@ export function useArticleScroll() {
     autoHighlightArchor();
   }
 
-  function onClick() {
+  function onBack2TopClick() {
     const container = getScrollContainer();
     container.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function onCommentClick() {
+    const gitalkDom = document.getElementById(gitalkContainerId);
+    window.scrollTo({ top: gitalkDom.offsetTop, behavior: 'smooth' });
   }
 
   function hideTocs(e: MouseEvent) {
@@ -69,10 +91,31 @@ export function useArticleScroll() {
     }
   }
 
+  function onMove(e: DragEvent & TouchEvent) {
+    e.preventDefault();
+    try {
+      const target = e.currentTarget as HTMLDivElement;
+      const x = e.clientX || e.touches[0]?.clientX;
+      const y = e.clientY || e.touches[0]?.clientY;
+      target.style.bottom = 'auto';
+      target.style.right = 'auto';
+      target.style.top = `${y - target.clientHeight / 2}px`;
+      target.style.left = `${x - target.clientWidth / 2}px`;
+    } catch (error) {
+      // error
+    }
+  }
+
   tryOnMounted(() => {
     const container = getScrollContainer();
     const topIcon = getTopIcon();
-    topIcon.addEventListener('click', onClick, false);
+    const commentIcon = getCommentIcon();
+    topIcon.addEventListener('click', onBack2TopClick, false);
+    commentIcon.addEventListener('click', onCommentClick, false);
+    topIcon.addEventListener('touchmove', onMove, false);
+    topIcon.addEventListener('drag', onMove, false);
+    commentIcon.addEventListener('touchmove', onMove, false);
+    commentIcon.addEventListener('drag', onMove, false);
     container.addEventListener('scroll', doScroll, false);
     document.body.addEventListener('click', hideTocs, false);
     document.documentElement.classList.remove('overflow-hidden');
@@ -82,7 +125,13 @@ export function useArticleScroll() {
   tryOnBeforeUnmount(() => {
     const container = getScrollContainer();
     const topIcon = getTopIcon();
-    topIcon.removeEventListener('click', onClick, false);
+    const commentIcon = getCommentIcon();
+    topIcon.removeEventListener('click', onBack2TopClick, false);
+    commentIcon.removeEventListener('click', onCommentClick, false);
+    topIcon.removeEventListener('touchmove', onMove, false);
+    topIcon.removeEventListener('drag', onMove, false);
+    commentIcon.removeEventListener('touchmove', onMove, false);
+    commentIcon.removeEventListener('drag', onMove, false);
     container.removeEventListener('scroll', doScroll, false);
     document.body.removeEventListener('click', hideTocs, false);
     removeArchorClickEvent();

@@ -12,7 +12,7 @@
       class="tocs-sm xl:hidden lg:ml-$sidebar-width lg:w-$tocs-width-lg"
       :children="tocs"
     />
-    <div class="lg:ml-$sidebar-width">
+    <div class="article-info lg:ml-$sidebar-width">
       <Skeleton v-show="loading" />
       <article-content
         v-show="!loading"
@@ -35,17 +35,25 @@
           create at {{ createTime }}
         </span>
       </div>
-
-      <!-- 评论 -->
-      <div id="gitalk-container" class="px-4 xl:mr-$tocs-width" />
     </div>
 
     <div
       id="back-2-top"
-      class="fixed z-50 bottom-10 right-2 w-10 h-10 bg-black-500/50 rounded-full items-center justify-center hidden dark:bg-white/90"
+      draggable="true"
+      class="fixed z-50 bottom-21 right-2 w-10 h-10 bg-black-500/50 rounded-full items-center justify-center hidden dark:bg-white/90"
     >
       <span
         class="i-carbon-back-to-top block !w-4 h-4 bg-white dark:bg-black/90"
+      ></span>
+    </div>
+
+    <div
+      id="comment"
+      draggable="true"
+      class="fixed z-50 bottom-8 right-2 w-10 h-10 bg-black-500/50 rounded-full items-center justify-center flex dark:bg-white/90"
+    >
+      <span
+        class="i-carbon-document block !w-4 h-4 bg-white dark:bg-black/90"
       ></span>
     </div>
   </article>
@@ -149,7 +157,7 @@ loadData();
 /** ============= hooks ============= */
 useImgSwipe(loading);
 useArticleScroll();
-useGitTalk('gitalk-container');
+useGitTalk();
 
 if (process.client) {
   const ws = new WebSocket('ws://localhost:8080');
