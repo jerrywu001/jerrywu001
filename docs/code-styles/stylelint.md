@@ -5,7 +5,7 @@ cover: /articles/code-styles/stylelint.png
 createAt: 2022-04-06T16:00:00.000Z
 ---
 
-> 说实话，我一直觉得stylelint没什么必要，只要不报错就行！但最近公司应需要，还是搭建了一下，本文内容包含：
+> 说实话，我一直觉得stylelint没什么必要，只要不报错就行！但最近应公司要求，还是搭建了一下，本文内容包含：
 > - stylelint配置
 > - prettier配置
 > - vscode配置
@@ -29,9 +29,9 @@ insert_final_newline = true
 
 ```
 
-以上请注意```end_of_line```配置，建议设置lf (linux风格)，对应.prettierrc中的useTabs为false；
+以上请注意```end_of_line```配置，建议设置LF (linux风格)，此时需要将.prettierrc中的useTabs为false；
 
-**如果你设置了crlf，请将.prettierrc中的```useTabs```设置为```true```**
+**这里如果你设置为CRLF，请将.prettierrc中的```useTabs```设置为```true```**
 
 ---
 
@@ -39,11 +39,16 @@ insert_final_newline = true
 
 ### 依赖包安装
 
-> postcss-scss postcss-less 请根据使用情况进行选择安装
+> 若项目中存在scss文件，需安装postcss-scss
+> 
+> 若项目中存在less文件，需安装postcss-less
 
 
 ```sh
-npm i stylelint stylelint-config-standard postcss-scss postcss-less -D
+npm i stylelint stylelint-config-standard -D
+
+# 以下视情况进行安装
+npm i postcss-scss postcss-less -D
 ```
 
 ### .stylelintrc.js
@@ -115,6 +120,28 @@ touch pre-commit
 yarn lint-staged --allow-empty
 ```
 
+### package.json修改
+
+> 增加部分
+
+```json[package.json]
+{
+  "scripts": {
+    "prepare": "husky install",
+    "stylelint": "stylelint **/*.{css,less,scss}"
+  },
+  "devDependencies": {
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.7"
+  },
+  "lint-staged": {
+    "**/*.{css,less,scss}": [
+      "stylelint --fix"
+    ]
+  }
+}
+```
+
 ### commitlint配置 (个人觉得不重要)
 
 > 如果想对commit文案进行规范，需要安装commitlint
@@ -137,11 +164,7 @@ npm i @commitlint/cli @commitlint/config-conventional -D
 
 - .husky/commit-msg
 
-> 此时继续使用git commit -m "xxx"会报以下错误：
->
-> ✖   subject may not be empty [subject-empty]
-
-```yaml
+```yaml[filename=commit-msg]
 #!/bin/sh
 
 # shellcheck source=./_/husky.sh
@@ -149,6 +172,12 @@ npm i @commitlint/cli @commitlint/config-conventional -D
 
 npx --no-install commitlint --edit "$1"
 ```
+
+<small>此时继续使用git commit -m "xxx", 会报以下错误：</small>
+
+<small>✖   subject may not be empty [subject-empty]</small>
+
+<small>*此时应该使用npm run commit*</small>
 
 - commitlint.config.js
 
@@ -218,29 +247,7 @@ module.exports = {
 };
 ```
 
-### package.json修改
-
-> 增加部分
-
-```json
-{
-  "scripts": {
-    "prepare": "husky install",
-    "stylelint": "stylelint **/*.{css,less,scss}"
-  },
-  "devDependencies": {
-    "husky": "^7.0.4",
-    "lint-staged": "^12.3.7"
-  },
-  "lint-staged": {
-    "**/*.{css,less,scss}": [
-      "stylelint --fix"
-    ]
-  }
-}
-```
-
-### **如果当前已经```npm i```过，请执行：**
+### **如果之前已经```npm i```过，请执行：**
 
 ```sh
 npm run prepare
@@ -297,7 +304,7 @@ mkdir .vscode
 
 ### vscode安装stylelint插件
 
-<small>**这样vscode可以读取stylelint配置，并对错误代码进行告警**</small>
+<small>**目的是为了让vscode可以读取stylelint配置，并对错误代码进行告警**</small>
 
 ### .vscode文件夹中创建extensions.json
 
@@ -334,42 +341,57 @@ mkdir .vscode
 
 ## webstorm配置
 
-webstorm无法直接做到保存时自动stylelint，需要额外最一番操作，真心累啊！！！
+webstorm无法直接做到保存时自动stylelint，需要额外做一些操作，真心累啊！！！
 
 ### 启用stylelint
 
 打开设置，严格按下图进行配置即可（搜索stylelint，其中软件包位置选择项目stylelint依赖包的位置即可）：
 
 
-![启用stylelint](/public/articles/code-styles/stylelint-01.png)
+![启用stylelint](/articles/code-styles/stylelint-01.png)
 
 ### 为stylelint添加快捷键
 
 注意：工具设置->程序，一定要填写:
 
-```html
-node_modules\stylelint\.bin\stylelint.cmd
+:::code-group
 
-非windows填写：
-
-node_modules\stylelint\.bin\stylelint
+```html[class=no-line-numbers][filename="windows"]
+xxx\xxx\node_modules\stylelint\.bin\stylelint.cmd
 ```
 
-![启用stylelint](/public/articles/code-styles/stylelint-02.png)
+```html[class=no-no-line-numbers][filename="mac | linux"]
+xxx\xxx\node_modules\stylelint\.bin\stylelint
+```
 
-![启用stylelint](/public/articles/code-styles/stylelint-03.png)
+:::
+
+![启用stylelint](/articles/code-styles/stylelint-02.png)
+
+![启用stylelint](/articles/code-styles/stylelint-03.png)
 
 
 ### 为stylelint配置自动保存并修复
 
-> 编写时候体验不佳，会发现代码保存过快，还会弹出框，很不友好，🤷‍♂️💀
+> TIPS: 编写时候体验不佳，会发现代码保存过快，还会弹出提示框，很不友好，🤷‍♂️💀
 
 添加file watchers
 
-![启用stylelint](/public/articles/code-styles/stylelint-04.png)
 
-![启用stylelint](/public/articles/code-styles/stylelint-05.png)
+![启用stylelint](/articles/code-styles/stylelint-04.png)
 
-![启用stylelint](/public/articles/code-styles/stylelint-06.png)
+:::code-group
 
+```html[class=no-line-numbers][filename="windows"]
+xxx\xxx\node_modules\stylelint\.bin\stylelint.cmd
+```
 
+```html[class=no-line-numbers][filename="mac | linux"]
+xxx\xxx\node_modules\stylelint\.bin\stylelint
+```
+
+:::
+
+![启用stylelint](/articles/code-styles/stylelint-05.png)
+
+![启用stylelint](/articles/code-styles/stylelint-06.png)
