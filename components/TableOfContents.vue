@@ -1,6 +1,6 @@
 <template>
   <div
-    v-show="tocs.length > 0"
+    v-show="children.length > 0"
     class="tocs overflow-hidden sticky bg-white/95 z-10 top-$header-height left-0 flex-none w-full text-xs lg:left-60 px-4 sm:px-6 dark:bg-[#001e26]/95"
     :class="`${isPc ? 'h-auto' : 'h-10'}`"
   >
@@ -29,21 +29,22 @@
         class="overflow-x-hidden overflow-y-auto d-scrollbar pr-3 box-border"
         :class="`${!isPc ? 'max-h-[50vh]' : 'h-$tocs-height-xl'}`"
       >
-        <SecondTocs :children="tocs" />
+        <SecondTocs :children="children" />
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { PropType } from 'vue';
 import { ITableOfContent } from '~~/types';
 import { toggleTocs } from '~~/utils/toc';
 
-const props = defineProps({
+defineProps({
   children: {
-    type: Array,
+    type: Array as PropType<ITableOfContent[]>,
     default() {
-      return [] as ITableOfContent[];
+      return [];
     },
   },
   isPc: {
@@ -51,6 +52,4 @@ const props = defineProps({
     default: false,
   },
 });
-
-const tocs = computed(() => (props.children as ITableOfContent[]) || []);
 </script>

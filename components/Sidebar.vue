@@ -14,7 +14,7 @@
       >
         <div class="w-full h-full bg-white dark:bg-[#001e26]">
           <div class="h-full overflow-y-auto d-scrollbar">
-            <categories :categories="props?.categories" />
+            <categories :categories="categories" />
           </div>
         </div>
       </div>
@@ -23,17 +23,18 @@
 </template>
 
 <script lang="ts" setup>
+import { PropType } from 'vue';
 import { ICategory } from '~~/types';
 
 interface IEmit {
   (event: 'close'): void;
 }
 
-const props = defineProps({
+defineProps({
   categories: {
-    type: Array,
+    type: Array as PropType<ICategory[]>,
     default() {
-      return [] as ICategory[];
+      return [];
     },
   },
 });

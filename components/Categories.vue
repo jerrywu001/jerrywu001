@@ -1,22 +1,21 @@
 <template>
   <ul class="dirs py-4 px-4 lg:pt-0">
-    <SecondLevels :children="dirs" />
+    <SecondLevels :children="categories" />
   </ul>
 </template>
 
 <script setup lang="ts">
+import { PropType } from 'vue';
 import { ICategory } from '~~/types';
 
-const props = defineProps({
+defineProps({
   categories: {
-    type: Array,
+    type: Array as PropType<ICategory[]>,
     default() {
-      return [] as ICategory[];
+      return [];
     },
   },
 });
-
-const dirs = computed(() => (props.categories || []) as ICategory[]);
 
 function toggleDirs(e: MouseEvent) {
   const target = e.currentTarget as HTMLHeadingElement;

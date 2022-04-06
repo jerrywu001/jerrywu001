@@ -1,6 +1,6 @@
 <template>
-  <ol v-if="tocs.length > 0" class="table-of-contents font-medium">
-    <li v-for="item in tocs" :key="item.archor">
+  <ol v-if="children.length > 0" class="table-of-contents font-medium">
+    <li v-for="item in children" :key="item.archor">
       <a
         :href="item.archor"
         :class="item.class"
@@ -14,19 +14,18 @@
 </template>
 
 <script setup lang="ts">
+import { PropType } from 'vue';
 import { ITableOfContent } from '~~/types';
 import { scrollToHeading } from '~~/utils/toc';
 
-const props = defineProps({
+defineProps({
   children: {
-    type: Array,
+    type: Array as PropType<ITableOfContent[]>,
     default() {
-      return [] as ITableOfContent[];
+      return [];
     },
   },
 });
-
-const tocs = computed(() => (props.children as ITableOfContent[]) || []);
 </script>
 
 <script lang="ts">

@@ -1,6 +1,6 @@
 <template>
   <ul class="mb-2 pl-3 overflow-hidden">
-    <li v-for="item in levels" :key="item.url">
+    <li v-for="item in children" :key="item.url">
       <template v-if="!item.url && item.children">
         <h5
           v-show="item.children.length > 0"
@@ -36,20 +36,19 @@
 </template>
 
 <script setup lang="ts">
+import { PropType } from 'vue';
 import { ICategory } from '~~/types';
 
-const props = defineProps({
+defineProps({
   children: {
-    type: Array,
+    type: Array as PropType<ICategory[]>,
     default() {
-      return [] as ICategory[];
+      return [];
     },
   },
 });
 
 const route = useRoute();
-
-const levels = computed(() => (props.children as ICategory[]) || []);
 
 const currentPath = computed(() => route.path);
 </script>
