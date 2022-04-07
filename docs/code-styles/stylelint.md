@@ -26,7 +26,6 @@ indent_size = 2
 end_of_line = lf
 trim_trailing_whitespace = true
 insert_final_newline = true
-
 ```
 
 这里需要特别注意```end_of_line```配置：
@@ -51,11 +50,14 @@ npm i stylelint stylelint-config-standard -D
 
 # 以下视情况进行安装
 npm i postcss-scss postcss-less -D
+
+# 如果是vue项目，需要安装
+npm i stylelint-config-recommended-vue -D
 ```
 
 ### .stylelintrc.js
 
-> 执行 npx stylelint **/*.{css,less,scss} 进行检测
+> 执行 npx stylelint **/*.{css,less,scss,vue} 进行检测
 
 ```js [class="no-line-numbers"][.stylelintrc.js]
 // https://stylelint.io/user-guide/get-started
@@ -63,10 +65,13 @@ npm i postcss-scss postcss-less -D
 module.exports = {
   extends: [
     'stylelint-config-standard',
+    // 如果是vue项目，需要添加
+    'stylelint-config-recommended-vue',
   ],
   // rule覆盖（根据自己喜好来配置）
   rules: {
     'string-quotes': 'single',
+    'property-no-vendor-prefix': null,
     'declaration-colon-newline-after': null,
     'value-list-comma-newline-after': null,
     'custom-property-pattern': null,
@@ -75,7 +80,7 @@ module.exports = {
     'alpha-value-notation': null,
     'value-no-vendor-prefix': null,
     'selector-class-pattern': null,
-    'function-url-quotes': 'never',
+    'function-url-quotes': null,
     'no-missing-end-of-source-newline': true,
     'no-descending-specificity': null,
     'font-family-no-missing-generic-family-keyword': null,
@@ -99,7 +104,7 @@ module.exports = {
 
 ## lint-staged配置
 
-<small>当执行git commit -m "xxx"时进行自动stylelint修复</small>
+<small>当执行git commit -m "xxx"时，进行自动stylelint修复</small>
 
 ### install husky & lint-staged
 
@@ -121,14 +126,14 @@ npm i husky lint-staged -D
 ```json [package.json][class="no-line-numbers"]
 {
   "scripts": {
-    "stylelint": "stylelint **/*.{css,less,scss}"
+    "stylelint": "stylelint **/*.{css,less,scss,vue}"
   },
   "devDependencies": {
     "husky": "^7.0.4",
     "lint-staged": "^12.3.7"
   },
   "lint-staged": {
-    "**/*.{css,less,scss}": [
+    "**/*.{css,less,scss,vue}": [
       "stylelint --fix"
     ]
   }
@@ -142,7 +147,7 @@ npm i husky lint-staged -D
 - 依赖
 
 ```sh [class="no-command-lines no-line-numbers"]
-npm i @commitlint/cli @commitlint/config-conventional -D
+npm i @commitlint/cli @commitlint/config-conventional cz-customizable -D
 ```
 
 - package.json新增部分
@@ -240,7 +245,7 @@ module.exports = {
 };
 ```
 
-### **如果之前已经```npm i```过，请执行：**
+### **如果配置之前已经```npm i```过，请执行：**
 
 ```bash [class="no-command-lines no-line-numbers"]
 npm run prepare
@@ -275,7 +280,7 @@ npm i stylelint-prettier stylelint-config-prettier -D
 
 - .stylelintrc.js新增部分
 
-> stylelint-prettier/recommended需要放在数组最后
+> stylelint-prettier/recommended需要放在**数组最前面**
 
 ```js [.stylelintrc.js][class="no-line-numbers"]
 module.exports = {
@@ -313,7 +318,9 @@ mkdir .vscode
 
 ### .vscode文件夹中创建settings.json
 
-<small>配置保存时自动对代码进行stylelint修复~</small>
+<small>代码保存时，自动对代码进行stylelint修复~</small>
+
+<small>如果需要校验vue，则需要在```stylelint.validate```数组中添加vue</small>
 
 ```json [class="no-line-numbers"][settings.json]
 {
@@ -324,8 +331,11 @@ mkdir .vscode
   },
   "stylelint.validate": [
     "css",
+    "postcss",
     "less",
-    "scss"
+    "scss",
+    "sass",
+    "vue"
   ]
 }
 ```
@@ -345,6 +355,8 @@ mkdir .vscode
 
 ### 为stylelint添加快捷键
 
+![启用stylelint](/articles/code-styles/stylelint-02.png)
+
 **注意**：工具设置->程序，一定要填写:
 
 :::code-group
@@ -359,14 +371,12 @@ xxx/xxx/node_modules/stylelint/.bin/stylelint
 
 :::
 
-![启用stylelint](/articles/code-styles/stylelint-02.png)
-
 ![启用stylelint](/articles/code-styles/stylelint-03.png)
 
 
 ### 为stylelint配置自动保存并修复
 
-添加file watchers
+添加file watchers（不推荐）
 
 
 ![启用stylelint](/articles/code-styles/stylelint-04.png)
@@ -392,3 +402,16 @@ xxx/xxx/node_modules/stylelint/.bin/stylelint
 <small style="color: red">**TIPS: file watchers撸代码体验不佳，会发现代码保存过快，还会时不时弹出提示框，很不友好（反正我用的不是很爽，见下图）😰🤬:cry:**</small>
 
 ![启用stylelint](/articles/code-styles/stylelint-07.png)
+
+
+## 附一些问题
+
+*如果是.vue或者.html文件，用快捷键或者file watcher会报以下错误：*
+
+```Error: Cannot resolve custom syntax module "postcss-html". Check that module "postcss-html" is available and spelled correctly.```
+
+（暂时没找到解决办法，🤣🤷‍♂️，如果你有解决办法，欢迎留言）*
+
+**建议使用： 鼠标右键->修复Stylelint问题，如下图：**
+
+![启用stylelint](/articles/code-styles/stylelint-08.png)
