@@ -16,7 +16,7 @@ createAt: 2022-04-06T16:00:00.000Z
 
 - .editorconfig
 
-```yaml
+```yaml [class="no-line-numbers"][.editorconfig]
 root = true
 
 [*]
@@ -29,9 +29,11 @@ insert_final_newline = true
 
 ```
 
-以上请注意```end_of_line```配置，建议设置LF (linux风格)，此时需要将.prettierrc中的useTabs为false；
+这里需要特别注意```end_of_line```配置：
 
-**这里如果你设置为CRLF，请将.prettierrc中的```useTabs```设置为```true```**
+建议设置LF (linux风格)，此时需要将.prettierrc中的```useTabs```为```false```；
+
+**如果你设置为CRLF，请将.prettierrc中的```useTabs```设置为```true```**
 
 ---
 
@@ -40,11 +42,11 @@ insert_final_newline = true
 ### 依赖包安装
 
 > 若项目中存在scss文件，需安装postcss-scss
-> 
+>
 > 若项目中存在less文件，需安装postcss-less
 
 
-```sh
+```shell [class="no-command-lines no-line-numbers"]
 npm i stylelint stylelint-config-standard -D
 
 # 以下视情况进行安装
@@ -55,7 +57,7 @@ npm i postcss-scss postcss-less -D
 
 > 执行 npx stylelint **/*.{css,less,scss} 进行检测
 
-```js
+```js [class="no-line-numbers"][.stylelintrc.js]
 // https://stylelint.io/user-guide/get-started
 
 module.exports = {
@@ -78,12 +80,13 @@ module.exports = {
     'no-descending-specificity': null,
     'font-family-no-missing-generic-family-keyword': null,
   },
-  // scss 和 less，根据使用情况进行配置
   overrides: [
+    // 若项目中存在scss文件，添加以下配置
     {
       files: '**/*.scss',
       customSyntax: 'postcss-scss',
     },
+    // 若项目中存在less文件，添加以下配置
     {
       files: '**/*.less',
       customSyntax: 'postcss-less',
@@ -100,34 +103,24 @@ module.exports = {
 
 ### install husky & lint-staged
 
-```sh
+> 请先全局安装yarn
+
+```sh [class="no-command-lines no-line-numbers"]
+npm set-script prepare "husky install"
+
+# 如果配置了commit-lint，可以去掉yarn关键字
+npx husky add .husky/pre-commit "yarn lint-staged --allow-empty"
+
 npm i husky lint-staged -D
-```
-
-### 创建.husky/pre-commit
-
-<small>**如果mac系统报"找不到pre-commit"，请将```pre-commit文件的行尾格式```从```CRLF```改成```LF```即可解决**</small>
-
-```sh
-mkdir .husky
-touch pre-commit
-```
-
-```yaml[filename=pre-commit]
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-
-yarn lint-staged --allow-empty
 ```
 
 ### package.json修改
 
 > 增加部分
 
-```json[package.json]
+```json [package.json][class="no-line-numbers"]
 {
   "scripts": {
-    "prepare": "husky install",
     "stylelint": "stylelint **/*.{css,less,scss}"
   },
   "devDependencies": {
@@ -148,13 +141,13 @@ yarn lint-staged --allow-empty
 
 - 依赖
 
-```sh
+```sh [class="no-command-lines no-line-numbers"]
 npm i @commitlint/cli @commitlint/config-conventional -D
 ```
 
 - package.json新增部分
 
-```json[package.json]
+```json [package.json][class="no-line-numbers"]
 {
   "scripts": {
     "commit": "node ./node_modules/cz-customizable/standalone.js"
@@ -164,7 +157,7 @@ npm i @commitlint/cli @commitlint/config-conventional -D
 
 - .husky/commit-msg
 
-```yaml[filename=commit-msg]
+```yaml [filename=commit-msg][class="no-line-numbers"]
 #!/bin/sh
 
 # shellcheck source=./_/husky.sh
@@ -173,15 +166,15 @@ npm i @commitlint/cli @commitlint/config-conventional -D
 npx --no-install commitlint --edit "$1"
 ```
 
-<small>此时继续使用git commit -m "xxx", 会报以下错误：</small>
+<small><strong>此时继续使用git commit -m "xxx", 会报以下错误：</strong></small>
 
-<small>✖   subject may not be empty [subject-empty]</small>
+<small>*✖   subject may not be empty [subject-empty]*</small>
 
-<small>*此时应该使用npm run commit*</small>
+<small>*<strong>此时应该使用npm run commit</strong>*</small>
 
 - commitlint.config.js
 
-```js[commitlint.config.js]
+```js [commitlint.config.js][class="no-line-numbers"]
 module.exports = {
   extends: ['@commitlint/config-conventional'],
   rules: {
@@ -203,7 +196,7 @@ module.exports = {
 
 - .cz-config.js
 
-```[.cz-config.js]
+```js [.cz-config.js][class="no-line-numbers"]
 module.exports = {
   types: [
     { value: 'Feat', name: '特性:    一个新的特性' },
@@ -249,7 +242,7 @@ module.exports = {
 
 ### **如果之前已经```npm i```过，请执行：**
 
-```sh
+```bash [class="no-command-lines no-line-numbers"]
 npm run prepare
 ```
 
@@ -261,7 +254,7 @@ npm run prepare
 
 - 依赖
 
-```sh
+```sh [class="no-command-lines no-line-numbers"]
 npm i stylelint-prettier stylelint-config-prettier -D
 ```
 
@@ -269,7 +262,7 @@ npm i stylelint-prettier stylelint-config-prettier -D
 
 <small>请注意```useTabs```配置，详细请参见```editorconfig```的说明</small>
 
-```yaml
+```yaml [class="no-line-numbers"][.prettierrc]
 {
   "tabWidth": 2,
   "useTabs": false,
@@ -284,7 +277,7 @@ npm i stylelint-prettier stylelint-config-prettier -D
 
 > stylelint-prettier/recommended需要放在数组最后
 
-```js[.stylelintrc.js]
+```js [.stylelintrc.js][class="no-line-numbers"]
 module.exports = {
   extends: [
     'stylelint-prettier/recommended',
@@ -298,7 +291,7 @@ module.exports = {
 
 ### 项目根目录创建.vscode文件夹
 
-```sh
+```sh [class="no-command-lines no-line-numbers"]
 mkdir .vscode
 ```
 
@@ -310,7 +303,7 @@ mkdir .vscode
 
 <small>别人通过vscode打开你的项目，会自动提示是否安装stylelint插件，如果想安装，点击确定按钮就可~</small>
 
-```json
+```json [class="no-line-numbers"][extensions.json]
 {
   "recommendations": [
     "stylelint.vscode-stylelint"
@@ -322,7 +315,7 @@ mkdir .vscode
 
 <small>配置保存时自动对代码进行stylelint修复~</small>
 
-```json
+```json [class="no-line-numbers"][settings.json]
 {
   "editor.formatOnSave": false,
   "editor.formatOnPaste": false,
@@ -341,27 +334,27 @@ mkdir .vscode
 
 ## webstorm配置
 
-webstorm无法直接做到保存时自动stylelint，需要额外做一些操作，真心累啊！！！
+<small style="color: #f60"><strong>webstorm无法直接做到保存时自动stylelint，需要额外做一些操作，真心累啊！！！</strong></small>
 
 ### 启用stylelint
 
-打开设置，严格按下图进行配置即可（搜索stylelint，其中软件包位置选择项目stylelint依赖包的位置即可）：
+打开设置，参考下图进行配置即可（搜索stylelint，其中软件包位置选择项目stylelint依赖包的位置即可）：
 
 
 ![启用stylelint](/articles/code-styles/stylelint-01.png)
 
 ### 为stylelint添加快捷键
 
-注意：工具设置->程序，一定要填写:
+**注意**：工具设置->程序，一定要填写:
 
 :::code-group
 
-```html[class=no-line-numbers][filename="windows"]
+```jsx [class=no-line-numbers][filename="windows"]
 xxx\xxx\node_modules\stylelint\.bin\stylelint.cmd
 ```
 
-```html[class=no-no-line-numbers][filename="mac | linux"]
-xxx\xxx\node_modules\stylelint\.bin\stylelint
+```jsx [class=no-no-line-numbers][filename="mac | linux"]
+xxx/xxx/node_modules/stylelint/.bin/stylelint
 ```
 
 :::
@@ -373,21 +366,21 @@ xxx\xxx\node_modules\stylelint\.bin\stylelint
 
 ### 为stylelint配置自动保存并修复
 
-> TIPS: 编写时候体验不佳，会发现代码保存过快，还会弹出提示框，很不友好，🤷‍♂️💀
-
 添加file watchers
 
 
 ![启用stylelint](/articles/code-styles/stylelint-04.png)
 
+**注意** 上图中：要在变更上运行的工具->程序(P)，一定要填写:
+
 :::code-group
 
-```html[class=no-line-numbers][filename="windows"]
+```jsx [class=no-line-numbers][filename="windows"]
 xxx\xxx\node_modules\stylelint\.bin\stylelint.cmd
 ```
 
-```html[class=no-line-numbers][filename="mac | linux"]
-xxx\xxx\node_modules\stylelint\.bin\stylelint
+```jsx [class=no-line-numbers][filename="mac | linux"]
+xxx/xxx/node_modules/stylelint/.bin/stylelint
 ```
 
 :::
@@ -395,3 +388,7 @@ xxx\xxx\node_modules\stylelint\.bin\stylelint
 ![启用stylelint](/articles/code-styles/stylelint-05.png)
 
 ![启用stylelint](/articles/code-styles/stylelint-06.png)
+
+<small style="color: red">**TIPS: file watchers撸代码体验不佳，会发现代码保存过快，还会时不时弹出提示框，很不友好（反正我用的不是很爽，见下图）😰🤬:cry:**</small>
+
+![启用stylelint](/articles/code-styles/stylelint-07.png)
