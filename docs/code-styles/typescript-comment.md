@@ -2,7 +2,7 @@
 title: typescript注释大法
 description: 该文档主要介绍函数、interface、enum、type、var的申明建议使用文档注释 （持续更新中）
 cover: /articles/ts-comment.png
-createAt: 2017-01-08T16:00:00.000Z
+createAt: 2021-08-16T16:00:00.000Z
 ---
 
 > 函数、interface、enum、type、var的申明建议使用文档注释 （持续更新中）
