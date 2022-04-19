@@ -215,7 +215,7 @@ root_folder
 ## 代码diff
 
 ```md
-\`\`\`diff[class="language-diff-javascript diff-highlight"]
+\`\`\`diff [class="language-diff-javascript diff-highlight"]
 -    let foo = bar.baz([1, 2, 3]);
 -    foo = foo + 1;
 +    const foo = bar.baz([1, 2, 3]) + 1;
@@ -225,7 +225,7 @@ root_folder
 
 
 
-```diff[class="language-diff-javascript diff-highlight"]
+```diff [class="language-diff-javascript diff-highlight"]
 -    let foo = bar.baz([1, 2, 3]);
 -    foo = foo + 1;
 +    const foo = bar.baz([1, 2, 3]) + 1;
