@@ -1,6 +1,6 @@
 <template>
   <div
-    class="article-skeleton h-[80vh] overflow-hidden px-4 sm:px-6 mt-2 xl:mt-0 xl:mr-$tocs-width"
+    class="h-[80vh] mt-2 px-4 article-skeleton overflow-hidden sm:px-6 xl:mr-$tocs-width xl:mt-0"
   >
     <skeleton-image effect="wave" :width="400" :height="200" />
     <skeleton-text effect="wave" tag="h1">

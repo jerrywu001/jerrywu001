@@ -1,5 +1,5 @@
 <template>
-  <ul class="dirs py-4 px-4 lg:pt-0">
+  <ul class="py-4 px-4 dirs lg:pt-0">
     <SecondLevels :children="categories" />
   </ul>
 </template>

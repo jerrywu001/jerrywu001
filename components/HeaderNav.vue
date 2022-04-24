@@ -10,7 +10,6 @@
       <NuxtLink to="/" class="text-base">前端博文</NuxtLink>
     </div>
     <div class="flex">
-      <AlgoliaSearchBox :options="searchOptions" />
       <a
         class="cursor-pointer mx-2 !w-6 !h-6 block text-gray-600 i-carbon-logo-github hover:opacity-80 dark:text-[#92adad]"
         href="https://github.com/jerrywu001/jerrywu001"
@@ -25,26 +24,12 @@
 </template>
 
 <script lang="ts" setup>
-import type { DocSearchProps } from '@docsearch/react/dist/esm';
-
 interface IEmit {
   (event: 'toggle-sidebar'): void;
   (event: 'toggle-theme'): void;
 }
 
 const emit = defineEmits<IEmit>();
-
-const searchOptions = {
-  // indexName: 'vuejs',
-  // appId: 'ML0LEBN7FQ',
-  // apiKey: 'f49cbd92a74532cc55cfbffa5e5a7d01',
-  // searchParameters: {
-  //   facetFilters: ['version:v3'],
-  // },
-  indexName: 'blog',
-  appId: '667T7RWHK3',
-  apiKey: '9691e71305a7c7c21c3780a5ff702cc6',
-} as DocSearchProps;
 
 let lock = false;
 

@@ -1,11 +1,11 @@
 <template>
   <div
     v-show="children.length > 0"
-    class="tocs overflow-hidden sticky bg-white/95 z-10 top-$header-height left-0 flex-none w-full text-xs lg:left-60 px-4 sm:px-6 dark:bg-[#001e26]/95"
+    class="flex-none bg-white/95 top-$header-height text-xs w-full px-4 left-0 z-10 tocs overflow-hidden sticky sm:px-6 lg:left-60 dark:bg-[#001e26]/95"
     :class="`${isPc ? 'h-auto' : 'h-10'}`"
   >
     <a
-      class="relative tocs-btn cursor-pointer hover:text-opacity-60 hover:no-underline z-10 flex items-center w-full text-xs font-semibold text-gray-900 focus:outline-none dark:text-gray-100 dark:border-b-white/30"
+      class="cursor-pointer flex font-semibold text-xs w-full text-gray-900 z-10 relative tocs-btn items-center dark:border-b-white/30 dark:text-gray-100 hover:text-opacity-60 hover:no-underline focus:outline-none"
       :class="[
         !isPc ? 'border-dashed border-b border-b-gray-900/30 ' : '',
         isPc ? 'h-auto' : 'h-10',
@@ -21,12 +21,12 @@
       IN THIS ARTICLE
       <a
         v-show="!isPc"
-        class="text-sm text-black/80 mr-1 i-carbon-chevron-right dark:text-white/80"
+        class="text-sm mr-1 text-black/80 i-carbon-chevron-right dark:text-white/80"
       />
     </a>
-    <div class="flex-col justify-between overflow-y-auto sticky pb-2">
+    <div class="flex-col pb-2 justify-between overflow-y-auto sticky">
       <div
-        class="overflow-x-hidden overflow-y-auto d-scrollbar pr-3 box-border"
+        class="pr-3 overflow-x-hidden overflow-y-auto d-scrollbar box-border"
         :class="`${!isPc ? 'max-h-[50vh]' : 'h-$tocs-height-xl'}`"
       >
         <SecondTocs :children="children" />

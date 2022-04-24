@@ -5,7 +5,7 @@
     </Head>
   </Html>
   <div
-    class="bg-white-50 h-100vh p-6 font-montserrat dark:bg-[#001e26]/95 dark:text-white/80"
+    class="font-montserrat bg-white-50 h-100vh p-6 dark:bg-[#001e26]/95 dark:text-white/80"
   >
     <div
       relative
@@ -51,7 +51,7 @@
           href="https://twitter.com/youyuxi"
           target="_blank"
           rel="noopener"
-          class="flex flex-1 pl-4 text-left flex-col"
+          class="flex flex-col flex-1 text-left pl-4"
         >
           <span class="font-bold text-base">Evan You</span>
           <span class="text-sm">Creator of Vue.js </span>
@@ -75,10 +75,10 @@
           The instant on-demand Atomic CSS engine.
         </div>
 
-        <div flex class="dark:text-white/90 my-5 justify-center">
+        <div flex class="my-5 justify-center dark:text-white/90">
           <span>toggle theme</span>
           <span
-            class="cursor-pointer mx-2 !w-6 !h-6 block text-gray-600 i-ph-sun-fill hover:opacity-80 dark:i-ph-moon-fill dark:text-[#92adad]"
+            class="cursor-pointer mx-2 text-gray-600 block i-ph-sun-fill !h-6 !w-6 dark:text-[#92adad] dark:i-ph-moon-fill hover:opacity-80"
             @click="toggleDark"
           />
         </div>

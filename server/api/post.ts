@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import type { IncomingMessage, ServerResponse } from 'http';
 import fetch from 'node-fetch';
 import chalk from 'chalk';

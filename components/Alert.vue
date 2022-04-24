@@ -1,19 +1,19 @@
 <template>
   <div
-    class="p-4 mt-2 mb-2 rounded-lg alert text-sm leading-relaxed"
+    class="rounded-lg mt-2 text-sm mb-2 leading-relaxed p-4 alert"
     :class="[type]"
   >
     <div class="flex items-start">
       <template v-if="iconName">
         <span
           v-if="isSvgIconStr"
-          class="inline-flex mr-2 w-5 h-5 justify-center items-center"
+          class="h-5 mr-2 w-5 inline-flex justify-center items-center"
         >
           <span :class="iconName" class="h-6 w-6" />
         </span>
         <span
           v-else
-          class="inline-flex mr-2 w-5 h-5 justify-center items-center text-1.2rem"
+          class="h-5 mr-2 text-1.2rem w-5 inline-flex justify-center items-center"
         >
           {{ iconName }}
         </span>
@@ -66,10 +66,10 @@ const isSvgIconStr = computed(
   }
 
   &.success {
-    @apply bg-green-50 dark: bg-green-800 dark:bg-opacity-25 text-green-600 dark:text-green-200;
+    @apply bg-green-50 text-green-600 dark: bg-green-800 dark:bg-opacity-25 dark:text-green-200;
 
     code {
-      @apply bg-green-100 dark: bg-green-900 dark:bg-opacity-50 shadow-none text-current;
+      @apply bg-green-100 shadow-none text-current dark: bg-green-900 dark:bg-opacity-50;
     }
 
     a:hover {
@@ -80,10 +80,10 @@ const isSvgIconStr = computed(
   }
 
   &.info {
-    @apply bg-blue-50 dark:bg-blue-800 dark:bg-opacity-25 text-blue-600 dark:text-blue-200;
+    @apply bg-blue-50 text-blue-600 dark:bg-blue-800 dark:bg-opacity-25 dark:text-blue-200;
 
     code {
-      @apply bg-blue-100 dark:bg-blue-900 dark:bg-opacity-50 shadow-none text-current;
+      @apply bg-blue-100 shadow-none text-current dark:bg-blue-900 dark:bg-opacity-50;
     }
 
     a:hover {
@@ -94,10 +94,10 @@ const isSvgIconStr = computed(
   }
 
   &.warning {
-    @apply bg-yellow-50 dark: bg-yellow-800 dark:bg-opacity-25 text-yellow-600 dark:text-yellow-100;
+    @apply bg-yellow-50 text-yellow-600 dark: bg-yellow-800 dark:bg-opacity-25 dark:text-yellow-100;
 
     code {
-      @apply bg-yellow-100 dark: bg-yellow-900 dark:bg-opacity-50 shadow-none text-current;
+      @apply bg-yellow-100 shadow-none text-current dark: bg-yellow-900 dark:bg-opacity-50;
     }
 
     a:hover {
@@ -108,10 +108,10 @@ const isSvgIconStr = computed(
   }
 
   &.danger {
-    @apply bg-red-50 dark: bg-red-800 dark:bg-opacity-25 text-red-600 dark:text-red-100;
+    @apply bg-red-50 text-red-600 dark: bg-red-800 dark:bg-opacity-25 dark:text-red-100;
 
     code {
-      @apply bg-red-100 dark: bg-red-900 dark:bg-opacity-50 shadow-none text-current;
+      @apply bg-red-100 shadow-none text-current dark: bg-red-900 dark:bg-opacity-50;
     }
 
     a:hover {
@@ -126,7 +126,7 @@ const isSvgIconStr = computed(
   }
 
   a {
-    @apply underline border-none font-semibold text-current;
+    @apply border-none font-semibold text-current underline;
 
     code {
       @apply border border-transparent border-dashed;

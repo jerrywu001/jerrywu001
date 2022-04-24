@@ -62,8 +62,8 @@ a:focus-visible {
 
 .swiper-link {
   border: none !important;
+}
 
-  img {
-    margin: 0 !important;
-  }
+.swiper-link img {
+  margin: 0 !important;
 }

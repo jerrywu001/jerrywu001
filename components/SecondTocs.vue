@@ -1,5 +1,5 @@
 <template>
-  <ol v-if="children.length > 0" class="table-of-contents font-medium">
+  <ol v-if="children.length > 0" class="font-medium table-of-contents">
     <li v-for="item in children" :key="item.archor">
       <a
         :href="item.archor"

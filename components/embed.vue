@@ -3,7 +3,7 @@
     <iframe
       :src="href"
       sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
-      class="w-full h-full min-h-[500px] overflow-hidden"
+      class="h-full w-full min-h-[500px] overflow-hidden"
     />
   </div>
 </template>

@@ -1,11 +1,11 @@
 <template>
   <div>
-    <div v-for="(item, i) in listItems" :key="i" class="mt-3 flex items-center">
+    <div v-for="(item, i) in listItems" :key="i" class="flex mt-3 items-center">
       <template v-if="iconName">
         <span
           v-if="isSvgIconStr"
           :class="`list-${type}`"
-          class="mt-px mr-2 flex items-center"
+          class="flex mt-px mr-2 items-center"
         >
           <span :class="iconName" class="h-6 w-6" />
         </span>

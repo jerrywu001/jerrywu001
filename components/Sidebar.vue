@@ -1,18 +1,18 @@
 <template>
   <aside
-    class="sidebar fixed z-50 lg:z-0 lg:left-0 lg:top-$header-height xl:left-$sidebar-ml-xl"
+    class="z-50 sidebar fixed lg:top-$header-height lg:left-0 lg:z-0 xl:left-$sidebar-ml-xl"
   >
     <div class="h-full pointer-events-none">
       <div
         id="sidebar-layer"
-        class="fixed backdrop-filter backdrop-blur-sm top-0 left-0 z-0 w-full h-full bg-gray-200/50 pointer-events-auto dark:bg-dark-800/80 lg:hidden hidden"
+        class="h-full bg-gray-200/50 w-full top-0 left-0 z-0 fixed backdrop-filter backdrop-blur-sm pointer-events-auto hidden lg:hidden dark:bg-dark-800/80"
         @click="emit('close')"
       />
       <div
         id="sidebar-content"
-        class="fixed top-0 left-0 w-$sidebar-width h-full pointer-events-auto !lg:transform-none !lg:transition-none lg:sticky"
+        class="h-full w-$sidebar-width top-0 left-0 fixed pointer-events-auto lg:sticky !lg:transform-none !lg:transition-none"
       >
-        <div class="w-full h-full bg-white dark:bg-[#001e26]">
+        <div class="bg-white h-full w-full dark:bg-[#001e26]">
           <div class="h-full overflow-y-auto d-scrollbar">
             <categories :categories="categories" />
           </div>

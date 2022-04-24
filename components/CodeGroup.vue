@@ -1,13 +1,13 @@
 <template>
   <div ref="codeRef" class="code-group">
     <div
-      class="relative text-white rounded-t-lg d-code-group-header-bg overflow-x-auto"
+      class="rounded-t-lg text-white relative d-code-group-header-bg overflow-x-auto"
     >
-      <div ref="tabsRef" class="relative z-0 px-2 w-max">
+      <div ref="tabsRef" class="w-max px-2 z-0 relative">
         <button
           v-for="(label, i) in tabs"
           :key="`${i}${label}`"
-          class="relative inline-block px-3 py-1.5 xs:py-3 my-1.5 xs:my-0 text-sm font-medium tracking-tight focus:outline-none"
+          class="font-medium my-1.5 text-sm tracking-tight py-1.5 px-3 relative inline-block xs:py-3 xs:my-0 focus:outline-none"
           :class="[
             activeTabIndex === i
               ? 'active text-gray-800 dark:text-white'

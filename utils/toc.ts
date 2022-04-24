@@ -2,7 +2,6 @@ import { loadScript, loadStyle } from './utils';
 
 const gitalkContainerId = 'gitalk-container';
 
-/* eslint-disable prettier/prettier */
 export function useGitTalk() {
   const route = useRoute();
 

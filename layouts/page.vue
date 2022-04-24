@@ -1,9 +1,9 @@
 <template>
   <Body
-    class="d-body-bg d-body-text-color text-root min-w-base antialiased tracking-semitight d-scrollbar min-w-xs overflow-x-hidden"
+    class="min-w-base min-w-xs text-root tracking-semitight d-body-bg d-body-text-color antialiased d-scrollbar overflow-x-hidden"
   >
     <div
-      class="layout-container relative w-full font-montserrat text-sm xl:text-base"
+      class="font-montserrat text-sm w-full layout-container relative xl:text-base"
     >
       <slot />
     </div>

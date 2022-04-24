@@ -9,7 +9,7 @@
   <sidebar :visible="showSidebar" :categories="dirs" @close="toggleSidebar" />
   <article class="article">
     <table-of-contents
-      class="tocs-sm xl:hidden lg:ml-$sidebar-width lg:w-$tocs-width-lg"
+      class="tocs-sm lg:ml-$sidebar-width lg:w-$tocs-width-lg xl:hidden"
       :children="tocs"
     />
     <div class="article-info lg:ml-$sidebar-width">
@@ -21,16 +21,16 @@
         :meta="meta"
       />
       <table-of-contents
-        class="xl:h-$tocs-height-xl xl:w-$tocs-width xl:fixed xl:left-$tocs-ml-xl xl:top-$header-height <xl:hidden"
+        class="xl:h-$tocs-height-xl xl:top-$header-height xl:left-$tocs-ml-xl xl:w-$tocs-width xl:fixed <xl:hidden"
         :children="tocs"
         :is-pc="true"
       />
       <div
         v-show="!loading && createTime"
-        class="flex flex-col justify-between mb-4 px-4 text-gray-500 dark:text-white/70"
+        class="flex flex-col mb-4 px-4 text-gray-500 justify-between dark:text-white/70"
       >
         <span
-          class="flex text-xs items-center text-sm text-opacity-50 xl:mr-$tocs-width"
+          class="flex text-xs text-sm text-opacity-50 items-center xl:mr-$tocs-width"
         >
           create at {{ createTime }}
         </span>
@@ -40,27 +40,26 @@
     <div
       id="back-2-top"
       draggable="true"
-      class="fixed z-50 bottom-21 right-2 w-10 h-10 bg-black-500/50 rounded-full items-center justify-center hidden dark:bg-white/90"
+      class="rounded-full bg-black-500/50 h-10 right-2 bottom-21 w-10 z-50 fixed items-center justify-center hidden dark:bg-white/90"
     >
       <span
-        class="i-carbon-back-to-top block !w-4 h-4 bg-white dark:bg-black/90"
+        class="bg-white h-4 i-carbon-back-to-top block !w-4 dark:bg-black/90"
       />
     </div>
 
     <div
       id="comment"
       draggable="true"
-      class="fixed z-50 bottom-8 right-2 w-10 h-10 bg-black-500/50 rounded-full items-center justify-center flex dark:bg-white/90"
+      class="rounded-full flex bg-black-500/50 h-10 right-2 bottom-8 w-10 z-50 fixed items-center justify-center dark:bg-white/90"
     >
       <span
-        class="i-carbon-document block !w-4 h-4 bg-white dark:bg-black/90"
+        class="bg-white h-4 i-carbon-document block !w-4 dark:bg-black/90"
       />
     </div>
   </article>
 </template>
 
 <script setup lang="ts">
-/* eslint-disable prettier/prettier */
 // https://www.cnblogs.com/guangzan/p/15021560.html
 import {
   addArchorClickEvent,
