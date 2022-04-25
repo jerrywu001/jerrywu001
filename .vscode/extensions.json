@@ -1,5 +1,6 @@
 {
   "recommendations": [
+    "antfu.smart-clicks",
     "unional.vscode-sort-package-json",
     "EditorConfig.EditorConfig",
     "johnsoncodehk.volar",
@@ -14,6 +15,6 @@
     "jock.svg",
     "miclo.sort-typescript-imports",
     "usernamehw.errorlens",
-    "naumovs.color-highlight",
+    "naumovs.color-highlight"
   ]
 }

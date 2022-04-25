@@ -1,26 +1,26 @@
 {
-
-  "editor.cursorSmoothCaretAnimation": true,  "editor.guides.bracketPairs": "active",
-  "editor.renderWhitespace": "boundary",
-  "editor.tabSize": 2,
-  "editor.insertSpaces": true,
-  "editor.formatOnSave": true,
-  "editor.formatOnPaste": false,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true,
-    "source.fixAll.tslint": true,
-    "source.fixAll.stylelint": true
+    "source.fixAll.stylelint": true,
+    "source.fixAll.tslint": true
   },
-  "explorer.confirmDelete": false,
-  "workbench.sideBar.location": "left",
-  "files.eol": "\n",
+  "editor.cursorSmoothCaretAnimation": true,
+  "editor.formatOnPaste": false,
+  "editor.formatOnSave": true,
+  "editor.guides.bracketPairs": "active",
+  "editor.insertSpaces": true,
+  "editor.renderWhitespace": "boundary",
+  "editor.tabSize": 2,
   "errorLens.enabledDiagnosticLevels": [
     "warning",
     "error"
   ],
+  "explorer.confirmDelete": false,
+  "files.eol": "\n",
   "svg.preview.mode": "svg",
+  "typescript.tsdk": "./node_modules/typescript/lib",
+  "typescript.updateImportsOnFileMove.enabled": "always",
   "windicss.enableCodeFolding": false,
   "windicss.sortOnSave": true,
-  "typescript.updateImportsOnFileMove.enabled": "always",
-  "typescript.tsdk": "./node_modules/typescript/lib"
+  "workbench.sideBar.location": "left",
 }
