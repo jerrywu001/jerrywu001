@@ -399,3 +399,56 @@ console.log(JSON.stringify({ a: { b: 'hello' }}, null, '\t'));
 [react-immer-hooks](https://www.npmjs.com/package/react-immer-hooks)
 
 [immer](https://www.npmjs.com/package/immer)
+
+---
+
+## 一种简单的方式管理mono repo
+
+配置参考：https://classic.yarnpkg.com/en/docs/workspaces/
+
+*TIPS: 如果使用pnpm*，需要添加pnpm-workspace.yaml
+
+```yaml
+packages:
+  - workspacename
+```
+
+- pnpm使用方式
+
+```bash
+pnpm run dev --filter [workspace name]
+```
+
+- npm/yarn使用方式:
+
+```bash
+npm run [script] --workspace=[workspace name]
+
+# or
+
+npm run [script] --workspace [workspace name]
+
+# or
+npm -C [workspace name] run [script]
+
+# or
+
+yarn workspace [workspace name] run [script]
+```
+
+
+## 修改npm缓存位置
+
+- [修改npm缓存位置](https://www.jianshu.com/p/c6b234e98632)
+
+- [修改Yarn的全局安装和缓存位置_JEECG官方博客的博客-CSDN博客_yarn安装路径](https://blog.csdn.net/zhangdaiscott/article/details/106218208)
+
+## github常用快捷键
+
+- [键盘快捷键 - GitHub Docs](https://docs.github.com/cn/get-started/using-github/keyboard-shortcuts)
+
+- [文件树插件](https://www.octotree.io/)
+
+## 快速更新项目依赖版本
+
+- [npm-check-updates](https://www.npmjs.com/package/npm-check-updates)
