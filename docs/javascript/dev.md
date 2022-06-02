@@ -452,3 +452,7 @@ yarn workspace [workspace name] run [script]
 ## 快速更新项目依赖版本
 
 - [npm-check-updates](https://www.npmjs.com/package/npm-check-updates)
+
+## 为开源项目做贡献
+
+[为开源项目做贡献](https://zhuanlan.zhihu.com/p/81259549)
