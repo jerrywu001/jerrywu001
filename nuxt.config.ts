@@ -10,6 +10,9 @@ export default defineNuxtConfig({
         overlay: false,
       },
     },
+    define: {
+      'process.env.LOG': {},
+    },
   },
   head: {
     bodyAttrs: {

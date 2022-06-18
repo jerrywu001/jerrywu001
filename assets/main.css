@@ -67,3 +67,7 @@ a:focus-visible {
 .swiper-link img {
   margin: 0 !important;
 }
+
+.sp-button {
+  color: grey !important;
+}

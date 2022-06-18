@@ -1,3 +1,5 @@
+import { useLocalStorage } from '@vueuse/core';
+
 export function useDarkTheme() {
   const dark = useLocalStorage('dark-theme', false);
 

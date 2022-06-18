@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-for="(item, i) in listItems" :key="i" class="flex mt-3 items-center">
+    <div v-for="(item, i) in items" :key="i" class="flex mt-3 items-center">
       <template v-if="iconName">
         <span
           v-if="isSvgIconStr"
@@ -14,42 +14,36 @@
         </span>
       </template>
       <span>
-        <Markdown :use="item" />
+        <Markdown :use="() => item" unwrap="li" />
       </span>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { flatUnwrap, nodeTextContent } from '~~/utils/utils';
-
-type Type = 'primary' | 'info' | 'success' | 'warning' | 'danger';
-
-const textContent = ref('');
-const slots = useSlots();
+import { computed } from 'vue';
+import { useUnwrap } from '~~/utils/utils';
 
 const props = defineProps({
-  /**
-   * Array of string
-   */
-  items: {
-    type: Array,
-    default: () => [],
-  },
   icon: {
     type: String,
-    default: '',
+    default: null,
   },
+  /**
+   * Type of list
+   */
   type: {
     type: String,
     default: 'primary',
-    validator(value: Type) {
-      return ['primary', 'info', 'success', 'warning', 'danger'].includes(
-        value
-      );
-    },
+    validator: (value: string) =>
+      ['primary', 'info', 'success', 'warning', 'danger'].includes(value),
   },
 });
+
+const tag = 'ul';
+const { flatUnwrap, unwrap } = useUnwrap();
+
+const slots = useSlots();
 
 const iconName = computed(() =>
   props.icon !== 'none'
@@ -68,39 +62,33 @@ const isSvgIconStr = computed(
   () => iconName.value && iconName.value.includes('i-')
 );
 
-const listItems = computed(() => {
-  // A simple variable to fix HMR reload
-  // eslint-disable-next-line no-unused-expressions
-  textContent;
-  return flatUnwrap(slots.default(), ['p', 'ul', 'li']);
-});
-
-onUpdated(() => {
-  textContent.value = nodeTextContent(slots.default);
+const items = computed(() => {
+  const slotNodes = (slots.default && slots.default()) ?? [];
+  const node = slotNodes.find((v) => v.type === tag);
+  // @ts-ignore
+  return flatUnwrap(node?.children || [], [tag]).map((li) =>
+    unwrap(li, ['li'])
+  );
 });
 </script>
 
 <style lang="postcss">
 /* Primary */
 .list-primary {
-  color: #1f98af;
+  @apply text-blue-600 dark:text-blue-600;
 }
-
 /* Info */
 .list-info {
   @apply text-blue-500 dark:text-blue-400;
 }
-
 /* Success */
 .list-success {
   @apply text-green-500 dark:text-green-400;
 }
-
 /* Warning */
 .list-warning {
   @apply text-yellow-500 dark:text-yellow-400;
 }
-
 /* Danger */
 .list-danger {
   @apply text-red-500 dark:text-red-400;

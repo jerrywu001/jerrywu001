@@ -113,7 +113,5 @@ definePageMeta({
   layoutTransition: false,
 });
 
-const size = ref(13);
-
 const { toggleDark } = useDarkTheme();
 </script>

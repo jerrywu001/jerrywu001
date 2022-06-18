@@ -16,7 +16,7 @@
       <Skeleton v-show="loading" />
       <article-content
         v-show="!loading"
-        class="xl:mr-$tocs-width"
+        class="mt-2 px-4 article-scroll-box sm:px-6 xl:mr-$tocs-width xl:mt-0"
         :children="children"
         :meta="meta"
       />

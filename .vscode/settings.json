@@ -6,7 +6,7 @@
   },
   "editor.cursorSmoothCaretAnimation": true,
   "editor.formatOnPaste": false,
-  "editor.formatOnSave": true,
+  "editor.formatOnSave": false,
   "editor.guides.bracketPairs": "active",
   "editor.insertSpaces": true,
   "editor.renderWhitespace": "boundary",

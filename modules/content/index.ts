@@ -1,6 +1,6 @@
 import path from 'path';
 import chalk from 'chalk';
-import { defineNuxtModule } from '@nuxt/kit';
+import { defineNuxtModule, createResolver, addComponentsDir } from '@nuxt/kit';
 import Websocket from 'ws';
 import MdTransform from './markdown/mdTranform';
 
@@ -32,8 +32,26 @@ export default defineNuxtModule<Option>({
     tocDepth: 3,
     sidebarDepth: 2,
   },
-  hooks: {},
-  setup(moduleOptions, nuxt) {
+  async setup(moduleOptions, nuxt) {
+    const { resolve } = createResolver(import.meta.url);
+
+    // Register components
+    await addComponentsDir({
+      path: resolve('./components'),
+      pathPrefix: false,
+      prefix: '',
+      level: 999,
+      global: true,
+    });
+
+    await addComponentsDir({
+      path: resolve('../../sandpack-demos'),
+      pathPrefix: false,
+      prefix: '',
+      level: 999,
+      global: true,
+    });
+
     const docsDirName = moduleOptions.dir;
     const rootDir = nuxt.options.rootDir;
     const docsPath = path.join(rootDir, docsDirName);

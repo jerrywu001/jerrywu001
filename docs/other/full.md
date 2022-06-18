@@ -583,6 +583,12 @@ warning!!!
 
 ::embed[]{href=https://windicss.org/play.html}
 
+## sandpack demo
+
+> components in /sandpack-demos
+
+::react-demo
+
 ## youtube
 
 > UmkEDc1G_7A 是youtube embed id
