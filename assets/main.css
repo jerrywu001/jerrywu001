@@ -46,18 +46,14 @@ html:root {
     width: 8px;
     height: 8px;
   }
-
-  .dark .d-scrollbar {
-    --scrollbar-thumb: #255461;
-  }
 }
 
-button:focus-visible,
-div:focus-visible,
-a:focus-visible {
-  outline: none;
-  border-radius: 2px;
-  box-shadow: 0 0 0 2px #00dc82;
+.dark {
+  @screen sm {
+    .d-scrollbar {
+      --scrollbar-thumb: #255461;
+    }
+  }
 }
 
 .swiper-link {

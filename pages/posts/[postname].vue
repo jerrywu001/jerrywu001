@@ -176,7 +176,7 @@ if (process.client) {
 }
 </script>
 
-<style lang="scss">
+<style lang="postcss">
 @import url('prismjs/plugins/line-numbers/prism-line-numbers.css');
 @import url('prismjs/plugins/inline-color/prism-inline-color.min.css');
 @import url('prismjs/plugins/diff-highlight/prism-diff-highlight.min.css');
@@ -184,5 +184,5 @@ if (process.client) {
 @import url('prismjs/plugins/command-line/prism-command-line.min.css');
 @import url('prismjs/plugins/show-invisibles/prism-show-invisibles.min.css');
 @import url('unified-remark-prismjs/src/style.css');
-@import url('~~/assets/gittalk.scss');
+@import url('~~/assets/gittalk.css');
 </style>

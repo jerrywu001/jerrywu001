@@ -1,4 +1,4 @@
-import type { IncomingMessage, ServerResponse } from 'http';
+/* eslint-disable prettier/prettier */
 import fetch from 'node-fetch';
 import chalk from 'chalk';
 
@@ -11,17 +11,18 @@ const protocol =
 const host = process.env.HOST || 'localhost';
 const port = process.env.PORT || 3000;
 
-export default async (req: IncomingMessage, res: ServerResponse) => {
+export default defineEventHandler(async (event) => {
   let body = {} as any;
-
-  const query = new URLSearchParams(req.url);
-  const postname = query.get('postname');
+  const { postname = '' } = useQuery(event);
 
   const thePort = String(port) === '80' ? '' : `:${String(port)}`;
   const path = `${protocol}//${host}${thePort}`;
 
   try {
-    const queryUrl = `${path}/content/${postname.replace(/_/g, '-')}.json`;
+    const queryUrl = `${path}/content/${(postname as string).replace(
+      /_/g,
+      '-'
+    )}.json`;
     const catlogs = await fetch(`${path}/content/categories.json`);
     const categories = await catlogs.json();
     const response = await fetch(queryUrl);
@@ -39,4 +40,4 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
   }
 
   return body;
-};
+});

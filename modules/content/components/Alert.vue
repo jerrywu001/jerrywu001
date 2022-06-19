@@ -19,7 +19,7 @@
         </span>
       </template>
       <div class="flex-grow alert-content">
-        <p><slot /></p>
+        <Markdown :use="$slots.default" unwrap="p" />
       </div>
     </div>
   </div>
@@ -61,20 +61,16 @@ const isSvgIconStr = computed(
 
 <style lang="postcss">
 .alert {
-  a {
-    @apply font-600 !border-none !underline;
-  }
-
   &.success {
-    @apply bg-green-50 text-green-600 dark: bg-green-800 dark:bg-opacity-25 dark:text-green-200;
+    @apply bg-green-50 text-green-600 dark:bg-green-800 dark:bg-opacity-25 dark:text-green-200;
 
     code {
-      @apply bg-green-100 shadow-none text-current dark: bg-green-900 dark:bg-opacity-50;
+      @apply bg-green-100 shadow-none text-current dark:bg-green-900 dark:bg-opacity-50;
     }
 
     a:hover {
       code {
-        @apply border-green-400 dark: border-green-700;
+        @apply border-green-400 dark:border-green-700;
       }
     }
   }
@@ -94,53 +90,57 @@ const isSvgIconStr = computed(
   }
 
   &.warning {
-    @apply bg-yellow-50 text-yellow-600 dark: bg-yellow-800 dark:bg-opacity-25 dark:text-yellow-100;
+    @apply bg-yellow-50 text-yellow-600 dark:bg-yellow-800 dark:bg-opacity-25 dark:text-yellow-100;
 
     code {
-      @apply bg-yellow-100 shadow-none text-current dark: bg-yellow-900 dark:bg-opacity-50;
+      @apply bg-yellow-100 shadow-none text-current dark:bg-yellow-900 dark:bg-opacity-50;
     }
 
     a:hover {
       code {
-        @apply border-yellow-400 dark: border-yellow-700;
+        @apply border-yellow-400 dark:border-yellow-700;
       }
     }
   }
 
   &.danger {
-    @apply bg-red-50 text-red-600 dark: bg-red-800 dark:bg-opacity-25 dark:text-red-100;
+    @apply bg-red-50 text-red-600 dark:bg-red-800 dark:bg-opacity-25 dark:text-red-100;
 
     code {
-      @apply bg-red-100 shadow-none text-current dark: bg-red-900 dark:bg-opacity-50;
+      @apply bg-red-100 shadow-none text-current dark:bg-red-900 dark:bg-opacity-50;
     }
 
     a:hover {
       code {
-        @apply border-red-400 dark: border-red-700;
+        @apply border-red-400 dark:border-red-700;
       }
     }
   }
+}
 
-  strong {
-    @apply font-semibold text-current;
-  }
-
+.alert {
   a {
-    @apply border-none font-semibold text-current underline;
+    @apply border-none font-semibold underline !border-none !text-current !underline;
 
     code {
       @apply border border-transparent border-dashed;
     }
   }
+
+  p {
+    @apply mb-0 !mt-0;
+  }
+
+  strong {
+    @apply font-semibold text-current;
+  }
 }
 
-.alert p {
-  @apply !m-0;
-}
-
-.dark .alert {
-  a {
-    @apply text-current;
+.dark {
+  .alert {
+    a {
+      @apply text-current;
+    }
   }
 }
 </style>

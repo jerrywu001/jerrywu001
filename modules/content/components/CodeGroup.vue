@@ -101,7 +101,7 @@ tryOnMounted(() => {
 });
 </script>
 
-<style lang="scss">
+<style lang="postcss">
 .highlight-underline {
   transition: left 150ms, top 150ms, width 150ms, height 150ms, transform 100ms,
     opacity 100ms;
@@ -131,19 +131,26 @@ tryOnMounted(() => {
 
   .d-code-group-header-bg {
     background-color: rgba(228, 228, 231, 1);
-    .dark & {
-      background-color: #003543;
-    }
     &::-webkit-scrollbar {
       display: none;
     }
   }
+
   button {
     border-radius: 8px;
-
     &.d-prose-code-filename-text {
       color: rgba(82, 82, 91, 0.8);
-      .dark & {
+    }
+  }
+}
+
+.dark {
+  .code-group {
+    .d-code-group-header-bg {
+      background-color: #003543;
+    }
+    button {
+      &.d-prose-code-filename-text {
         color: rgba(113, 162, 176, 1);
       }
     }

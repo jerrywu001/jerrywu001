@@ -1,0 +1,100 @@
+.gt-container {
+  .gt-popup {
+    border-radius: 0.375rem !important;
+  }
+
+  .gt-comments-null {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    margin-top: 0px;
+    color: rgba(0, 0, 0, 0.6) !important;
+  }
+
+  .gt-comment-admin {
+    .gt-comment-content {
+      border-radius: 0.375rem;
+
+      &:hover {
+        opacity: 0.85;
+        box-shadow: none !important;
+      }
+    }
+  }
+
+  .dark & {
+    .gt-svg {
+      svg {
+        fill: rgba(255, 255, 255, 1) !important;
+      }
+    }
+
+    .gt-popup {
+      background-color: rgba(1, 50, 64, 1);
+      border-color: rgba(42, 68, 112, 1);
+
+      a.gt-action {
+        &.is--active {
+          color: rgba(255, 255, 255, 1);
+        }
+      }
+    }
+
+    .gt-header-preview,
+    .gt-header-textarea {
+      &,
+      &:hover {
+        background-color: rgba(59, 130, 246, 0.2);
+        color: rgba(255, 255, 255, 1);
+
+        &::-webkit-input-placeholder {
+          color: rgba(255, 255, 255, 0.6);
+        }
+      }
+    }
+
+    .gt-btn {
+      &.gt-btn-public,
+      &.gt-btn-login {
+        background-color: rgba(42, 68, 112, 1);
+        border-color: rgba(42, 68, 112, 1);
+
+        &:hover {
+          opacity: 0.75;
+        }
+      }
+
+      &.gt-btn-preview {
+        background-color: transparent !important;
+
+        &:hover {
+          background-color: transparent !important;
+        }
+      }
+    }
+
+    .gt-comment-date,
+    .gt-comment-text {
+      color: rgba(255, 255, 255, 0.65);
+    }
+
+    .gt-comment-admin {
+      .gt-comment-content {
+        background-color: rgba(12, 74, 110, 0.6);
+      }
+    }
+
+    .gt-comment-body {
+      color: rgba(255, 255, 255, 0.95) !important;
+    }
+  }
+}
+
+.dark {
+  .gt-meta {
+    border-color: rgba(255, 255, 255, 0.3) !important;
+  }
+
+  .gt-comments-null {
+    color: rgba(255, 255, 255, 0.8) !important;
+  }
+}

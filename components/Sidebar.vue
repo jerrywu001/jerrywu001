@@ -48,7 +48,7 @@ tryOnMounted(() => {
 });
 </script>
 
-<style lang="scss">
+<style lang="postcss">
 .article aside ul > li::before {
   display: none;
 }

@@ -14,10 +14,6 @@
       &:hover {
         code {
           border-color: rgb(113, 113, 122);
-
-          .dark & {
-            border-color: rgb(228, 228, 231);
-          }
         }
       }
 
@@ -34,7 +30,7 @@
 
   h1 {
     font-size: 2rem;
-    @apply tracking-tight leading-snug font-semibold <xl:mt-[0.5em] mb-[0.5em];
+    @apply font-semibold leading-snug mb-[0.5em] tracking-tight <xl:mt-[0.5em];
   }
 
   h1 + p {
@@ -43,7 +39,7 @@
 
   h2 {
     font-size: 1.5rem;
-    @apply tracking-tight leading-snug font-semibold mt-[0.85em] mb-[0.5em];
+    @apply font-semibold mt-[0.85em] leading-snug mb-[0.5em] tracking-tight;
   }
 
   h2 + * {
@@ -52,7 +48,7 @@
 
   h3 {
     font-size: 1.25rem;
-    @apply tracking-tight leading-snug font-semibold mt-[1.25em] mb-[0.5em];
+    @apply font-semibold mt-[1.25em] leading-snug mb-[0.5em] tracking-tight;
   }
 
   h3 + * {
@@ -61,7 +57,7 @@
 
   h4 {
     font-size: 1.125rem;
-    @apply tracking-tight leading-snug font-semibold mt-[1.25em] mb-[0.5em];
+    @apply font-semibold mt-[1.25em] leading-snug mb-[0.5em] tracking-tight;
   }
 
   h4 + * {
@@ -69,10 +65,27 @@
   }
 
   hr {
-    @apply d-prose-hr-border my-8;
+    @apply my-8 d-prose-hr-border;
   }
 
   hr + * {
     @apply mt-0;
+  }
+}
+
+.dark {
+  .article {
+    h1,
+    h2,
+    h3,
+    h4 {
+      a {
+        &:hover {
+          code {
+            border-color: rgb(228, 228, 231);
+          }
+        }
+      }
+    }
   }
 }

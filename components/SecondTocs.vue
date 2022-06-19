@@ -34,12 +34,25 @@ export default {
 };
 </script>
 
-<style lang="scss">
-.toc-link.active {
-  @apply font-bold underline decoration-dotted underline-offset-2;
+<style lang="postcss">
+.table-of-contents {
+  .toc-link {
+    @apply py-1 transform transition-colors duration-100 block d-secondary-text hover:d-secondary-text-hover;
+    font-weight: 400;
 
-  .dark & {
-    @apply text-white/95;
+    &.active {
+      @apply font-bold underline decoration-dotted underline-offset-2;
+    }
+  }
+}
+
+.dark {
+  .table-of-contents {
+    .toc-link {
+      &.active {
+        @apply text-white/95;
+      }
+    }
   }
 }
 </style>

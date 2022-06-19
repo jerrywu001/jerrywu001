@@ -1,18 +1,18 @@
 {
   "private": true,
   "scripts": {
-    "build": "nuxi build",
-    "dev": "nuxi dev",
+    "build": "nuxt build",
+    "dev": "nuxt dev",
     "prepare": "husky install",
-    "preview": "nuxi preview"
+    "preview": "nuxt preview"
   },
   "dependencies": {
     "@iconify-json/carbon": "^1.1.5",
     "@iconify-json/ph": "^1.1.1",
     "@iconify-json/twemoji": "^1.1.4",
     "@vueuse/core": "^8.7.4",
-    "codesandbox-sandpack-vue3": "^1.0.3",
-    "nuxt3": "3.0.0-27424151.dbab979",
+    "codesandbox-sandpack-vue3": "^1.0.5",
+    "nuxt": "^3.0.0-rc.4",
     "photoswipe": "5.2.0-beta.2",
     "prism-themes": "^1.9.0",
     "prismjs": "^1.28.0",
@@ -50,10 +50,9 @@
     "remark-rehype": "^10.1.0",
     "remark-slug": "^7.0.1",
     "remark-squeeze-paragraphs": "^5.0.1",
-    "sass": "^1.52.3",
-    "sass-loader": "^13.0.0",
     "to-vfile": "^7.2.3",
     "typescript": "^4.7.4",
+    "ufo": "^0.8.4",
     "unified": "^10.1.2",
     "unified-remark-prismjs": "^1.1.4",
     "vfile-reporter": "^7.0.4"
