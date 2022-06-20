@@ -52,14 +52,6 @@ html:root {
   }
 }
 
-button:focus-visible,
-div:focus-visible,
-a:focus-visible {
-  outline: none;
-  border-radius: 2px;
-  box-shadow: 0 0 0 2px #00dc82;
-}
-
 .swiper-link {
   border: none !important;
 }
