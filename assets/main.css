@@ -67,3 +67,7 @@ html:root {
 .sp-button {
   color: grey !important;
 }
+
+.sp-tab-button {
+  display: flex !important;
+}

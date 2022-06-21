@@ -585,9 +585,29 @@ warning!!!
 
 ## sandpack demo
 
-> components in /sandpack-demos
+```md
+:::sand-box{template=react-ts}
+\`\`\`js App.tsx
+export default function App() {
+  return (
+    <div>Hello world</div>
+  );
+}
+\`\`\`
+:::
+```
 
-::react-demo
+:::sand-box{template=react-ts}
+```js App.tsx
+export default function App() {
+  return (
+    <div>Hello world</div>
+  );
+}
+```
+:::
+
+:button-link[more demos]{href="/posts/other_sandpack-demos"}
 
 ## youtube
 
