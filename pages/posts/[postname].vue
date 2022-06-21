@@ -168,9 +168,10 @@ if (process.client) {
   };
   ws.onmessage = (e) => {
     if (e.data && typeof e.data === 'string' && e.data.endsWith('.md')) {
-      setTimeout(() => {
-        loadData(true);
-      }, 600);
+      // setTimeout(() => {
+      //   loadData(true);
+      // }, 600);
+      window.location.reload();
     }
   };
 }
