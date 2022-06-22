@@ -13,7 +13,7 @@
     "@vueuse/core": "^8.7.4",
     "codesandbox-sandpack-vue3": "^1.0.6",
     "nuxt": "^3.0.0-rc.4",
-    "photoswipe": "5.2.0-beta.2",
+    "photoswipe": "5.2.8",
     "prism-themes": "^1.9.0",
     "prismjs": "^1.28.0",
     "property-information": "^6.1.1",

@@ -1,5 +1,4 @@
-import PhotoSwipeLightbox from 'photoswipe/dist/photoswipe-lightbox.esm.js';
-import PhotoSwipe from 'photoswipe';
+import PhotoSwipeLightbox from 'photoswipe/lightbox';
 import 'photoswipe/dist/photoswipe.css';
 import { Ref } from '@vue/runtime-dom';
 
@@ -33,7 +32,7 @@ export default function useImgSwipe(loading: Ref<boolean>) {
                 lightbox.value = new PhotoSwipeLightbox({
                   gallery: '.article-scroll-box',
                   children: '.swiper-link',
-                  pswpModule: PhotoSwipe,
+                  pswpModule: () => import('photoswipe'),
                   imageClickAction: 'close',
                   tapAction: 'close',
                 });
