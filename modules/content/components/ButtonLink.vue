@@ -1,5 +1,5 @@
 <template>
-  <Link
+  <UrlLink
     class="button-link"
     :class="[size, bold ? 'font-semibold' : 'font-medium']"
     :to="href"
@@ -22,7 +22,7 @@
         />
       </svg>
     </template>
-  </Link>
+  </UrlLink>
 </template>
 
 <script setup lang="ts">

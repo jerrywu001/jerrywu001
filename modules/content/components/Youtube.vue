@@ -2,11 +2,9 @@
   <div mt-2>
     <iframe
       :src="`https://www.youtube.com/embed/${props.id}`"
-      width="560"
-      height="377"
+      class="w-full aspect-video"
       allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen
-      class="w-full"
     >
       {{ slots.default() }}
     </iframe>
