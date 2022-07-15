@@ -136,10 +136,10 @@ async function loadData(forceUpdate = false) {
 
   if (!dirs.value.length || forceUpdate) {
     // 更新分类缓存
-    updateDirs(res.data.value.categories);
+    updateDirs(res.data.value?.categories);
   }
 
-  if (data.value.code === 404) {
+  if (data.value?.code === 404) {
     if (process.client) {
       window.location.href = '/404';
     }
