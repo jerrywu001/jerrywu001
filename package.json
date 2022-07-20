@@ -12,7 +12,7 @@
     "@iconify-json/twemoji": "^1.1.5",
     "@vueuse/core": "^8.9.4",
     "codesandbox-sandpack-vue3": "^1.0.9",
-    "nuxi": "^3.0.0-rc.4",
+    "nuxi": "3.0.0-rc.4",
     "nuxt": "3.0.0-rc.4",
     "@nuxt/kit": "3.0.0-rc.4",
     "@nuxt/schema": "3.0.0-rc.4",
