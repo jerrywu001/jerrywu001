@@ -9,7 +9,8 @@ createAt: 2022-07-25T19:00:00.000Z
 
 1. Fork [my project]
 2. 初始化GitHub action必须的[token](https://github.com/jerrywu001/react-npm-template#how-to-add-npm_token)
-3. Push or PR，Github action会自动发包，并部署storybook文档
+3. 在src文件夹中编写您的逻辑
+4. Push or PR，Github action会自动发包，并部署storybook文档
 
 项目地址：
 
@@ -37,7 +38,7 @@ createAt: 2022-07-25T19:00:00.000Z
 - 💡 支持browserslistrc配置
 - 🔌 使用[postcss](https://github.com/jerrywu001/react-npm-template/blob/main/postcss.config.js) ([postcss-nested](https://www.npmjs.com/package/postcss-nested)/ [autoprefixer](https://www.npmjs.com/package/autoprefixer) / [cssnano](https://cssnano.co/docs/getting-started/))构建样式
 
-  > 对应文件夹为playground ---> ```npm run dev```
+  > 对应文件夹为playground ---> ```npm run build:css```
   >
   > 入口文件位置： src/styles/index.css
   >
@@ -85,7 +86,8 @@ Project
 
 ### 初始化github action需要的token
 
-具体步骤，请参照：https://github.com/jerrywu001/react-npm-template#how-to-add-npm_token
+具体步骤，请参照：
+:button-link[create token]{href="https://github.com/jerrywu001/react-npm-template#how-to-add-npm_token"}
 
 ### 关于github actions
 
@@ -97,25 +99,25 @@ Project
 
 效果如下图：
 
-![](../../public/articles/vue/release-start.png)
+![](/articles/vue/release-start.png)
 
 - [deploy](https://github.com/jerrywu001/react-npm-template/blob/main/.github/workflows/deploy.yaml)
 
-当有代码被push 或 PR被创建、修改、reopen、commit时，会触发deploy work，用于执行上一步ci，被在ci成功时自动deploy storybook到netlify上
+当有代码被push 或 PR被创建、修改、reopen、commit时，会触发deploy work，用于执行上一步ci，并在ci成功时自动deploy storybook到netlify、vercel上
 
 效果如下图：
 
-![](../../public/articles/vue/deploying.png)
+![](/articles/vue/deploying.png)
 
 - [release](https://github.com/jerrywu001/react-npm-template/blob/main/.github/workflows/release.yaml)
 
-当tag被添加（npm run release），会触发release work，用于执行上一步ci，被在ci成功时自动发布npm package、create release
+当tag被添加（npm run release），会触发release work，用于执行上一步ci，并在ci成功时自动发布npm package、create release
 
 效果如下图：
 
-![](../../public/articles/vue/release-03.png)
-![](../../public/articles/vue/release-04.png)
-![](../../public/articles/vue/release-10.png)
-![](../../public/articles/vue/release-05.png)
+![](/articles/vue/release-03.png)
+![](/articles/vue/release-04.png)
+![](/articles/vue/release-10.png)
+![](/articles/vue/release-05.png)
 
 ## 关于模版细节，后续将出文章详细一一介绍

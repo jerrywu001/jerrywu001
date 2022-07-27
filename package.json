@@ -7,11 +7,11 @@
     "preview": "nuxt preview"
   },
   "dependencies": {
-    "@iconify-json/carbon": "^1.1.6",
+    "@iconify-json/carbon": "^1.1.7",
     "@iconify-json/ph": "^1.1.2",
     "@iconify-json/twemoji": "^1.1.5",
-    "@vueuse/core": "^8.9.4",
-    "codesandbox-sandpack-vue3": "^1.0.10",
+    "@vueuse/core": "^9.0.0",
+    "codesandbox-sandpack-vue3": "^1.1.0",
     "nuxi": "3.0.0-rc.4",
     "nuxt": "3.0.0-rc.4",
     "@nuxt/kit": "3.0.0-rc.4",
@@ -29,7 +29,7 @@
     "@nuxtjs/eslint-module": "^3.1.0",
     "@types/ws": "^8.5.3",
     "@unocss/nuxt": "^0.44.7",
-    "@vueuse/nuxt": "^8.9.4",
+    "@vueuse/nuxt": "^9.0.0",
     "eslint": "^8.20.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-nuxt": "^3.2.0",
