@@ -63,7 +63,7 @@ mkcert create-ca [options] # options 参见npm文档
 mkcert create-cert --domains 127.0.0.1,localhost,custom1.domain.xxx,custom2.domain.xxx
 ```
 
-## 安装正式
+## 安装证书
 
 ### mac
 
