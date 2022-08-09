@@ -118,3 +118,20 @@ describe('mock api', () => {
   });
 });
 ```
+
+## 关于fallback mode
+
+以下几种情形会变成fallback mode:
+
+- 浏览器不支持service Worker
+- 域名未开启https，且域名不是localhost或者127.0.0.1
+
+*TIPS: 若开启https，同时需要安装证书！！没有证书msw会直接报错，导致无法访问页面*
+
+fallback mode会导致network中不会出现对应接口日志，只能在console中查看接口信息，效果如下图：
+
+![](/articles/fallback.png)
+
+## 解决fallback mode
+
+[解决fallback mode](./server_vite-https-cert)
