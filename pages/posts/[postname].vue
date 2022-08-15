@@ -129,7 +129,10 @@ function toggleSidebar() {
 
 async function loadData(forceUpdate = false) {
   loading.value = true;
-  const res = await useFetch<IArticleData>(`/api/post?postname=${postname}`);
+  // eslint-disable-next-line prettier/prettier
+  const res = await useFetch<IArticleData>(`/api/post?postname=${postname}`, {
+    initialCache: false,
+  });
 
   data.value = res.data.value;
   loading.value = false;
