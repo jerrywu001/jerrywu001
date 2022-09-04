@@ -3,6 +3,7 @@
     :template="template"
     :files="files"
     :options="{
+      showConsoleButton: true,
       showLineNumbers: true,
       showTabs: true,
       closableTabs,
@@ -16,11 +17,14 @@
 /* eslint-disable prettier/prettier */
 import {
   Sandpack,
-  SandpackFiles,
-  SandpackPredefinedTemplate,
+  type SandpackPredefinedTheme,
+  type SandpackFiles,
+  type SandpackPredefinedTemplate,
+  type SandpackThemeProp,
 } from 'codesandbox-sandpack-vue3';
-import { PropType } from 'vue';
+import { type PropType, ref } from 'vue';
 
+const theme = ref<SandpackThemeProp>('light');
 const slots = useSlots();
 
 const props = defineProps({
@@ -109,5 +113,25 @@ const files = computed<SandpackFiles>(() => {
     });
   }
   return items;
+});
+
+onMounted(() => {
+  theme.value = (document.documentElement.className ||
+    'light') as SandpackThemeProp;
+
+  nextTick(() => {
+    setTimeout(() => {
+      const target = document.documentElement;
+      const mb = new MutationObserver((mutationRecord) => {
+        const dom = mutationRecord[0].target as HTMLDivElement;
+        console.log(dom.className);
+        theme.value = (dom.className || 'light') as SandpackPredefinedTheme;
+      });
+      mb.observe(target, {
+        attributes: true, // 观察node对象的属性
+        attributeFilter: ['class'], // 只观察class属性
+      });
+    });
+  });
 });
 </script>

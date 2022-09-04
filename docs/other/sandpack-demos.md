@@ -27,6 +27,8 @@ createAt: 2022-06-20T19:00:00.000Z
 ```md
 :::sand-box{template=react-ts}
 \`\`\`js App.tsx
+console.log('Hello');
+
 export default function App() {
   return (
     <div>Hello world</div>
@@ -38,6 +40,8 @@ export default function App() {
 
 :::sand-box{template=react-ts}
 ```js App.tsx
+console.log('Hello');
+
 export default function App() {
   return (
     <div>Hello world</div>
