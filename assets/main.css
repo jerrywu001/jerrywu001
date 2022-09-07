@@ -11,16 +11,6 @@ html:root {
   );
   --docs-scroll-margin-block: calc(var(--header-height) + 4rem);
   --blogpost-scroll-margin-block: calc(var(--header-height));
-  --primary-50: #f2fdf9;
-  --primary-100: #e6fcf3;
-  --primary-200: #bff6e0;
-  --primary-300: #99f1cd;
-  --primary-400: #4de7a8;
-  --primary-500: #00dc82;
-  --primary-600: #00c675;
-  --primary-700: #00844e;
-  --primary-800: #00633b;
-  --primary-900: #004227;
 }
 
 @screen sm {

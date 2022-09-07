@@ -1,11 +1,11 @@
 <template>
-  <ul class="mb-2 pl-3 overflow-hidden">
+  <ul class="mb-2 pl-2 overflow-hidden">
     <li v-for="item in children" :key="item.url">
       <template v-if="!item.url && item.children">
         <h5
           v-show="item.children.length > 0"
           :data-depth="`${item.depth}`"
-          class="cursor-pointer flex font-bold opacity-95 py-2 transition duration-100 sidebar-tag items-center"
+          class="cursor-pointer flex font-bold font-semibold opacity-95 py-2 transition text-slate-900 duration-100 sidebar-tag items-center !text-sm dark:text-slate-200"
         >
           <span>{{ item.label }}</span>
           <span
@@ -21,11 +21,9 @@
       <template v-else>
         <NuxtLink
           :to="item.url"
-          class="border-l border-gray-100 text-sm py-1 pl-3 transition text-gray-700 duration-100 relative inline-flex items-center justify-between dark:border-dark-400 dark:text-gray-400 hover:text-primary hover:dark:text-primary"
+          class="border-l -ml-px border-slate-100 py-1 pl-2 transition text-slate-700 block !text-sm dark:border-slate-800 dark:text-slate-400 hover:border-slate-400 hover:text-slate-900 dark:hover:border-slate-500 dark:hover:text-slate-300"
           :class="[
-            currentPath === item.url
-              ? 'active !text-primary dark:text-primary !border-primary dark:border-primary'
-              : '',
+            currentPath === item.url ? ' !border-sky-500 !text-sky-500' : '',
           ]"
         >
           {{ item.label }}

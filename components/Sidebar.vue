@@ -5,14 +5,14 @@
     <div class="h-full pointer-events-none">
       <div
         id="sidebar-layer"
-        class="h-full bg-gray-200/50 w-full top-0 left-0 z-0 fixed backdrop-filter backdrop-blur-sm pointer-events-auto hidden lg:hidden dark:bg-dark-800/80"
+        class="h-full bg-gray-200/50 w-full top-0 left-0 z-0 fixed backdrop-filter backdrop-blur-sm pointer-events-auto hidden lg:hidden dark:bg-slate-900/90"
         @click="emit('close')"
       />
       <div
         id="sidebar-content"
         class="h-full w-$sidebar-width top-0 left-0 fixed pointer-events-auto lg:sticky !lg:transform-none !lg:transition-none"
       >
-        <div class="bg-white h-full w-full dark:bg-[#001e26]">
+        <div class="bg-white h-full w-full dark:bg-slate-900">
           <div class="h-full overflow-y-auto d-scrollbar">
             <categories :categories="categories" />
           </div>

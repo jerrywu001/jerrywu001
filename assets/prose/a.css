@@ -23,8 +23,8 @@
         height: calc(100% + 4px);
       }
 
-      &:hover:before {
-        @apply d-prose-a-headline-border;
+      &:hover::before {
+        @apply border-b border-dashed border-gray-900 dark:border-gray-100;
       }
     }
   }

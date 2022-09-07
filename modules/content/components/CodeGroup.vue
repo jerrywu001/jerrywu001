@@ -1,17 +1,17 @@
 <template>
   <div ref="codeRef" class="code-group">
     <div
-      class="rounded-t-lg text-white relative d-code-group-header-bg overflow-x-auto"
+      class="rounded-t-lg bg-slate-300 text-white relative overflow-x-auto code-header-bg"
     >
       <div class="w-max px-2 z-0 relative">
         <button
           v-for="(label, i) in tabs"
           :key="`${i}${label}`"
-          class="font-medium my-1.5 text-sm tracking-tight py-1.5 px-3 relative inline-block xs:py-3 xs:my-0 focus:outline-none"
+          class="rounded font-medium my-1.5 text-sm tracking-tight py-1.5 px-3 relative inline-block xs:py-3 xs:my-0 focus:outline-none"
           :class="[
             activeTabIndex === i
               ? 'text-gray-800 dark:text-white'
-              : 'd-prose-code-filename-text',
+              : 'text-gray-500 dark:text-white/70',
           ]"
           @click="updateTabs(i)"
         >
@@ -26,7 +26,7 @@
           }"
         >
           <span
-            class="rounded-lg flex h-full bg-[#d4d4d8] w-full dark:bg-[#255461]"
+            class="rounded-lg flex h-full bg-[#d4d4d8] w-full dark:bg-[#4e5e77]"
           />
         </span>
       </div>
@@ -129,30 +129,23 @@ tryOnMounted(() => {
     }
   }
 
-  .d-code-group-header-bg {
+  .code-header-bg {
     background-color: rgba(228, 228, 231, 1);
+
     &::-webkit-scrollbar {
       display: none;
-    }
-  }
-
-  button {
-    border-radius: 8px;
-    &.d-prose-code-filename-text {
-      color: rgba(82, 82, 91, 0.8);
     }
   }
 }
 
 .dark {
   .code-group {
-    .d-code-group-header-bg {
-      background-color: #003543;
+    .code-header-bg {
+      background-color: rgba(39, 55, 76, 1);
     }
-    button {
-      &.d-prose-code-filename-text {
-        color: rgba(113, 162, 176, 1);
-      }
+
+    pre {
+      box-shadow: none;
     }
   }
 }

@@ -46,7 +46,8 @@ const outLink = computed(() => props.href.includes('//'));
 
 <style lang="postcss" scoped>
 a.button-link {
-  @apply border-transparent rounded-md flex-none bg-[var(--primary-500)] border-1 text-xs text-black mb-2 py-1.5 px-3 ease-in-out duration-200 inline-flex items-center hover:bg-[var(--primary-400)] focus:outline-transparent;
+  @apply border-transparent border rounded-md flex-none bg-sky-500 text-xs mb-2 py-1.5 px-3 ease-in-out duration-200 inline-flex items-center !text-white/90 hover:bg-sky-400 focus:outline-transparent;
+
   transition-property: background-color, border-color, color, fill, stroke;
 }
 

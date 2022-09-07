@@ -1,6 +1,6 @@
 .article {
   li {
-    @apply relative my-[0.25em] pl-4 break-all;
+    @apply my-[0.25em] pl-4 relative break-all;
 
     p {
       @apply my-[0.75em];
@@ -9,7 +9,7 @@
 
   ul > li {
     &::before {
-      @apply absolute left-0 top-[0.5em] d-secondary-bg rounded-full w-1.5 h-1.5;
+      @apply rounded-full bg-gray-500 h-1.5 top-[0.5em] left-0 w-1.5 absolute dark:bg-cloud-light;
       content: '';
     }
   }

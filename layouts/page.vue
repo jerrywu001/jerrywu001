@@ -1,6 +1,6 @@
 <template>
   <Body
-    class="min-w-xs tracking-semitight d-body-bg d-body-text-color antialiased d-scrollbar overflow-x-hidden"
+    class="bg-white min-w-xs text-slate-500 antialiased d-scrollbar overflow-x-hidden dark:bg-slate-900 dark:text-slate-400"
   >
     <div
       class="font-montserrat text-sm w-full layout-container relative xl:text-base"

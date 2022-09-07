@@ -21,8 +21,7 @@
   strong,
   span {
     & > a {
-      @apply border-transparent border-1 font-600 no-underline break-all whitespace-pre-wrap hover: underline;
-      color: var(--primary-500);
+      @apply border-transparent border font-600 text-sky-500 no-underline break-all whitespace-pre-wrap dark:text-sky-400 hover:underline;
     }
   }
 
@@ -66,7 +65,8 @@
 
 .dark {
   .code-copy-block {
-    background-color: rgba(0, 53, 67, 1);
+    background-color: rgba(49, 77, 123, 0.49);
+
     &::before {
       background-image: url(./imgs/cc-copy-white.png);
     }

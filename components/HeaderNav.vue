@@ -1,13 +1,18 @@
 <template>
   <div
-    class="flex h-$header-height bg-white/95 w-full px-4 top-0 z-50 header-box items-center justify-between sticky dark:bg-[#001e26]/95"
+    class="flex h-$header-height bg-white/95 w-full px-4 top-0 z-50 header-box items-center justify-between sticky dark:bg-slate-900/90"
   >
     <div class="flex">
       <span
         class="cursor-pointer mr-2 text-gray-600 block i-carbon-list !h-6 !w-6 lg:hidden dark:text-[#92adad] hover:opacity-80"
         @click="emit('toggle-sidebar')"
       />
-      <NuxtLink to="/" class="text-base">前端博文</NuxtLink>
+      <NuxtLink
+        to="/"
+        class="font-bold text-base !text-[#333] !dark:text-white"
+      >
+        前端博文
+      </NuxtLink>
     </div>
     <div class="flex">
       <a

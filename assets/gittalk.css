@@ -20,67 +20,73 @@
       }
     }
   }
+}
 
-  .dark & {
-    .gt-svg {
-      svg {
-        fill: rgba(255, 255, 255, 1) !important;
+.dark {
+  .gt-svg {
+    svg {
+      fill: rgba(255, 255, 255, 1) !important;
+    }
+  }
+
+  .gt-popup {
+    background-color: rgba(1, 50, 64, 1) !important;
+    border-color: rgba(42, 68, 112, 1) !important;
+
+    a.gt-action {
+      &.is--active {
+        color: rgba(255, 255, 255, 1) !important;
       }
     }
+  }
 
-    .gt-popup {
-      background-color: rgba(1, 50, 64, 1);
-      border-color: rgba(42, 68, 112, 1);
+  .gt-header-preview,
+  .gt-header-textarea {
+    &,
+    &:hover {
+      background-color: rgba(59, 130, 246, 0.2) !important;
+      color: rgba(255, 255, 255, 1) !important;
 
-      a.gt-action {
-        &.is--active {
-          color: rgba(255, 255, 255, 1);
-        }
+      &::-webkit-input-placeholder {
+        color: rgba(255, 255, 255, 0.6) !important;
       }
     }
+  }
 
-    .gt-header-preview,
-    .gt-header-textarea {
-      &,
+  .gt-btn {
+    &.gt-btn-public,
+    &.gt-btn-login {
+      background-color: rgba(42, 68, 112, 1) !important;
+      border-color: rgba(42, 68, 112, 1) !important;
+
       &:hover {
-        background-color: rgba(59, 130, 246, 0.2);
-        color: rgba(255, 255, 255, 1);
-
-        &::-webkit-input-placeholder {
-          color: rgba(255, 255, 255, 0.6);
-        }
+        opacity: 0.75 !important;
       }
     }
 
-    .gt-btn {
-      &.gt-btn-public,
-      &.gt-btn-login {
-        background-color: rgba(42, 68, 112, 1);
-        border-color: rgba(42, 68, 112, 1);
+    &.gt-btn-preview {
+      background-color: transparent !important;
 
-        &:hover {
-          opacity: 0.75;
-        }
-      }
-
-      &.gt-btn-preview {
+      &:hover {
         background-color: transparent !important;
-
-        &:hover {
-          background-color: transparent !important;
-        }
       }
     }
+  }
 
-    .gt-comment-date,
-    .gt-comment-text {
-      color: rgba(255, 255, 255, 0.65);
+  .gt-comment-date,
+  .gt-comment-text {
+    color: rgba(255, 255, 255, 0.65) !important;
+  }
+
+  .gt-comment-admin {
+    .gt-comment-content {
+      background-color: rgba(12, 74, 110, 0.6) !important;
     }
+  }
 
-    .gt-comment-admin {
-      .gt-comment-content {
-        background-color: rgba(12, 74, 110, 0.6);
-      }
+  .gt-container {
+    .gt-comment-content {
+      background-color: rgba(12, 74, 110, 0.6) !important;
     }
 
     .gt-comment-body {

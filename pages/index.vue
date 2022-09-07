@@ -5,7 +5,7 @@
     </Head>
   </Html>
   <div
-    class="font-montserrat bg-white-50 h-100vh p-6 dark:bg-[#001e26]/95 dark:text-white/80"
+    class="bg-white font-montserrat h-100vh p-6 dark:bg-slate-900 dark:text-white/80"
   >
     <div
       relative

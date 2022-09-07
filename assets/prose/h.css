@@ -3,6 +3,8 @@
   h2,
   h3,
   h4 {
+    @apply text-[#0f172a] dark:text-slate-200;
+
     a {
       @apply relative;
 
@@ -65,7 +67,7 @@
   }
 
   hr {
-    @apply my-8 d-prose-hr-border;
+    @apply border-t border-gray-100 my-8 dark:border-[#003543];
   }
 
   hr + * {

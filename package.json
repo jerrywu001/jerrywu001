@@ -11,7 +11,7 @@
     "@iconify-json/carbon": "^1.1.7",
     "@iconify-json/ph": "^1.1.2",
     "@iconify-json/twemoji": "^1.1.5",
-    "@vueuse/core": "^9.1.1",
+    "@vueuse/core": "^9.2.0",
     "codesandbox-sandpack-vue3": "^1.2.1",
     "nuxt": "^3.0.0-rc.9",
     "photoswipe": "^5.3.2",
@@ -19,14 +19,14 @@
     "prismjs": "^1.29.0",
     "property-information": "^6.1.1",
     "skeleton-elements": "^4.0.0",
-    "unocss": "^0.45.15"
+    "unocss": "^0.45.18"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config-typescript": "^11.0.0",
     "@nuxtjs/eslint-module": "^3.1.0",
     "@types/ws": "^8.5.3",
-    "@unocss/nuxt": "^0.45.15",
-    "@vueuse/nuxt": "^9.1.1",
+    "@unocss/nuxt": "^0.45.18",
+    "@vueuse/nuxt": "^9.2.0",
     "eslint": "^8.23.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-nuxt": "^4.0.0",

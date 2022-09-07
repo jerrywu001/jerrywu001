@@ -1,7 +1,7 @@
 <template>
   <div
     v-show="children.length > 0"
-    class="flex-none bg-white/95 top-$header-height text-xs w-full px-4 left-0 z-10 tocs overflow-hidden sticky sm:px-6 lg:left-60 dark:bg-[#001e26]/95"
+    class="flex-none bg-white/95 top-$header-height text-xs w-full px-4 left-0 z-10 tocs overflow-hidden sticky sm:px-6 lg:left-60 dark:bg-slate-900/90"
     :class="`${isPc ? 'h-auto' : 'h-10'}`"
   >
     <a

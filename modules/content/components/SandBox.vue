@@ -1,5 +1,6 @@
 <template>
   <Sandpack
+    :theme="theme"
     :template="template"
     :files="files"
     :options="{
@@ -22,6 +23,7 @@ import {
   type SandpackPredefinedTemplate,
   type SandpackThemeProp,
 } from 'codesandbox-sandpack-vue3';
+import { nightOwl } from '@codesandbox/sandpack-themes';
 import { type PropType, ref } from 'vue';
 
 const theme = ref<SandpackThemeProp>('light');
@@ -116,8 +118,9 @@ const files = computed<SandpackFiles>(() => {
 });
 
 onMounted(() => {
-  theme.value = (document.documentElement.className ||
-    'light') as SandpackThemeProp;
+  theme.value = (
+    document.documentElement.className ? nightOwl : 'light'
+  ) as SandpackThemeProp;
 
   nextTick(() => {
     setTimeout(() => {
@@ -125,7 +128,7 @@ onMounted(() => {
       const mb = new MutationObserver((mutationRecord) => {
         const dom = mutationRecord[0].target as HTMLDivElement;
         console.log(dom.className);
-        theme.value = (dom.className || 'light') as SandpackPredefinedTheme;
+        theme.value = (dom.className ? nightOwl : 'light') as SandpackThemeProp;
       });
       mb.observe(target, {
         attributes: true, // 观察node对象的属性
