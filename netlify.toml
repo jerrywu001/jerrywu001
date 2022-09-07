@@ -1,4 +1,4 @@
 [build.environment]
-  HOST = wuchao.netlify.app
-  POST = 80
-  HTTPS = true
+  HOST = "wuchao.netlify.app"
+  POST = "80"
+  HTTPS = "true"
