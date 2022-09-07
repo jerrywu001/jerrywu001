@@ -21,7 +21,7 @@
       IN THIS ARTICLE
       <a
         v-show="!isPc"
-        class="text-sm mr-1 text-black/80 i-carbon-chevron-right dark:text-white/80"
+        class="text-sm mr-1 text-dark/80 i-carbon-chevron-right dark:text-white/80"
       />
     </a>
     <div class="flex-col pb-2 justify-between overflow-y-auto sticky">

@@ -51,7 +51,7 @@ html:root {
 }
 
 .swiper-link img {
-  margin: 0 !important;
+  border-radius: 0.25rem;
 }
 
 .sp-button {

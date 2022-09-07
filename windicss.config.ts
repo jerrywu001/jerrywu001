@@ -13,7 +13,6 @@ export default defineConfig({
         'cloud-surface': '#E6F0F0',
         'cloud-lightest': '#D1E2E2',
         'cloud-light': '#92ADAD',
-        black: '#000',
         white: '#fff',
         blue: colors.sky,
         green: {

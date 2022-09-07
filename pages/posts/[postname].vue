@@ -40,20 +40,20 @@
     <div
       id="back-2-top"
       draggable="true"
-      class="rounded-full bg-black-500/50 h-10 right-2 bottom-21 w-10 z-50 fixed items-center justify-center hidden dark:bg-white/90"
+      class="rounded-full bg-dark-500/50 h-10 right-2 bottom-21 w-10 z-50 fixed items-center justify-center hidden dark:bg-white/90"
     >
       <span
-        class="bg-white h-4 i-carbon-back-to-top block !w-4 dark:bg-black/90"
+        class="bg-white h-4 i-carbon-back-to-top block !w-4 dark:bg-dark-900/90"
       />
     </div>
 
     <div
       id="comment"
       draggable="true"
-      class="rounded-full flex bg-black-500/50 h-10 right-2 bottom-8 w-10 z-50 fixed items-center justify-center dark:bg-white/90"
+      class="rounded-full flex bg-dark-500/50 h-10 right-2 bottom-8 w-10 z-50 fixed items-center justify-center dark:bg-white/90"
     >
       <span
-        class="bg-white h-4 i-carbon-document block !w-4 dark:bg-black/90"
+        class="bg-white h-4 i-carbon-document block !w-4 dark:bg-dark-900/90"
       />
     </div>
   </article>

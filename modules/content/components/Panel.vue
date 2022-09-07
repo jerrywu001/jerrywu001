@@ -1,26 +1,12 @@
 <template>
-  <div class="panel">
-    <div>
-      <div
-        class="cursor-pointer flex toggle-link items-center justify-start"
-        :title="visible ? '收起' : '展开'"
-        @click="toggle"
-      >
-        <a
-          class="text-sm mr-1 !text-black/80"
-          :class="[
-            visible ? 'i-carbon-chevron-down' : 'i-carbon-chevron-right',
-          ]"
-        />
-        <span>{{ props.title }}</span>
-      </div>
-    </div>
-    <div class="panel-content" :class="[visible ? 'visible' : 'hidden']">
+  <details class="custom-details">
+    <summary>{{ props.title }}</summary>
+    <div class="panel-content">
       <div>
         <p class="leading-none !m-0"><slot></slot></p>
       </div>
     </div>
-  </div>
+  </details>
 </template>
 
 <script setup lang="ts">
@@ -40,8 +26,23 @@ function toggle() {
 
 <style lang="postcss" scoped>
 .toggle-link {
-  @apply border-transparent border rounded-md flex-none bg-sky-500 text-xs text-black py-1.5 px-3 ease-in-out duration-200 inline-flex items-center hover:bg-sky-400 focus:outline-transparent;
+  @apply border-transparent border rounded-md flex-none bg-sky-500 text-xs py-1.5 px-3 ease-in-out text-white/90 duration-200 inline-flex items-center hover:bg-sky-400 focus:outline-transparent;
   transition-property: background-color, border-color, color, fill, stroke;
   padding: 0.35rem 1rem;
+}
+
+.custom-details {
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 12px 16px 12px;
+  line-height: 24px;
+  margin: 16px 0;
+  border-color: rgb(203 205 209 / 17%);
+
+  summary {
+    @apply font-bold;
+  }
+
+  @apply bg-light-500 text-[#666] select-none dark:bg-[#1e293b] dark:text-[#e2e2e2];
 }
 </style>
