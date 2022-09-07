@@ -8,15 +8,15 @@ createAt: 2022-07-25T19:00:00.000Z
 很多时候我们有开发npm pacckge的想法，但自己搭建开发模版会觉得很麻烦！所以，我有了搭建零配置npm package开发模版的想法，真的是零配置哦🫠，你要做的只是：
 
 1. Fork [my project]
-2. 初始化GitHub action必须的[token](https://github.com/jerrywu001/react-npm-template#how-to-add-npm_token)
+2. 初始化GitHub action必须的[token](https://github.com/codes-templates/npm-react#how-to-add-npm_token)
 3. 在src文件夹中编写您的逻辑
 4. Push or PR，Github action会自动发包，并部署storybook文档
 
 项目地址：
 
-:button-link[For React]{href="https://github.com/jerrywu001/react-npm-template"}
+:button-link[For React]{href="https://github.com/codes-templates/npm-react"}
 
-:button-link[For Vue3]{href="https://github.com/jerrywu001/vue3-npm-template"}
+:button-link[For Vue3]{href="https://github.com/codes-templates/npm-vue3"}
 
 ## 大致介绍
 
@@ -36,7 +36,7 @@ createAt: 2022-07-25T19:00:00.000Z
   > 对应文件夹为playground ---> ```npm run dev```
 
 - 💡 支持browserslistrc配置
-- 🔌 使用[postcss](https://github.com/jerrywu001/react-npm-template/blob/main/postcss.config.js) ([postcss-nested](https://www.npmjs.com/package/postcss-nested)/ [autoprefixer](https://www.npmjs.com/package/autoprefixer) / [cssnano](https://cssnano.co/docs/getting-started/))构建样式
+- 🔌 使用[postcss](https://github.com/codes-templates/npm-react/blob/main/postcss.config.js) ([postcss-nested](https://www.npmjs.com/package/postcss-nested)/ [autoprefixer](https://www.npmjs.com/package/autoprefixer) / [cssnano](https://cssnano.co/docs/getting-started/))构建样式
 
   > 对应文件夹为playground ---> ```npm run build:css```
   >
@@ -52,6 +52,8 @@ createAt: 2022-07-25T19:00:00.000Z
 - 🐳 集成[Husky](https://typicode.github.io/husky) & [lint-staged](https://github.com/okonet/lint-staged#readme)
 - 🍥 集成[commitlint](https://commitlint.js.org), 规范提交信息
 - ⛷ [vue](https://vuejs.org/)>=3.2.0，[react](https://reactjs.org/)>=16.8.0
+- 🪜 vue版本默认集成了[vitepress](https://vitepress.vuejs.org/)
+  > docs文件夹
 
 ## 项目结构
 
@@ -87,13 +89,13 @@ Project
 ### 初始化github action需要的token
 
 具体步骤，请参照：
-:button-link[create token]{href="https://github.com/jerrywu001/react-npm-template#how-to-add-npm_token"}
+:button-link[create token]{href="https://github.com/codes-templates/npm-react#how-to-add-npm_token"}
 
 ### 关于github actions
 
 > 正常push或pr即可触发action
 
-- [ci](https://github.com/jerrywu001/react-npm-template/blob/main/.github/workflows/ci.yaml)
+- [ci](https://github.com/codes-templates/npm-react/blob/main/.github/workflows/ci.yaml)
 
 当有PR被创建、修改、reopen、commit时，会触发ci work，用于执行eslint、stylelint、typecheck、unit test
 
@@ -101,7 +103,7 @@ Project
 
 ![](/articles/vue/release-start.png)
 
-- [deploy](https://github.com/jerrywu001/react-npm-template/blob/main/.github/workflows/deploy.yaml)
+- [deploy](https://github.com/codes-templates/npm-react/blob/main/.github/workflows/deploy.yaml)
 
 当有代码被push 或 PR被创建、修改、reopen、commit时，会触发deploy work，用于执行上一步ci，并在ci成功时自动deploy storybook到netlify、vercel上
 
@@ -109,7 +111,7 @@ Project
 
 ![](/articles/vue/deploying.png)
 
-- [release](https://github.com/jerrywu001/react-npm-template/blob/main/.github/workflows/release.yaml)
+- [release](https://github.com/codes-templates/npm-react/blob/main/.github/workflows/release.yaml)
 
 当tag被添加（npm run release），会触发release work，用于执行上一步ci，并在ci成功时自动发布npm package、create release
 
