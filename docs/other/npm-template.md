@@ -119,7 +119,7 @@ Project
 
 ![](/articles/vue/release-03.png)
 ![](/articles/vue/release-04.png)
-![](/articles/vue/release-10.png)
+![](/articles/vue/release-010.png)
 ![](/articles/vue/release-05.png)
 
 ## 关于模版细节，后续将出文章详细一一介绍
