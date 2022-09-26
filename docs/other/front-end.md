@@ -25,9 +25,33 @@ createAt: 2022-09-23T19:00:00.000Z
 ![sandpack-2.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/462eaf622e1a43de908423d966907161~tplv-k3u1fbpfcp-watermark.image?)
 
 
-## css animation
+## css & animation
 
-直接戳[这篇文章](https://juejin.cn/post/7069945906518294536)即可，大神总结的很到位
+### [whirl, 一个loading icon](https://whirl.netlify.app/)
+
+![loading.gif](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/897024e9a1c949088c1c46501aee6a5f~tplv-k3u1fbpfcp-watermark.image?)
+
+### [玻璃态生成器](https://ui.glass/generator)
+![glass.gif](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a12d1952f9f44a55af810a9067faf6ef~tplv-k3u1fbpfcp-watermark.image?)
+
+### [盒阴影生成器](https://shadows.brumm.af/)
+![shadow.gif](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c856454fe219442fb5bc441da049bd0f~tplv-k3u1fbpfcp-watermark.image?)
+
+### [圆角生成器](https://9elements.github.io/fancy-border-radius/)
+![radius.gif](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/cd4e070dbfee4846836db1a75c28fb07~tplv-k3u1fbpfcp-watermark.image?)
+
+### [grid生成器](https://cssgrid-generator.netlify.app/)
+![grid.gif](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/80521ba6773941f8acc4c161876e2d21~tplv-k3u1fbpfcp-watermark.image?)
+
+### [鼠标点击特效](https://party.js.org/)
+![click.gif](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/cec29eed715944c1b83810ffd414e39e~tplv-k3u1fbpfcp-watermark.image?)
+
+### [gradient 色调大全](https://webgradients.com/)
+![gradient.gif](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/af4b9d81ef8742a6951d2dcef7da0af0~tplv-k3u1fbpfcp-watermark.image?)
+
+### 其他css animations总结
+
+[其他css animations总结（非常到位，建议戳此链接查看👇）](https://juejin.cn/post/7069945906518294536)
 
 ## 可用cdn
 
