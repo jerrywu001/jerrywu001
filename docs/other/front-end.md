@@ -63,7 +63,12 @@ createAt: 2022-09-23T19:00:00.000Z
 
 ## icons & font
 
-- [loading icons](https://icons8.com/preloaders/)
+- loading icons
+
+    - [icons8 preloaders](https://icons8.com/preloaders/)
+    - [loading.io](https://loading.io/)
+
+    ![loading.io.gif](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/42e67b46188a4c8cb425e9a442fa3509~tplv-k3u1fbpfcp-watermark.image?)
 
 - [css.gg](https://css.gg/)
 ![icon-1.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/def8be5ccdc949c0acc69ed7b02566bc~tplv-k3u1fbpfcp-watermark.image)

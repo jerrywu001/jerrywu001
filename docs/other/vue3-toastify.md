@@ -1,5 +1,5 @@
 ---
-title: 一个toast组件竟然可以卷到如此地步！！前端已经不是简简单单画页面了~~
+title: 前端业务组件库怎么样做到极致？
 cover: /articles/vue3-toastify/demo.gif
 createAt: 2022-09-20T19:00:00.000Z
 ---
