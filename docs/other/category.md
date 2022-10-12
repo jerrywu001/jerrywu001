@@ -103,6 +103,7 @@ createAt: 2022-09-26T19:00:00.000Z
 - [TypeScript 练习题](https://mp.weixin.qq.com/s/NCErEOzwaucEIdcLMVCJcg)
 - [这 30 道 TS 练习题，你能答对几道？](https://juejin.cn/post/7009046640308781063)
 - [type-challenges](https://github.com/type-challenges/type-challenges)
+- [推荐12个值得学习的TypeScript宝库！](https://juejin.cn/post/7150668738990178312)
 
 ---
 

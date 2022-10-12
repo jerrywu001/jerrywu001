@@ -410,13 +410,13 @@ console.log(JSON.stringify({ a: { b: 'hello' }}, null, '\t'));
 
 ```yaml
 packages:
-  - workspacename
+  - workspace name
 ```
 
 - pnpm使用方式
 
 ```bash
-pnpm run dev --filter [workspace name]
+pnpm run --filter=[workspace name] dev
 ```
 
 - npm/yarn使用方式:
@@ -442,6 +442,8 @@ yarn workspace [workspace name] run [script]
 - [修改npm缓存位置](https://www.jianshu.com/p/c6b234e98632)
 
 - [修改Yarn的全局安装和缓存位置_JEECG官方博客的博客-CSDN博客_yarn安装路径](https://blog.csdn.net/zhangdaiscott/article/details/106218208)
+
+- [pnpm 全局安装包位置](https://juejin.cn/post/7134978421611823134)
 
 ## github常用快捷键
 
