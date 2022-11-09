@@ -1,7 +1,7 @@
 import path from 'path';
 import chalk from 'chalk';
 import { defineNuxtModule, createResolver, addComponentsDir } from '@nuxt/kit';
-import Websocket from 'ws';
+import { WebSocketServer } from 'ws';
 import MdTransform from './markdown/mdTranform';
 
 interface Option {
@@ -79,7 +79,7 @@ export default defineNuxtModule<Option>({
 
     if (process.env.NODE_ENV === 'development') {
       // eslint-disable-next-line import/no-named-as-default-member
-      const wss = new Websocket.Server({ port: 8080 });
+      const wss = new WebSocketServer({ port: 8080 });
 
       wss.on('open', function open() {
         console.info('websocket connected');
