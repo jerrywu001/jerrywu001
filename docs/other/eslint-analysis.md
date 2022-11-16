@@ -5,12 +5,11 @@ cover: https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0244e52239454de8baa4c02
 createAt: 2022-11-14T19:00:00.000Z
 ---
 
-
 > 对于前端工程化，[Eslint](https://eslint.org/docs/latest/user-guide/getting-started)是一个非常重要的环节，它可以方便的检查出代码中不符合规范的地方，并给予错误提示，对前端规范来说非常重要!
 
 # 阅读本文，您将收获
 
-- 如何调试eslint node_modules源码
+- 如何直接调试eslint node_modules源码
 - 文件遍历以及文件配置生成过程
 - 如何将代码转换成ast
 - 如何利用ast和rules生成错误信息
@@ -62,6 +61,8 @@ createAt: 2022-11-14T19:00:00.000Z
     ```bash
     mkdir eslint-demo & cd eslint-demo
 
+    npm init -y
+
     npm init @eslint/config
     # 选择js特性即可，字符串请选择单引号规则
 
@@ -79,8 +80,6 @@ createAt: 2022-11-14T19:00:00.000Z
         "test": "npx eslint index.js"
       },
       "devDependencies": {
-        "@typescript-eslint/eslint-plugin": "^5.42.1",
-        "@typescript-eslint/parser": "^5.42.1",
         "eslint": "^8.27.0"
       }
      }
@@ -114,11 +113,19 @@ createAt: 2022-11-14T19:00:00.000Z
     }
     ```
 
+ - 进入node_modules/eslint/bin/eslint.js
+
+    找到以下代码所在行，打个断点，按F5即可开启调试
+
+    ```js
+    require("../lib/cli").execute
+    ```
+
 ## 文件遍历以及文件配置生成过程
 
    从入口`CLIEngine.executeOnFiles`调用`fileEnumerator.iterateFiles`实现文件的遍历和配置生成，其中`patterns`为命令行传入的文件范围，它可以传一个固定的路径或者模式匹配，具体过程见下图：
 
-![save-file-config.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b4fc56edbd15452b937d8ad0bce79b54~tplv-k3u1fbpfcp-watermark.image?)
+![02.file-config.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/80a72b1a0b9446b28c7f482b8dc9ff71~tplv-k3u1fbpfcp-watermark.image?)
 
 ![save-config-array.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/69d63488cb044d97a6ca1a6bd5b32bda~tplv-k3u1fbpfcp-watermark.image?)
 
@@ -126,7 +133,7 @@ createAt: 2022-11-14T19:00:00.000Z
 
    主要是调用spree.parse完成转换过程，具体过程见下图：
 
-![ast-image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/db81c51ab56f44e0a4fd264da342feb5~tplv-k3u1fbpfcp-watermark.image?)
+![03.ast.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5278cceed0fb4745ae240d65904e8cde~tplv-k3u1fbpfcp-watermark.image?)
 
 ## 如何利用ast和rules生成错误信息
 
@@ -135,12 +142,12 @@ createAt: 2022-11-14T19:00:00.000Z
    **值得注意的是，problems信息中包含fix数据，为后续fix代码做铺垫**
 ![image.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f0c0df4db4d849c381c63ff00354ff91~tplv-k3u1fbpfcp-watermark.image?)
 
-![problems-image.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3d71d7ed727f469ca03030080e9d881b~tplv-k3u1fbpfcp-watermark.image?)
+![04. problems.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a663b2342ce84010bcafe3a106190a5c~tplv-k3u1fbpfcp-watermark.image?)
 
 ## 如何利用ast和rules进行代码修复
 
 在上一步拿到`problems`信息的基础上，进一步分析，发现调用了`applyFixes`函数，即修复过程，具体过程见下图：
 
-![fix-image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/84b0c994a0594461a65c2b105ac09e47~tplv-k3u1fbpfcp-watermark.image?)
+![05.fix-image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b4ab9de07ef34d7ba331dc02e8528c6f~tplv-k3u1fbpfcp-watermark.image?)
 
 好了，到此文章结束，感谢您的阅读，如果觉得对您有帮助，帮点个小红心，万分感谢~~
