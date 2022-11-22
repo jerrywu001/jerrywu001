@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import fetch from 'node-fetch';
 import chalk from 'chalk';
 
@@ -13,7 +12,7 @@ const port = process.env.PORT || 3000;
 
 export default defineEventHandler(async (event) => {
   let body = {} as any;
-  const { postname = '' } = useQuery(event);
+  const { postname = '' } = getQuery(event);
 
   const thePort = String(port) === '80' ? '' : `:${String(port)}`;
   const path = `${protocol}//${host}${thePort}`;

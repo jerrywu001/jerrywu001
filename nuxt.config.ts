@@ -1,5 +1,3 @@
-import { defineNuxtConfig } from 'nuxt';
-
 // https://v3.nuxtjs.org/docs/directory-structure/nuxt.config
 export default defineNuxtConfig({
   // https://github.com/nuxt/framework/issues/1600
@@ -20,7 +18,7 @@ export default defineNuxtConfig({
     },
   },
   modules: [
-    ['@vueuse/nuxt', { ssrHandlers: true }],
+    '@vueuse/nuxt',
     'nuxt-windicss',
     '@unocss/nuxt',
     '@nuxtjs/eslint-module', // https://juejin.cn/post/7043762203740094477

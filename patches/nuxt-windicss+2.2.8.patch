@@ -1,5 +1,5 @@
 diff --git a/node_modules/nuxt-windicss/dist/module.mjs b/node_modules/nuxt-windicss/dist/module.mjs
-index c5f11f8..cb518b6 100644
+index c5f11f8..d3e39d8 100644
 --- a/node_modules/nuxt-windicss/dist/module.mjs
 +++ b/node_modules/nuxt-windicss/dist/module.mjs
 @@ -1,8 +1,21 @@
@@ -138,7 +138,7 @@ index c5f11f8..cb518b6 100644
 -    if (nuxtOptions.buildModules.includes("@nuxtjs/tailwindcss")) {
 -      logger.error("Sorry, you can't use Windi CSS with Tailwind CSS. Please remove the `@nuxtjs/tailwindcss` module.");
 +    if (!options.root) options.root = nuxt.options.rootDir;
-+    if (nuxtOptions.buildModules.includes('@nuxtjs/tailwindcss')) {
++    if (nuxtOptions.buildModules && nuxtOptions.buildModules.includes('@nuxtjs/tailwindcss')) {
 +      logger.error(
 +        "Sorry, you can't use Windi CSS with Tailwind CSS. Please remove the `@nuxtjs/tailwindcss` module."
 +      );
