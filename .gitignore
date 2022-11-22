@@ -7,10 +7,11 @@
 .static
 
 # dependencies
-yarn.lock
 /node_modules
 /.pnp
 .pnp.js
+package-lock.json
+yarn.lock
 *.tmp
 .eslintcache
 /.husky/_
