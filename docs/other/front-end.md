@@ -20,7 +20,7 @@ createAt: 2022-09-23T19:00:00.000Z
 - [code-juejin](https://code.juejin.cn/)
 
 - [sandpack-vue3](https://sandpack-vue3.netlify.app)
-> npm: https://www.npmjs.com/package/codesandbox-sandpack-vue3
+> npm: https://www.npmjs.com/package/sandpack-vue3
 ![sanpack-1.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/86c244a6a5ad448aa82cc1d0b3538a66~tplv-k3u1fbpfcp-watermark.image?)
 ![sandpack-2.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/462eaf622e1a43de908423d966907161~tplv-k3u1fbpfcp-watermark.image?)
 

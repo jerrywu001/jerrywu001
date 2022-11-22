@@ -37,7 +37,7 @@ createAt: 2022-09-20T19:00:00.000Z
 
 ## 在线文档截图
 
-> 我为每个usage都配备了[CodeSandpack](https://www.npmjs.com/package/codesandbox-sandpack-vue3)，它是一个在线code playground，支持vue/react/angular/...
+> 我为每个usage都配备了[CodeSandpack](https://www.npmjs.com/package/sandpack-vue3)，它是一个在线code playground，支持vue/react/angular/...
 
 ![docs](/articles/vue3-toastify/docs.gif)
 

@@ -2,23 +2,23 @@
   "private": true,
   "scripts": {
     "build": "nuxt build",
-    "generate": "nuxt generate",
     "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "postinstall": "patch-package",
     "prepare": "husky install",
-    "preview": "nuxt preview",
-    "postinstall": "patch-package"
+    "preview": "nuxt preview"
   },
   "dependencies": {
     "@iconify-json/carbon": "^1.1.10",
     "@iconify-json/ph": "^1.1.2",
     "@iconify-json/twemoji": "^1.1.5",
     "@vueuse/core": "^9.5.0",
-    "codesandbox-sandpack-vue3": "^1.2.10",
     "nuxt": "3.0.0-rc.13",
     "photoswipe": "^5.3.3",
     "prism-themes": "^1.9.0",
     "prismjs": "^1.29.0",
-    "property-information": "^6.1.1",
+    "property-information": "^6.2.0",
+    "sandpack-vue3": "^2.0.0",
     "skeleton-elements": "^4.0.0",
     "unocss": "^0.46.5"
   },
@@ -28,7 +28,7 @@
     "@types/ws": "^8.5.3",
     "@unocss/nuxt": "^0.46.5",
     "@vueuse/nuxt": "^9.5.0",
-    "eslint": "^8.27.0",
+    "eslint": "^8.28.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-nuxt": "^4.0.0",
     "eslint-plugin-prettier": "^4.2.1",

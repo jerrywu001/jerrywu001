@@ -22,14 +22,12 @@
 </template>
 
 <script setup lang="ts">
-/* eslint-disable prettier/prettier */
 import {
   Sandpack,
-  type SandpackPredefinedTheme,
   type SandpackFiles,
   type SandpackPredefinedTemplate,
   type SandpackThemeProp,
-} from 'codesandbox-sandpack-vue3';
+} from 'sandpack-vue3';
 import { nightOwl } from '@codesandbox/sandpack-themes';
 import { type PropType, ref } from 'vue';
 
