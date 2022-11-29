@@ -12,11 +12,6 @@ export default defineNuxtConfig({
       'process.env.LOG': {},
     },
   },
-  head: {
-    bodyAttrs: {
-      class: ['min-w-xs'],
-    },
-  },
   modules: [
     '@vueuse/nuxt',
     'nuxt-windicss',
