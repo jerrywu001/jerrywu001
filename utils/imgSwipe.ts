@@ -1,6 +1,6 @@
 import PhotoSwipeLightbox from 'photoswipe/lightbox';
 import 'photoswipe/dist/photoswipe.css';
-import { Ref } from '@vue/runtime-dom';
+import { Ref } from 'vue';
 
 export default function useImgSwipe(loading: Ref<boolean>) {
   const lightbox = ref(null);
@@ -36,7 +36,10 @@ export default function useImgSwipe(loading: Ref<boolean>) {
                   imageClickAction: 'close',
                   tapAction: 'close',
                 });
-                lightbox.value.init();
+                setTimeout(() => {
+                  // @ts-ignore
+                  lightbox.value?.init();
+                });
               }
 
               const pres = document.querySelectorAll('pre');
@@ -52,6 +55,7 @@ export default function useImgSwipe(loading: Ref<boolean>) {
 
   function uninstallImageSwipe() {
     if (lightbox.value) {
+      // @ts-ignore
       lightbox.value.destroy();
       lightbox.value = null;
     }
@@ -74,8 +78,8 @@ export default function useImgSwipe(loading: Ref<boolean>) {
   return { lightbox, initImageSwipe };
 }
 
-function getAllImgsLoaded(callback) {
-  const box = document.querySelector('.article-scroll-box');
+function getAllImgsLoaded(callback: () => void) {
+  const box = document.querySelector('.article-scroll-box') as HTMLDivElement;
   const images = box.querySelectorAll('img');
 
   const promises = Array.prototype.slice.call(images).map((node) => {
