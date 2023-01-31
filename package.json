@@ -19,7 +19,7 @@
     "prism-themes": "^1.9.0",
     "prismjs": "^1.29.0",
     "property-information": "^6.2.0",
-    "sandpack-vue3": "^2.2.1",
+    "sandpack-vue3": "^2.2.2",
     "skeleton-elements": "^4.0.1",
     "unocss": "^0.49.1"
   },
@@ -55,7 +55,7 @@
     "remark-slug": "^7.0.1",
     "remark-squeeze-paragraphs": "^5.0.1",
     "to-vfile": "^7.2.3",
-    "typescript": "^4.9.4",
+    "typescript": "^4.9.5",
     "ufo": "^1.0.1",
     "unified": "^10.1.2",
     "unified-remark-prismjs": "^1.1.6",
