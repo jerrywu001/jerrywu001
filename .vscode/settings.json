@@ -4,7 +4,7 @@
     "source.fixAll.stylelint": true,
     "source.fixAll.tslint": true
   },
-  "editor.cursorSmoothCaretAnimation": true,
+  "editor.cursorSmoothCaretAnimation": "on",
   "editor.formatOnPaste": false,
   "editor.formatOnSave": false,
   "editor.guides.bracketPairs": "active",

@@ -14,20 +14,20 @@
     "@iconify-json/ph": "^1.1.3",
     "@iconify-json/twemoji": "^1.1.10",
     "@vueuse/core": "^9.12.0",
-    "nuxt": "^3.1.1",
-    "photoswipe": "^5.3.4",
+    "nuxt": "^3.1.2",
+    "photoswipe": "^5.3.5",
     "prism-themes": "^1.9.0",
     "prismjs": "^1.29.0",
     "property-information": "^6.2.0",
-    "sandpack-vue3": "^2.2.2",
+    "sandpack-vue3": "^2.2.3",
     "skeleton-elements": "^4.0.1",
-    "unocss": "^0.49.1"
+    "unocss": "^0.49.4"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config-typescript": "^12.0.0",
     "@nuxtjs/eslint-module": "^3.1.0",
     "@types/ws": "^8.5.4",
-    "@unocss/nuxt": "^0.49.1",
+    "@unocss/nuxt": "^0.49.4",
     "@vueuse/nuxt": "^9.12.0",
     "eslint": "^8.33.0",
     "eslint-config-prettier": "^8.6.0",
@@ -59,7 +59,7 @@
     "ufo": "^1.0.1",
     "unified": "^10.1.2",
     "unified-remark-prismjs": "^1.1.6",
-    "vfile-reporter": "^7.0.4",
+    "vfile-reporter": "^7.0.5",
     "ws": "^8.12.0"
   }
 }
