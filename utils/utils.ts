@@ -48,7 +48,7 @@ export function nodeChildren(node: VNode | MarkdownNode) {
     return node.children;
   }
   // Vue3 VNode children
-  if (typeof node.children.default === 'function') {
+  if (typeof node.children?.default === 'function') {
     return node.children.default();
   }
   return [];
@@ -69,7 +69,8 @@ export function nodeTextContent(node: VNode | MarkdownNode): string {
     return node.map(nodeTextContent).join('');
   }
 
-  if (isText(node)) {
+  if (node && isText(node)) {
+    // @ts-ignore
     return (node.children as string) || (node as MarkdownNode).value;
   }
 
@@ -165,7 +166,7 @@ export function loadStyle(styleUrl: string, id: string) {
   return new Promise<boolean>((resolve, reject) => {
     console.log(`[system] loadStyle: 准备加载 "${styleUrl}"`);
     if (document.getElementById(id)) {
-      document.getElementById(id).remove();
+      document.getElementById(id)?.remove();
     }
     const styleElement = document.createElement('link');
     styleElement.id = id;

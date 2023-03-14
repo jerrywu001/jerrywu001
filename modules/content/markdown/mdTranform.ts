@@ -43,8 +43,8 @@ export default class MdTransform extends Hookable implements MdOption {
     this.rootDir = options.rootDir;
     this.docsPath = options.docsPath;
     this.docsDirName = options.docsDirName;
-    this.tocDepth = options.tocDepth;
-    this.sidebarDepth = options.sidebarDepth;
+    this.tocDepth = options.tocDepth as number;
+    this.sidebarDepth = options.sidebarDepth as number;
     this.outputDir = path.join(this.rootDir, 'public/content');
   }
 
@@ -162,10 +162,10 @@ export default class MdTransform extends Hookable implements MdOption {
     await this.saveArticle(content, data, mdPath);
   }
 
-  async saveArticle(content: string, data, mdPath = '') {
+  async saveArticle(content: string, data: any, mdPath = '') {
     let meta = {} as IMeta;
     let children: IElement[] = [];
-    let tocs = [];
+    let tocs: any[] = [];
     const startTime = process.hrtime();
     const fileName = getArticleName(mdPath).replace(/\//g, '-');
 
@@ -258,8 +258,8 @@ function getTableOfContents(
     for (const c of children) {
       if (c.tag === 'a' && depth <= tocDepth) {
         item.class = (c.props.className || []).join(' ');
-        item.label = c.children[0].value;
-        item.archor = c.props.href;
+        item.label = c.children[0].value as string;
+        item.archor = c.props.href as string;
       }
       if (
         ['ol', 'ul'].includes(c.tag) &&

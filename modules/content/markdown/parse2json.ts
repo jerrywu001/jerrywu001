@@ -2,13 +2,13 @@
  * Parses nodes for JSON structure. Attempts to drop
  * unwanted properties.
  */
-function parse2json(node, parent) {
+function parse2json(node: any, parent: any) {
   /**
    * Element node creates an isolated children array to
    * allow nested elements
    */
   if (node.type === 'element') {
-    const childs = [];
+    const childs: any[] = [];
 
     /**
      * Replace a tag with nuxt-link if relative
@@ -29,19 +29,20 @@ function parse2json(node, parent) {
 
     // Unwrap contents of the template, saving the root level inside content.
     if (node.tagName === 'template') {
-      const templateContent = [];
+      const templateContent: any[] = [];
       const childList = node.children || [];
       const contentNode = childList[0] ? childList[0] : {};
-      (contentNode.children || []).forEach((templateNode) =>
+      (contentNode.children || []).forEach((templateNode: any) =>
         parse2json(templateNode, templateContent)
       );
+      // @ts-ignore
       filtered.content = templateContent;
     }
 
     parent.push(filtered);
 
     if (node.children) {
-      node.children.forEach((child) => parse2json(child, childs));
+      node.children.forEach((child: any) => parse2json(child, childs));
     }
 
     return;
@@ -63,7 +64,7 @@ function parse2json(node, parent) {
    * children and don't create a new node
    */
   if (node.type === 'root') {
-    node.children.forEach((child) => parse2json(child, parent));
+    node.children.forEach((child: any) => parse2json(child, parent));
   }
 }
 
@@ -76,7 +77,7 @@ export default function (root: any[] = []) {
    * nodes. Instead, we need an array to fill in as many elements inside a single
    * iteration
    */
-  const result = [];
+  const result: any[] = [];
   parse2json(root, result);
 
   return {

@@ -101,7 +101,7 @@ export default defineComponent({
     }
 
     // Get body from value
-    let component: string | ConcreteComponent = tag;
+    let component: string | ConcreteComponent = tag as string;
 
     // Resolve component if it's a Vue component
     component = resolveVueComponent(component as string);
@@ -172,18 +172,21 @@ function renderSlots(
   const slots: Record<string, Array<VNode | string>> = children.reduce(
     (data, node) => {
       if (!isTemplate(node)) {
+        // @ts-ignore
         data[DEFAULT_SLOT].push(renderNode(node, h, documentMeta));
         return data;
       }
 
       if (isDefaultTemplate(node)) {
         data[DEFAULT_SLOT].push(
+          // @ts-ignore
           ...node.children.map((child) => renderNode(child, h, documentMeta))
         );
         return data;
       }
 
       const slotName = getSlotName(node);
+      // @ts-ignore
       data[slotName] = node.children.map((child) =>
         renderNode(child, h, documentMeta)
       );
@@ -214,6 +217,7 @@ function propsToData(node: MarkdownNode, documentMeta: ParsedContentMeta) {
       return data;
     }
 
+    // @ts-ignore
     const value = props[key];
 
     // `v-model="foo"`

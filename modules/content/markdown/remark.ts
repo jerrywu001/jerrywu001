@@ -89,6 +89,7 @@ export const getResolvedMarkdown = async (
   if (h1) {
     meta.hasTitle = true;
     if (!meta.title) {
+      // @ts-ignore
       meta.title = h1.children[0]?.value;
     }
   }

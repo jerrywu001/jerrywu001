@@ -75,7 +75,7 @@ export function useArticleScroll() {
 
   function onCommentClick() {
     const gitalkDom = document.getElementById(gitalkContainerId);
-    window.scrollTo({ top: gitalkDom.offsetTop, behavior: 'smooth' });
+    window.scrollTo({ top: gitalkDom?.offsetTop, behavior: 'smooth' });
   }
 
   function hideTocs(e: MouseEvent) {
@@ -90,7 +90,7 @@ export function useArticleScroll() {
     }
   }
 
-  function onMove(e: DragEvent & TouchEvent) {
+  function onMove(e: any) {
     e.preventDefault();
     try {
       const target = e.currentTarget as HTMLDivElement;
@@ -141,14 +141,16 @@ export function useArticleScroll() {
 
 export function toggleTocs() {
   const container = document.querySelector('.tocs');
-  const classList = container.classList;
-  const isOpen = classList.contains('h-auto');
-  if (isOpen) {
-    container.classList.remove('h-auto');
-    container.classList.add('h-10');
-  } else {
-    container.classList.add('h-auto');
-    container.classList.remove('h-10');
+  if (container) {
+    const classList = container.classList;
+    const isOpen = classList.contains('h-auto');
+    if (isOpen) {
+      container.classList.remove('h-auto');
+      container.classList.add('h-10');
+    } else {
+      container.classList.add('h-auto');
+      container.classList.remove('h-10');
+    }
   }
 }
 
@@ -168,7 +170,7 @@ export function getScrollContainer() {
 }
 
 export function getVisibleTocContainer() {
-  let toc: HTMLDivElement = null;
+  let toc: HTMLDivElement | null = null;
   const allTocs = document.querySelectorAll('.tocs');
   for (const v of allTocs) {
     if (v.classList.contains('<xl:hidden')) {
@@ -185,18 +187,21 @@ export function updateArchorOffsetTop(
 ) {
   const isPc = window.innerWidth >= 1280;
   const toc = getVisibleTocContainer();
-  const tocs = !isPc ? toc : toc.querySelector('.tocs-btn');
+  const tocs = !isPc ? toc : toc?.querySelector('.tocs-btn');
   const container = getScrollContainer();
   const escapedId = id.replace(/\./g, '\\.').replace('#', '');
   const archor = document.getElementById(decodeURIComponent(escapedId));
   const offsetTop =
-    archor.offsetTop - tocs.clientHeight - headHeight - (isPc ? 20 : 50);
+    (archor?.offsetTop as number) -
+    (tocs?.clientHeight as number) -
+    headHeight -
+    (isPc ? 20 : 50);
   container.scrollTo({ top: offsetTop, behavior: 'smooth' });
   autoHighlightArchor();
 
   if (autoClose && !isPc) {
-    tocs.classList.remove('h-auto');
-    tocs.classList.add('h-10');
+    tocs?.classList.remove('h-auto');
+    tocs?.classList.add('h-10');
   }
 }
 
@@ -205,7 +210,7 @@ export function autoHighlightArchor() {
   const targets = document.querySelectorAll('h2, h3, h4');
   const tocLinks = document.querySelectorAll('.toc-link');
   const tocBtn = document.querySelector('.tocs-btn');
-  const headBoxHeight = tocBtn.clientHeight + headHeight;
+  const headBoxHeight = (tocBtn?.clientHeight as number) + headHeight;
 
   for (const entry of targets) {
     const target = entry as HTMLDivElement;
@@ -249,7 +254,7 @@ export function initScrollTopByHash() {
   }
 }
 
-export function doHeadScroll(e) {
+export function doHeadScroll(e: any) {
   e.preventDefault();
   if (e.target.href) {
     const archor = '#' + e.target.href.split('#').pop();

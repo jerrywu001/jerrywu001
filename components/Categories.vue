@@ -17,7 +17,7 @@ defineProps({
   },
 });
 
-function toggleDirs(e: MouseEvent) {
+function toggleDirs(e: any) {
   const target = e.currentTarget as HTMLHeadingElement;
   if (target) {
     const depth = Number(target.dataset.depth);
@@ -26,12 +26,12 @@ function toggleDirs(e: MouseEvent) {
     const icon = target.querySelector('.icon');
     if (depth === 1) {
       if (hidden) {
-        icon.classList.remove('rotate-270');
-        icon.classList.add('rotate-0');
+        icon!.classList.remove('rotate-270');
+        icon!.classList.add('rotate-0');
         ul.style.height = `${ul.dataset.height}px`;
       } else {
-        icon.classList.add('rotate-270');
-        icon.classList.remove('rotate-0');
+        icon!.classList.add('rotate-270');
+        icon!.classList.remove('rotate-0');
         ul.style.height = '0';
       }
     }

@@ -9,34 +9,34 @@
     "preview": "nuxt preview"
   },
   "dependencies": {
-    "@codesandbox/sandpack-themes": "^2.0.1",
+    "@codesandbox/sandpack-themes": "^2.0.21",
     "@iconify-json/carbon": "^1.1.16",
-    "@iconify-json/ph": "^1.1.4",
+    "@iconify-json/ph": "^1.1.5",
     "@iconify-json/twemoji": "^1.1.11",
     "@vueuse/core": "^9.13.0",
-    "nuxt": "^3.2.2",
+    "nuxt": "^3.2.3",
     "photoswipe": "^5.3.6",
     "prism-themes": "^1.9.0",
     "prismjs": "^1.29.0",
     "property-information": "^6.2.0",
-    "sandpack-vue3": "^2.2.3",
+    "sandpack-vue3": "^3.0.2",
     "skeleton-elements": "^4.0.1",
-    "unocss": "^0.50.1"
+    "unocss": "^0.50.4"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config-typescript": "^12.0.0",
-    "@nuxtjs/eslint-module": "^3.1.0",
+    "@nuxtjs/eslint-module": "^4.0.2",
     "@types/ws": "^8.5.4",
-    "@unocss/nuxt": "^0.50.1",
+    "@unocss/nuxt": "^0.50.4",
     "@vueuse/nuxt": "^9.13.0",
-    "eslint": "^8.35.0",
-    "eslint-config-prettier": "^8.6.0",
+    "eslint": "^8.36.0",
+    "eslint-config-prettier": "^8.7.0",
     "eslint-plugin-nuxt": "^4.0.0",
     "eslint-plugin-prettier": "^4.2.1",
     "gray-matter": "^4.0.3",
     "husky": "^8.0.3",
-    "lint-staged": "^13.1.2",
-    "node-fetch": "^3.3.0",
+    "lint-staged": "^13.2.0",
+    "node-fetch": "^3.3.1",
     "nuxt-windicss": "2.2.8",
     "patch-package": "^6.5.1",
     "prettier": "^2.8.4",
@@ -60,6 +60,6 @@
     "unified": "^10.1.2",
     "unified-remark-prismjs": "^1.1.6",
     "vfile-reporter": "^7.0.5",
-    "ws": "^8.12.1"
+    "ws": "^8.13.0"
   }
 }

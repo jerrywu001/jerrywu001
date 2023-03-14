@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/component-name-in-template-casing -->
 <template>
   <div
     class="h-[80vh] mt-2 px-4 article-skeleton overflow-hidden sm:px-6 xl:mr-$tocs-width xl:mt-0"

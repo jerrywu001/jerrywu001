@@ -93,7 +93,7 @@ const getDefaultFileName = () => {
 
 const files = computed<SandpackFiles>(() => {
   const items = {} as SandpackFiles;
-  const codeItems = slots.default().filter((v) => v.type === 'div');
+  const codeItems = slots.default!().filter((v) => v.type === 'div');
   if (Array.isArray(codeItems)) {
     codeItems.forEach((v) => {
       const { active, hidden, code = '', readonly, readOnly } = v.props || {};

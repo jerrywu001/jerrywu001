@@ -1,5 +1,6 @@
-import PhotoSwipeLightbox from 'photoswipe/lightbox';
 import 'photoswipe/dist/photoswipe.css';
+// @ts-ignore
+import PhotoSwipeLightbox from 'photoswipe/lightbox';
 import { Ref } from 'vue';
 
 export default function useImgSwipe(loading: Ref<boolean>) {
@@ -29,6 +30,7 @@ export default function useImgSwipe(loading: Ref<boolean>) {
                 }
               });
               if (!lightbox.value) {
+                // @ts-ignore
                 lightbox.value = new PhotoSwipeLightbox({
                   gallery: '.article-scroll-box',
                   children: '.swiper-link',

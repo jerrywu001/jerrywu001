@@ -1,4 +1,5 @@
 import type { Slot } from 'vue';
+import { ComponentInternalInstance } from 'nuxt/dist/app/compat/capi';
 import {
   defineComponent,
   getCurrentInstance,
@@ -12,7 +13,6 @@ import { useUnwrap } from '~~/utils/utils';
  * Markdown component
  */
 export default defineComponent({
-  // eslint-disable-next-line vue/multi-word-component-names
   name: 'Markdown',
   functional: true,
   props: {
@@ -33,7 +33,7 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const { parent } = getCurrentInstance();
+    const { parent } = getCurrentInstance() as ComponentInternalInstance;
     const { between } = useSlots();
 
     const tags = computed(() => {
@@ -49,6 +49,7 @@ export default defineComponent({
       parent,
     };
   },
+  // @ts-ignore
   render({ use, unwrap, between, tags, parent }) {
     try {
       const slot: Slot =
@@ -74,7 +75,7 @@ export default defineComponent({
         );
       }
 
-      return unwrapped.reduce((acc, item) => {
+      return unwrapped.reduce((acc: any[], item: any) => {
         if (typeof item.children === 'string') {
           if (typeof acc[acc.length - 1] === 'string') {
             acc[acc.length - 1] += item.children;

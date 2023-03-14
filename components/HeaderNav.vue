@@ -43,31 +43,31 @@ function toggleSidebar() {
   lock = true;
   const layer = document.getElementById('sidebar-layer');
   const content = document.getElementById('sidebar-content');
-  const isVisible = content.classList.contains('x-full');
+  const isVisible = content!.classList.contains('x-full');
   if (isVisible) {
     document.documentElement.classList.remove('overflow-hidden');
     document.documentElement.classList.remove('h-full');
-    content.classList.remove('x-full');
-    layer.classList.remove('fade-enter-active');
-    layer.classList.remove('fade-enter-to');
-    layer.classList.add('fade-leave-active');
-    layer.classList.add('fade-leave-to');
+    content!.classList.remove('x-full');
+    layer!.classList.remove('fade-enter-active');
+    layer!.classList.remove('fade-enter-to');
+    layer!.classList.add('fade-leave-active');
+    layer!.classList.add('fade-leave-to');
     setTimeout(() => {
-      layer.classList.remove('show');
-      layer.classList.remove('fade-leave-active');
-      layer.classList.remove('fade-leave-to');
+      layer!.classList.remove('show');
+      layer!.classList.remove('fade-leave-active');
+      layer!.classList.remove('fade-leave-to');
       lock = false;
     }, 500);
   } else {
     document.documentElement.classList.add('overflow-hidden');
     document.documentElement.classList.add('h-full');
-    content.classList.add('x-full');
-    layer.classList.add('show');
+    content!.classList.add('x-full');
+    layer!.classList.add('show');
     setTimeout(() => {
-      layer.classList.remove('fade-leave-active');
-      layer.classList.remove('fade-leave-to');
-      layer.classList.add('fade-enter-active');
-      layer.classList.add('fade-enter-to');
+      layer!.classList.remove('fade-leave-active');
+      layer!.classList.remove('fade-leave-to');
+      layer!.classList.add('fade-enter-active');
+      layer!.classList.add('fade-enter-to');
       lock = false;
     }, 0);
   }

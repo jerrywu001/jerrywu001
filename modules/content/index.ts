@@ -40,7 +40,6 @@ export default defineNuxtModule<Option>({
       path: resolve('./components'),
       pathPrefix: false,
       prefix: '',
-      level: 999,
       global: true,
     });
 
@@ -48,7 +47,6 @@ export default defineNuxtModule<Option>({
       path: resolve('../../sandpack-demos'),
       pathPrefix: false,
       prefix: '',
-      level: 999,
       global: true,
     });
 
@@ -78,7 +76,6 @@ export default defineNuxtModule<Option>({
     });
 
     if (process.env.NODE_ENV === 'development') {
-      // eslint-disable-next-line import/no-named-as-default-member
       const wss = new WebSocketServer({ port: 8080 });
 
       wss.on('open', function open() {

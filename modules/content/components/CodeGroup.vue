@@ -40,11 +40,11 @@
 <script setup lang="ts">
 const highlightUnderline = ref();
 const activeTabIndex = ref(0);
-const codeRef = ref(null);
+const codeRef = ref<HTMLDivElement>();
 
 function updateHighlightUnderlinePosition() {
   const index = activeTabIndex.value;
-  const box = codeRef.value;
+  const box = codeRef.value as HTMLDivElement;
 
   if (box) {
     const btns = box.querySelectorAll('button');
@@ -61,7 +61,7 @@ function updateHighlightUnderlinePosition() {
 const slots = useSlots();
 
 const slotBoxs = computed(() =>
-  slots.default().filter((v) => v.type === 'div')
+  slots.default!().filter((v) => v.type === 'div')
 );
 
 const tabs = getTabs();
@@ -72,7 +72,8 @@ function getTabs() {
     const children = box.children || [];
     // @ts-ignore
     const dom = children.find(
-      (v) => v.props && v.props.class && v.props.class.includes('filename')
+      (v: VNode) =>
+        v.props && v.props.class && v.props.class.includes('filename')
     );
     if (dom && dom.children && dom.children[0]) {
       list.push(dom.children[0].children);
@@ -84,9 +85,11 @@ function getTabs() {
 function updateTabs(index = 0) {
   activeTabIndex.value = index;
   if (codeRef.value) {
-    const boxs = codeRef.value.querySelectorAll('.remark-highlight');
+    const boxs = codeRef.value.querySelectorAll(
+      '.remark-highlight'
+    ) as NodeListOf<HTMLElement>;
     if (boxs) {
-      boxs.forEach((element, idx) => {
+      boxs.forEach((element: HTMLElement, idx) => {
         element.style.display = idx === index ? 'block' : 'none';
       });
     }
