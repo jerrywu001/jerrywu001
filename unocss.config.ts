@@ -1,5 +1,5 @@
 import { defineConfig } from 'unocss';
-import presetAttributify from '@unocss/preset-attributify';
+import { presetAttributify } from '@unocss/preset-attributify';
 import { presetIcons } from '@unocss/preset-icons';
 import presetWebFonts from '@unocss/preset-web-fonts';
 import { presetUno } from '@unocss/preset-uno';
