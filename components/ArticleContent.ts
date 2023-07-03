@@ -1,5 +1,5 @@
 import { h, resolveComponent, Text, defineComponent, toRefs } from 'vue';
-import destr from 'destr';
+import { destr } from 'destr';
 import { pascalCase } from 'scule';
 import { find, html } from 'property-information';
 // eslint-disable-next-line import/no-named-as-default

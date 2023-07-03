@@ -70,7 +70,7 @@ export default defineNuxtModule<Option>({
     }
 
     nuxt.hook('builder:watch', (event, path) => {
-      if (path && path.startsWith(docsDirName)) {
+      if (path && path.includes(docsDirName)) {
         md.onFileChange(event, path.split(docsDirName)[1]);
       }
     });

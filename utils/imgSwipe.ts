@@ -18,15 +18,34 @@ export default function useImgSwipe(loading: Ref<boolean>) {
               const items = box.querySelectorAll('img');
               items.forEach((img) => {
                 if (img.id !== 'cover') {
-                  const a = document.createElement('a');
-                  a.className = 'swiper-link';
-                  a.href = img.src;
-                  a.rel = 'noreferrer';
-                  a.target = '_blank';
-                  a.setAttribute('data-pswp-width', String(img.width * 2.5));
-                  a.setAttribute('data-pswp-height', String(img.height * 2.5));
-                  a.appendChild(img.cloneNode(true));
-                  img.replaceWith(a);
+                  (function (prevImg: HTMLImageElement) {
+                    const a = document.createElement('a');
+                    let newImg = document.createElement(
+                      'img'
+                    ) as HTMLImageElement;
+
+                    a.className = 'swiper-link';
+                    a.href = prevImg.src;
+                    a.rel = 'noreferrer';
+                    a.appendChild(prevImg.cloneNode(true));
+                    prevImg?.parentNode?.insertBefore(a, prevImg);
+                    prevImg.remove();
+
+                    newImg.src = prevImg.src;
+                    newImg.onload = () => {
+                      a.setAttribute('data-pswp-width', String(newImg.width));
+                      a.setAttribute('data-pswp-height', String(newImg.height));
+                      // @ts-ignore
+                      newImg = null;
+                    };
+
+                    newImg.onerror = () => {
+                      a.setAttribute('data-pswp-width', '100');
+                      a.setAttribute('data-pswp-height', '100');
+                      // @ts-ignore
+                      newImg = null;
+                    };
+                  })(img);
                 }
               });
               if (!lightbox.value) {
@@ -37,6 +56,7 @@ export default function useImgSwipe(loading: Ref<boolean>) {
                   pswpModule: () => import('photoswipe'),
                   imageClickAction: 'close',
                   tapAction: 'close',
+                  errorMsg: '图片加载失败',
                 });
                 setTimeout(() => {
                   // @ts-ignore
