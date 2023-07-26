@@ -106,7 +106,12 @@ tryOnMounted(() => {
 
 <style lang="postcss">
 .highlight-underline {
-  transition: left 150ms, top 150ms, width 150ms, height 150ms, transform 100ms,
+  transition:
+    left 150ms,
+    top 150ms,
+    width 150ms,
+    height 150ms,
+    transform 100ms,
     opacity 100ms;
 }
 

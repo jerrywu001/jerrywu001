@@ -12,8 +12,10 @@ export default defineNuxtConfig({
       'process.env.LOG': {},
     },
   },
+
   modules: [
     '@vueuse/nuxt',
+    '@nuxt/devtools', // jrWrT5ufxSZkEwna-UTTNc6Xm-x43nfj
     'nuxt-windicss',
     '@unocss/nuxt',
     '@nuxtjs/eslint-module', // https://juejin.cn/post/7043762203740094477
@@ -26,5 +28,12 @@ export default defineNuxtConfig({
     //   },
     // ],
   ],
+
   css: ['~/assets/main.css', '~/assets/post.css'],
+
+  devtools: {
+    timeline: {
+      enabled: true,
+    },
+  },
 });
