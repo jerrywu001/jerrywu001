@@ -15,7 +15,7 @@ export default defineNuxtConfig({
 
   modules: [
     '@vueuse/nuxt',
-    '@nuxt/devtools', // jrWrT5ufxSZkEwna-UTTNc6Xm-x43nfj
+    '@nuxt/devtools',
     'nuxt-windicss',
     '@unocss/nuxt',
     '@nuxtjs/eslint-module', // https://juejin.cn/post/7043762203740094477

@@ -21,6 +21,7 @@ createAt: 2022-09-26T19:00:00.000Z
 
 ## webpack
 
+- [💓Tapable：仙贝，请和我交往！💘](https://juejin.cn/post/7241371562829692987)
 - [webpack](https://mp.weixin.qq.com/mp/appmsgalbum?__biz=Mzg3OTYwMjcxMA==&action=getalbum&album_id=1856066636768722949&scene=173&from_msgid=2247483743&from_itemidx=1&count=3&nolastread=1#wechat_redirect)
 - [webpack 中最易混淆的 5 个知识点](https://juejin.cn/post/6844904007362674701)
 - [当面试官问Webpack的时候他想知道什么](https://mp.weixin.qq.com/s/bsZ3WcGFdYrGi0jXbhYl2A)
@@ -37,6 +38,7 @@ createAt: 2022-09-26T19:00:00.000Z
 
 ## vue
 
+- [细说 Vue 响应式原理的 10 个细节！](https://mp.weixin.qq.com/s/GVq25Q_3Jo9ELo5vugyy-w)
 - [精通 Vue 技术栈的源码原理](https://juejin.cn/column/6960553066101735461)
 - [Vue2 双向数据绑定原理](https://xuezenghui.com/posts/principle-of-vue-two-way-data-binding)
 - [Vue3diff算法原理和优化](https://mp.weixin.qq.com/s/rLqyZHllPi2my-J5M0spEw)
@@ -47,11 +49,15 @@ createAt: 2022-09-26T19:00:00.000Z
 - [手写简单vue3响应式原理](https://juejin.cn/post/7134281691295645732)
 - [让你30分钟快速掌握vue 3](https://juejin.cn/post/6887359442354962445)
 - [一文读懂vuex4源码，原来provide/inject就是妙用了原型链？](https://juejin.cn/post/6963802316713492516)
+- [vue 的更新过程和 diff 算法](https://juejin.cn/post/7257410225028087866)
 
 ---
 
 ## react
 
+- [React18 新特性解读 & 完整版升级指南](https://juejin.cn/post/7094037148088664078)
+- [你根本不需要全局状态管理](https://juejin.cn/post/7223670680826888249)
+- [Fiber 架构以及它是如何实现增量渲染](https://juejin.cn/post/7258881840823844920)
 - [通明境 · React架构: 通俗地讲React，优雅地理解React](https://juejin.cn/post/7143134747114340382)
 - [15张图，20分钟吃透Diff算法核心原理，我说的！！！](https://juejin.cn/post/6994959998283907102)
 - [谈谈 React 框架运行时优化方案的演进](https://mp.weixin.qq.com/s/tjZVXE6Gw_a0VrYloIh6jQ)
@@ -84,8 +90,20 @@ createAt: 2022-09-26T19:00:00.000Z
 
 ---
 
+## 可视化
+
+- [Threejs 地图3D可视化](https://juejin.cn/post/7247027696822304827)
+- [react markdown 插件](https://uiwjs.github.io/react-md-editor/)
+- [react 标签云](https://madox2.github.io/react-tagcloud/)
+
 ## javascript
 
+- [一个被忽略的前端细分领域](https://mp.weixin.qq.com/s/vF58bbxwCbO_9VhLgj5S0g)
+- [前端本地存储数据库 IndexedDB 的增删改查](https://juejin.cn/post/7176211543330144315?share_token=5943e3ae-9105-47fd-a5f3-790059957e79)
+- [高级前端理解的CommonJS模块和ESM模块](https://mp.weixin.qq.com/s/WFHUPPuJrW3JJXUm8CTJPQ)
+- [mitt用100行实现发布-订阅模式还收获了9k的Star](https://juejin.cn/post/7241114001323982903)
+- [javaScript设计模式：让你的代码像个天才！](https://juejin.cn/post/7240248679516012603)
+- [Object.keys的顺序](https://juejin.cn/post/7223995981234700348)
 - [事件循环及异步编程的出现和 5 种更好的 async/await 编程方式](https://mp.weixin.qq.com/s/0TDZrgFg2Yux2AMXTQy0kg)
 - [JS WeakMap 什么时候用？](https://juejin.cn/post/7134266701754925064)
 - [『面试的底气』—— 实现一个深拷贝](https://juejin.cn/post/6896637675492065287)
@@ -149,6 +167,9 @@ createAt: 2022-09-26T19:00:00.000Z
 
 ## 性能优化
 
+- [React 深入」知悉Fiber，方能百战不殆～](https://juejin.cn/post/7168443785993519117)
+- [三种虚拟列表原理与实现](https://juejin.cn/post/7232856799170805820)
+- [如何实现 H5 秒开？](https://juejin.cn/post/7249665163242307640)
 - [快速掌握 Performance 性能分析：一个真实的优化案例](https://zhuanlan.zhihu.com/p/451030214)
 - [前端性能优化清单，从宏观到细节的万字长文](https://mp.weixin.qq.com/s/QBGU4DWBEvN_4UmLDdf5uA)
 - [7000字前端性能优化总结 | 干货建议收藏](https://mp.weixin.qq.com/s/bn8w3dV-L4oPhx_mRFOqZA)
@@ -178,6 +199,7 @@ createAt: 2022-09-26T19:00:00.000Z
 - [实战：Express 模拟 CSRF 攻击](https://mp.weixin.qq.com/s/FMUA4qnQigI7Eo_PrUg0Sw)
 - [温故知新：前端安全知多少](https://juejin.cn/post/6893320971462279175)
 - [完美解决Chrome Cookie SameSite跨站限制](https://juejin.cn/post/7073447264756170765)
+- [模拟位置信息应用-Fake Location模拟安卓手机定位](https://juejin.cn/post/7194054960860889149)
 
 ---
 
@@ -189,15 +211,19 @@ createAt: 2022-09-26T19:00:00.000Z
 
 ## Devops
 
+- [前端工程师也应该了解的docker](https://juejin.cn/post/7250029395023544376)
 - [Docker 从入门到上手干事！看这篇就够了！](https://mp.weixin.qq.com/s/4N2HoPlNUbWxohuo_vpcnw)
 - [终于有人把Nginx说清楚了，图文详解！](https://mp.weixin.qq.com/s/xIFtZPS_q3cRhiRTMUWd4g)
 - [前端的Nginx知识梳理](https://juejin.cn/post/6914160814152744973)
 - [使用 Github Actions 和 gh-pages 搭建 web 应用](https://juejin.cn/post/7035977625604456462)
+- [推荐20个开源的前端低代码项目](https://juejin.cn/post/7164694758588153863)
 
 ---
 
 ## 数据采集
 
+- [前端监控想用Sentry？看这一篇就够了🤩](https://juejin.cn/post/7211401380769513531)
+- [微前端接入Sentry的不完美但已尽力的实践总结](https://juejin.cn/post/7202976167515291706)
 - [通过自定义 Vue 指令实现前端曝光埋点](https://mp.weixin.qq.com/s/ftvmbC3C_JNuY9xKmXT49w)
 - [前端异常埋点系统初探](https://mp.weixin.qq.com/s/SjEIlQwX7uRsaiN1xI9QBQ)
 - [沉淀了3年的自研前端错误监控系统，打通你的脉络](https://mp.weixin.qq.com/s/rp6tPmLyP_CYQ_KTwxGyrA)
@@ -206,6 +232,11 @@ createAt: 2022-09-26T19:00:00.000Z
 
 ## 面试题
 
+- [从零到亿系统性的建立前端构建知识体系✨（开篇）](https://juejin.cn/post/7145855619096903717)
+- [面经 5年前端 - 历时1个月收获7个offer🔥](https://juejin.cn/post/7142690757722243102)
+- [一文带你梳理React面试题（2023年版本）](https://juejin.cn/post/7182382408807743548)
+- [前端面试准备（非面试题方向）](https://juejin.cn/post/7216143702125101117)
+- [对标中级开发，这些面试题，应该够用了吧！](https://juejin.cn/post/7233298616214749221)
 - [前端面试汇总（中级前端工程师）](https://zhuanlan.zhihu.com/p/467817954)
 - [字节三面，太硬核了](https://m.zhipin.com/mpa/html/get/column?contentId=d0b1c0582df56795qxB83Ny8&identity=0&userId=37338578)
 - [拼多多和酷家乐面试总结(已拿offer)](https://mp.weixin.qq.com/s/T5dtq0cNnmX0ZBfOnNiQgA)
@@ -227,3 +258,7 @@ createAt: 2022-09-26T19:00:00.000Z
 
 - [全套尝鲜，带你快速上手 Vue 3.0 + Vite 开发](https://class.vhall.com/#/play/edu_9c261b56)
 - [尤大为何再造轮子，Vite 或将取代 Webpack？](https://class.vhall.com/#/play/edu_38ddc24d)
+
+## 特效
+
+- [暗色切换](https://codepen.io/jh3y/pen/LYgjpYZ)
