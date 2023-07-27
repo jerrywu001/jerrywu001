@@ -28,6 +28,6 @@ const vedioUrl = computed(() => {
 
   return isHttp
     ? decodeURIComponent(props.path)
-    : `${host}/${props.path}.${props.type}`;
+    : `${host.value}/${props.path}.${props.type}`;
 });
 </script>
