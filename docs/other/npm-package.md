@@ -1,7 +1,7 @@
 ---
 title: 一文彻底搞懂package.json中的exports, main, module, type
 description: 一文彻底搞懂package.json中的exports, main, module, type
-cover: https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9dbec193764548448d90227db1d439ec~tplv-k3u1fbpfcp-zoom-crop-mark:1512:1512:1512:851.awebp?
+cover: https://picx.zhimg.com/v2-5cea55d64465d57fc2e3537d7968f9a7_1440w.jpg?source=172ae18b
 createAt: 2023-03-19T10:00:00.000Z
 ---
 
@@ -88,7 +88,7 @@ import 'sandpack-vue3/dist/styles.css';
 
 - **build过程，无法识别'sandpack-vue3/dist/styles.css'路径**
 
-    ![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/13982a045b2e43d79049abe1d5dea23b~tplv-k3u1fbpfcp-watermark.image?)
+    ![image.png](https://pic1.zhimg.com/80/v2-054780349e09895148bde82d9a535c18.webp)
 
     - 解决方案：
 
@@ -116,7 +116,7 @@ import 'sandpack-vue3/dist/styles.css';
 - **ts无法识别'sandpack-vue3/unstyled'路径**
 
 
-    ![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e12b6de2106d4caf819710591902ddca~tplv-k3u1fbpfcp-watermark.image?)
+    ![image.png](https://pic1.zhimg.com/80/v2-f0e9649f7918f1c831e71940970e9334.webp)
 
     - 解决方案 (*增加的两段内容，缺一不可！*)：
 
@@ -243,7 +243,7 @@ import 'sandpack-vue3/dist/styles.css';
 有时候我们有想把子路径文件放单独文件夹的想法，可行吗？答案是，可以的，但是我们必须保证dist根目录下`xxx.d.ts`真实存在，除它之外的其他文件可以单独文件夹，举个🌰：
 
 
-![image.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c6a05d3171cd40d28d0bfad92f848c42~tplv-k3u1fbpfcp-watermark.image?)
+![image.png](https://pic2.zhimg.com/80/v2-cec8e73fb5f665adfe0a5ffc65d38a39.webp)
 
 
 好了，文章到此结束，如对您有帮助，还请帮忙点个小🌟🌟，不甚感激~

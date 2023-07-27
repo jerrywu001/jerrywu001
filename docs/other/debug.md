@@ -1,7 +1,7 @@
 ---
 title: 如何优雅的调试node环境的npm package源码
 description: 如何优雅的调试node环境的npm package源码
-cover: https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/60200ca6e4f0473aa1c082173b45ea7d~tplv-k3u1fbpfcp-zoom-crop-mark:3024:3024:3024:1702.awebp?
+cover: https://picx.zhimg.com/v2-059969054e0f1cf4d430512642cf12ed.jpg?source=172ae18b
 createAt: 2022-11-30T10:00:00.000Z
 ---
 
@@ -70,21 +70,21 @@ export default function displayName(name: string) {
 
 ### 运行`npm run dev`
 
-  ![step-1.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9ed3eedd8d0640bfb02505f4b3bbccc4~tplv-k3u1fbpfcp-watermark.image?)
+  ![step-1.png](https://pic2.zhimg.com/80/v2-8cd2848c001c906ea16053d5ff0a76fd.webp)
 
 ### 打开chrome, 访问`chrome://inspect`
 
-  ![step-2.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/11c06ed64cee4a368c5aa3faf539f70d~tplv-k3u1fbpfcp-watermark.image?)
+  ![step-2.png](https://pic3.zhimg.com/80/v2-35c72b3a8f26699f7ca8590e869ce2b2.webp)
 
-  ![step-3.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/cf60303e1b184bd1b23712bb43d6b376~tplv-k3u1fbpfcp-watermark.image?)
+  ![step-3.png](https://pic2.zhimg.com/80/v2-280a35a592304a2201ca1bfaeb647e85.webp)
 
 ### 添加项目文件夹到`worksapce`
 
-  ![step-4.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/dd3d818d45034fa5bd2a58e69079a153~tplv-k3u1fbpfcp-watermark.image?)
+  ![step-4.png](https://pic1.zhimg.com/80/v2-38f41f985ec0b78b7199bc11a4ea0b30.webp)
 
 ### src源码打断点，即可调试
 
-  ![step-5.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7b967e84cf4a49d195ad892f4c197b3c~tplv-k3u1fbpfcp-watermark.image?)
+  ![step-5.png](https://pic1.zhimg.com/80/v2-fb95f7f91dace7f35c47822a774b489c.webp)
 
 ## vscode debug （推荐）
 
@@ -103,27 +103,27 @@ export default function displayName(name: string) {
 
 - 添加launch.json
 
-  ![node-1.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5f7b201826854f5984913749b03cde89~tplv-k3u1fbpfcp-watermark.image?)
+  ![node-1.png](https://pic3.zhimg.com/80/v2-8f12a93ecc5afdcf91100fc5c46c1496.webp)
 
 - 弹框选择nodejs
 
-  ![node-2.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/69425865481c452e86572a3d77a65839~tplv-k3u1fbpfcp-watermark.image?)
+  ![node-2.png](https://pic4.zhimg.com/80/v2-c3a1b987eb6ccd3e848f334db0a0909b.webp)
 
 - 点击添加配置按钮，并删除`configurations`，重新选择，如图：
 
-  ![node-3.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c6d634195b274239930ca21f42a07b2a~tplv-k3u1fbpfcp-watermark.image?)
+  ![node-3.png](https://pic2.zhimg.com/80/v2-e05e4d0bab96326e0dcbdbe8d15803b1.webp)
 
 - 修改`runtimeArgs`，将`debug`改成`dev`
 
-  ![node-4.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/759b6f6f379b428b89b442132ee79d31~tplv-k3u1fbpfcp-watermark.image?)
+  ![node-4.png](https://pic4.zhimg.com/80/v2-4f350878171782ef40ab724272bc0ca7.webp)
 
 - 源码打几个断点
 
-  ![node-5.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/501027a15ed64b9eb2ea1e448664fcb8~tplv-k3u1fbpfcp-watermark.image?)
+  ![node-5.png](https://pic4.zhimg.com/80/v2-0eca859bad8687e7462c6eb10553241f.webp)
 
 - 键盘按下F5，即可调试
 
-  ![node-6.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a922ab27c36c43eea7383b745fafeac6~tplv-k3u1fbpfcp-watermark.image?)
+  ![node-6.png](https://pic2.zhimg.com/80/v2-e187adf9c8a5916fdb1a00bcaf6a5f61.webp)
 
 ### 直接调试源码
 
@@ -149,7 +149,7 @@ export default function displayName(name: string) {
 
 - 按下F5即可调试
 
-  ![node-7.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7eabcaafca7f4cb79cd30a69e8979f61~tplv-k3u1fbpfcp-watermark.image?)
+  ![node-7.png](https://pic3.zhimg.com/80/v2-842bcf92f98b41626bb6bb72278673de.webp)
 
 **总结，最关键的是需要有sourcemap，否则只能调试打包后的js代码，如果某些npm包没有提供soucemap，需要想办法重新打包，并生成sourcemap**
 

@@ -12,7 +12,7 @@ createAt: 2022-09-23T19:00:00.000Z
 [ssg tools](https://www.js-bridge.com/posts/other_ssg-tools)
 
 ## 在线代码运行
-![sandpacck-c.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/20bf3d31a3af427e9bbf98d5ce7edcfb~tplv-k3u1fbpfcp-watermark.image?)
+![sandpacck-c.png](https://pic1.zhimg.com/80/v2-518e6ca4383f59f95d04d2d8826f5bd4.webp)
 
 - [codesandbox](https://codesandbox.io/)
 - [stackblitz](https://stackblitz.com/)
@@ -21,33 +21,34 @@ createAt: 2022-09-23T19:00:00.000Z
 
 - [sandpack-vue3](https://sandpack-vue3.netlify.app)
 > npm: https://www.npmjs.com/package/sandpack-vue3
-![sanpack-1.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/86c244a6a5ad448aa82cc1d0b3538a66~tplv-k3u1fbpfcp-watermark.image?)
-![sandpack-2.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/462eaf622e1a43de908423d966907161~tplv-k3u1fbpfcp-watermark.image?)
+![sanpack-1.png](https://pic3.zhimg.com/80/v2-ac6d407a329d6815b4a19f62bc017192.webp)
+![sandpack-2.png](https://pic1.zhimg.com/80/v2-fafc7609370ee0b9da540c28e24f2050.webp)
 
 
 ## css & animation
 
 ### [whirl, 一个loading icon](https://whirl.netlify.app/)
 
-![loading.gif](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/897024e9a1c949088c1c46501aee6a5f~tplv-k3u1fbpfcp-watermark.image?)
+![loading.gif](https://pic1.zhimg.com/v2-e34a88f87c6ac6380ef8fe7e85fc5544_b.jpg)
 
 ### [玻璃态生成器](https://ui.glass/generator)
-![glass.gif](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a12d1952f9f44a55af810a9067faf6ef~tplv-k3u1fbpfcp-watermark.image?)
+
+:mp4{path=https%3A%2F%2Fvdn6.vzuu.com%2FSD%2Fa5031096-3d8e-11ed-83fb-2628452516ad.mp4%3Fpkey%3DAAV-E1FZ9L2Z_EfIP0GHe-oRBbKCXQxN4jWzLDpjDiMDe0Jab9ijpNBTkAazu9xaXGNNJl7mB0Zfyi5to19nhGvy%26c%3Davc.1.1%26f%3Dmp4%26pu%3D078babd7%26bu%3D078babd7%26expiration%3D1690434749%26v%3Dks6}
 
 ### [盒阴影生成器](https://shadows.brumm.af/)
-![shadow.gif](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c856454fe219442fb5bc441da049bd0f~tplv-k3u1fbpfcp-watermark.image?)
+![shadow.gif](https://pic1.zhimg.com/80/v2-0b2c19768e1512b56afe3ac2d89c5e58.webp)
 
 ### [圆角生成器](https://9elements.github.io/fancy-border-radius/)
-![radius.gif](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/cd4e070dbfee4846836db1a75c28fb07~tplv-k3u1fbpfcp-watermark.image?)
+![radius.gif](https://pic3.zhimg.com/v2-dfa1730a9215c6bfbb04d18a47fad6b6_b.webp)
 
 ### [grid生成器](https://cssgrid-generator.netlify.app/)
-![grid.gif](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/80521ba6773941f8acc4c161876e2d21~tplv-k3u1fbpfcp-watermark.image?)
+![grid.gif](https://pic4.zhimg.com/80/v2-d5b930b668883c8555bb828afb5ec6c7.webp)
 
 ### [鼠标点击特效](https://party.js.org/)
-![click.gif](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/cec29eed715944c1b83810ffd414e39e~tplv-k3u1fbpfcp-watermark.image?)
+![click.gif](https://pic3.zhimg.com/80/v2-0dea5ceb94811be8aac71e9fd4e4666e.webp)
 
 ### [gradient 色调大全](https://webgradients.com/)
-![gradient.gif](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/af4b9d81ef8742a6951d2dcef7da0af0~tplv-k3u1fbpfcp-watermark.image?)
+![gradient.gif](https://pic3.zhimg.com/80/v2-8f436ada1306a8e567b10f7706af6fbe.webp)
 
 ### 其他css animations总结
 
@@ -68,19 +69,19 @@ createAt: 2022-09-23T19:00:00.000Z
     - [icons8 preloaders](https://icons8.com/preloaders/)
     - [loading.io](https://loading.io/)
 
-    ![loading.io.gif](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/42e67b46188a4c8cb425e9a442fa3509~tplv-k3u1fbpfcp-watermark.image?)
+    ![loading.io.gif](/articles/s-loading.gif)
 
 - [css.gg](https://css.gg/)
-![icon-1.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/def8be5ccdc949c0acc69ed7b02566bc~tplv-k3u1fbpfcp-watermark.image)
+![icon-1.png](https://pic1.zhimg.com/80/v2-34dd39be503cbd0dbfa6c245f8912310.webp)
 
 - [flaticon](https://www.flaticon.com/)
-![icon-2.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a8f164dab76e416fa3f504e4e74778ed~tplv-k3u1fbpfcp-watermark.image?)
+![icon-2.png](https://pic4.zhimg.com/80/v2-34cc6d833292b569c9bbf0936a7ff913.webp)
 
 - [icones](https://icones.js.org/)
-![icon-3.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9a8c65de1fc64cc0b95387c3876eb5cb~tplv-k3u1fbpfcp-watermark.image?)
+![icon-3.png](https://pic2.zhimg.com/80/v2-06b90c8937cfb3f8b34346c3670b63f1.webp)
 
 - [fontawesome](https://fontawesome.com/icons)
-![icon-4.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3823b771aeb0471d9fbdae95a143f4f5~tplv-k3u1fbpfcp-watermark.image?)
+![icon-4.png](https://pic1.zhimg.com/80/v2-6adcc67cefddf921b4ee1c324b5c7004.webp)
 
 - [icons8](https://icons8.com/icons#styles)
 - [google-icons](https://fonts.google.com/icons)
@@ -89,7 +90,7 @@ createAt: 2022-09-23T19:00:00.000Z
 - [字体下载](https://www.qiuziti.com/)
 
 ## 代码美化
-![code-rule.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d0f652f034d040eb9c677476739d6359~tplv-k3u1fbpfcp-watermark.image?)
+![code-rule.png](https://pic1.zhimg.com/80/v2-a414665d7ca161cb321853295bbd3f28.webp)
 
 - [carbon](https://carbon.now.sh/)
 - [pika.style](https://pika.style/templates/web/code-image)
@@ -97,7 +98,7 @@ createAt: 2022-09-23T19:00:00.000Z
 - [ray.so](https://ray.so/)
 
 ## 流程图在线绘制
-![liuchengtu-2.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3b7fc88befae4c97a3b75cf140cc48ec~tplv-k3u1fbpfcp-watermark.image?)
+![liuchengtu-2.png](https://pic2.zhimg.com/80/v2-a9586e0ab5e87988652e04b29a4319e1.webp)
 
 - [excalidraw](https://excalidraw.com/)
 - [asciiflow纯文本流程绘制](https://asciiflow.com)
@@ -109,33 +110,33 @@ createAt: 2022-09-23T19:00:00.000Z
 ### 图片转素描
 
 [visioncortex](https://www.visioncortex.org/vtracer)
-![imgtosumiao.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b6ee51f05ceb4090aa4cdd82754f73f0~tplv-k3u1fbpfcp-watermark.image?)
+![imgtosumiao.png](https://pic3.zhimg.com/80/v2-e14ef61f7cb227403ea3349ffb4d8506.webp)
 
 ### AI智能抠图
 
 [remove bg](https://www.remove.bg/zh)
-![ai-bg.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/149b5926fb324d9e93a9aba9892a05e9~tplv-k3u1fbpfcp-watermark.image?)
+![ai-bg.png](https://pic3.zhimg.com/80/v2-03f81b0912ee15d5505fa67e1e415ede.webp)
 
 ### 图片视频存储
 > 我一直在用，链接都是长久有效的
 
 [imagekit](https://imagekit.io/dashboard/media-library)
-![imagekit.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9afaa9da656742758bd4630badd72801~tplv-k3u1fbpfcp-watermark.image?)
+![imagekit.png](https://pic3.zhimg.com/80/v2-738f7e274678e0cdfab149fad0d15fca.webp)
 
 ### 图片压缩
 [tinypng](https://tinypng.com/)
-![tinypng.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/cfff8b87ca264cb9a4e9c7ccad38bb74~tplv-k3u1fbpfcp-watermark.image?)
+![tinypng.png](https://pic1.zhimg.com/80/v2-44715806552c2f3b7668c06357dba080.webp)
 
 ### 切图神器
 
 - [pxcook](https://www.fancynode.com.cn/pxcook)
 - [cutterman](http://www.cutterman.cn/zh)
 
-![cutimg.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/07bc9b49f25a44569794330cf67ec745~tplv-k3u1fbpfcp-watermark.image?)
+![cutimg.png](https://pic1.zhimg.com/80/v2-54085937e87922c8c9c1e01985bfb114.webp)
 
 ## Slidev
 [一个实用代码生成幻灯片的工具](https://sli.dev/)
-![sli.dev.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1c4cd3f192694a50937ff95d7509975d~tplv-k3u1fbpfcp-watermark.image?)
+![sli.dev.png](https://pic2.zhimg.com/80/v2-17dbffb406454eb00ef8688e5e861e21.webp)
 
 ## 素材相关
 
@@ -153,36 +154,36 @@ createAt: 2022-09-23T19:00:00.000Z
 
 ### [typescript类型体操](https://github.com/type-challenges/type-challenges/blob/main/README.zh-CN.md)
 
-![ts type.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ca33e21eb35a46d183e096d6a2ac0642~tplv-k3u1fbpfcp-watermark.image?)
+![ts type.png](https://pic1.zhimg.com/80/v2-81da15f6915dae7db0f772065cae8708.webp)
 
 ### [astexplorer](https://astexplorer.net/)
-![ast.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9402b409ec1c42859d6a678aac88ceb8~tplv-k3u1fbpfcp-watermark.image?)
+![ast.png](https://pic1.zhimg.com/80/v2-efd1099f7b2cddd59b6d6553281934e8.webp)
 
 ### [js在线跑分测试-jsbench](https://jsbench.me/)
-![jsrun.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/80fe6321bf5a49639abeebd8aa5a8cb0~tplv-k3u1fbpfcp-watermark.image?)
+![jsrun.png](https://pic2.zhimg.com/80/v2-343bab4b9b2ad248da8cbd621cf4c7b9.webp)
 
 ### [json美化](https://www.jsont.run/)
 
-![json.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/05bb45f2bee84fb7b6ce5249fd3aa99e~tplv-k3u1fbpfcp-watermark.image?)
+![json.png](https://pic3.zhimg.com/80/v2-3f65789b6b69039f0506e2b6d65a6aba.webp)
 
 ### [前端学习路径总结](https://roadmap.sh/)
 
-![roadmap.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f06bde86dbc94868a2f00f5a630ab676~tplv-k3u1fbpfcp-watermark.image?)
+![roadmap.png](https://pic2.zhimg.com/80/v2-8c472911f4075e28a35a73872f943d59.webp)
 
 ### [浏览器内核版本检测](https://liulanmi.com/labs/core.html)
 
-![browser.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ced99a5394544f478fe4dff425b2cb75~tplv-k3u1fbpfcp-watermark.image?)
+![browser.png](https://pic2.zhimg.com/80/v2-29796984a894099f9a6a97bb460202f9.webp)
 
 ### [前端新mocker方案](https://mswjs.io/)
 
 戳[文章介绍](https://juejin.cn/post/7130551899584987143)
-![mswjs.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3203b908fa004f01af0c3a9899d63174~tplv-k3u1fbpfcp-watermark.image?)
+![mswjs.png](https://pic1.zhimg.com/80/v2-7f111099fdcdb8cf28613eb1a3040990.webp)
 
 ### [photo swipe](https://photoswipe.com/)
 
-![swipe.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/05bc784da10b4b8ab4ca9b5f50c57a37~tplv-k3u1fbpfcp-watermark.image?)
+![swipe.png](https://pic2.zhimg.com/80/v2-aa92f02004efffe6a9ed6b5906d85925.webp)
 
 ### [es6代码在线编译](https://es6console.com/)
 
-![es6-5.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/210d3116f0a94ca89d0faa3dcbfc7155~tplv-k3u1fbpfcp-watermark.image?)
+![es6-5.png](https://pic2.zhimg.com/80/v2-43c7cfa92b45d593f734d80f5d3b372d.webp)
 

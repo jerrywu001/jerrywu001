@@ -1,7 +1,7 @@
 ---
 title: Eslint是如何工作的（深度源码解析）
 description: Eslint是如何工作的（深度源码解析）！（建议入收藏夹～～）
-cover: https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0244e52239454de8baa4c0260f6a92d5~tplv-k3u1fbpfcp-zoom-crop-mark:3024:3024:3024:1702.awebp?
+cover: https://picx.zhimg.com/v2-f5cb0d834f416c183a4ad62a71970ee6.jpg?source=172ae18b
 createAt: 2022-11-14T19:00:00.000Z
 ---
 
@@ -26,7 +26,7 @@ createAt: 2022-11-14T19:00:00.000Z
     - node_modules\eslint\lib\eslint\eslint.js
     - node_modules\eslint\lib\eslint\flat-eslint.js
 
-    ![Eslint class.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0513fda628c74f7c8626ae1cc4bdc98c~tplv-k3u1fbpfcp-watermark.image?)
+    ![Eslint class.png](https://pic1.zhimg.com/80/v2-cc63a29a50c027e90374ee9c0467c4c0.webp)
 
 - **CLIEngine 该类是 Eslint 的大脑，控制 Eslint 的执行流程，调用 api 时一般只需要操作 CLIEngine 即可**
 
@@ -50,7 +50,7 @@ createAt: 2022-11-14T19:00:00.000Z
 
     在`Linter`类的初始化过程中会将`espree`缓存到`internalSlotsMap`全局对象中，后续`verify`环节会使用
 
-    ![espree cache.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/aafce83c58fe4bb4af2c84ebebead539~tplv-k3u1fbpfcp-watermark.image?)
+    ![espree cache.png](https://pic4.zhimg.com/80/v2-30d55aef5be61efa1f8ba4775e5e2377.webp)
 
 ---
 
@@ -125,29 +125,29 @@ createAt: 2022-11-14T19:00:00.000Z
 
    从入口`CLIEngine.executeOnFiles`调用`fileEnumerator.iterateFiles`实现文件的遍历和配置生成，其中`patterns`为命令行传入的文件范围，它可以传一个固定的路径或者模式匹配，具体过程见下图：
 
-![02.file-config.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/80a72b1a0b9446b28c7f482b8dc9ff71~tplv-k3u1fbpfcp-watermark.image?)
+![02.file-config.png](https://pic3.zhimg.com/80/v2-1b8cef501ce28508b5af5435a14fbc9a.webp)
 
-![save-config-array.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/69d63488cb044d97a6ca1a6bd5b32bda~tplv-k3u1fbpfcp-watermark.image?)
+![save-config-array.png](https://pic3.zhimg.com/80/v2-28178817f182c97012188beb7bc6d2ee.webp)
 
 ## 如何将代码转换成tokens & ast
 
    主要是调用spree.parse完成转换过程，具体过程见下图：
 
-![03.ast.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5278cceed0fb4745ae240d65904e8cde~tplv-k3u1fbpfcp-watermark.image?)
+![03.ast.png](https://pic2.zhimg.com/80/v2-25117d10d8ec2c5e3d0b4f169ae930dd.webp)
 
 ## 如何利用ast和rules生成错误信息
 
    通过调用`runRules`函数，并执行`Traverser.travers`e遍历`ast tree`, 并调用相应的`检测函数`进行校验，输出问题信息
 
    **值得注意的是，problems信息中包含fix数据，为后续fix代码做铺垫**
-![image.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f0c0df4db4d849c381c63ff00354ff91~tplv-k3u1fbpfcp-watermark.image?)
+![image.png](https://pic2.zhimg.com/80/v2-d83b28be18fb0309c1097a68b4b234e9.webp)
 
-![04. problems.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a663b2342ce84010bcafe3a106190a5c~tplv-k3u1fbpfcp-watermark.image?)
+![04. problems.png](https://pic1.zhimg.com/80/v2-4492ead135ef7ed1d279b813f012df90.webp)
 
 ## 如何利用ast和rules进行代码修复
 
 在上一步拿到`problems`信息的基础上，进一步分析，发现调用了`applyFixes`函数，即修复过程，具体过程见下图：
 
-![05.fix-image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b4ab9de07ef34d7ba331dc02e8528c6f~tplv-k3u1fbpfcp-watermark.image?)
+![05.fix-image.png](https://pic3.zhimg.com/80/v2-02822ac491a9792805c0435948ab0b32.webp)
 
 好了，到此文章结束，感谢您的阅读，如果觉得对您有帮助，帮点个小红心，万分感谢~~

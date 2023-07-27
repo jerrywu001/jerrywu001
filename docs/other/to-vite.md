@@ -1,6 +1,6 @@
 ---
 title: 记录改造一个2018年的react老项目到vite4.3全过程
-cover: https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5ceff112af604f619e57432c13b7d32f~tplv-k3u1fbpfcp-zoom-crop-mark:1512:1512:1512:851.awebp?
+cover: https://picx.zhimg.com/v2-b2c5c1712c8b220886d50757def3e694_1440w.jpg?source=172ae18b
 createAt: 2023-04-20T19:00:00.000Z
 ---
 
@@ -120,7 +120,7 @@ export default defineConfig(({ command, mode }) => {
 
 请**慎用**`__DEV__`这个名称, 因为有些第三方包源码中存在`__DEV__`判断，vite默认会匹配并执行所有替换，项目跑起来报错，如下：
 
-![image.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/84f7915667844c3db8875df08b72e835~tplv-k3u1fbpfcp-watermark.image?)
+![image.png](https://pic4.zhimg.com/80/v2-71f151400708a23dc65f1ce001e03913.webp)
 
 换成不一样的名称即可，比如`__ENV_DEV__`
 
