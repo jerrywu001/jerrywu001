@@ -1,3 +1,5 @@
+import fs from 'fs';
+
 // https://nuxt.com/docs/getting-started/configuration
 export default defineNuxtConfig({
   // https://github.com/nuxt/framework/issues/1600
@@ -10,6 +12,16 @@ export default defineNuxtConfig({
     },
     define: {
       'process.env.LOG': {},
+    },
+  },
+
+  runtimeConfig: {
+    public: {
+      dev: process.env.NODE_ENV !== 'production',
+      host: process.env.HOST,
+      port: process.env.PORT,
+      supbaseProject: process.env.NUXT_SUPABASE_PROJECT,
+      supabaseKey: process.env.NUXT_SUPABASE_CLIENT_KEY,
     },
   },
 

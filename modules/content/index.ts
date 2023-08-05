@@ -24,7 +24,7 @@ export default defineNuxtModule<Option>({
     name: '@nuxtjs/content',
     configKey: 'content',
     compatibility: {
-      nuxt: '^3.0.0-rc.9',
+      nuxt: '^3.6.0',
     },
   },
   defaults: {
