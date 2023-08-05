@@ -40,12 +40,6 @@ defineProps({
 });
 
 const emit = defineEmits<IEmit>();
-
-const loaded = ref(false);
-
-tryOnMounted(() => {
-  loaded.value = true;
-});
 </script>
 
 <style lang="postcss">

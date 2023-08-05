@@ -1,14 +1,16 @@
 import { ICategory } from '~~/types';
 
 export default function useCategories() {
-  const dirs = useState('categories', () => [] as ICategory[]);
+  const categories = useState('categories', () => ({
+    data: [] as ICategory[],
+  }));
 
-  function updateDirs(items: ICategory[] = []) {
-    dirs.value = items;
+  function updateCategories(items: ICategory[] = []) {
+    categories.value.data = toRaw(items);
   }
 
   return {
-    dirs,
-    updateDirs,
+    categories,
+    updateCategories,
   };
 }

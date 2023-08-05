@@ -1,12 +1,4 @@
 <template>
-  <Html>
-    <Head>
-      <Title>{{ title }}</Title>
-      <Meta name="description" :content="description" />
-    </Head>
-  </Html>
-  <header-nav @toggle-sidebar="toggleSidebar" @toggle-theme="toggleDark" />
-  <sidebar :visible="showSidebar" :categories="dirs" @close="toggleSidebar" />
   <article class="article">
     <table-of-contents
       class="tocs-sm lg:ml-$sidebar-width lg:w-$tocs-width-lg xl:hidden"
@@ -61,6 +53,7 @@
 
 <script setup lang="ts">
 // https://www.cnblogs.com/guangzan/p/15021560.html
+import { createClient } from '@supabase/supabase-js';
 import {
   addArchorClickEvent,
   useArticleScroll,
@@ -68,25 +61,46 @@ import {
 } from '~~/utils/toc';
 import { IArticleData, IElement, IMeta, ITableOfContent } from '~~/types';
 import useImgSwipe from '~~/utils/imgSwipe';
+import queryCategories from '~~/utils/queryCategories';
 
 /** ============= page meta define ============= */
 definePageMeta({
-  layout: 'page',
+  layout: 'article',
   pageTransition: false,
   layoutTransition: false,
   key: (route) => route.fullPath,
 });
 
-/** ============= route state ============= */
+const config = useRuntimeConfig();
+
+const supabase = createClient(
+  `https://${config.public.supbaseProject}.supabase.co`,
+  config.public.supabaseKey
+);
+console.log(config.public.supbaseProject);
+
+const readLeaderboard = async () => {
+  const { data, error } = await supabase.from('articles').select('*');
+
+  if (error) {
+    console.error(error);
+    return;
+  }
+
+  console.log(data);
+};
+
+readLeaderboard();
+
+/** ============= hooks ============= */
+const { updatePageMeta } = usePageMeta();
+const { updateCategories } = useCategories();
 const route = useRoute();
 const postname = route.params.postname;
 
 /** ============= data state ============= */
 const data = ref<IArticleData>();
 const loading = ref(true);
-const showSidebar = ref(false);
-const { dirs, updateDirs } = useCategories();
-const { toggleDark } = useDarkTheme();
 
 /** ============= computed state ============= */
 const children = computed<IElement[]>(() => {
@@ -99,14 +113,6 @@ const tocs = computed<ITableOfContent[]>(() => {
 
 const meta = computed<IMeta>(() => {
   return data.value?.meta || ({} as IMeta);
-});
-
-const title = computed(() => {
-  return meta.value.title || '...';
-});
-
-const description = computed(() => {
-  return meta.value.description || '...';
 });
 
 const createTime = computed(() => {
@@ -123,21 +129,19 @@ const createTime = computed(() => {
 });
 
 /** ============= methods ============= */
-function toggleSidebar() {
-  showSidebar.value = !showSidebar.value;
+async function loadCategories() {
+  const categories = await queryCategories();
+  updateCategories(categories);
 }
 
-async function loadData(forceUpdate = false) {
+async function loadData() {
   loading.value = true;
   const res = await useFetch<IArticleData>(`/api/post?postname=${postname}`);
 
   data.value = res.data.value as IArticleData;
   loading.value = false;
 
-  if (!dirs.value.length || forceUpdate) {
-    // 更新分类缓存
-    updateDirs(res.data.value?.categories);
-  }
+  updatePageMeta(data.value?.meta || ({} as IMeta));
 
   if (data.value?.code === 404) {
     if (process.client) {
@@ -151,6 +155,7 @@ async function loadData(forceUpdate = false) {
 }
 
 /** ============= load data on init ============= */
+loadCategories();
 loadData();
 
 /** ============= hooks ============= */
@@ -168,10 +173,7 @@ if (process.client) {
   };
   ws.onmessage = (e) => {
     if (e.data && typeof e.data === 'string' && e.data.endsWith('.md')) {
-      // setTimeout(() => {
-      //   loadData(true);
-      // }, 600);
-      window.location.reload();
+      loadData();
     }
   };
 }
