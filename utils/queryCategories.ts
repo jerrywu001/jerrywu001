@@ -16,12 +16,14 @@ export default async function queryCategories() {
 
   if (!result.length) {
     console.log('update categories cache');
-    const { data } = await useFetch<IArticleData>(
-      '/api/post?postname=other_full'
-    );
-
-    result = data.value?.categories || [];
-    updateCategoriesCache(result);
+    try {
+      const res = await fetch('/api/post?postname=other_full');
+      const data = await res.json();
+      result = data.value?.categories || [];
+      updateCategoriesCache(result);
+    } catch (err) {
+      console.warn(err);
+    }
   }
 
   return result;
