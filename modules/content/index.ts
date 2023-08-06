@@ -90,7 +90,7 @@ export default defineNuxtModule<Option>({
       md.hook('file:transformed', (event, path) => {
         for (const client of wss.clients) {
           try {
-            client.send(path.replace(/\\/g, '/'));
+            client.send(`${path.replace(/\\/g, '/')}@${event}`);
           } catch (err) {
             // Ignore error (if client not ready to receive event)
           }

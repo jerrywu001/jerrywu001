@@ -129,13 +129,13 @@ const createTime = computed(() => {
 });
 
 /** ============= methods ============= */
-async function loadCategories() {
-  const categories = await queryCategories();
+async function loadCategories(forceUpdate = false) {
+  const categories = await queryCategories(forceUpdate);
   updateCategories(categories);
 }
 
-async function loadData() {
-  loading.value = true;
+async function loadData(disableLoading = false) {
+  loading.value = !disableLoading;
   const res = await useFetch<IArticleData>(`/api/post?postname=${postname}`);
 
   data.value = res.data.value as IArticleData;
@@ -172,8 +172,14 @@ if (process.client) {
     console.log('webscoket connect failed');
   };
   ws.onmessage = (e) => {
-    if (e.data && typeof e.data === 'string' && e.data.endsWith('.md')) {
-      loadData();
+    const { filename, event } = getPostPath(e.data);
+    if (event === 'add') loadCategories(true);
+    if (filename === route.path.replace('/posts/', '') && event === 'change') {
+      loadData(true);
+    }
+    if (event === 'unlink') {
+      loadCategories(true);
+      useRouter().push('/');
     }
   };
 }

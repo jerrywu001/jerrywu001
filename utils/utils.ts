@@ -183,3 +183,17 @@ export function loadStyle(styleUrl: string, id: string) {
     document.head.appendChild(styleElement);
   });
 }
+
+export function getPostPath(url = '') {
+  const rs = {
+    filename: '',
+    event: 'change' as 'change' | 'add' | 'unlink',
+  };
+  const arr = url.split('@');
+  rs.event = arr[1] as 'change' | 'add' | 'unlink';
+  rs.filename = arr[0]
+    .replace('docs/', '')
+    .replace('/', '_')
+    .replace('.md', '');
+  return rs;
+}

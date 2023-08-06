@@ -8,13 +8,13 @@ const storage = createStorage({});
  *
  * @return {Promise<ICategory[]>} The categories retrieved from the storage cache or the API.
  */
-export default async function queryCategories() {
+export default async function queryCategories(forceUpdate = false) {
   const categoriesCache = await storage.getItem<ICategory[]>('site:catefories');
   let result = categoriesCache || [];
 
   console.log('categories cache:', categoriesCache);
 
-  if (!result.length) {
+  if (!result.length || forceUpdate) {
     console.log('update categories cache');
     try {
       const res = await useFetch<IArticleData>('/api/post?postname=other_full');
