@@ -20,6 +20,8 @@ export default function useLogin<T = OAuthResponse>(props?: LoginOptions<T>) {
   const error = useState('login-error', () => null as AuthError | null);
 
   async function login() {
+    console.log('runtimeConfig.baseUrl', runtimeConfig);
+
     const { error: authError, data: authData } =
       await supabase.auth.signInWithOAuth({
         provider,
