@@ -18,10 +18,25 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       dev: process.env.NODE_ENV !== 'production',
+      baseUrl: process.env.BASE_URL,
       host: process.env.HOST,
       port: process.env.PORT,
-      supbaseProject: process.env.NUXT_SUPABASE_PROJECT,
-      supabaseKey: process.env.NUXT_SUPABASE_CLIENT_KEY,
+    },
+  },
+
+  supabase: {
+    url: `https://${process.env.NUXT_SUPABASE_PROJECT}.supabase.co`,
+    key: process.env.NUXT_SUPABASE_CLIENT_KEY,
+    serviceKey: process.env.NUXT_SUPABASE_SERVER_KEY,
+    redirectOptions: {
+      login: '/login',
+      callback: '/login',
+      exclude: ['/', '/posts/*', '/test'],
+    },
+    clientOptions: {
+      auth: {
+        persistSession: true,
+      },
     },
   },
 
@@ -31,14 +46,7 @@ export default defineNuxtConfig({
     'nuxt-windicss',
     '@unocss/nuxt',
     '@nuxtjs/eslint-module', // https://juejin.cn/post/7043762203740094477
-    // [
-    //   './modules/content',
-    //   {
-    //     dir: 'docs',
-    //     tocDepth: 3,
-    //     sidebarDepth: 3,
-    //   },
-    // ],
+    '@nuxtjs/supabase',
   ],
 
   css: ['~/assets/main.css', '~/assets/post.css'],

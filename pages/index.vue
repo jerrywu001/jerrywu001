@@ -31,50 +31,49 @@
           hover:i-twemoji-face-with-tears-of-joy
         />
       </div>
-      <p class="text-left">
-        Nuxt offers a compelling solution and a great ecosystem to help you ship
-        fullstack Vue apps that are performant and SEO friendly. The flexibility
-        to choose between SSR and SSG is icing on the cake.
-      </p>
+      <a
+        v-if="!!user"
+        href="javascript:;"
+        bg-blue-400
+        hover:bg-blue-500
+        text-lg
+        text-white
+        font-light
+        py-2
+        px-4
+        my-3
+        rounded
+        @click="logout"
+      >
+        logout
+      </a>
       <div class="flex w-full justify-between items-center">
-        <a href="https://twitter.com/youyuxi" target="_blank" rel="noopener">
-          <img
-            loading="lazy"
-            src="https://nuxtjs.org/img/home/testimonials/evan.png"
-            alt="Evan You"
-            width="48"
-            height="48"
-            class="h-12 w-12"
-          />
+        <img
+          loading="lazy"
+          :src="useMetaData.avatar_url"
+          :alt="useMetaData.user_name"
+          width="48"
+          height="48"
+          class="h-12 w-12 rounded-full"
+        />
+        <a class="flex flex-col flex-1 text-left pl-4">
+          <span class="font-bold text-base">
+            {{ useMetaData.user_name }}
+          </span>
+          <span class="text-sm">{{ user?.email }}</span>
         </a>
         <a
-          href="https://twitter.com/youyuxi"
+          v-if="user?.app_metadata?.provider === 'github'"
+          i-carbon-logo-github
+          text-3xl
           target="_blank"
-          rel="noopener"
-          class="flex flex-col flex-1 text-left pl-4"
-        >
-          <span class="font-bold text-base">Evan You</span>
-          <span class="text-sm">Creator of Vue.js </span>
-        </a>
-        <a i-carbon-logo-github text-3xl />
+          :href="`https://github.com/${useMetaData.user_name}`"
+        />
       </div>
     </div>
 
     <div mt-20 text-center flex select-none all:transition-400>
       <div ma>
-        <div
-          text-5xl
-          fw100
-          animate-bounce-alt
-          animate-count-infinite
-          animate-1s
-        >
-          unocss
-        </div>
-        <div op30 text-lg fw200 m1>
-          The instant on-demand Atomic CSS engine.
-        </div>
-
         <div flex class="my-5 justify-center dark:text-white/90">
           <span>toggle theme</span>
           <span
@@ -106,6 +105,8 @@
 </template>
 
 <script setup lang="ts">
+import { type User } from '@supabase/supabase-js';
+
 definePageMeta({
   layout: false,
   key: 'index',
@@ -113,5 +114,9 @@ definePageMeta({
   layoutTransition: false,
 });
 
+const user = useSupabaseUser() as Ref<User>;
+const useMetaData = computed(() => user?.value?.user_metadata || {});
+
 const { toggleDark } = useDarkTheme();
+const { logout } = useLogout();
 </script>

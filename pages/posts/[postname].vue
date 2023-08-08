@@ -53,7 +53,6 @@
 
 <script setup lang="ts">
 // https://www.cnblogs.com/guangzan/p/15021560.html
-import { createClient } from '@supabase/supabase-js';
 import {
   addArchorClickEvent,
   useArticleScroll,
@@ -70,27 +69,6 @@ definePageMeta({
   layoutTransition: false,
   key: (route) => route.fullPath,
 });
-
-const config = useRuntimeConfig();
-
-const supabase = createClient(
-  `https://${config.public.supbaseProject}.supabase.co`,
-  config.public.supabaseKey
-);
-console.log(config.public.supbaseProject);
-
-const readLeaderboard = async () => {
-  const { data, error } = await supabase.from('articles').select('*');
-
-  if (error) {
-    console.error(error);
-    return;
-  }
-
-  console.log(data);
-};
-
-readLeaderboard();
 
 /** ============= hooks ============= */
 const { updatePageMeta } = usePageMeta();
@@ -179,7 +157,7 @@ if (process.client) {
     }
     if (event === 'unlink') {
       loadCategories(true);
-      useRouter().push('/');
+      navigateTo('/');
     }
   };
 }
