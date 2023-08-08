@@ -8,10 +8,6 @@
     class="bg-white font-montserrat h-100vh p-6 dark:bg-slate-900 dark:text-white/80"
   >
     <p>{{ user?.email }}</p>
-    <p>{{ runtimeConfig?.baseUrl }}</p>
-    <p>{{ runtimeConfig?.dev }}</p>
-    <p>{{ runtimeConfig?.host }}</p>
-    <p>{{ runtimeConfig?.port }}</p>
     <button @click="logout">logout</button>
   </div>
 </template>
@@ -29,8 +25,6 @@ definePageMeta({
 const { logout } = useLogout();
 
 const user = ref({} as User);
-
-const { public: runtimeConfig } = useRuntimeConfig();
 
 const { data } = await useFetch('/api/me', {
   headers: useRequestHeaders(['cookie']),
