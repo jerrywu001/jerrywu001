@@ -12,12 +12,21 @@ function getRedirectPath() {
 export default function useLogin<T = OAuthResponse>(props?: LoginOptions<T>) {
   const { public: runtimeConfig } = useRuntimeConfig();
 
-  console.log(
+  console.warn(
     'runtimeConfig--->',
     runtimeConfig,
     process.env.BASE_URL,
     process.env.HOST
   );
+
+  try {
+    console.error(
+      'runtimeConfig--->',
+      runtimeConfig,
+      process.env.BASE_URL,
+      process.env.HOST
+    );
+  } catch (e) {}
 
   const { provider = 'github', onSuccess, onFail } = props || {};
   const supabase = useSupabaseClient();
