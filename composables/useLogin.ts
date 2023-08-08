@@ -5,12 +5,20 @@ interface LoginOptions<T> {
   onSuccess?: (data: T) => void;
   onFail?: (error: AuthError | null) => void;
 }
-function getRedirectPath(encodeUrl = false) {
+function getRedirectPath() {
   return location.href.split('redirect=')[1] || '/';
 }
 
 export default function useLogin<T = OAuthResponse>(props?: LoginOptions<T>) {
   const { public: runtimeConfig } = useRuntimeConfig();
+
+  console.log(
+    'runtimeConfig--->',
+    runtimeConfig,
+    process.env.BASE_URL,
+    process.env.HOST
+  );
+
   const { provider = 'github', onSuccess, onFail } = props || {};
   const supabase = useSupabaseClient();
   const user = useSupabaseUser();
@@ -42,7 +50,7 @@ export default function useLogin<T = OAuthResponse>(props?: LoginOptions<T>) {
     user,
     () => {
       if (user.value) {
-        const redirectTo = getRedirectPath(true);
+        const redirectTo = getRedirectPath();
         navigateTo(decodeURIComponent(redirectTo));
       }
     },
