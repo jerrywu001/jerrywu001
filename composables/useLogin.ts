@@ -39,6 +39,7 @@ export async function login<T = OAuthResponse>(
       ...authOptions,
     },
   });
+
   const authData = data || ({} as T);
 
   // @ts-ignore
@@ -61,6 +62,12 @@ export default function useLoginAuth<T = OAuthResponse>() {
     },
     { immediate: true }
   );
+
+  watch(error, () => {
+    if (error && error.value && error.value.message) {
+      alert(error.value.message);
+    }
+  });
 
   return {
     error,
