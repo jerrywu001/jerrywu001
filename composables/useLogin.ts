@@ -1,43 +1,55 @@
 import { type OAuthResponse, AuthError } from '@supabase/supabase-js';
 
-interface LoginOptions<T> {
-  provider?: 'google' | 'apple' | 'github';
+interface AuthOption {
+  /** A URL to send the user to after they are confirmed. */
+  redirectTo?: string;
+  /** A space-separated list of scopes granted to the OAuth application. */
+  scopes?: string;
+  /** An object of query params */
+  queryParams?: { [key: string]: string };
+  /** If set to true does not immediately redirect the current browser context to visit the OAuth authorization page for the provider. */
+  skipBrowserRedirect?: boolean;
+}
+
+interface LoginOptions<T = OAuthResponse> {
+  provider?: 'google' | 'azure' | 'github';
   onSuccess?: (data: T) => void;
   onFail?: (error: AuthError | null) => void;
+  authOptions?: AuthOption;
 }
+
 function getRedirectPath() {
   return location.href.split('redirect=')[1] || '/';
 }
 
-export default function useLogin<T = OAuthResponse>(props?: LoginOptions<T>) {
+export async function login<T = OAuthResponse>(
+  props?: LoginOptions<T>
+): Promise<{ authError: AuthError | null; authData: T }> {
+  const supabase = useSupabaseClient();
   const { public: runtimeConfig } = useRuntimeConfig();
 
-  const { provider = 'github', onSuccess, onFail } = props || {};
-  const supabase = useSupabaseClient();
+  const { provider = 'github', authOptions = {} } = props || {};
+
+  const { error: authError, data } = await supabase.auth.signInWithOAuth({
+    provider,
+    options: {
+      redirectTo: `${
+        runtimeConfig.baseUrl
+      }/login?redirect=${getRedirectPath()}`,
+      ...authOptions,
+    },
+  });
+  const authData = data || ({} as T);
+
+  // @ts-ignore
+  return { authData, authError };
+}
+
+export default function useLoginAuth<T = OAuthResponse>() {
   const user = useSupabaseUser();
 
   const data = useState('login-data', () => null as T);
   const error = useState('login-error', () => null as AuthError | null);
-
-  async function login() {
-    const { error: authError, data: authData } =
-      await supabase.auth.signInWithOAuth({
-        provider,
-        options: {
-          redirectTo: `${
-            runtimeConfig.baseUrl
-          }/login?redirect=${getRedirectPath()}`,
-        },
-      });
-
-    if (!error) {
-      data.value = authData as T;
-      if (onSuccess) onSuccess(data.value);
-    } else {
-      error.value = authError;
-      if (onFail) onFail(authError);
-    }
-  }
 
   watch(
     user,
@@ -53,6 +65,5 @@ export default function useLogin<T = OAuthResponse>(props?: LoginOptions<T>) {
   return {
     error,
     data,
-    login,
   };
 }

@@ -50,15 +50,15 @@
       <div class="flex w-full justify-between items-center">
         <img
           loading="lazy"
-          :src="useMetaData.avatar_url"
-          :alt="useMetaData.user_name"
+          :src="userMetaData.avatar_url"
+          :alt="userMetaData.user_name"
           width="48"
           height="48"
           class="h-12 w-12 rounded-full"
         />
         <a class="flex flex-col flex-1 text-left pl-4">
           <span class="font-bold text-base">
-            {{ useMetaData.user_name }}
+            {{ userMetaData.user_name || userMetaData.name }}
           </span>
           <span class="text-sm">{{ user?.email }}</span>
         </a>
@@ -67,7 +67,7 @@
           i-carbon-logo-github
           text-3xl
           target="_blank"
-          :href="`https://github.com/${useMetaData.user_name}`"
+          :href="`https://github.com/${userMetaData.user_name}`"
         />
       </div>
     </div>
@@ -115,7 +115,7 @@ definePageMeta({
 });
 
 const user = useSupabaseUser() as Ref<User>;
-const useMetaData = computed(() => user?.value?.user_metadata || {});
+const userMetaData = computed(() => user?.value?.user_metadata || {});
 
 const { toggleDark } = useDarkTheme();
 const { logout } = useLogout();

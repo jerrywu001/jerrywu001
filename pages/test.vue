@@ -9,6 +9,9 @@
   >
     <p>{{ user?.email }}</p>
     <button @click="logout">logout</button>
+    <div>
+      <NuxtLink to="/">to home</NuxtLink>
+    </div>
   </div>
 </template>
 
