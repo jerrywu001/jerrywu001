@@ -16,3 +16,4 @@ package-lock.json
 templates/*
 sw.js
 tsconfig.json
+.eslintrc.js

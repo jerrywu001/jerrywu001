@@ -37,7 +37,7 @@ export default {
 <style lang="postcss">
 .table-of-contents {
   .toc-link {
-    @apply py-1 transform transition-colors duration-100 block d-secondary-text hover:d-secondary-text-hover;
+    @apply py-1 transform transition-colors duration-100 block;
     font-weight: 400;
 
     &.active {

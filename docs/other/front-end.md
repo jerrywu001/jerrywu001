@@ -1,10 +1,3 @@
----
-title: 2022年值得推荐的前端实用网站！
-description: 2022年值得推荐的前端实用网站！（建议入收藏夹～～）
-cover: /articles/dev.jpg
-createAt: 2022-09-23T19:00:00.000Z
----
-
 > 本篇为前端工友们带来N个棒棒哒免费的实用资源，收藏⭐等于学会 (๑•̀ㅂ•́)و✧
 
 ## 前端文档生成工具
@@ -33,7 +26,8 @@ createAt: 2022-09-23T19:00:00.000Z
 
 ### [玻璃态生成器](https://ui.glass/generator)
 
-:mp4{path=https%3A%2F%2Fvdn6.vzuu.com%2FSD%2Fa5031096-3d8e-11ed-83fb-2628452516ad.mp4%3Fpkey%3DAAV-E1FZ9L2Z_EfIP0GHe-oRBbKCXQxN4jWzLDpjDiMDe0Jab9ijpNBTkAazu9xaXGNNJl7mB0Zfyi5to19nhGvy%26c%3Davc.1.1%26f%3Dmp4%26pu%3D078babd7%26bu%3D078babd7%26expiration%3D1690434749%26v%3Dks6}
+<img src="https://ik.imagekit.io/jerrywu001/supabases-blogs/40b3fd13-e5a4-40ad-82af-cc83d4eb4e95/glass_PnfrsjeHb.png" />
+
 
 ### [盒阴影生成器](https://shadows.brumm.af/)
 ![shadow.gif](https://pic1.zhimg.com/80/v2-0b2c19768e1512b56afe3ac2d89c5e58.webp)

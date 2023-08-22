@@ -1,5 +1,3 @@
-import fs from 'fs';
-
 // https://nuxt.com/docs/getting-started/configuration
 export default defineNuxtConfig({
   // https://github.com/nuxt/framework/issues/1600
@@ -15,15 +13,28 @@ export default defineNuxtConfig({
     },
   },
 
+  components: {
+    global: true,
+    dirs: [
+      '~/components',
+      '~/md-components',
+      '~/sandpack-demos',
+    ],
+  },
+
   runtimeConfig: {
+    imageKitPublickey: process.env.IMAGEKIT_PUBLIC,
+    imageKitPrivatekey: process.env.IMAGEKIT_SECRET,
+    imageKitUrlEndpoint: 'https://ik.imagekit.io/jerrywu001',
     public: {
+      https: process.env.HTTPS === 'true' || false,
+      host: process.env.HOST || 'localhost',
       dev: process.env.NODE_ENV !== 'production',
       baseUrl: process.env.BASE_URL,
-      host: process.env.HOST,
-      port: process.env.PORT,
     },
   },
 
+  // https://supabase.nuxtjs.org/
   supabase: {
     url: `https://${process.env.NUXT_SUPABASE_PROJECT}.supabase.co`,
     key: process.env.NUXT_SUPABASE_CLIENT_KEY,
@@ -31,7 +42,7 @@ export default defineNuxtConfig({
     redirectOptions: {
       login: '/login',
       callback: '/login',
-      exclude: ['/', '/posts/*', '/test'],
+      exclude: ['/*'],
     },
     clientOptions: {
       auth: {
@@ -43,13 +54,14 @@ export default defineNuxtConfig({
   modules: [
     '@vueuse/nuxt',
     '@nuxt/devtools',
-    'nuxt-windicss',
-    '@unocss/nuxt',
-    '@nuxtjs/eslint-module', // https://juejin.cn/post/7043762203740094477
     '@nuxtjs/supabase',
+    '@nuxtjs/tailwindcss',
+    '@nuxtjs/color-mode', // https://color-mode.nuxtjs.org/
   ],
 
-  css: ['~/assets/main.css', '~/assets/post.css'],
+  colorMode: {
+    classSuffix: '',
+  },
 
   devtools: {
     timeline: {

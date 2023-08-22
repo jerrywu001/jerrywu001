@@ -1,0 +1,9 @@
+.article {
+  p {
+    @apply my-4 leading-relaxed;
+
+    br {
+      @apply mt-4 block;
+    }
+  }
+}

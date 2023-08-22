@@ -5,6 +5,10 @@
 .code
 *.iml
 .static
+prisma.ts
+prisma/migrations
+test.json
+test.md
 
 # dependencies
 /node_modules
@@ -34,6 +38,7 @@ yarn.lock
 *.log
 
 # .env
+.env
 .env.local
 .env.development.local
 .env.test.local
@@ -45,3 +50,5 @@ yarn-debug.log*
 yarn-error.log*
 
 .vercel
+
+.env*.local

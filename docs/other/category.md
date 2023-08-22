@@ -1,10 +1,3 @@
----
-title: 优秀面试相关文章汇总
-description: 优秀面试相关文章汇总！（建议入收藏夹～～）
-cover: /articles/front-end.jpeg
-createAt: 2022-09-26T19:00:00.000Z
----
-
 ## babel
 
 - [ast原理解析](https://zhuanlan.zhihu.com/p/359456770)

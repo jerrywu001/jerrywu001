@@ -1,10 +1,3 @@
----
-title: 如何优雅的调试node环境的npm package源码
-description: 如何优雅的调试node环境的npm package源码
-cover: https://picx.zhimg.com/v2-059969054e0f1cf4d430512642cf12ed.jpg?source=172ae18b
-createAt: 2022-11-30T10:00:00.000Z
----
-
 > [光神](https://juejin.cn/user/2788017216685118)曾经说过“当你有了技术深度，很可能也同时有了技术广度”，这句话说出来是非常牛逼的，就比如说当你尝试去阅读源码时，你会学到很多你之前未曾听过的知识和技巧。
 
 我今天想要记录的是***如何优雅的调试node环境的npm package源码***

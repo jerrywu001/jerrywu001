@@ -19,11 +19,11 @@ interface LoginOptions<T = OAuthResponse> {
 }
 
 function getRedirectPath() {
-  return location.href.split('redirect=')[1] || '/';
+  return useRoute().fullPath.split('redirect=')[1] || '/';
 }
 
 export async function login<T = OAuthResponse>(
-  props?: LoginOptions<T>
+  props?: LoginOptions<T>,
 ): Promise<{ authError: AuthError | null; authData: T }> {
   const supabase = useSupabaseClient();
   const { public: runtimeConfig } = useRuntimeConfig();
@@ -33,9 +33,7 @@ export async function login<T = OAuthResponse>(
   const { error: authError, data } = await supabase.auth.signInWithOAuth({
     provider,
     options: {
-      redirectTo: `${
-        runtimeConfig.baseUrl
-      }/login?redirect=${getRedirectPath()}`,
+      redirectTo: `${runtimeConfig.baseUrl}/login?redirect=${getRedirectPath()}`,
       ...authOptions,
     },
   });
@@ -50,7 +48,7 @@ export default function useLoginAuth<T = OAuthResponse>() {
   const user = useSupabaseUser();
 
   const data = useState('login-data', () => null as T);
-  const error = useState('login-error', () => null as AuthError | null);
+  const error = useState('auth-error', () => null as string | null);
 
   watch(
     user,
@@ -60,12 +58,14 @@ export default function useLoginAuth<T = OAuthResponse>() {
         navigateTo(decodeURIComponent(redirectTo));
       }
     },
-    { immediate: true }
+    { immediate: true },
   );
 
   watch(error, () => {
-    if (error && error.value && error.value.message) {
-      alert(error.value.message);
+    if (error.value) {
+      setTimeout(() => {
+        error.value = '';
+      }, 2500);
     }
   });
 

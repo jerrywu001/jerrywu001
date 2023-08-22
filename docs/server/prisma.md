@@ -1,10 +1,3 @@
----
-title: Prisma操作mysql
-description: 本文介绍Prisma操作mysql
-cover: /articles/prisma.jpg
-createAt: 2022-01-23T16:00:00.000Z
----
-
 [Prisma](https://www.prisma.io/) 是一个开源的下一代 ORM。它由以下部分组成：
 
 - **Prisma Client**：用于 Node.js 和 TypeScript 的自动生成和类型安全的查询构建器

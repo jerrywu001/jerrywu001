@@ -1,4 +1,4 @@
-import { type User } from '@supabase/supabase-js';
+import { AuthError, type User } from '@supabase/supabase-js';
 
 export default function useAuth(saveCurrentPath = true) {
   const user = useSupabaseUser() as Ref<User>;
@@ -6,11 +6,11 @@ export default function useAuth(saveCurrentPath = true) {
   function toLogin() {
     if (!user.value && process.client) {
       const withCurrentPathUrl = `${encodeURIComponent(
-        window.location.href.split(window.location.host)[1]
+        window.location.href.split(window.location.host)[1],
       )}`;
 
       navigateTo(
-        saveCurrentPath ? `/login?redirect=${withCurrentPathUrl}` : '/login'
+        saveCurrentPath ? `/login?redirect=${withCurrentPathUrl}` : '/login',
       );
     }
   }
@@ -24,6 +24,29 @@ export default function useAuth(saveCurrentPath = true) {
     () => {
       toLogin();
     },
-    { immediate: true }
+    { immediate: true },
   );
+}
+
+export function useAuthCallbackError() {
+  const route = useRoute();
+  const { $toast } = useNuxtApp();
+
+  onBeforeMount(() => {
+    const callbackError = (route.hash || route.fullPath)?.split('error_description=')[1] || '';
+
+    if (callbackError) {
+      $toast.error(callbackError.replace(/\+/g, ' '));
+    }
+  });
+}
+
+export function getAuthErrorMsg(error: AuthError | null) {
+  let errorMsg = '';
+  const msg = error?.message || '';
+  if (msg) {
+    errorMsg =
+      msg === 'Invalid login credentials' ? 'email or password error' : msg;
+  }
+  return errorMsg;
 }

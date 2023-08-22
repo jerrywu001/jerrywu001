@@ -1,10 +1,3 @@
----
-title: Eslint是如何工作的（深度源码解析）
-description: Eslint是如何工作的（深度源码解析）！（建议入收藏夹～～）
-cover: https://picx.zhimg.com/v2-f5cb0d834f416c183a4ad62a71970ee6.jpg?source=172ae18b
-createAt: 2022-11-14T19:00:00.000Z
----
-
 > 对于前端工程化，[Eslint](https://eslint.org/docs/latest/user-guide/getting-started)是一个非常重要的环节，它可以方便的检查出代码中不符合规范的地方，并给予错误提示，对前端规范来说非常重要!
 
 # 阅读本文，您将收获

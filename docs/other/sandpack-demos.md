@@ -1,12 +1,6 @@
----
-title: sandbox demos
-cover: /articles/sandpack.png
-createAt: 2022-06-20T19:00:00.000Z
----
+## templates
 
 **此文章中 \\\`\\\`\\\` 表示的是 ```**
-
-## templates
 
 > 'angular' | 'react' | 'react-ts' | 'vanilla' | 'vanilla-ts' | 'vue' | 'vue3' | 'svelte' | 'solid';
 
@@ -381,7 +375,3 @@ function App() {
 }
 ```
 :::
-
----
-
-:button-link[Edit this page]{href="https://github.com/jerrywu001/jerrywu001/blob/master/docs/other/sandpack-demos.md"}
