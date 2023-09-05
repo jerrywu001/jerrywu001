@@ -31,45 +31,6 @@
           hover:i-twemoji-face-with-tears-of-joy
         />
       </div>
-      <a
-        v-if="!!user"
-        href="javascript:;"
-        bg-blue-400
-        hover:bg-blue-500
-        text-lg
-        text-white
-        font-light
-        py-2
-        px-4
-        my-3
-        rounded
-        @click="logout"
-      >
-        logout
-      </a>
-      <div class="flex w-full justify-between items-center">
-        <img
-          loading="lazy"
-          :src="userMetaData.avatar_url"
-          :alt="userMetaData.user_name"
-          width="48"
-          height="48"
-          class="h-12 w-12 rounded-full"
-        />
-        <a class="flex flex-col flex-1 text-left pl-4">
-          <span class="font-bold text-base">
-            {{ userMetaData.user_name || userMetaData.name }}
-          </span>
-          <span class="text-sm">{{ user?.email }}</span>
-        </a>
-        <a
-          v-if="user?.app_metadata?.provider === 'github'"
-          i-carbon-logo-github
-          text-3xl
-          target="_blank"
-          :href="`https://github.com/${userMetaData.user_name}`"
-        />
-      </div>
     </div>
 
     <div mt-20 text-center flex select-none all:transition-400>
@@ -105,8 +66,6 @@
 </template>
 
 <script setup lang="ts">
-import { type User } from '@supabase/supabase-js';
-
 definePageMeta({
   layout: false,
   key: 'index',
@@ -114,9 +73,5 @@ definePageMeta({
   layoutTransition: false,
 });
 
-const user = useSupabaseUser() as Ref<User>;
-const userMetaData = computed(() => user?.value?.user_metadata || {});
-
 const { toggleDark } = useDarkTheme();
-const { logout } = useLogout();
 </script>
