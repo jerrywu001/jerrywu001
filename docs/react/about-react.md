@@ -1,12 +1,3 @@
----
-title: 6个关于react的友情提示
-description: 6个关于react代码编写的建议，帮助提高代码的可读性、可维护性。
-cover: /articles/react/about-react.png
-createAt: 2018-02-22T10:00:00.000Z
----
-
-# 6个关于react的友情提示
-
 ## 使用function申明组件 {#define-component}
 
 ```jsx {2}[Welcome.tsx]
@@ -22,9 +13,9 @@ function Welcome(props) {
 }
 ```
 
-:::alert{type="info"}
+::: tip
 
-使用函数申明组件的好处：
+💡 使用函数申明组件的好处：
 
 - 更少的代码量
 - 更容易理解
@@ -35,9 +26,9 @@ function Welcome(props) {
 
 ## 保持组件轻量、简介 {#opt-component}
 
-:::alert{type="info"}
+::: tip
 
-有哪些好处：
+💡 有哪些好处：
 
 - 易于阅读
 - 易于测试
@@ -107,9 +98,9 @@ class Welcome extends Component {
 
 ## “this”的使用和理解 {#about-this-in-component}
 
-:::alert{type="warning"}
+::: warning
 
-es6模式下，react不会自动绑定给函数绑定this，下面讲一下解决的方法
+🚧 es6模式下，react不会自动绑定给函数绑定this，下面讲一下解决的方法
 
 :::
 
@@ -215,12 +206,8 @@ es6模式下，react不会自动绑定给函数绑定this，下面讲一下解�
     }
     ```
 
-:::alert{type=warning}
-
-总结：
-
-如果没有代码洁癖，建议使用箭头函数形式去定义方法
-
+::: warning 总结
+🚧 如果没有代码洁癖，建议使用箭头函数形式去定义方法
 :::
 
 ## 使用prop-types，用于属性类型检测 {#prop-types}

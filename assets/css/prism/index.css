@@ -1,0 +1,29 @@
+code[class*=language-],
+pre[class*=language-] {
+  @apply !text-sm;
+}
+
+pre[class*=language-] {
+  @apply !rounded-lg !m-0;
+}
+
+pre, code {
+  @apply transition-[background-color] duration-200 !border-none;
+}
+
+pre {
+  .command-line-prompt,
+  .line-numbers-rows {
+    @apply !border-none;
+  }
+}
+
+.line-numbers-rows > span:before {
+  @apply !text-[#b5b5b9];
+}
+
+.dark {
+  .line-numbers-rows > span:before {
+    @apply !text-white/60;
+  }
+}

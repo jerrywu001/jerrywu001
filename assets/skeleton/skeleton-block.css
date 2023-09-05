@@ -1,7 +1,0 @@
-.skeleton-block {
-  height: 1rem;
-  border-radius: var(--skeleton-block-radius);
-  background-color: var(--skeleton-color);
-  width: 100%;
-  display: block;
-}

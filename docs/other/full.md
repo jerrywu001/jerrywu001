@@ -1,14 +1,8 @@
----
-title: 此项目markdown语法介绍
-cover: /articles/markdown-cheat-sheet1.png
-createAt: 2022-03-20T19:00:00.000Z
----
-
-暂不支持数学表达式、流程图、序列图、甘特图
+## 基础语法
 
 **此文章中 \\\`\\\`\\\` 表示的是 ```**
 
-## 基础语法
+暂不支持流程图、序列图、甘特图
 
 > https://www.markdownguide.org/basic-syntax
 >
@@ -305,66 +299,36 @@ create-react-app react-debug
 
 :::
 
-### alert
+### Custom Containers
 
-- **默认（type=info）**
+> 注意`:::`后面有个空格
+>
+> 语法和vitepress的一样： https://vitepress.dev/guide/markdown#custom-containers
 
-```md
-:::alert
-默认
-:::
-```
+- **默认（info）**
 
-:::alert
-默认
+::: info
+This is an info box.
 :::
 
-- **自定义icon**
-
-```md
-:::alert{icon=🎶}
-自定义icon
-:::
-```
-
-:::alert{icon=🎶}
-自定义icon
+::: tip I am a title
+This is a tip box.
 :::
 
-- **type=success**
-
-```md
-:::alert{type=success}
-success!!!
-:::
-```
-
-:::alert{type=success}
-success!!!
+::: success
+This is a success box.
 :::
 
-- **type=danger**
-
-```md
-:::alert{type=danger}
-danger!!!
-:::
-```
-
-:::alert{type=danger}
-danger!!!
+::: danger
+This is a danger box.
 :::
 
-- **type=warning**
-
-```md
-:::alert{type=warning}
-warning!!!
+::: warning
+🎤 This is a warning box. Sing a song.
 :::
-```
 
-:::alert{type=warning}
-warning!!!
+::: details Click me to view the code
+This is a details block.
 :::
 
 ### button link
@@ -380,10 +344,10 @@ warning!!!
 - 站内跳转
 
 ```md
-:button-link[站内跳转]{href="/posts/server_mocker"}
+:button-link[站内跳转]{href="/"}
 ```
 
-:button-link[站内跳转]{href="/posts/server_mocker"}
+:button-link[站内跳转]{href="/"}
 
 
 ### list
@@ -514,7 +478,7 @@ warning!!!
 ### 普通折叠
 
 ```md
-::panel{title="我是个折叠按钮，点击我打开内容:"}
+:::panel{title="我是个折叠按钮，点击我打开内容:"}
 
 - one
 - two
@@ -533,55 +497,33 @@ warning!!!
 
 ---
 
-### alert 与 panel 嵌套
+### panel嵌套组件
 
-```md
-:::panel{title="view more info:"}
-  :::alert{icon=🎶}
+<img src="https://ik.imagekit.io/jerrywu001/supabases-blogs/f243372d-29a3-4185-bb54-595eb26f4084/panel.png?updatedAt=1693471912976" style="max-width: 500px" />
 
-  Hello xxxxxxxx:
-
-  - one: ....
-  - two: ....
-
-    :::alert{type=warning}
-    warning !!!!
-
-      :::alert{icon=none type=danger}
-        danger list:
-        :::list{icon=🤣}
-        - sadfasd
-        - asdfasdgdddd
-
-:::
-```
 
 :::panel{title="点击查看被嵌套的组件:"}
-  :::alert{icon=🎶}
+::: danger
+This is an info box. `react` info
 
-  Hello xxxxxxxx:
+[bing](https://cn.bing.com)
 
-  - one: ....
-  - two: ....
+```js
+const a = 1;
+```
 
-    :::alert{type=warning}
-    warning !!!!
-
-      :::alert{icon=none type=danger}
-        danger list:
-        :::list{icon=🤣}
-        - sadfasd
-        - asdfasdgdddd
-
+| col | col | col |
+| - | - | - |
+| content | content | content |
 :::
 
 ## iframe
 
 ```md
-::embed[]{href=https://windicss.org/play.html}
+::embed[]{href=https://tailwindcss.com/}
 ```
 
-::embed[]{href=https://windicss.org/play.html}
+::embed[]{href=https://tailwindcss.com/}
 
 ## sandpack demo
 
@@ -607,7 +549,7 @@ export default function App() {
 ```
 :::
 
-:button-link[more demos]{href="/posts/other_sandpack-demos"}
+:button-link[more demos]{href="/post/04f3f73c-df14-4a1a-93ef-502efb606f2a"}
 
 ## youtube
 

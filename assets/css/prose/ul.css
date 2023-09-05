@@ -1,0 +1,21 @@
+.article {
+  ul {
+    @apply list-none mx-0 p-0 my-[1.25em];
+
+    ul,
+    ol {
+      margin-top: 0.5em !important;
+      margin-bottom: 0.5em !important;
+    }
+  }
+
+  ul,
+  ol {
+    margin-top: 0.5em !important;
+    margin-bottom: 0.5em !important;
+
+    &.contains-task-list {
+      padding-left: 0;
+    }
+  }
+}

@@ -1,122 +1,105 @@
 <template>
   <Html>
     <Head>
-      <Title>index</Title>
+      <Title>Home</Title>
     </Head>
   </Html>
-  <div
-    class="bg-white font-montserrat h-100vh p-6 dark:bg-slate-900 dark:text-white/80"
-  >
+  <NuxtLayout name="default" title="Home">
     <div
-      relative
-      flex
-      flex-col
-      items-center
-      justify-between
-      space-y-12
-      shadow
-      rounded-md
-      bg-gray-100
-      hover:bg-gray-300
-      p-8
-      class="dark:bg-[#1d5f72]/90 dark:hover:bg-[#1d5f72]"
+      class="bg-white h-100vh p-6 dark:bg-slate-900 dark:text-white/80"
     >
-      <div flex items-center>
-        Hover the icon:
-        <a
-          inline-block
-          text-3xl
-          ml-3
-          i-twemoji-grinning-face-with-smiling-eyes
-          hover:i-twemoji-face-with-tears-of-joy
-        />
+      <div class="p-4 pb-2">
+        <select
+          v-model="colorMode.preference"
+          class="border w-24 h-8 dark:bg-gray-900 dark:text-white dark:border-gray-700"
+        >
+          <option value="system">System</option>
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+        </select>
       </div>
+
+      <div class="w-16 h-16">
+        <BdAvatar />
+      </div>
+
+      <div class="my-4">{{ siteUser?.nickname }}</div>
       <a
-        v-if="!!user"
+        v-if="!!siteUser?.userId"
         href="javascript:;"
-        bg-blue-400
-        hover:bg-blue-500
-        text-lg
-        text-white
-        font-light
-        py-2
-        px-4
-        my-3
-        rounded
+        class="bg-blue-400 hover:bg-blue-500 text-lg text-white font-light py-2 px-4 rounded"
         @click="logout"
       >
         logout
       </a>
-      <div class="flex w-full justify-between items-center">
-        <img
-          loading="lazy"
-          :src="userMetaData.avatar_url"
-          :alt="userMetaData.user_name"
-          width="48"
-          height="48"
-          class="h-12 w-12 rounded-full"
-        />
-        <a class="flex flex-col flex-1 text-left pl-4">
-          <span class="font-bold text-base">
-            {{ userMetaData.user_name || userMetaData.name }}
-          </span>
-          <span class="text-sm">{{ user?.email }}</span>
-        </a>
-        <a
-          v-if="user?.app_metadata?.provider === 'github'"
-          i-carbon-logo-github
-          text-3xl
-          target="_blank"
-          :href="`https://github.com/${userMetaData.user_name}`"
-        />
-      </div>
-    </div>
 
-    <div mt-20 text-center flex select-none all:transition-400>
-      <div ma>
-        <div flex class="my-5 justify-center dark:text-white/90">
-          <span>toggle theme</span>
-          <span
-            class="cursor-pointer mx-2 text-gray-600 block i-ph-sun-fill !h-6 !w-6 dark:text-[#92adad] dark:i-ph-moon-fill hover:opacity-80"
-            @click="toggleDark"
-          />
-        </div>
+      <NuxtLink
+        v-else
+        class="bg-blue-400 hover:bg-blue-500 text-lg text-white font-light py-2 px-4 rounded"
+        to="/login"
+      >
+        login
+      </NuxtLink>
 
+      <br />
+
+      <br />
+
+      <div>
         <NuxtLink
-          bg-blue-400
-          hover:bg-blue-500
-          text-lg
-          text-white
-          font-light
-          py-2
-          px-4
-          my-3
-          rounded
-          to="/posts/other_full"
+          class="bg-blue-400 hover:bg-blue-500 text-lg text-white font-light py-2 px-4 my-3 rounded"
+          :to="`/post-edit/${uuid()}`"
         >
-          查看项目md语法
+          create a post
         </NuxtLink>
       </div>
+
+      <div v-if="loading">loading...</div>
+      <template v-else>
+        <div
+          v-for="item in blogs"
+          :key="item.postId"
+          class="mt-8 text-center flex select-none all:transition-400"
+        >
+          <div class="">
+            <NuxtLink class="flex gap-5" :to="`/post/${item.postId}`">
+              <div v-if="item.cover">
+                <img class=" w-40 h-28 rounded-md object-cover" :src="item.cover" alt="cover">
+              </div>
+              <div class="flex flex-col gap-2 items-start">
+                <div>{{ item.title }}</div>
+                <p v-if="item.description" class="text-slate-400">{{ item.description }}</p>
+              </div>
+            </NuxtLink>
+          </div>
+        </div>
+      </template>
     </div>
-    <div absolute bottom-5 right-0 left-0 text-center op30 fw300>
-      on-demand · instant · fully customizable
-    </div>
-  </div>
+  </NuxtLayout>
 </template>
 
 <script setup lang="ts">
-import { type User } from '@supabase/supabase-js';
+import { IBlog } from '~~/types';
+import { uuid } from '~~/utils/utils';
 
-definePageMeta({
-  layout: false,
-  key: 'index',
-  pageTransition: false,
-  layoutTransition: false,
-});
+const colorMode = useColorMode();
+const { siteUser } = useSyncUser();
 
-const user = useSupabaseUser() as Ref<User>;
-const userMetaData = computed(() => user?.value?.user_metadata || {});
+definePageMeta({ layout: false });
 
-const { toggleDark } = useDarkTheme();
 const { logout } = useLogout();
+const blogs = ref<IBlog[]>([]);
+const loading = ref(false);
+
+const fetchAllPosts = async () => {
+  loading.value = true;
+  const { data } = await useFetch('/api/post/search', { method: 'POST', body: {} });
+  // @ts-ignore
+  blogs.value = data.value as IBlog[];
+  loading.value = false;
+};
+
+fetchAllPosts();
+
+useAuthCallbackError();
 </script>

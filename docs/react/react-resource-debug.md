@@ -1,14 +1,8 @@
----
-title: React源码调试环境搭建
-cover: /articles/react/react-resource-debug.jpeg
-createAt: 2022-02-08T10:00:00.000Z
----
-
 ## 创建react项目 {#create}
 
-:::alert{icon=🧙🏽‍♂️}
+::: tip
 
-版本：[create-react-app@5.0.0](https://create-react-app.dev/docs/getting-started/)
+🧙🏽‍♂️ 版本：[`create-react-app@5.0.0`](https://create-react-app.dev/docs/getting-started/)
 
 :::
 

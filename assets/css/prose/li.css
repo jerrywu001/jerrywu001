@@ -1,0 +1,35 @@
+.article, .tocs {
+  li {
+    @apply relative my-[0.25em] pl-4 break-all;
+
+    p {
+      @apply my-[0.75em];
+    }
+
+    &.task-list-item {
+      &::marker {
+        display: none;
+        content: '';
+      }
+    }
+  }
+
+  ul > li {
+    &::before {
+      @apply rounded-full bg-gray-500 h-1.5 top-[0.5em] left-0 w-1.5 absolute dark:bg-slate-300/70;
+      content: '';
+    }
+  }
+
+  ol > li {
+    padding-left: 0;
+  }
+
+  li > ol > li {
+    margin-left: 1rem;
+  }
+
+  .nuxt-content-highlight {
+    @apply m-0;
+  }
+}

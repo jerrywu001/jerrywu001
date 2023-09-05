@@ -2,7 +2,6 @@
 title: 一文彻底搞懂package.json中的exports, main, module, type
 description: 一文彻底搞懂package.json中的exports, main, module, type
 cover: https://picx.zhimg.com/v2-5cea55d64465d57fc2e3537d7968f9a7_1440w.jpg?source=172ae18b
-createAt: 2023-03-19T10:00:00.000Z
 ---
 
 > package.json每天都会用到，但是你真的对里面的某些字段很了解吗，本文将带你了解其中经常使用的一些字段

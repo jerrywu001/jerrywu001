@@ -1,10 +1,3 @@
----
-title: babel 之 core-js preset-env plugin-transform-runtime 实操指南
-description: babel 之 core-js preset-env plugin-transform-runtime 实操指南
-cover: /articles/babel.jpg
-createAt: 2022-08-26T10:00:00.000Z
----
-
 > 由于 Babel 只进行语法转换（如箭头函数, let, const），你可以使用**垫片方案**来支持新的全局变量，如 Promise 或新的原生方法，如 String.padStart（left-pad）。
 
 ## 关于@babel/polyfill
@@ -47,12 +40,8 @@ const func = () => {};
 
 - 修改package.json scripts部分
 
-:::alert
-
-npm run babel
-
-如修改babel.config.js/.browserslistrc，需要重新跑这个命令
-
+::: tip
+💡 如修改babel.config.js/.browserslistrc，需要重新跑`npm run babel`.
 :::
 
 ```diff [class="diff-highlight"]
@@ -66,8 +55,8 @@ npm run babel
 
 - 创建 .browserslistrc
 
-:::alert{type=warning}
-\>0.2%会polyfill不支持es6的浏览器，我验证了下这个粗略的临界点大概在0.764%，当小于这个值，比如<=0.763%的时候，效果和>0.2%一样
+::: warning
+🚧 0.2%会polyfill不支持es6的浏览器，我验证了下这个粗略的临界点大概在0.764%，当小于这个值，比如<=0.763%的时候，效果和>0.2%一样
 :::
 
 ```yaml [class=no-line-numbers]
@@ -125,8 +114,8 @@ a.padStart(10, '0');
 const func = () => {};
 ```
 
-:::alert
-输出结果中会发现引入了很多不需要的特性，实际上只用到pad-start
+::: tip
+💡 输出结果中会发现引入了很多不需要的特性，实际上只用到pad-start
 :::
 
 ```js [class=no-line-numbers]
@@ -155,8 +144,8 @@ a.padStart(10, '0');
 const func = () => {};
 ```
 
-:::alert
-usage 实现了按需引用
+::: tip
+💡usage 实现了按需引用
 :::
 
 ```js [class=no-line-numbers]
@@ -172,9 +161,9 @@ var func = function func() {};
 
 ## .browserslistrc简单使用
 
-:::alert
+::: tip
 
-[browserslist](https://github.com/browserslist/browserslist)
+💡 [browserslist](https://github.com/browserslist/browserslist)
 
 :::
 
@@ -235,8 +224,8 @@ var func = function func() {};
 
 ## @babel/plugin-transform-runtime
 
-:::alert
-babel编译es6到es5的过程中，@babel/plugin-transform-runtime这个插件会自动polyfill es5不支持的特性，这些polyfill包就是在@babel/runtime这个包里（core-js 、regenerator等）
+::: tip
+💡 babel编译es6到es5的过程中，@babel/plugin-transform-runtime这个插件会自动polyfill es5不支持的特性，这些polyfill包就是在@babel/runtime这个包里（core-js 、regenerator等）
 :::
 
 - 场景问题

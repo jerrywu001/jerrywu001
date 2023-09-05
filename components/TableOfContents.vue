@@ -26,7 +26,7 @@
     </a>
     <div class="flex-col pb-2 justify-between overflow-y-auto sticky">
       <div
-        class="pr-3 overflow-x-hidden overflow-y-auto d-scrollbar box-border"
+        class="pr-3 overflow-x-hidden overflow-y-auto box-border"
         :class="`${!isPc ? 'max-h-[50vh]' : 'h-$tocs-height-xl'}`"
       >
         <SecondTocs :children="children" />

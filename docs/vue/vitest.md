@@ -1,10 +1,3 @@
----
-title: vitest体验（兼容jest api）
-description: 最近由Anthony Fu大佬领衔的新一代基于vite的单元测试框架vitest上线了，语法兼容jest，支持热更新
-cover: /articles/vue/vitest.jpg
-createAt: 2021-12-28T10:00:00.000Z
----
-
 > 最近由Anthony Fu大佬领衔的新一代基于vite的单元测试框架[vitest](https://vitest.dev/)上线了，语法兼容jest，可继承vite配置，支持热更新
 
 ## 特性介绍
@@ -389,12 +382,14 @@ describe.skip('mock api', () => {
 >
 > *To prepare a component for assertions, wrap the code rendering it and performing updates inside anact()call. This makes your test run closer to how React works in the browser.*
 
-测试功能点：
+::: tip 测试功能点
 
 1. 模拟渲染带params的路由（该路由对应页面组件，会根据id进行列表数据获取，然后进行渲染）
 2. 头部是当前导购（导购名称，导购年龄），下方是导购列表，并可以切换导购
 3. 切换导购，查看当前导购是否发生变化
 4. unmount，并测试是否卸载成功
+
+:::
 
 ```
 import { BookingService } from '@/services';

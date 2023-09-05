@@ -1,5 +1,21 @@
 import type { VNode } from 'vue';
-import { MarkdownNode } from '~~/types';
+import { User } from '@supabase/supabase-js';
+import { MarkdownNode, SiteUser } from '~~/types';
+
+export function isCDNAvatar(avatar: string | null) {
+  return (avatar || '').includes('ik.imagekit.io');
+}
+
+export function formatSiteUser(u: User): SiteUser {
+  const meta = u?.user_metadata;
+
+  return {
+    userId: u?.id,
+    email: u?.email as string,
+    nickname: meta?.user_name || meta?.name || (u.email as string),
+    avatar: meta?.avatar_url || meta?.avatar,
+  };
+}
 
 /**
  * List of text nodes
@@ -14,7 +30,7 @@ export const TEXT_TAGS = ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'li'];
  */
 export function isTag(
   vnode: VNode | MarkdownNode,
-  tag: string | symbol
+  tag: string | symbol,
 ): boolean {
   // Vue 3 uses `type` instead of `tag`
   if (vnode.type === tag) {
@@ -118,7 +134,7 @@ export function flatUnwrap(vnodes: VNode | VNode[], tags = ['p']): VNode[] {
   return vnodes
     .flatMap((vnode) => flatUnwrap(unwrap(vnode, [tags[0]]), tags.slice(1)))
     .filter(
-      (vnode) => !(isText(vnode) && nodeTextContent(vnode).trim() === '')
+      (vnode) => !(isText(vnode) && nodeTextContent(vnode).trim() === ''),
     );
 }
 
@@ -127,73 +143,178 @@ export const useUnwrap = () => ({
   flatUnwrap,
 });
 
-/**
- * 异步加载 JS
- * @param scriptUrl
- * resolve(true) 加载成功
- * reject(error) 加载失败(error 需要用try/catch去捕获)
- */
-export function loadScript(scriptUrl: string, id: string) {
-  return new Promise<boolean>((resolve, reject) => {
-    console.log(`[system] loadScript: 准备加载 "${scriptUrl}"`);
-    if (document.getElementById(id)) {
-      resolve(true);
-    } else {
-      const scriptElement = document.createElement('script');
-      scriptElement.id = id;
-      scriptElement.src = scriptUrl;
-      scriptElement.async = true;
-      scriptElement.onload = () => {
-        console.log(`[system] loadScript: "${scriptUrl}" 加载成功`);
-        resolve(true);
-      };
-      scriptElement.onerror = (error) => {
-        console.error(`[system] loadScript: "${scriptUrl}" 加载失败`);
-        reject(error);
-      };
-      document.head.appendChild(scriptElement);
-    }
-  });
+export function validEmail(email = '') {
+  return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email);
 }
 
-/**
- * 异步加载 Css
- * @param styleUrl
- * resolve(true) 加载成功
- * reject(error) 加载失败(error 需要用try/catch去捕获)
- */
-export function loadStyle(styleUrl: string, id: string) {
-  return new Promise<boolean>((resolve, reject) => {
-    console.log(`[system] loadStyle: 准备加载 "${styleUrl}"`);
-    if (document.getElementById(id)) {
-      document.getElementById(id)?.remove();
-    }
-    const styleElement = document.createElement('link');
-    styleElement.id = id;
-    styleElement.rel = 'stylesheet';
-    styleElement.href = styleUrl;
-    styleElement.onload = () => {
-      console.log(`[system] loadStyle: "${styleUrl}" 加载成功`);
-      resolve(true);
-    };
-    styleElement.onerror = (error) => {
-      console.error(`[system] loadStyle: "${styleUrl}" 加载失败`);
-      reject(error);
-    };
-    document.head.appendChild(styleElement);
-  });
-}
+export function getDateTimeStr(date: Date) {
+  const dateObj = new Date(date);
+  const year = dateObj.getFullYear();
+  const month = dateObj.getMonth() + 1;
+  const day = dateObj.getDate();
+  const hour = dateObj.getHours();
+  const minute = dateObj.getMinutes();
+  const second = dateObj.getSeconds();
 
-export function getPostPath(url = '') {
-  const rs = {
-    filename: '',
-    event: 'change' as 'change' | 'add' | 'unlink',
+  const addZero = (num: number) => {
+    return num < 10 ? `0${num}` : num;
   };
-  const arr = url.split('@');
-  rs.event = arr[1] as 'change' | 'add' | 'unlink';
-  rs.filename = arr[0]
-    .replace('docs/', '')
-    .replace('/', '_')
-    .replace('.md', '');
-  return rs;
+
+  return `${year}-${addZero(month)}-${addZero(day)} ${addZero(hour)}:${addZero(minute)}:${addZero(second)}`;
+}
+
+export function isUUID(str?: string) {
+  const uuidRegex =
+    /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+  return uuidRegex.test(str || '');
+}
+
+/** a function to generate a uuid */
+export function uuid() {
+  let d = Date.now();
+  if (
+    typeof performance !== 'undefined' &&
+    typeof performance.now === 'function'
+  ) {
+    d += performance.now();
+  }
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+    const r = ((d + Math.random() * 16) % 16) | 0;
+    d = Math.floor(d / 16);
+
+    return (c === 'x' ? r : (r & 0x3) | 0x8).toString(16);
+  });
+}
+
+export const toolbars = [
+  'bold',
+  'underline',
+  'italic',
+  '-',
+  'title',
+  'strikeThrough',
+  'sub',
+  'sup',
+  'quote',
+  'unorderedList',
+  'orderedList',
+  'task',
+  '-',
+  'codeRow',
+  'code',
+  'link',
+  'image',
+  'table',
+  'katex',
+  0,
+  '-',
+  'revoke',
+  'next',
+  '=',
+  'pageFullscreen',
+  'fullscreen',
+  'catalog',
+] as any[];
+
+export function getDefaultMdVnodes() {
+  return {
+    title: '',
+    source: '## hello',
+    content: [
+      {
+        type: 'text',
+        value: '\n',
+      },
+      {
+        type: 'element',
+        tag: 'h2',
+        props: {
+          id: 'hello',
+          className: [],
+        },
+        children: [
+          {
+            type: 'element',
+            tag: 'a',
+            props: {
+              href: '#hello',
+              className: [],
+            },
+            children: [
+              {
+                type: 'text',
+                value: 'hello',
+              },
+            ],
+            content: [],
+          },
+        ],
+        content: [],
+      },
+      {
+        type: 'text',
+        value: '\n',
+      },
+    ],
+    tocs: [
+      {
+        depth: 1,
+        class: 'toc-link toc-link-h2',
+        label: 'hello>',
+        archor: '#hello',
+      },
+    ],
+  };
+}
+
+export function fileToBase64(file: File): Promise<string> {
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+
+    reader.onload = function (event: any) {
+      const base64String = event.target.result.split(',')[1];
+      resolve(base64String);
+    };
+
+    reader.onerror = function (event: any) {
+      resolve('');
+    };
+
+    reader.readAsDataURL(file);
+  });
+}
+
+export function parseDomFromString(htmlString = '') {
+  if (!htmlString) return null;
+
+  const parser = new DOMParser();
+  const docFragment = parser.parseFromString(htmlString, 'text/html').body;
+
+  return docFragment.firstElementChild as HTMLElement;
+}
+
+export function replaceMdSyntax(resolveMd = false) {
+  if (resolveMd) {
+    setTimeout(() => {
+      const mdCodes = document.querySelectorAll('pre.language-md');
+      (mdCodes || []).forEach((code) => {
+        const html = code.innerHTML.replace(/\\`\\`\\`/g, '```');
+        const newDom = parseDomFromString(html);
+        code.innerHTML = '';
+        code.appendChild(newDom as HTMLElement);
+      });
+    }, 500);
+  }
+
+  const mdScroller = document.querySelector('.cm-scroller');
+  const viewScroller = document.getElementById('content');
+
+  if (mdScroller && viewScroller) {
+    mdScroller.addEventListener('scroll', () => {
+      viewScroller.scrollTop = mdScroller.scrollTop;
+    });
+    viewScroller.addEventListener('scroll', () => {
+      mdScroller.scrollTop = viewScroller.scrollTop;
+    });
+  }
 }

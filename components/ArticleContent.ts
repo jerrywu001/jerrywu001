@@ -1,17 +1,14 @@
-import { h, resolveComponent, Text, defineComponent, toRefs } from 'vue';
+import { h, resolveComponent, Text, defineComponent } from 'vue';
 import { destr } from 'destr';
 import { pascalCase } from 'scule';
 import { find, html } from 'property-information';
-// eslint-disable-next-line import/no-named-as-default
 import htmlTags from 'html-tags';
 import type { VNode, ConcreteComponent, PropType } from 'vue';
 import type {
-  IMeta,
   IElement as MarkdownNode,
   ParsedContentMeta,
 } from '~~/types';
 
-type CreateElement = typeof h;
 type ContentVNode = VNode | string;
 
 /**
@@ -27,7 +24,6 @@ const nativeInputs = ['select', 'textarea', 'input'];
 interface IProp {
   tag?: string;
   children: MarkdownNode[];
-  meta: IMeta;
 }
 
 export default defineComponent({
@@ -49,55 +45,12 @@ export default defineComponent({
         return [];
       },
     },
-    meta: {
-      type: Object as PropType<IMeta>,
-      default() {
-        return {};
-      },
-    },
   },
   render(props: IProp) {
-    const { tag, children, meta = {} as IMeta, ...restProps } = props;
+    const { tag, children, ...restProps } = props;
 
     if (!children || !children.length) {
       return null;
-    }
-
-    const hasTitle = meta.hasTitle;
-    const hasH1 = children.findIndex((v) => v.tag === 'h1') > -1;
-    const hasCover =
-      children.findIndex((v) => v.tag === 'img' && v.props.id === 'cover') > -1;
-
-    if (!hasTitle && !hasH1) {
-      children.unshift({
-        type: 'element',
-        tag: 'h1',
-        props: {},
-        children: [
-          {
-            type: 'text',
-            value: meta.title,
-          } as MarkdownNode,
-        ],
-      });
-    }
-
-    // article cover image
-    if (meta.cover && !hasCover) {
-      children.unshift({
-        type: 'element',
-        tag: 'img',
-        props: {
-          id: 'cover',
-          // @ts-ignore
-          src: meta.cover,
-          style: {
-            marginTop: '0 !important',
-          },
-          className: ['article-cover w-full rounded-md'],
-        },
-        children: [],
-      });
     }
 
     // Get body from value
@@ -106,9 +59,7 @@ export default defineComponent({
     // Resolve component if it's a Vue component
     component = resolveVueComponent(component as string);
 
-    const childList = children.map((child) =>
-      renderNode(child, h, {} as ParsedContentMeta)
-    );
+    const childList = children.map((child) => renderNode(child, {} as ParsedContentMeta));
 
     // Return Vue component
     return h(
@@ -119,7 +70,7 @@ export default defineComponent({
       },
       {
         default: createSlotFunction(childList),
-      }
+      },
     );
   },
 });
@@ -129,8 +80,7 @@ export default defineComponent({
  */
 function renderNode(
   node: MarkdownNode,
-  h: CreateElement,
-  documentMeta: ParsedContentMeta
+  documentMeta: ParsedContentMeta,
 ): ContentVNode {
   const originalTag = node.tag;
   // `_ignoreMap` is an special prop to disables tag-mapper
@@ -155,7 +105,7 @@ function renderNode(
   return h(
     component as any,
     propsToData(node, documentMeta),
-    renderSlots(node, h, documentMeta)
+    renderSlots(node, documentMeta),
   );
 }
 
@@ -164,45 +114,42 @@ function renderNode(
  */
 function renderSlots(
   node: MarkdownNode,
-  h: CreateElement,
-  documentMeta: ParsedContentMeta
+  documentMeta: ParsedContentMeta,
 ) {
   const children: MarkdownNode[] = node.children || [];
 
   const slots: Record<string, Array<VNode | string>> = children.reduce(
-    (data, node) => {
-      if (!isTemplate(node)) {
+    (data, mnode) => {
+      if (!isTemplate(mnode)) {
         // @ts-ignore
-        data[DEFAULT_SLOT].push(renderNode(node, h, documentMeta));
+        data[DEFAULT_SLOT].push(renderNode(mnode, documentMeta));
         return data;
       }
 
-      if (isDefaultTemplate(node)) {
+      if (isDefaultTemplate(mnode)) {
         data[DEFAULT_SLOT].push(
           // @ts-ignore
-          ...node.children.map((child) => renderNode(child, h, documentMeta))
+          ...mnode.children.map((child) => renderNode(child, documentMeta)),
         );
         return data;
       }
 
-      const slotName = getSlotName(node);
+      const slotName = getSlotName(mnode);
       // @ts-ignore
-      data[slotName] = node.children.map((child) =>
-        renderNode(child, h, documentMeta)
-      );
+      data[slotName] = mnode.children.map((child) => renderNode(child, documentMeta));
 
       return data;
     },
     {
       [DEFAULT_SLOT]: [],
-    }
+    },
   );
 
   return Object.fromEntries(
     Object.entries(slots).map(([name, vDom]) => [
       name,
       createSlotFunction(vDom),
-    ])
+    ]),
   );
 }
 
@@ -211,7 +158,7 @@ function renderSlots(
  */
 function propsToData(node: MarkdownNode, documentMeta: ParsedContentMeta) {
   const { tag = '', props = {} } = node;
-  return Object.keys(props).reduce(function (data, key) {
+  return Object.keys(props).reduce((data, key) => {
     // Ignore internal `__ignoreMap` prop.
     if (key === '__ignoreMap') {
       return data;
@@ -261,7 +208,7 @@ function propsToDataRxModel(
   key: string,
   value: any,
   data: any,
-  documentMeta: ParsedContentMeta
+  documentMeta: ParsedContentMeta,
 ) {
   // Model modifiers
   const number = (d: any) => +d;
@@ -295,7 +242,7 @@ function propsToDataVBind(
   _key: string,
   value: any,
   data: any,
-  documentMeta: ParsedContentMeta
+  documentMeta: ParsedContentMeta,
 ) {
   const val = evalInContext(value, documentMeta);
   data = Object.assign(data, val);
@@ -309,7 +256,7 @@ function propsToDataRxOn(
   key: string,
   value: any,
   data: any,
-  documentMeta: ParsedContentMeta
+  documentMeta: ParsedContentMeta,
 ) {
   key = key.replace(rxOn, '');
   data.on = data.on || {};
@@ -324,7 +271,7 @@ function propsToDataRxBind(
   key: string,
   value: any,
   data: any,
-  documentMeta: ParsedContentMeta
+  documentMeta: ParsedContentMeta,
 ) {
   key = key.replace(rxBind, '');
   data[key] = evalInContext(value, documentMeta);
@@ -369,9 +316,11 @@ function getSlotName(node: MarkdownNode) {
   for (const propName of Object.keys(node.props || {})) {
     // Check if prop name correspond to a slot
     if (!propName.startsWith('#') && !propName.startsWith('v-slot:')) {
+      // eslint-disable-next-line no-continue
       continue;
     }
     // Get slot name
+    // eslint-disable-next-line prefer-destructuring
     name = propName.split(/[:#]/, 2)[1];
     break;
   }

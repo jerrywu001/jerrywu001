@@ -1,0 +1,13 @@
+@import './prism/index.css';
+
+@import 'prose/a.css';
+@import 'prose/blockquote.css';
+@import 'prose/em.css';
+@import 'prose/h.css';
+@import 'prose/img.css';
+@import 'prose/li.css';
+@import 'prose/ol.css';
+@import 'prose/paragraph.css';
+@import 'prose/strong.css';
+@import 'prose/table.css';
+@import 'prose/ul.css';

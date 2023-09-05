@@ -3,7 +3,7 @@ import 'photoswipe/dist/photoswipe.css';
 import PhotoSwipeLightbox from 'photoswipe/lightbox';
 import { Ref } from 'vue';
 
-export default function useImgSwipe(loading: Ref<boolean>) {
+export default function useImgSwipe(loaded: Ref<boolean>) {
   const lightbox = ref(null);
 
   async function initImageSwipe() {
@@ -12,16 +12,15 @@ export default function useImgSwipe(loading: Ref<boolean>) {
       nextTick(() => {
         setTimeout(() => {
           getAllImgsLoaded(() => {
-            const box = document.querySelector('.article-scroll-box');
+            const box = document.querySelector('article');
             if (box) {
-              console.log('start init images swiper');
-              const items = box.querySelectorAll('img');
+              const items = (box.querySelectorAll('img') || []);
               items.forEach((img) => {
-                if (img.id !== 'cover') {
+                if (img.id !== 'cover' && !img.classList.contains('w-10')) {
                   (function (prevImg: HTMLImageElement) {
                     const a = document.createElement('a');
                     let newImg = document.createElement(
-                      'img'
+                      'img',
                     ) as HTMLImageElement;
 
                     a.className = 'swiper-link';
@@ -45,13 +44,13 @@ export default function useImgSwipe(loading: Ref<boolean>) {
                       // @ts-ignore
                       newImg = null;
                     };
-                  })(img);
+                  }(img));
                 }
               });
               if (!lightbox.value) {
                 // @ts-ignore
                 lightbox.value = new PhotoSwipeLightbox({
-                  gallery: '.article-scroll-box',
+                  gallery: 'article',
                   children: '.swiper-link',
                   pswpModule: () => import('photoswipe'),
                   imageClickAction: 'close',
@@ -63,14 +62,9 @@ export default function useImgSwipe(loading: Ref<boolean>) {
                   lightbox.value?.init();
                 });
               }
-
-              const pres = document.querySelectorAll('pre');
-              pres.forEach((pre) => {
-                pre.classList.add('d-scrollbar');
-              });
             }
           });
-        }, 0);
+        }, 1200);
       });
     }
   }
@@ -88,38 +82,37 @@ export default function useImgSwipe(loading: Ref<boolean>) {
   });
 
   watch(
-    loading,
+    loaded,
     () => {
-      if (!loading.value) {
-        initImageSwipe();
+      if (loaded.value) {
+        nextTick(() => {
+          initImageSwipe();
+        });
       }
     },
-    { immediate: true }
   );
 
   return { lightbox, initImageSwipe };
 }
 
 function getAllImgsLoaded(callback: () => void) {
-  const box = document.querySelector('.article-scroll-box') as HTMLDivElement;
-  const images = box.querySelectorAll('img');
+  const box = document.querySelector('article') as HTMLDivElement;
+  const images = box?.querySelectorAll('img');
 
-  const promises = Array.prototype.slice.call(images).map((node) => {
-    return new Promise((resolve) => {
-      const loadImg = new Image();
-      loadImg.src = node.src;
-      loadImg.onload = () => {
-        resolve(node);
-      };
-      loadImg.onerror = () => {
-        resolve(node);
-      };
-    });
-  });
+  const promises = Array.prototype.slice.call(images || []).map((node) => new Promise((resolve) => {
+    const loadImg = new Image();
+    loadImg.src = node.src;
+    loadImg.onload = () => {
+      resolve(node);
+    };
+    loadImg.onerror = () => {
+      resolve(node);
+    };
+  }));
 
   Promise.all(promises)
     .then(() => {
-      callback && callback();
+      if (callback) callback();
     })
     .catch((e) => {
       console.error(e);
