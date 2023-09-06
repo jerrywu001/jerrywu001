@@ -12,6 +12,8 @@ html {
 
 .swiper-link {
   border: none !important;
+  display: block;
+  width: fit-content;
 }
 
 .swiper-link img {

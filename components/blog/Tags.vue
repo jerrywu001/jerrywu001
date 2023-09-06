@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-wrap">
     <div v-for="item in tags" :key="item.id">
-      <div class="tag" :class="colorClassName()">{{ item.name }}</div>
+      <div class="tag" :class="colorClassName()">{{ item.name }}({{ item?._count?.blogs }})</div>
     </div>
     <!-- ignore -->
     <div v-show="false" class="tag bg-fuchsia-100 text-fuchsia-800 dark:bg-fuchsia-900 dark:text-fuchsia-300">Vue</div>

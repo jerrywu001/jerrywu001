@@ -69,7 +69,7 @@
                     @keyup.prevent.enter="createTag"
                   />
                 </li>
-                <template v-if="tags.length > 0">
+                <template v-if="tags?.length > 0">
                   <li
                     v-for="item in tags"
                     :key="item.name"
@@ -192,7 +192,7 @@ const tags = ref<Tag[]>([]);
 const selected = ref<Tag[]>([]);
 
 const disabled = computed(() => !blogTitle.value?.trim() || !props.source?.trim());
-const disabledConfirm = computed(() => !selected.value.length || !cover.value);
+const disabledConfirm = computed(() => !selected.value?.length || !cover.value);
 
 const enableEdit = computed(() => {
   return (siteUser?.value?.userId && props.blog?.authorId === siteUser?.value?.userId)
@@ -212,7 +212,7 @@ const toogleSelected = (item: Tag) => {
 };
 
 const fetchTags = async () => {
-  const { data } = await useFetch('/api/tag/all', { key: 'tags', cache: 'reload' });
+  const { data } = await useFetch('/api/tag/all', { key: 'tags', method: 'POST', cache: 'reload' });
   tags.value = data.value as Tag[];
 };
 

@@ -24,11 +24,14 @@ defineProps({
 
 defineEmits(['close']);
 
+const { cacheKeys } = usePostCache();
 const tags = ref([] as Tag[]);
 
 const fetchTags = async () => {
-  const { data } = await useFetch<Tag[]>('/api/tag/all');
+  const { data } = await useFetch<Tag[]>('/api/tag/all', { method: 'POST', body: { cacheKeys: toRaw(cacheKeys) } });
   tags.value = data.value as Tag[];
+
+  cacheKeys.value['tags-all'] = true;
 };
 
 fetchTags();

@@ -1,105 +1,188 @@
 <template>
   <Html>
     <Head>
-      <Title>Home</Title>
+      <Title>Blog</Title>
     </Head>
   </Html>
   <NuxtLayout name="default" title="Home">
     <div
-      class="bg-white h-100vh p-6 dark:bg-slate-900 dark:text-white/80"
+      class="bg-white h-[100vh] overflow-y-auto overflow-x-hidden dark:bg-neutral-900 dark:text-white/80"
     >
-      <div class="p-4 pb-2">
-        <select
-          v-model="colorMode.preference"
-          class="border w-24 h-8 dark:bg-gray-900 dark:text-white dark:border-gray-700"
-        >
-          <option value="system">System</option>
-          <option value="light">Light</option>
-          <option value="dark">Dark</option>
-        </select>
+      <header class="sticky top-0 flex justify-end py-5 px-3 z-50">
+        <div class="h-ls flex gap-3 text-sm max-md:hidden">
+          <NuxtLink class="h-l" to="/">Projects</NuxtLink>
+        </div>
+        <blog-nav-tools />
+      </header>
+
+      <div class="font-semibold z-30 w-fit sticky top-5 leading-5 text-indigo-700 mx-5 mt-8 dark:text-indigo-500">
+        <span class="i-lucide-mouse-pointer-click mr-1" /> RECENTLY POSTS
       </div>
 
-      <div class="w-16 h-16">
-        <BdAvatar />
-      </div>
-
-      <div class="my-4">{{ siteUser?.nickname }}</div>
-      <a
-        v-if="!!siteUser?.userId"
-        href="javascript:;"
-        class="bg-blue-400 hover:bg-blue-500 text-lg text-white font-light py-2 px-4 rounded"
-        @click="logout"
-      >
-        logout
-      </a>
-
-      <NuxtLink
-        v-else
-        class="bg-blue-400 hover:bg-blue-500 text-lg text-white font-light py-2 px-4 rounded"
-        to="/login"
-      >
-        login
-      </NuxtLink>
-
-      <br />
-
-      <br />
-
-      <div>
-        <NuxtLink
-          class="bg-blue-400 hover:bg-blue-500 text-lg text-white font-light py-2 px-4 my-3 rounded"
-          :to="`/post-edit/${uuid()}`"
-        >
-          create a post
-        </NuxtLink>
-      </div>
-
-      <div v-if="loading">loading...</div>
-      <template v-else>
+      <blog-skeleton
+        v-if="loading"
+        :visible="loading"
+        class="mt-8"
+      />
+      <div v-else class="mt-5 relative">
         <div
           v-for="item in blogs"
           :key="item.postId"
-          class="mt-8 text-center flex select-none all:transition-400"
+          class="block sm:h-[170px] transition-colors pt-6 px-5 w-full select-none all:transition-400 max-sm:active:bg-gray-100/80 max-sm:dark:active:bg-slate-800"
         >
-          <div class="">
-            <NuxtLink class="flex gap-5" :to="`/post/${item.postId}`">
-              <div v-if="item.cover">
-                <img class=" w-40 h-28 rounded-md object-cover" :src="item.cover" alt="cover">
-              </div>
-              <div class="flex flex-col gap-2 items-start">
-                <div>{{ item.title }}</div>
-                <p v-if="item.description" class="text-slate-400">{{ item.description }}</p>
-              </div>
-            </NuxtLink>
-          </div>
+          <NuxtLink class="flex gap-5" :to="`/post/${item.postId}`">
+            <div v-if="item.cover" class="w-[180px] max-sm:hidden">
+              <img class="w-[180px] h-28 rounded-md object-cover shadow-md" :src="item.cover" alt="cover">
+            </div>
+            <div class="flex flex-col flex-1 gap-2 items-start relative">
+              <div class="title text-base font-medium text-slate-900 dark:text-slate-100">{{ item.title }}</div>
+              <p
+                class="text-slate-500 text-sm dark:text-slate-400"
+              >
+                {{ item.description || '暂无描述' }}
+              </p>
+              <a class="flex items-center text-sm pt-1 font-semibold max-sm:block sm:absolute sm:bottom-0">
+                read more <icon-more class="ml-1 w-4 h-4 inline-block transition-transform duration-300" />
+              </a>
+            </div>
+          </NuxtLink>
         </div>
-      </template>
+      </div>
     </div>
   </NuxtLayout>
 </template>
 
 <script setup lang="ts">
 import { IBlog } from '~~/types';
-import { uuid } from '~~/utils/utils';
-
-const colorMode = useColorMode();
-const { siteUser } = useSyncUser();
 
 definePageMeta({ layout: false });
 
-const { logout } = useLogout();
+const { cacheKeys } = usePostCache();
 const blogs = ref<IBlog[]>([]);
 const loading = ref(false);
 
 const fetchAllPosts = async () => {
   loading.value = true;
-  const { data } = await useFetch('/api/post/search', { method: 'POST', body: {} });
+  const { data } = await useFetch('/api/post/recently', { method: 'POST', body: { cacheKeys: toRaw(cacheKeys) } });
   // @ts-ignore
   blogs.value = data.value as IBlog[];
   loading.value = false;
+  cacheKeys.value.recently = true;
+
+  nextTick(() => {
+    setTimeout(() => {
+      initHoverClasses();
+    }, 100);
+  });
+};
+
+const initHoverClasses = () => {
+  if (process.client && blogs.value?.length > 0) {
+    const count = blogs.value?.length;
+    let styleStr = '@media (min-width: 640px) {';
+
+    for (let i = 0, len = count; i <= len - 1; i++) {
+      styleStr += `
+        .block:nth-child(${i + 1}):hover~.block:last-child:before {
+          --y: calc(var(--height) * ${i});
+        }
+      `;
+    }
+
+    styleStr += `.block:nth-child(${count}):hover::before {
+      --y: calc(var(--height) * ${count - 1});
+        opacity: .06;
+      }
+    }`;
+
+    // create style tag, inject styleStr
+    const styleTag = document.getElementById('hover-classes');
+    if (styleTag) styleTag.remove();
+
+    const style = document.createElement('style');
+    style.id = 'hover-classes';
+    style.innerHTML = styleStr;
+    document.head.appendChild(style);
+  }
 };
 
 fetchAllPosts();
 
 useAuthCallbackError();
 </script>
+
+<style lang="postcss" scoped>
+.block {
+  &::after {
+    content: '';
+    display: block;
+    height: 1px;
+    background-color: #d9dde2;
+    transform: scaleY(0.3);
+    margin-top: 32px;
+  }
+
+  p {
+    @apply line-clamp-3 text-ellipsis max-sm:line-clamp-5;
+  }
+
+  svg {
+    @apply text-indigo-700;
+  }
+
+  &:hover {
+    svg {
+      @apply translate-x-2;
+    }
+  }
+
+  &:hover {
+    .title {
+      @apply text-indigo-700 dark:text-slate-300;
+    }
+  }
+}
+
+a {
+  -webkit-tap-highlight-color: transparent
+}
+
+@screen sm {
+  .block {
+    --height: 170px;
+    --surface-2: #767676;
+    --surface-0: #181818;
+
+    &:last-child {
+      &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        background: var(--surface-2);
+        opacity: 0;
+        width: 100%;
+        top: var(--y);
+        left: 0;
+        height: var(--height);
+        border-radius: .4rem;
+        transform: scale(1.04);
+        pointer-events: none;
+        transition: all .5s cubic-bezier(.2,1,.2,1);
+      }
+    }
+  }
+
+  .block:hover~.block:last-child:before {
+    opacity: .06;
+    transform: scale(1);
+  }
+}
+
+.dark {
+  @screen sm {
+    .block:hover~.block:last-child:before {
+      opacity: .2;
+    }
+  }
+}
+</style>

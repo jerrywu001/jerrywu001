@@ -318,3 +318,22 @@ export function replaceMdSyntax(resolveMd = false) {
     });
   }
 }
+
+export const toggleVisibleAnimation = (toVisible: boolean, container: HTMLElement | null) => {
+  container?.classList?.[toVisible ? 'add' : 'remove']('!translate-y-[80px]');
+  if (toVisible) {
+    container?.classList?.remove('hidden');
+    setTimeout(() => {
+      container?.classList?.add('opacity-100');
+      container?.classList?.remove('!translate-y-[80px]');
+      container?.classList?.add('!translate-y-[105px]');
+    });
+  } else {
+    container?.classList?.remove('opacity-100');
+    container?.classList?.remove('!translate-y-[105px]');
+    container?.classList?.add('!translate-y-[80px]');
+    setTimeout(() => {
+      container?.classList?.add('hidden');
+    }, 200);
+  }
+};

@@ -82,7 +82,7 @@ const enableEdit = computed(() => {
 });
 
 const queryPost = async () => {
-  const { data } = await useFetch(`/api/post/${id}`, { key: id, cache: 'reload' });
+  const { data } = await useFetch(`/api/post/${id}`, { key: id, method: 'POST', cache: 'reload' });
   // @ts-ignore
   const v = toRaw<IBlog>(data.value || getDefaultMdVnodes());
   if (!v.authorId) v.authorId = siteUser.value.userId;

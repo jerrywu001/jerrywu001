@@ -1,12 +1,9 @@
 <template>
-  <Html :data-theme="colorMode.preference" />
-
   <button
     id="theme-toggle"
     class="theme-toggle !w-[22px] !h-[22px]"
     title="Toggles light &amp; dark"
     aria-live="polite"
-    :aria-label="colorMode.preference"
     @click="switchTheme"
   >
     <svg
@@ -97,8 +94,17 @@
 const storageKey = 'nuxt-color-mode';
 const colorMode = useColorMode();
 
+const syncDatasetTheme = () => {
+  nextTick(() => {
+    setTimeout(() => {
+      document.documentElement.dataset.theme = colorMode.preference;
+    }, 590);
+  });
+};
+
 function switchTheme() {
   colorMode.preference = colorMode.preference === 'dark' ? 'light' : 'dark';
+  syncDatasetTheme();
 }
 
 function getLastThemePreference() {
@@ -115,12 +121,14 @@ onMounted(() => {
     const preference = getLastThemePreference();
     colorMode.preference = preference;
     localStorage.setItem(storageKey, preference);
+    syncDatasetTheme();
 
     window.matchMedia('(prefers-color-scheme: dark)')
       .addEventListener('change', ({ matches: inDark }) => {
         const preferenceColor = inDark ? 'dark' : 'light';
         colorMode.preference = preferenceColor;
         localStorage.setItem(storageKey, preferenceColor);
+        syncDatasetTheme();
       });
   }
 });
