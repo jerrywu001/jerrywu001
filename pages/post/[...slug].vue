@@ -71,7 +71,7 @@ import { IBlog } from '~~/types';
 import { toggleVisibleAnimation } from '~/utils/utils';
 
 const route = useRoute();
-const { cacheKeys } = usePostCache();
+const { postMap } = usePostCache();
 const { public: runtimeConfig } = useRuntimeConfig();
 
 const { params: { slug } } = route;
@@ -87,16 +87,24 @@ const toggleSidebar = () => {
 };
 
 const queryPost = async () => {
-  post.value = null;
-  const { data } = await useFetch(`${runtimeConfig.baseUrl}/api/post/${id}`, { key: id, method: 'POST', body: { cacheKeys: toRaw(cacheKeys) } });
-  // @ts-ignore
-  post.value = data.value as IBlog;
-  if (post.value?.postId) cacheKeys.value[post.value.postId] = true;
+  if (postMap.value[id]) {
+    post.value = toRaw(postMap.value[id]);
+  } else {
+    post.value = null;
+    const { data } = await useFetch(`${runtimeConfig.baseUrl}/api/post/${id}`, { key: id, method: 'POST' });
+    post.value = toRaw<IBlog>(data.value as any);
 
-  try {
-    useFetch(`${runtimeConfig.baseUrl}/api/post/${id}/reads`);
-  } catch (error) {
+    if (post.value?.postId) {
+      postMap.value[post.value.postId] = toRaw<IBlog>(data.value as any);
+    }
+  }
+
+  if (!runtimeConfig.dev) {
+    try {
+      useFetch(`${runtimeConfig.baseUrl}/api/post/${id}/reads`);
+    } catch (error) {
     // ignore
+    }
   }
 };
 

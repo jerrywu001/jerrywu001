@@ -57,7 +57,7 @@
 </template>
 
 <script setup lang="ts">
-import { getDateTimeStr, replaceMdSyntax } from '~~/utils/utils';
+import { getDateTimeStr, initMermaid, replaceMdSyntax } from '~~/utils/utils';
 import { IElement, IBlog, SiteUser } from '~~/types';
 import { PropType } from 'nuxt/dist/app/compat/capi';
 
@@ -112,6 +112,15 @@ watch(() => props.data?.title, () => {
         replaceMdSyntax(!props.preview);
       }
     }, 100);
+  });
+});
+
+watch(() => props.data?.content, () => {
+  nextTick(() => {
+    if (process.client && props.data?.content) {
+      // https://mermaid.nodejs.cn/
+      initMermaid();
+    }
   });
 });
 

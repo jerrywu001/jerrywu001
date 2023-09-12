@@ -1,3 +1,9 @@
+---
+title: Eslint是如何工作的（深度源码解析）
+description: 对于前端工程化，Eslint是一个非常重要的环节，它可以方便的检查出代码中不符合规范的地方，并给予错误提示，对前端规范来说非常重要，本文将简单节度线源码
+cover: https://picx.zhimg.com/v2-f5cb0d834f416c183a4ad62a71970ee6.jpg?source=172ae18b
+---
+
 > 对于前端工程化，[Eslint](https://eslint.org/docs/latest/user-guide/getting-started)是一个非常重要的环节，它可以方便的检查出代码中不符合规范的地方，并给予错误提示，对前端规范来说非常重要!
 
 # 阅读本文，您将收获

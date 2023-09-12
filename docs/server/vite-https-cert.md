@@ -1,3 +1,9 @@
+---
+title: vite集成https，并安装本地自签名证书
+description: vite集成https，并安装本地自签名证书（同时可解决msw的fallback mode问题）
+cover: https://www.js-bridge.com/articles/https.png
+---
+
 ## 问题描述
 1. vite默认使用http，模块很多时，访问速度上似乎不太理想
 2. [msw](https://mswjs.io/)在http模式下，会存在[fallback mode](./server_mocker#关于fallback-mode)的问题

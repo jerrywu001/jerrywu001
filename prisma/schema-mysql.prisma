@@ -1,0 +1,128 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider        = "prisma-client-js"
+  binaryTargets   = ["native", "darwin-arm64"]
+  previewFeatures = ["fullTextSearch", "fullTextIndex"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("MYSQL_URL")
+  relationMode = "prisma"
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model User {
+  userId      String       @id @unique @default(uuid())
+  email       String       @unique
+  role        Role?        @default(USER)
+  nickname    String?
+  description String?
+  job         String?
+  homepage    String?
+  avatar      String?
+  cover       String?
+  posts       Post[]
+  likes       Like[]
+  comments    Comment[]
+  favorites   Favorite[]
+  topics      Topic[]
+  createdAt   DateTime?    @default(now())
+  updatedAt   DateTime?    @updatedAt
+  subscribers Subscriber[]
+}
+
+model Post {
+  postId      String     @id @unique
+  authorId    String
+  title       String     @unique @db.VarChar(255)
+  description String?    @db.VarChar(180)
+  cover       String?
+  tags        Tag[]
+  tocs        Json
+  source      String     @db.LongText
+  content     Json
+  comments    Comment[]
+  likes       Like[]
+  reads       Read[]
+  totalReads  Int?       @default(0)
+  favorites   Favorite[]
+  invalid     Boolean?   @default(false)
+  blogTopicId String?
+  createdAt   DateTime?  @default(now())
+  updatedAt   DateTime?  @updatedAt
+  topic       Topic?     @relation(fields: [blogTopicId], references: [topicId])
+  author      User?      @relation(fields: [authorId], references: [userId])
+}
+
+model Topic {
+  topicId     String       @id @unique @default(uuid())
+  name        String       @unique
+  description String?
+  cover       String?
+  posts       Post[]
+  subscribers Subscriber[]
+  authorId    String
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  author      User?        @relation(fields: [authorId], references: [userId])
+}
+
+model Subscriber {
+  id                String    @id @unique @default(uuid())
+  uid               String
+  user              User?     @relation(fields: [uid], references: [userId])
+  occurrenceAt      DateTime? @default(now())
+  topic             Topic?    @relation(fields: [subscriberTopicId], references: [topicId])
+  subscriberTopicId String?
+}
+
+model Read {
+  id           String    @id @unique @default(uuid())
+  ip           String
+  occurrenceAt DateTime? @default(now())
+  blog         Post?     @relation(fields: [blogId], references: [postId])
+  blogId       String
+}
+
+model Like {
+  id           String    @id @unique @default(uuid())
+  occurrenceAt DateTime? @default(now())
+  blog         Post?     @relation(fields: [blogId], references: [postId])
+  blogId       String
+  user         User?     @relation(fields: [uid], references: [userId])
+  uid          String
+}
+
+model Favorite {
+  id           String    @id @unique @default(uuid())
+  occurrenceAt DateTime? @default(now())
+  blog         Post?     @relation(fields: [blogId], references: [postId])
+  blogId       String
+  uid          String
+  user         User?     @relation(fields: [uid], references: [userId])
+}
+
+model Comment {
+  commentId       String    @id @unique @default(uuid())
+  parentCommentId String?
+  content         String
+  createdAt       DateTime? @default(now())
+  updatedAt       DateTime? @updatedAt
+  blog            Post?     @relation(fields: [blogId], references: [postId])
+  blogId          String
+  user            User?     @relation(fields: [uid], references: [userId])
+  uid             String
+}
+
+model Tag {
+  id    String @id @unique @default(uuid())
+  name  String @unique
+  blogs Post[]
+}

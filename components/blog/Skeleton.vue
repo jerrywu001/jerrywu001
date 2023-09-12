@@ -1,5 +1,10 @@
 <template>
-  <div v-show="visible" role="status" class="w-full max-w-md animate-pulse p-4">
+  <div
+    v-show="visible"
+    role="status"
+    class="w-full max-w-md animate-pulse"
+    :class="{ 'p-4': padding }"
+  >
     <h1 class="h-2 bg-gray-300 rounded-lg w-52 dark:bg-gray-600"></h1>
 
     <p class="w-48 h-2 mt-6 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
@@ -27,6 +32,10 @@ defineProps({
   visible: {
     type: Boolean,
     default: false,
+  },
+  padding: {
+    type: Boolean,
+    default: true,
   },
 });
 </script>

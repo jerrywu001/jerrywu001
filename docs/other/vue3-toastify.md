@@ -1,7 +1,7 @@
 ---
 title: 前端业务组件库怎么样做到极致？
-cover: /articles/vue3-toastify/demo.gif
-createAt: 2022-09-20T19:00:00.000Z
+description: 一个不单单是toast的组件，它集成了很多交互细节和增强功能，着实惊艳到了我，不禁想一个toast组件竟然能卷到如此地址~~
+cover: https://www.js-bridge.com/articles/vue3-toastify/demo.gif
 ---
 
 > 文章开始先介绍一下 :button-link[react-toastify]{href="https://www.npmjs.com/package/react-toastify"}，一个不单单是toast的组件，它集成了很多交互细节和增强功能，着实惊艳到了我，不禁想一个toast组件竟然能卷到如此地址~~
@@ -10,14 +10,14 @@ createAt: 2022-09-20T19:00:00.000Z
 
 **处于好奇，参照它写了个vue3的版本**（欢迎star，欢迎提bug）：
 
-- :button-link[online demo]{href="https://vue3-toastify.netlify.app/"}
+- :button-link[online demo]{href="https://vue3-toastify.js-bridge.com/"}
 - :button-link[github]{href="https://github.com/jerrywu001/vue3-toastify"}
 - :button-link[npm]{href="https://www.npmjs.com/package/vue3-toastify"}
-- :button-link[docs]{href="https://vue3-toastify.netlify.app/get-started/introduction.html"}
+- :button-link[docs]{href="https://vue3-toastify.js-bridge.com/get-started/introduction.html"}
 
 ## 项目采用我之前做的自动npm发包模板搭建
 
-[点这里查看文章地址](./other_npm-template)
+[点这里查看文章地址](../post/dd0d8fbe-145b-45de-8a83-a0faa3ac1f7b)
 
 集成了很多功能，比如
 
@@ -29,7 +29,7 @@ createAt: 2022-09-20T19:00:00.000Z
 - 内置playground
 - ....
 
-更多详见[文章](./other_npm-template)
+更多详见[文章](../post/dd0d8fbe-145b-45de-8a83-a0faa3ac1f7b)
 
 ## 在线案例截图
 
@@ -41,7 +41,7 @@ createAt: 2022-09-20T19:00:00.000Z
 
 ![docs](/articles/vue3-toastify/docs.gif)
 
-[真实案例](./other_sandpack-demos)
+[真实案例](../post/04f3f73c-df14-4a1a-93ef-502efb606f2a)
 
 ## vitest ui截图
 
@@ -57,7 +57,7 @@ createAt: 2022-09-20T19:00:00.000Z
 
 ### 功能案例介绍（重要看点）
 
-:button-link[大而全的地址]{href="https://vue3-toastify.netlify.app/usage/positioning-toast.html"}
+:button-link[大而全的地址]{href="https://vue3-toastify.js-bridge.com/usage/positioning-toast.html"}
 
 本文只挑几个展示一下：
 
@@ -234,7 +234,7 @@ export default {
   <button @click="update">update icon</button>
   <button @click="updateContent">update content</button>
 
-  <p>更多查看：https://vue3-toastify.netlify.app/usage/update-toast.html</p>
+  <p>更多查看：https://vue3-toastify.js-bridge.com/usage/update-toast.html</p>
 </template>
 
 <script>

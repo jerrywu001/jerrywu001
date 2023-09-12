@@ -1,7 +1,7 @@
 ---
 title: 是时候和npm-check-updates江湖再见了~
-description: 是时候和npm-check-updates江湖再见了~
-createAt: 2023-07-03T10:00:00.000Z
+description: npm-check-updates的替代方案
+cover: https://ik.imagekit.io/jerrywu001/supabases-blogs/major_vD6iY7yN9.png?updatedAt=1693894106188
 ---
 
 相比大家都用过[npm-check-updates](https://www.npmjs.com/package/npm-check-updates), 一个可以检查项目package版本是否有更新的工具，截图如下：

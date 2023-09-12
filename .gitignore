@@ -9,6 +9,7 @@ prisma.ts
 prisma/migrations
 test.json
 test.md
+bun.lockb
 
 # dependencies
 /node_modules

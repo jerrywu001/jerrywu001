@@ -1,11 +1,10 @@
 ---
 title: 使用vite、tsup、github actions打造丝滑的npm package开发模版
-description: 使用vite、tsup、github actions打造丝滑的npm package开发模版（针对vue3和react）
-cover: /articles/vue/R-C.png
-createAt: 2022-07-25T19:00:00.000Z
+description: 很多时候我们有开发npm pacckge的想法，但自己搭建开发模版会觉得很麻烦！所以，我有了搭建零配置npm package开发模版的想法，真的是零配置哦~
+cover: https://www.js-bridge.com/articles/vue/R-C.png
 ---
 
-很多时候我们有开发npm pacckge的想法，但自己搭建开发模版会觉得很麻烦！所以，我有了搭建零配置npm package开发模版的想法，真的是零配置哦🫠，你要做的只是：
+很多时候我们有开发npm pacckge的想法，但自己搭建开发模版会觉得很麻烦！所以，我有了搭建零配置npm package开发模版的想法，真的是零配置哦🎉，你要做的只是：
 
 1. Fork [my project]
 2. 初始化GitHub action必须的[token](https://github.com/codes-templates/npm-react#how-to-add-npm_token)

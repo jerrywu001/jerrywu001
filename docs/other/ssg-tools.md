@@ -1,7 +1,7 @@
 ---
 title: 2022 Static Site Generators 盘点（SSG）
-cover: /articles/ssg.png
-createAt: 2022-04-18T19:00:00.000Z
+description: 总结前端静态站点(ssg)生成器工具
+cover: https://www.js-bridge.com/articles/ssg.png
 ---
 
 > 废话不多说，直接上链接
@@ -19,6 +19,7 @@ createAt: 2022-04-18T19:00:00.000Z
 
 - [gridsome](https://gridsome.org/)
 - [vitepress](https://vitejs.cn/vitepress/)
+- [rspress](https://rspress.dev/)
 - [content-nuxtjs](https://content.nuxtjs.org/)
 
 ---

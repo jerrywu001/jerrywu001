@@ -1,8 +1,7 @@
 ---
 title: 这么好的前端mock工具，还不用起来？
-description: 本文要介绍的mock工具msw，它通过service worker来做请求拦截
-cover: /articles/mocker.jpeg
-createAt: 2022-01-04T10:00:00.000Z
+description: msw：通过拦截网络级别的请求来进行模拟， 无缝重用相同的模拟定义进行测试、开发和调试
+cover: https://www.js-bridge.com/articles/mocker.jpeg
 ---
 
 > 一个好的前端mock工具，可以有效的提高前端开发效率

@@ -1,6 +1,10 @@
-## templates
+---
+title: sandpack demos
+description: codesandbox runner的markdown语法介绍，提供多个案例演示
+cover: https://www.js-bridge.com/articles/sandpack.png
+---
 
-**此文章中 \\\`\\\`\\\` 表示的是 ```**
+## templates
 
 > 'angular' | 'react' | 'react-ts' | 'vanilla' | 'vanilla-ts' | 'vue' | 'vue3' | 'svelte' | 'solid';
 

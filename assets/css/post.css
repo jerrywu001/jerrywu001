@@ -11,3 +11,8 @@
 @import 'prose/strong.css';
 @import 'prose/table.css';
 @import 'prose/ul.css';
+
+
+pre.mermaid {
+  background-color: transparent !important;
+}

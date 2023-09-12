@@ -1,7 +1,15 @@
+import { IBlog, Tag } from '~/types';
+
 export default function usePostCache() {
-  const cacheKeys = useState('use-cache', () => ({}) as Record<string, boolean>);
+  const posts = useState('use-cache', () => ([]) as IBlog[]);
+  const tagList = useState('use-tag-list', () => ([]) as Tag[]);
+  const postMap = useState('use-post-map', () => ({} as Record<string, IBlog>));
+  const scrollTop = useState('use-scroll-top', () => 0);
 
   return {
-    cacheKeys,
+    posts,
+    tagList,
+    postMap,
+    scrollTop,
   };
 }

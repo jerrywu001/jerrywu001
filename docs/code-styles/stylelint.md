@@ -1,8 +1,7 @@
 ---
 title: stylelint最佳实践
 description: stylelint最佳实践，包含stylelint、prettier、vscode、webstorm配置。
-cover: /articles/code-styles/stylelint.png
-createAt: 2022-04-06T16:00:00.000Z
+cover: https://www.js-bridge.com/articles/code-styles/stylelint.png
 ---
 
 > 说实话，我一直觉得stylelint没什么必要，只要不报错就行！但最近应公司要求，还是搭建了一下，本文内容包含：

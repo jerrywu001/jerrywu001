@@ -1,7 +1,9 @@
 <template>
   <aside id="siderbar" class="aside aside-lg-xl" :class="{ 'slide-in': slideIn }">
     <div class="pb-8 text-slate-800 font-semibold dark:text-slate-200">All Tags</div>
-    <blog-tags :data="tags" />
+    <blog-tags v-if="!loading" :data="tags" />
+
+    <blog-skeleton :visible="loading" :padding="false" />
   </aside>
 
   <div
@@ -24,14 +26,21 @@ defineProps({
 
 defineEmits(['close']);
 
-const { cacheKeys } = usePostCache();
+const { tagList } = usePostCache();
 const tags = ref([] as Tag[]);
+const loading = ref(false);
 
 const fetchTags = async () => {
-  const { data } = await useFetch<Tag[]>('/api/tag/all', { method: 'POST', body: { cacheKeys: toRaw(cacheKeys) } });
-  tags.value = data.value as Tag[];
+  if (tagList.value.length) {
+    tags.value = tagList.value as Tag[];
+    return;
+  }
 
-  cacheKeys.value['tags-all'] = true;
+  loading.value = true;
+  const { data } = await useFetch<Tag[]>('/api/tag/all', { method: 'POST' });
+  tags.value = data.value as Tag[];
+  tagList.value = data.value as Tag[];
+  loading.value = false;
 };
 
 fetchTags();

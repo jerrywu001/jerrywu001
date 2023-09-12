@@ -192,7 +192,7 @@ const tags = ref<Tag[]>([]);
 const selected = ref<Tag[]>([]);
 
 const disabled = computed(() => !blogTitle.value?.trim() || !props.source?.trim());
-const disabledConfirm = computed(() => !selected.value?.length || !cover.value);
+const disabledConfirm = computed(() => !selected.value?.length);
 
 const enableEdit = computed(() => {
   return (siteUser?.value?.userId && props.blog?.authorId === siteUser?.value?.userId)

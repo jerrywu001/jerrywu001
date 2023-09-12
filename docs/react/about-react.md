@@ -1,3 +1,9 @@
+---
+title: 6个关于react的友情提示
+description: 介绍如何简化react function component，保持组件轻量，以及 “this”的使用和理解
+cover: https://www.js-bridge.com/articles/react/about-react.png
+---
+
 ## 使用function申明组件 {#define-component}
 
 ```jsx {2}[Welcome.tsx]

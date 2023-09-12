@@ -1,6 +1,7 @@
 import type { VNode } from 'vue';
 import { User } from '@supabase/supabase-js';
 import { MarkdownNode, SiteUser } from '~~/types';
+import mermaid from 'mermaid';
 
 export function isCDNAvatar(avatar: string | null) {
   return (avatar || '').includes('ik.imagekit.io');
@@ -206,6 +207,7 @@ export const toolbars = [
   'image',
   'table',
   'katex',
+  'mermaid',
   0,
   '-',
   'revoke',
@@ -337,3 +339,27 @@ export const toggleVisibleAnimation = (toVisible: boolean, container: HTMLElemen
     }, 200);
   }
 };
+
+export function initMermaid() {
+  const pres = document.querySelectorAll('pre.language-mermaid');
+
+  const renderMermaid = () => {
+    mermaid.initialize({ startOnLoad: true });
+
+    mermaid.run({ querySelector: 'pre.language-mermaid' });
+  };
+
+  if (pres?.length) {
+    // @ts-ignore
+    pres.forEach((pre: HTMLPreElement) => {
+      const div = pre.parentElement as HTMLDivElement;
+      const codeContent = div.getAttribute('code');
+      pre.classList.add('mermaid');
+      pre.classList.remove('line-numbers');
+      pre.innerHTML = codeContent || '';
+      delete pre.dataset.processed;
+    });
+
+    renderMermaid();
+  }
+}

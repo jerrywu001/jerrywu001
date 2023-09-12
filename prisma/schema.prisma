@@ -8,8 +8,9 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("POSTGREL_URL")
+  provider = "mysql"
+  url      = env("MYSQL_URL")
+  relationMode = "prisma"
 }
 
 enum Role {
@@ -44,9 +45,9 @@ model Post {
   description String?    @db.VarChar(180)
   cover       String?
   tags        Tag[]
-  tocs        Json[]     @default([])
-  source      String
-  content     Json[]     @default([])
+  tocs        Json
+  source      String     @db.LongText
+  content     Json
   comments    Comment[]
   likes       Like[]
   reads       Read[]

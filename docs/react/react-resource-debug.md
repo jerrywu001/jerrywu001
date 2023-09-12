@@ -1,3 +1,9 @@
+---
+title: React源码调试环境搭建
+description: 从0到1分步讲解react17源码环境的搭建
+cover: https://www.js-bridge.com/articles/react/react-resource-debug.jpeg
+---
+
 ## 创建react项目 {#create}
 
 ::: tip
@@ -66,7 +72,7 @@ npm i
 ```diff [class="language-diff-javascript diff-highlight"]
 {
   alias: {
-  ...(modules.webpackAliases || {}),
+  ...(modules.webpackAliases | {}),
 + 'react': path.resolve(__dirname, '../src/react/packages/react'),
 + 'react-dom': path.resolve(__dirname, '../src/react/packages/react-dom'),
 + 'shared': path.resolve(__dirname, '../src/react/packages/shared'),

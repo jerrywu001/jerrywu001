@@ -1,3 +1,9 @@
+---
+title: babel 之 core-js preset-env plugin-transform-runtime 实操指南
+description: 手把手带你了解babel7之polyfill的使用和优化
+cover: https://www.js-bridge.com/articles/babel.jpg
+---
+
 > 由于 Babel 只进行语法转换（如箭头函数, let, const），你可以使用**垫片方案**来支持新的全局变量，如 Promise 或新的原生方法，如 String.padStart（left-pad）。
 
 ## 关于@babel/polyfill

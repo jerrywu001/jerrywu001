@@ -1,6 +1,6 @@
 ---
 title: 一文彻底搞懂package.json中的exports, main, module, type
-description: 一文彻底搞懂package.json中的exports, main, module, type
+description: 详细介绍package.json中的exports, main, module, type，以及它们的使用场景和细节
 cover: https://picx.zhimg.com/v2-5cea55d64465d57fc2e3537d7968f9a7_1440w.jpg?source=172ae18b
 ---
 
@@ -246,9 +246,3 @@ import 'sandpack-vue3/dist/styles.css';
 
 
 好了，文章到此结束，如对您有帮助，还请帮忙点个小🌟🌟，不甚感激~
-
-
-
-
-
-

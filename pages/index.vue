@@ -31,7 +31,7 @@
           class="block sm:h-[170px] transition-colors pt-6 px-5 w-full select-none all:transition-400 max-sm:active:bg-gray-100/80 max-sm:dark:active:bg-slate-800"
         >
           <NuxtLink class="flex gap-5" :to="`/post/${item.postId}`">
-            <div v-if="item.cover" class="w-[180px] max-sm:hidden">
+            <div v-if="item.cover" class="w-[180px] h-28 max-sm:hidden">
               <img class="w-[180px] h-28 rounded-md object-cover shadow-md" :src="item.cover" alt="cover">
             </div>
             <div class="flex flex-col flex-1 gap-2 items-start relative">
@@ -41,7 +41,10 @@
               >
                 {{ item.description || '暂无描述' }}
               </p>
-              <a class="flex items-center text-sm pt-1 font-semibold max-sm:block sm:absolute sm:bottom-0">
+              <a class="flex items-center text-xs text-slate-400 pt-1 sm:absolute bottom-0 left-0">
+                {{ getDateTimeStr(item.createdAt) }}
+              </a>
+              <a class="flex items-center text-sm pt-1 font-semibold absolute bottom-0 right-0 max-sm:block">
                 read more <icon-more class="ml-1 w-4 h-4 inline-block transition-transform duration-300" />
               </a>
             </div>
@@ -57,21 +60,33 @@ import { IBlog } from '~~/types';
 
 definePageMeta({ layout: false });
 
-const { cacheKeys } = usePostCache();
+const { posts, scrollTop } = usePostCache();
 const blogs = ref<IBlog[]>([]);
 const loading = ref(false);
 
 const fetchAllPosts = async () => {
-  loading.value = true;
-  const { data } = await useFetch('/api/post/recently', { method: 'POST', body: { cacheKeys: toRaw(cacheKeys) } });
-  // @ts-ignore
-  blogs.value = data.value as IBlog[];
-  loading.value = false;
-  cacheKeys.value.recently = true;
+  if (posts.value.length) {
+    // @ts-ignore
+    blogs.value = posts.value as IBlog[];
+  } else {
+    loading.value = true;
+    const { data } = await useFetch('/api/post/recently', { method: 'POST' });
+    // @ts-ignore
+    blogs.value = data.value as IBlog[];
+    // @ts-ignore
+    posts.value = data.value as IBlog[];
+    loading.value = false;
+  }
 
   nextTick(() => {
     setTimeout(() => {
-      initHoverClasses();
+      if (process.client) {
+        initHoverClasses();
+        const scroller = document.querySelector('.bg-white');
+        if (scroller) {
+          scroller.scrollTop = scrollTop.value;
+        }
+      }
     }, 100);
   });
 };
@@ -106,9 +121,33 @@ const initHoverClasses = () => {
   }
 };
 
+const scrollHandler = () => {
+  const scroller = document.querySelector('.bg-white');
+  scrollTop.value = scroller?.scrollTop || 0;
+};
+
+const resolveHandler = (unmount = false) => {
+  if (process.client) {
+    nextTick(() => {
+      const scroller = document.querySelector('.bg-white');
+      if (scroller) {
+        scroller[unmount ? 'removeEventListener' : 'addEventListener']('scroll', scrollHandler, false);
+      }
+    });
+  }
+};
+
 fetchAllPosts();
 
 useAuthCallbackError();
+
+onMounted(() => {
+  resolveHandler();
+});
+
+onBeforeUnmount(() => {
+  resolveHandler(true);
+});
 </script>
 
 <style lang="postcss" scoped>
@@ -119,7 +158,7 @@ useAuthCallbackError();
     height: 1px;
     background-color: #d9dde2;
     transform: scaleY(0.3);
-    margin-top: 32px;
+    margin-top: 22px;
   }
 
   p {
@@ -152,6 +191,10 @@ a {
     --height: 170px;
     --surface-2: #767676;
     --surface-0: #181818;
+
+    &::after {
+      margin-top: 32px;
+    }
 
     &:last-child {
       &::before {

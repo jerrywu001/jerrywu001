@@ -1,12 +1,208 @@
+---
+title: 本站 markdown 基础语法介绍
+description: 本站扩展了一些markdown组件，并对它们的语法做了详细介绍。组件包括vitepress的container(如warning,info,danger..)
+cover: https://www.js-bridge.com/articles/markdown-cheat-sheet1.png
+---
+
 ## 基础语法
 
-**此文章中 \\\`\\\`\\\` 表示的是 ```**
-
-暂不支持流程图、序列图、甘特图
+- 通用
 
 > https://www.markdownguide.org/basic-syntax
 >
 > https://markdown.com.cn/
+
+- 流程图
+
+  > 语法：https://mermaid.nodejs.cn/syntax/flowchart.html
+
+  1) 甘特图
+
+  ```ts
+  %%{init: {"flowchart": {"htmlLabels": false}} }%%
+  flowchart LR
+    markdown["`This **is** _Markdown_`"]
+    newLines["`Line1
+    Line 2
+    Line 3`"]
+    markdown --> newLines
+  ```
+
+  ```mermaid
+  %%{init: {"flowchart": {"htmlLabels": false}} }%%
+  flowchart LR
+    markdown["`This **is** _Markdown_`"]
+    newLines["`Line1
+    Line 2
+    Line 3`"]
+    markdown --> newLines
+  ```
+
+  2) 序列图
+
+  ```ts
+  sequenceDiagram
+    participant A as Alice
+    participant J as John
+    A->>J: Hello John, how are you?
+    J->>A: Great!
+  ```
+
+  ```mermaid
+  sequenceDiagram
+    participant A as Alice
+    participant J as John
+    A->>J: Hello John, how are you?
+    J->>A: Great!
+  ```
+
+  3) 类图
+
+  ```ts
+  ---
+  title: Bank example
+  ---
+  classDiagram
+      class BankAccount
+      BankAccount : +String owner
+      BankAccount : +Bigdecimal balance
+      BankAccount : +deposit(amount)
+      BankAccount : +withdrawal(amount)
+  ```
+
+  ```mermaid
+  ---
+  title: Bank example
+  ---
+  classDiagram
+      class BankAccount
+      BankAccount : +String owner
+      BankAccount : +Bigdecimal balance
+      BankAccount : +deposit(amount)
+      BankAccount : +withdrawal(amount)
+  ```
+
+  4) 状态图
+
+  ```ts
+  ---
+  title: Simple sample
+  ---
+  stateDiagram-v2
+      [*] --> Still
+      Still --> [*]
+
+      Still --> Moving
+      Moving --> Still
+      Moving --> Crash
+      Crash --> [*]
+  ```
+
+  ```mermaid
+  ---
+  title: Simple sample
+  ---
+  stateDiagram-v2
+      [*] --> Still
+      Still --> [*]
+
+      Still --> Moving
+      Moving --> Still
+      Moving --> Crash
+      Crash --> [*]
+  ```
+
+  5) 关系图
+
+  ```ts
+  ---
+  title: Order example
+  ---
+  erDiagram
+      CUSTOMER ||--o{ ORDER : places
+      ORDER ||--|{ LINE-ITEM : contains
+      CUSTOMER }|..|{ DELIVERY-ADDRESS : uses
+  ```
+
+  ```mermaid
+  ---
+  title: Order example
+  ---
+  erDiagram
+      CUSTOMER ||--o{ ORDER : places
+      ORDER ||--|{ LINE-ITEM : contains
+      CUSTOMER }|..|{ DELIVERY-ADDRESS : uses
+  ```
+
+  6) 旅程图
+
+  ```ts
+  journey
+    title My working day
+    section Go to work
+      Make tea: 5: Me
+      Go upstairs: 3: Me
+      Do work: 1: Me, Cat
+    section Go home
+      Go downstairs: 5: Me
+      Sit down: 5: Me
+  ```
+
+  ```mermaid
+  journey
+    title My working day
+    section Go to work
+      Make tea: 5: Me
+      Go upstairs: 3: Me
+      Do work: 1: Me, Cat
+    section Go home
+      Go downstairs: 5: Me
+      Sit down: 5: Me
+  ```
+
+  7) 甘特图
+
+  ```ts
+  gantt
+    title A Gantt Diagram
+    dateFormat YYYY-MM-DD
+    section Section
+        A task          :a1, 2014-01-01, 30d
+        Another task    :after a1, 20d
+    section Another
+        Task in Another :2014-01-12, 12d
+        another task    :24d
+  ```
+
+  ```mermaid
+  gantt
+    title A Gantt Diagram
+    dateFormat YYYY-MM-DD
+    section Section
+        A task          :a1, 2014-01-01, 30d
+        Another task    :after a1, 20d
+    section Another
+        Task in Another :2014-01-12, 12d
+        another task    :24d
+  ```
+
+  8) 饼图
+
+  ```ts
+  pie title Pets adopted by volunteers
+    "Dogs" : 386
+    "Cats" : 85
+    "Rats" : 15
+  ```
+
+  ```mermaid
+  pie title Pets adopted by volunteers
+    "Dogs" : 386
+    "Cats" : 85
+    "Rats" : 15
+  ```
+
+  其他请参见： https://mermaid.nodejs.cn/syntax/requirementDiagram.html
 
 ## 其他基础语法
 
