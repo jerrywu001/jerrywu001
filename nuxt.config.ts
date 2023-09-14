@@ -17,7 +17,7 @@ export default defineNuxtConfig({
     public: {
       dev: process.env.NODE_ENV !== 'production',
       baseUrl: process.env.BASE_URL,
-      host: process.env.HOST,
+      host: process.env.HOST || 'localhost',
       port: process.env.PORT,
     },
   },

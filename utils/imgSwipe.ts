@@ -102,9 +102,12 @@ export default function useImgSwipe(loading: Ref<boolean>) {
 
 function getAllImgsLoaded(callback: () => void) {
   const box = document.querySelector('.article-scroll-box') as HTMLDivElement;
-  const images = box.querySelectorAll('img');
 
-  const promises = Array.prototype.slice.call(images).map((node) => {
+  if (!box) return;
+
+  const images = box?.querySelectorAll('img');
+
+  const promises = Array.prototype.slice.call(images || []).map((node) => {
     return new Promise((resolve) => {
       const loadImg = new Image();
       loadImg.src = node.src;

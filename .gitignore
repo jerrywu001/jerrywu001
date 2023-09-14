@@ -5,6 +5,7 @@
 .code
 *.iml
 .static
+.env
 
 # dependencies
 /node_modules
