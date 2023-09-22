@@ -105,24 +105,32 @@ const getRandomColor = () => {
   return color;
 };
 
-watch(() => props.data?.title, () => {
-  nextTick(() => {
-    setTimeout(() => {
-      if (process.client && props.data?.title) {
-        replaceMdSyntax(!props.preview);
-      }
-    }, 100);
-  });
-});
+watch(
+  () => props.data?.title,
+  () => {
+    nextTick(() => {
+      setTimeout(() => {
+        if (process.client && props.data?.title) {
+          replaceMdSyntax(!props.preview);
+        }
+      }, 100);
+    });
+  },
+  { immediate: true },
+);
 
-watch(() => props.data?.content, () => {
-  nextTick(() => {
-    if (process.client && props.data?.content) {
+watch(
+  () => props.data?.content,
+  () => {
+    nextTick(() => {
+      if (process.client && props.data?.content) {
       // https://mermaid.nodejs.cn/
-      initMermaid();
-    }
-  });
-});
+        initMermaid();
+      }
+    });
+  },
+  { immediate: true },
+);
 
 </script>
 

@@ -73,6 +73,7 @@ import { toggleVisibleAnimation } from '~/utils/utils';
 const route = useRoute();
 const { postMap } = usePostCache();
 const { public: runtimeConfig } = useRuntimeConfig();
+const { destroyImageSwipe, initImageSwipe } = useImgSwipe();
 
 const { params: { slug } } = route;
 const [id] = slug || [];
@@ -106,6 +107,8 @@ const queryPost = async () => {
     // ignore
     }
   }
+
+  initImageSwipe();
 };
 
 const tocsEvent = (e: MouseEvent) => {
@@ -117,9 +120,6 @@ const tocsEvent = (e: MouseEvent) => {
 
 queryPost();
 
-// init image swipe
-useImgSwipe(loaded);
-
 onMounted(() => {
   nextTick(() => {
     if (process.client) {
@@ -130,6 +130,7 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   if (process.client) {
+    destroyImageSwipe();
     document.body.removeEventListener('click', tocsEvent, false);
   }
 });

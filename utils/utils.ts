@@ -298,12 +298,13 @@ export function parseDomFromString(htmlString = '') {
 export function replaceMdSyntax(resolveMd = false) {
   if (resolveMd) {
     setTimeout(() => {
-      const mdCodes = document.querySelectorAll('pre.language-md');
-      (mdCodes || []).forEach((code) => {
-        const html = code.innerHTML.replace(/\\`\\`\\`/g, '```');
+      const pres = document.querySelectorAll('pre.language-md');
+      const items = [...(pres || [])];
+      items.forEach((pre) => {
+        const html = pre.innerHTML.replace(/\\`\\`\\`/g, '```');
         const newDom = parseDomFromString(html);
-        code.innerHTML = '';
-        code.appendChild(newDom as HTMLElement);
+        pre.innerHTML = '';
+        pre.appendChild(newDom as HTMLElement);
       });
     }, 500);
   }

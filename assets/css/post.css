@@ -14,5 +14,50 @@
 
 
 pre.mermaid {
-  background-color: transparent !important;
+  @apply !bg-transparent;
+
+  & + span {
+    @apply !hidden;
+  }
+}
+
+.dark {
+  pre.mermaid {
+    circle.state-start,
+    path.flowchart-link,
+    path.edge-thickness-normal,
+    line {
+      @apply !stroke-slate-200;
+
+      &.divider {
+        @apply !stroke-slate-400/60;
+      }
+    }
+
+    defs marker {
+      @apply !stroke-white !fill-white;
+    }
+
+    path {
+      &.relationshipLine {
+        @apply !stroke-white;
+      }
+    }
+
+    tspan.text-outer-tspan {
+      @apply !fill-slate-800;
+    }
+
+    text {
+      @apply !fill-slate-200;
+
+      &.entityLabel {
+        @apply !fill-slate-800;
+      }
+
+      &.relationshipLabel {
+        /* @apply !fill-transparent; */
+      }
+    }
+  }
 }

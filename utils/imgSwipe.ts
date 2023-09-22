@@ -1,13 +1,12 @@
 import 'photoswipe/dist/photoswipe.css';
 // @ts-ignore
 import PhotoSwipeLightbox from 'photoswipe/lightbox';
-import { Ref } from 'vue';
 
-export default function useImgSwipe(loaded: Ref<boolean>) {
+export default function useImgSwipe() {
   const lightbox = ref(null);
 
   async function initImageSwipe() {
-    await uninstallImageSwipe();
+    await destroyImageSwipe();
     if (process.client) {
       nextTick(() => {
         setTimeout(() => {
@@ -64,12 +63,12 @@ export default function useImgSwipe(loaded: Ref<boolean>) {
               }
             }
           });
-        }, 1200);
+        }, 0);
       });
     }
   }
 
-  function uninstallImageSwipe() {
+  function destroyImageSwipe() {
     if (lightbox.value) {
       // @ts-ignore
       lightbox.value.destroy();
@@ -77,22 +76,7 @@ export default function useImgSwipe(loaded: Ref<boolean>) {
     }
   }
 
-  tryOnBeforeUnmount(() => {
-    uninstallImageSwipe();
-  });
-
-  watch(
-    loaded,
-    () => {
-      if (loaded.value) {
-        nextTick(() => {
-          initImageSwipe();
-        });
-      }
-    },
-  );
-
-  return { lightbox, initImageSwipe };
+  return { destroyImageSwipe, initImageSwipe };
 }
 
 function getAllImgsLoaded(callback: () => void) {

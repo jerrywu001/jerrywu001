@@ -18,18 +18,18 @@ cover: https://www.js-bridge.com/articles/markdown-cheat-sheet1.png
 
   1) 甘特图
 
-  ```ts
-  %%{init: {"flowchart": {"htmlLabels": false}} }%%
+  ```md
+  \`\`\`mermaid
   flowchart LR
     markdown["`This **is** _Markdown_`"]
     newLines["`Line1
     Line 2
     Line 3`"]
     markdown --> newLines
+  \`\`\`
   ```
 
   ```mermaid
-  %%{init: {"flowchart": {"htmlLabels": false}} }%%
   flowchart LR
     markdown["`This **is** _Markdown_`"]
     newLines["`Line1
@@ -40,12 +40,14 @@ cover: https://www.js-bridge.com/articles/markdown-cheat-sheet1.png
 
   2) 序列图
 
-  ```ts
+  ```md
+  \`\`\`mermaid
   sequenceDiagram
     participant A as Alice
     participant J as John
     A->>J: Hello John, how are you?
     J->>A: Great!
+  \`\`\`
   ```
 
   ```mermaid
@@ -58,7 +60,8 @@ cover: https://www.js-bridge.com/articles/markdown-cheat-sheet1.png
 
   3) 类图
 
-  ```ts
+  ```md
+  \`\`\`mermaid
   ---
   title: Bank example
   ---
@@ -68,6 +71,7 @@ cover: https://www.js-bridge.com/articles/markdown-cheat-sheet1.png
       BankAccount : +Bigdecimal balance
       BankAccount : +deposit(amount)
       BankAccount : +withdrawal(amount)
+  \`\`\`
   ```
 
   ```mermaid
@@ -84,7 +88,8 @@ cover: https://www.js-bridge.com/articles/markdown-cheat-sheet1.png
 
   4) 状态图
 
-  ```ts
+  ```md
+  \`\`\`mermaid
   ---
   title: Simple sample
   ---
@@ -96,6 +101,7 @@ cover: https://www.js-bridge.com/articles/markdown-cheat-sheet1.png
       Moving --> Still
       Moving --> Crash
       Crash --> [*]
+  \`\`\`
   ```
 
   ```mermaid
@@ -114,7 +120,8 @@ cover: https://www.js-bridge.com/articles/markdown-cheat-sheet1.png
 
   5) 关系图
 
-  ```ts
+  ```md
+  \`\`\`mermaid
   ---
   title: Order example
   ---
@@ -122,6 +129,7 @@ cover: https://www.js-bridge.com/articles/markdown-cheat-sheet1.png
       CUSTOMER ||--o{ ORDER : places
       ORDER ||--|{ LINE-ITEM : contains
       CUSTOMER }|..|{ DELIVERY-ADDRESS : uses
+  \`\`\`
   ```
 
   ```mermaid
@@ -136,7 +144,8 @@ cover: https://www.js-bridge.com/articles/markdown-cheat-sheet1.png
 
   6) 旅程图
 
-  ```ts
+  ```md
+  \`\`\`mermaid
   journey
     title My working day
     section Go to work
@@ -146,6 +155,7 @@ cover: https://www.js-bridge.com/articles/markdown-cheat-sheet1.png
     section Go home
       Go downstairs: 5: Me
       Sit down: 5: Me
+  \`\`\`
   ```
 
   ```mermaid
@@ -162,7 +172,8 @@ cover: https://www.js-bridge.com/articles/markdown-cheat-sheet1.png
 
   7) 甘特图
 
-  ```ts
+  ```md
+  \`\`\`mermaid
   gantt
     title A Gantt Diagram
     dateFormat YYYY-MM-DD
@@ -172,6 +183,7 @@ cover: https://www.js-bridge.com/articles/markdown-cheat-sheet1.png
     section Another
         Task in Another :2014-01-12, 12d
         another task    :24d
+  \`\`\`
   ```
 
   ```mermaid
@@ -188,11 +200,13 @@ cover: https://www.js-bridge.com/articles/markdown-cheat-sheet1.png
 
   8) 饼图
 
-  ```ts
+  ```md
+  \`\`\`mermaid
   pie title Pets adopted by volunteers
     "Dogs" : 386
     "Cats" : 85
     "Rats" : 15
+  \`\`\`
   ```
 
   ```mermaid
