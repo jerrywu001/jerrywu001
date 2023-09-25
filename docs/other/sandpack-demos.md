@@ -1,7 +1,7 @@
 ---
 title: sandpack demos
 description: codesandbox runner的markdown语法介绍，提供多个案例演示
-cover: https://www.js-bridge.com/articles/sandpack.png
+cover: /articles/sandpack.png
 ---
 
 ## templates

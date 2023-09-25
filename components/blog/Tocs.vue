@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
 import { useArticleScroll, addArchorClickEvent } from '~~/utils/toc';
-import { ITableOfContent, IBlog } from '~~/types';
+import type { ITableOfContent, IBlog } from '~~/types';
 
 const props = defineProps({
   data: {

@@ -1,7 +1,7 @@
 ---
 title: Prisma操作mysql
 description: Prisma: 下一代 Node.js 和 TypeScript ORM，凭借其直观的数据模型、自动迁移、类型安全和自动完成功能，Prisma 在使用数据库时将开发人员体验提升到了新的水平。
-cover: https://www.js-bridge.com/articles/prisma.jpg
+cover: /articles/prisma.jpg
 ---
 
 [Prisma](https://www.prisma.io/) 是一个开源的下一代 ORM。它由以下部分组成：

@@ -1,14 +1,14 @@
 ---
 title: 2022年值得推荐的前端实用网站！
 description: 按类别总结了一些常用实用的网站和工具
-cover: https://www.js-bridge.com/articles/dev.jpg
+cover: /articles/dev.jpg
 ---
 
 > 本篇为前端工友们带来N个棒棒哒免费的实用资源，收藏⭐等于学会 (๑•̀ㅂ•́)و✧
 
 ## 前端文档生成工具
 
-[ssg tools](https://www.js-bridge.com/posts/other_ssg-tools)
+:button-link[ssg tools]{href="/post/a5b5b2c4-67a0-420f-b967-8ca300b946d3"}
 
 ## 在线代码运行
 ![sandpacck-c.png](https://pic1.zhimg.com/80/v2-518e6ca4383f59f95d04d2d8826f5bd4.webp)

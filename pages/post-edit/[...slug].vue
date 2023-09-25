@@ -46,9 +46,9 @@
 
 <script setup lang="ts">
 import pkg from 'lodash';
-import { ExposeParam, MdEditor } from 'md-editor-v3';
+import { type ExposeParam, MdEditor } from 'md-editor-v3';
 import { toolbars, getDefaultMdVnodes, fileToBase64, uuid, isUUID } from '~~/utils/utils';
-import { IBlog, IElement, ISavePost, ITableOfContent, Tag } from '~~/types';
+import type { IBlog, IElement, ISavePost, ITableOfContent, Tag } from '~~/types';
 import 'md-editor-v3/lib/style.css';
 
 let content: Array<IElement> = [];

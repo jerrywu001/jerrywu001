@@ -1,7 +1,9 @@
 <template>
   <div class="flex flex-wrap">
     <div v-for="item in tags" :key="item.id">
-      <div class="tag" :class="colorClassName()">{{ item.name }}({{ item?._count?.blogs }})</div>
+      <div class="tag" :class="colorClassName()" @click="toTags(item)">
+        {{ item.name }}({{ item?._count?.blogs }})
+      </div>
     </div>
     <!-- ignore -->
     <div v-show="false" class="tag bg-fuchsia-100 text-fuchsia-800 dark:bg-fuchsia-900 dark:text-fuchsia-300">Vue</div>
@@ -19,8 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import { PropType } from 'nuxt/dist/app/compat/capi';
-import { Tag } from '~~/types';
+import { type Tag } from '~~/types';
 
 const props = defineProps({
   data: {
@@ -32,6 +33,11 @@ const props = defineProps({
 });
 
 const tags = ref(props.data);
+const router = useRouter();
+
+const toTags = (v: Tag) => {
+  router.push(`/tags/${v.id}`);
+};
 
 watchEffect(() => {
   tags.value = props.data;

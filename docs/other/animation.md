@@ -6,10 +6,11 @@ cover: https://pic1.zhimg.com/v2-c2b2a9a9aab88b368fda3285ec303e7b_1440w.jpg?sour
 
 <img src="https://pic2.zhimg.com/v2-c57fd1916998f05b9606b5bcfc98dce5_b.jpg" style="max-width: 800px" />
 
+<br />
 
 # 线上效果预览
 
-https://www.js-bridge.com/
+:button-link[animation demo]{href="/"}
 
 ## 前提
 

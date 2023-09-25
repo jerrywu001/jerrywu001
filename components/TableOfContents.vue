@@ -36,8 +36,8 @@
 </template>
 
 <script setup lang="ts">
-import { PropType } from 'vue';
-import { ITableOfContent } from '~~/types';
+import { type PropType } from 'vue';
+import { type ITableOfContent } from '~~/types';
 import { toggleTocs } from '~~/utils/toc';
 
 defineProps({

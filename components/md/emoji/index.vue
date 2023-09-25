@@ -37,6 +37,7 @@ const state = reactive({
 });
 
 const emojiHandler = (emoji: string) => {
+  // @ts-ignore
   const generator: InsertContentGenerator = () => ({
     targetValue: emoji,
     deviationStart: 0,

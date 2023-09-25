@@ -1,7 +1,7 @@
 ---
 title: 2022 Static Site Generators 盘点（SSG）
 description: 总结前端静态站点(ssg)生成器工具
-cover: https://www.js-bridge.com/articles/ssg.png
+cover: /articles/ssg.png
 ---
 
 > 废话不多说，直接上链接

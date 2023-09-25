@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import { SiteUser } from '~~/types';
+import { type SiteUser } from '~~/types';
 import { isCDNAvatar } from '~~/utils/utils';
 
 defineOptions({

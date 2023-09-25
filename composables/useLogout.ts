@@ -1,5 +1,5 @@
 import { AuthError } from '@supabase/supabase-js';
-import { SiteUser } from 'types';
+import { type SiteUser } from '~~/types';
 
 export default function useLogout() {
   const { siteUser } = useSyncUser();

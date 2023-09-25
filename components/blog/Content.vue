@@ -58,8 +58,7 @@
 
 <script setup lang="ts">
 import { getDateTimeStr, initMermaid, replaceMdSyntax } from '~~/utils/utils';
-import { IElement, IBlog, SiteUser } from '~~/types';
-import { PropType } from 'nuxt/dist/app/compat/capi';
+import type { IElement, IBlog, SiteUser } from '~~/types';
 
 const props = defineProps({
   data: {

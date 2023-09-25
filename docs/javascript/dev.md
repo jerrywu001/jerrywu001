@@ -1,7 +1,7 @@
 ---
 title: 前端开发冷门小技巧 (持续更新...)
 description: 前端使用小技巧和细节总结
-cover: https://www.js-bridge.com/articles/dev.jpg
+cover: /articles/dev.jpg
 ---
 
 ## React中实现vue的computed

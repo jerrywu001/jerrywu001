@@ -1,5 +1,5 @@
 import type { Slot } from 'vue';
-import { ComponentInternalInstance } from 'nuxt/dist/app/compat/capi';
+import { type ComponentInternalInstance } from 'nuxt/dist/app/compat/capi';
 import {
   defineComponent,
   getCurrentInstance,

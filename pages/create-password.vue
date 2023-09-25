@@ -43,7 +43,7 @@
 </template>
 
 <script setup lang="ts">
-import { User } from '@supabase/supabase-js';
+import type { User } from '@supabase/supabase-js';
 import { useAuthCallbackError } from '~~/composables/useAuth';
 
 const user = useSupabaseUser() as Ref<User>;

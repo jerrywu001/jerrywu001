@@ -1,7 +1,7 @@
 ---
 title: javascript实现Promise
 description: 使用javascript实现Promise，包括静态方法
-cover: https://www.js-bridge.com/articles/primise.png
+cover: /articles/primise.png
 ---
 
 > Promise使用：使用 [Promise - JavaScript | MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Using_promises)

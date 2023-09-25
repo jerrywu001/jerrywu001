@@ -1,7 +1,7 @@
 ---
 title: vite集成https，并安装本地自签名证书
 description: vite集成https，并安装本地自签名证书（同时可解决msw的fallback mode问题）
-cover: https://www.js-bridge.com/articles/https.png
+cover: /articles/https.png
 ---
 
 ## 问题描述

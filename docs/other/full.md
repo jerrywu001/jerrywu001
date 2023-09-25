@@ -1,7 +1,7 @@
 ---
 title: 本站 markdown 基础语法介绍
 description: 本站扩展了一些markdown组件，并对它们的语法做了详细介绍。组件包括vitepress的container(如warning,info,danger..)
-cover: https://www.js-bridge.com/articles/markdown-cheat-sheet1.png
+cover: /articles/markdown-cheat-sheet1.png
 ---
 
 ## 基础语法

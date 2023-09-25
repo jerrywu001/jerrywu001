@@ -6,14 +6,21 @@
   </Html>
   <NuxtLayout name="default" title="Home">
     <div
-      class="bg-white h-[100vh] overflow-y-auto overflow-x-hidden dark:bg-neutral-900 dark:text-white/80"
+      class="index bg-white h-[100vh] overflow-y-auto overflow-x-hidden dark:bg-slate-900 dark:text-white/80"
     >
       <header class="sticky top-0 flex justify-end py-5 px-3 z-50">
         <div class="h-ls flex gap-3 text-sm max-md:hidden">
-          <NuxtLink class="h-l" to="/">Projects</NuxtLink>
+          <NuxtLink class="h-l" to="/tags/all">Tags</NuxtLink>
+          <NuxtLink class="h-l" to="/about-me">About me</NuxtLink>
+          <NuxtLink class="h-l" to="/sponsor-me">Sponsor me</NuxtLink>
         </div>
-        <blog-nav-tools />
+        <blog-nav-tools :index="true" />
       </header>
+
+      <div class="mt-[-55px] ml-5">
+        <img class="w-[70px] dark:hidden" src="/logo/light.png" />
+        <img class="w-[70px] hidden dark:block" src="/logo/dark.png" />
+      </div>
 
       <div class="font-semibold z-30 w-fit sticky top-5 leading-5 text-indigo-700 mx-5 mt-8 dark:text-indigo-500">
         <span class="i-lucide-mouse-pointer-click mr-1" /> RECENTLY POSTS
@@ -56,7 +63,7 @@
 </template>
 
 <script setup lang="ts">
-import { IBlog } from '~~/types';
+import { type IBlog } from '~~/types';
 
 definePageMeta({ layout: false });
 
@@ -227,5 +234,12 @@ a {
       opacity: .2;
     }
   }
+}
+
+</style>
+
+<style lang="postcss">
+.index .hamburger .container {
+  top: -2px !important;
 }
 </style>

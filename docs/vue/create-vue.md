@@ -1,7 +1,7 @@
 ---
 title: 新款vue-cli之create-vue源码阅读总结
 description: 本文介绍vue3 jest单元测试环境搭建新款vue-cli之create-vue源码阅读总结
-cover: https://www.js-bridge.com/articles/vue/create-vue.jpg
+cover: /articles/vue/create-vue.jpg
 ---
 
 > 最近vue3已成为默认版本，而新版脚手架create-vue也随之浮出水面

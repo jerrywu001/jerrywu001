@@ -36,7 +36,7 @@
 </template>
 
 <script setup lang="ts">
-import { IBlog } from '~~/types';
+import { type IBlog } from '~~/types';
 
 const route = useRoute();
 const { params: { slug } } = route;

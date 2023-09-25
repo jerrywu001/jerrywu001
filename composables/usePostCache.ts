@@ -1,4 +1,4 @@
-import { IBlog, Tag } from '~/types';
+import type { IBlog, Tag } from '~/types';
 
 export default function usePostCache() {
   const posts = useState('use-cache', () => ([]) as IBlog[]);

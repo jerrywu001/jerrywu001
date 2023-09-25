@@ -1,15 +1,5 @@
 <template>
-  <!-- header -->
-  <header id="header" class="common-bg header">
-    <NuxtLink to="/">前端博文</NuxtLink>
-    <div class="flex items-center">
-      <div class="h-ls flex gap-2 text-sm max-md:hidden">
-        <NuxtLink class="h-l" to="/">Blogs</NuxtLink>
-        <NuxtLink class="h-l" to="/">Projects</NuxtLink>
-      </div>
-      <blog-nav-tools />
-    </div>
-  </header>
+  <blog-header :blog="true" />
 
   <div class="common-bg sub-header">
     <div class="l flex items-center gap-2" @click="toggleSidebar">
@@ -67,7 +57,7 @@
 
 <script setup lang="ts">
 import useImgSwipe from '~~/utils/imgSwipe';
-import { IBlog } from '~~/types';
+import { type IBlog } from '~~/types';
 import { toggleVisibleAnimation } from '~/utils/utils';
 
 const route = useRoute();

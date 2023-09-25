@@ -156,7 +156,7 @@
   </div></template>
 
 <script lang="ts" setup>
-import { IBlog, Tag } from '~~/types';
+import type { IBlog, Tag } from '~~/types';
 
 const props = defineProps({
   title: String,

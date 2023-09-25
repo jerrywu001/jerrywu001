@@ -1,7 +1,7 @@
 ---
 title: 前端业务组件库怎么样做到极致？
 description: 一个不单单是toast的组件，它集成了很多交互细节和增强功能，着实惊艳到了我，不禁想一个toast组件竟然能卷到如此地址~~
-cover: https://www.js-bridge.com/articles/vue3-toastify/demo.gif
+cover: /articles/vue3-toastify/demo.gif
 ---
 
 > 文章开始先介绍一下 :button-link[react-toastify]{href="https://www.npmjs.com/package/react-toastify"}，一个不单单是toast的组件，它集成了很多交互细节和增强功能，着实惊艳到了我，不禁想一个toast组件竟然能卷到如此地址~~

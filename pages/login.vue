@@ -101,7 +101,7 @@
 </template>
 
 <script setup lang="ts">
-import { AuthError, OAuthResponse } from '@supabase/supabase-js';
+import { AuthError, type OAuthResponse } from '@supabase/supabase-js';
 import useLoginAuth, { login } from '~~/composables/useLogin';
 import { useAuthCallbackError } from '~~/composables/useAuth';
 import { validEmail } from '~~/utils/utils';

@@ -1,7 +1,7 @@
 ---
 title: vitest体验（兼容jest api）
 description: Vitest：一个Vite原生的极快的单元测试框架。 它很快！语法兼容jest，支持热更新
-cover: https://www.js-bridge.com/articles/vue/vitest.jpg
+cover: /articles/vue/vitest.jpg
 ---
 
 > 最近由Anthony Fu大佬领衔的新一代基于vite的单元测试框架[vitest](https://vitest.dev/)上线了，语法兼容jest，可继承vite配置，支持热更新

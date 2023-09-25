@@ -1,4 +1,4 @@
-import { HTMLAttributes } from 'nuxt/dist/app/compat/capi';
+import type { HTMLAttributes } from 'nuxt/dist/app/compat/capi';
 
 export interface ITableOfContent {
   archor: string;

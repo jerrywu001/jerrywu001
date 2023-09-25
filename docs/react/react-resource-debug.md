@@ -1,7 +1,7 @@
 ---
 title: React源码调试环境搭建
 description: 从0到1分步讲解react17源码环境的搭建
-cover: https://www.js-bridge.com/articles/react/react-resource-debug.jpeg
+cover: /articles/react/react-resource-debug.jpeg
 ---
 
 ## 创建react项目 {#create}
