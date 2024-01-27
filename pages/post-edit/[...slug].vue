@@ -163,7 +163,7 @@ const onUploadImg = async (files: File[]) => {
   });
 
   for (const url of (data.value || [])) {
-    insertImage(`\n<img src=\"${url}\" style="max-width: 300px" />\n`);
+    insertImage(`\n<img src=\"${url}\" style="max-width: 300px" alt="img" />\n`);
   }
 };
 

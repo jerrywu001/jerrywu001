@@ -1,5 +1,5 @@
 <template>
-  <Html lang="zh_CN">
+  <Html lang="zh-CN">
     <Head>
       <Title>Blog of Jerrywu001</Title>
       <Meta name="description" content="A front-end development blog of jerrywu, includes js,node,vue,react,css,linux, eg."></Meta>
@@ -10,12 +10,12 @@
       <Link rel="icon" href="/favicon.ico"></Link>
       <Link rel="canonical" href="https://www.js-bridge.com/"></Link>
 
-      <Link rel="alternate" hreflang="zh" href="http://www.js-bridge.com/"></Link>
-      <Link rel="alternate" hreflang="x-default" href="http://www.js-bridge.com/"></Link>
+      <Link rel="alternate" hreflang="zh" href="https://www.js-bridge.com/"></Link>
+      <Link rel="alternate" hreflang="x-default" href="https://www.js-bridge.com/"></Link>
 
       <Meta property="og:title" content="Blog of Jerrywu001"></Meta>
       <Meta property="og:description" content="A front-end development blog of jerrywu, includes js,node,vue,react,css,linux, eg."></Meta>
-      <Meta property="og:locale" content="zh_CN"></Meta>
+      <Meta property="og:locale" content="zh-CN"></Meta>
       <Meta property="og:url" content="https://www.js-bridge.com/"></Meta>
       <Meta property="og:site_name" content="Blog of Jerrywu001"></Meta>
       <Meta property="og:image" content="https://www.js-bridge.com/head.jpg"></Meta>
@@ -43,8 +43,8 @@
       </header>
 
       <div class="mt-[-55px] ml-5">
-        <img class="w-[70px] dark:hidden" src="/logo/light.png" />
-        <img class="w-[70px] hidden dark:block" src="/logo/dark.png" />
+        <img class="w-[70px] dark:hidden" src="/logo/light.png" alt="theme" />
+        <img class="w-[70px] hidden dark:block" src="/logo/dark.png" alt="theme-dark" />
       </div>
 
       <div class="font-semibold z-30 w-fit sticky top-5 leading-5 text-indigo-700 mx-5 mt-8 dark:text-indigo-500">

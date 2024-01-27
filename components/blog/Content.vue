@@ -1,5 +1,5 @@
 <template>
-  <Html lang="zh_CN">
+  <Html lang="zh-CN">
     <Head>
       <Title>{{ props.data?.title }}</Title>
       <Meta name="description" :content="props.data?.description || defdaultDesc"></Meta>
@@ -8,14 +8,14 @@
 
       <Link rel="author" href="/"></Link>
       <Link rel="icon" href="/favicon.ico"></Link>
-      <Link rel="canonical" :href="'https://www.js-bridge.com/' + props.data?.postId"></Link>
+      <Link rel="canonical" :href="'https://www.js-bridge.com/post/' + props.data?.postId"></Link>
 
-      <Link rel="alternate" hreflang="zh" :href="'https://www.js-bridge.com/' + props.data?.postId"></Link>
-      <Link rel="alternate" hreflang="x-default" :href="'https://www.js-bridge.com/' + props.data?.postId"></Link>
+      <Link rel="alternate" hreflang="zh" :href="'https://www.js-bridge.com/post/' + props.data?.postId"></Link>
+      <Link rel="alternate" hreflang="x-default" :href="'https://www.js-bridge.com/post/' + props.data?.postId"></Link>
 
       <Meta property="og:title" :content="props.data?.title"></Meta>
       <Meta property="og:description" :content="props.data?.description || defdaultDesc"></Meta>
-      <Meta property="og:locale" content="zh_CN"></Meta>
+      <Meta property="og:locale" content="zh-CN"></Meta>
       <Meta property="og:url" :content="'https://www.js-bridge.com/' + props.data?.postId"></Meta>
       <Meta property="og:site_name" content="Blog of Jerrywu001"></Meta>
       <Meta property="og:image" content="https://www.js-bridge.com/head.jpg"></Meta>

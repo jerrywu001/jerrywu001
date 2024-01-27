@@ -1,8 +1,8 @@
 <template>
   <header id="header" class="common-bg header">
     <NuxtLink to="/">
-      <img class="w-[70px] dark:hidden" src="/logo/light.png" />
-      <img class="w-[70px] hidden dark:block" src="/logo/dark.png" />
+      <img class="w-[70px] dark:hidden" src="/logo/light.png" alt="theme" />
+      <img class="w-[70px] hidden dark:block" src="/logo/dark.png" alt="theme-dark" />
     </NuxtLink>
     <div class="flex items-center">
       <div class="h-ls flex gap-2 text-sm max-md:hidden">
