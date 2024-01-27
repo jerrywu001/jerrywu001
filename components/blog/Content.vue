@@ -37,12 +37,12 @@
     class="article flex flex-col box-border p-4 pb-0 relative w-[calc(100vw-570px)] max-xl:w-[calc(100vw-300px)] max-lg:w-screen"
     :class="{ 'h-screen !w-full overflow-y-auto': preview }"
   >
-    <div
+    <h1
       v-show="!preview"
       class="font-semibold text-3xl pb-4 pt-2 text-black max-lg:text-2xl dark:text-white"
     >
       {{ props.data?.title }}
-    </div>
+    </h1>
 
     <template v-if="!preview">
       <div v-if="props.data?.tags && props.data?.tags.length > 0" class="py-3">
