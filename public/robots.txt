@@ -10,5 +10,6 @@ Disallow: /signup
 Disallow: /update-profile
 Disallow: /forgot-password
 Disallow: /create-password
+Disallow: /post/6cc04fff-08d1-4ad2-afe3-827d2a7c0725
 
 Sitemap: https://www.js-bridge.com/sitemap.xml
