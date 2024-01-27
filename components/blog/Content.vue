@@ -1,10 +1,36 @@
 <template>
-  <Html>
+  <Html lang="zh_CN">
     <Head>
-      <Title>{{ props.data?.title || 'loading...' }}</Title>
+      <Title>{{ props.data?.title }}</Title>
+      <Meta name="description" :content="props.data?.description || defdaultDesc"></Meta>
+      <Meta name="keywords" :content="props.data?.keywords || props.data?.tags?.map((t) => t.name).join(',')"></Meta>
+      <Meta name="author" :content="author.nickname || 'jerrywu001'"></Meta>
+
+      <Link rel="author" href="/"></Link>
+      <Link rel="icon" href="/favicon.ico"></Link>
+      <Link rel="canonical" :href="'https://www.js-bridge.com/' + props.data?.postId"></Link>
+
+      <Link rel="alternate" hreflang="zh" :href="'https://www.js-bridge.com/' + props.data?.postId"></Link>
+      <Link rel="alternate" hreflang="x-default" :href="'https://www.js-bridge.com/' + props.data?.postId"></Link>
+
+      <Meta property="og:title" :content="props.data?.title"></Meta>
+      <Meta property="og:description" :content="props.data?.description || defdaultDesc"></Meta>
+      <Meta property="og:locale" content="zh_CN"></Meta>
+      <Meta property="og:url" :content="'https://www.js-bridge.com/' + props.data?.postId"></Meta>
+      <Meta property="og:site_name" content="Blog of Jerrywu001"></Meta>
+      <Meta property="og:image" content="https://www.js-bridge.com/head.jpg"></Meta>
+      <Meta property="og:type" content="website"></Meta>
+
+      <Meta name="twitter:card" content="summary_large_image"></Meta>
+      <Meta name="twitter:site" content="@jerrywu185"></Meta>
+      <Meta name="twitter:title" :content="props.data?.title"></Meta>
+      <Meta name="twitter:description" :content="props.data?.description || defdaultDesc"></Meta>
+      <Meta name="twitter:image" content="https://www.js-bridge.com/head.jpg"></Meta>
+
       <Link rel="stylesheet" :href="prismLink" />
     </Head>
   </Html>
+
   <article
     v-show="visible"
     id="content"
@@ -40,7 +66,8 @@
       <div>
         <span class="text-xs">创建时间：{{ createTime }}</span>
         <NuxtLink
-          v-show="enableEdit"
+          v-if="enableEdit"
+          rel="nofollow"
           class="text-sm ml-2 !p-0 !font-normal"
           :to="`/post-edit/${data?.postId}`"
         >
@@ -59,6 +86,8 @@
 <script setup lang="ts">
 import { getDateTimeStr, initMermaid, replaceMdSyntax } from '~~/utils/utils';
 import type { IElement, IBlog, SiteUser } from '~~/types';
+
+const defdaultDesc = 'A front-end development blog of jerrywu, includes js,node,vue,react,css,linux, eg.';
 
 const props = defineProps({
   data: {

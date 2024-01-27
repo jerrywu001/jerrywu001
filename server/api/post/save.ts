@@ -1,7 +1,7 @@
 import { serverSupabaseUser } from '#supabase/server';
 import { formatSiteUser } from '~~/utils/utils';
 import { prisma } from '~~/utils/server';
-import { ISavePost } from '~~/types';
+import type { ISavePost } from '~~/types';
 
 export default defineEventHandler(async (event) => {
   const userSession = await serverSupabaseUser(event);
@@ -25,6 +25,7 @@ export default defineEventHandler(async (event) => {
     tags,
     prevTags,
     tocs = [],
+    keywords = '',
     description = null,
     cover = null,
   } = body;
@@ -37,6 +38,7 @@ export default defineEventHandler(async (event) => {
     content,
     cover,
     description,
+    keywords,
     tocs,
     tags: {
       connectOrCreate: tags.length > 0 ? tags?.map((tag) => ({

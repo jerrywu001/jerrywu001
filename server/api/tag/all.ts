@@ -1,5 +1,5 @@
 import { prisma } from '~~/utils/server';
-import { Tag } from '~/types';
+import type { Tag } from '~/types';
 
 export default defineEventHandler(async (event) => {
   let result = [] as Tag[];

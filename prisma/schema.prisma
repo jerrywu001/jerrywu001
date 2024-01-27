@@ -42,6 +42,7 @@ model Post {
   authorId    String
   title       String     @unique @db.VarChar(255)
   description String?    @db.VarChar(180)
+  keywords    String?    @db.VarChar(180)
   cover       String?
   tags        Tag[]
   tocs        Json[]     @default([])

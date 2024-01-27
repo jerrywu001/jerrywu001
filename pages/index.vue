@@ -1,18 +1,43 @@
 <template>
-  <Html>
+  <Html lang="zh_CN">
     <Head>
-      <Title>Blog</Title>
+      <Title>Blog of Jerrywu001</Title>
+      <Meta name="description" content="A front-end development blog of jerrywu, includes js,node,vue,react,css,linux, eg."></Meta>
+      <Meta name="keywords" content="vue3-toastify,sandpack-vue3,vitepress-sandbox,js-bridge,jerrywu001"></Meta>
+      <Meta name="author" content="jerrywu001"></Meta>
+
+      <Link rel="author" href="/"></Link>
+      <Link rel="icon" href="/favicon.ico"></Link>
+      <Link rel="canonical" href="https://www.js-bridge.com/"></Link>
+
+      <Link rel="alternate" hreflang="zh" href="http://www.js-bridge.com/"></Link>
+      <Link rel="alternate" hreflang="x-default" href="http://www.js-bridge.com/"></Link>
+
+      <Meta property="og:title" content="Blog of Jerrywu001"></Meta>
+      <Meta property="og:description" content="A front-end development blog of jerrywu, includes js,node,vue,react,css,linux, eg."></Meta>
+      <Meta property="og:locale" content="zh_CN"></Meta>
+      <Meta property="og:url" content="https://www.js-bridge.com/"></Meta>
+      <Meta property="og:site_name" content="Blog of Jerrywu001"></Meta>
+      <Meta property="og:image" content="https://www.js-bridge.com/head.jpg"></Meta>
+      <Meta property="og:type" content="website"></Meta>
+
+      <Meta name="twitter:card" content="summary_large_image"></Meta>
+      <Meta name="twitter:site" content="@jerrywu185"></Meta>
+      <Meta name="twitter:title" content="Blog of Jerrywu001"></Meta>
+      <Meta name="twitter:description" content="A front-end development blog of jerrywu, includes js,node,vue,react,css,linux, eg."></Meta>
+      <Meta name="twitter:image" content="https://www.js-bridge.com/head.jpg"></Meta>
     </Head>
   </Html>
+
   <NuxtLayout name="default" title="Home">
     <div
       class="index bg-white h-[100vh] overflow-y-auto overflow-x-hidden dark:bg-slate-900 dark:text-white/80"
     >
       <header class="sticky top-0 flex justify-end py-5 px-3 z-50">
         <div class="h-ls flex gap-3 text-sm max-md:hidden">
-          <NuxtLink class="h-l" to="/tags/all">Tags</NuxtLink>
-          <NuxtLink class="h-l" to="/about-me">About me</NuxtLink>
-          <NuxtLink class="h-l" to="/sponsor-me">Sponsor me</NuxtLink>
+          <NuxtLink class="h-l" to="/tags/all" rel="nofollow">Tags</NuxtLink>
+          <NuxtLink class="h-l" to="/about-me" rel="nofollow">About me</NuxtLink>
+          <NuxtLink class="h-l" to="/sponsor-me" rel="nofollow">Sponsor me</NuxtLink>
         </div>
         <blog-nav-tools :index="true" />
       </header>

@@ -31,6 +31,7 @@
         Password
       </label>
       <NuxtLink
+        rel="nofollow"
         to="/forgot-password"
         class="text-xs text-blue-500 dark:text-gray-300 hover:underline"
       >
@@ -89,6 +90,7 @@
 
       <div class="mt-6 text-center">
         <NuxtLink
+          rel="nofollow"
           to="/signup"
           replace
           class="text-sm text-blue-500 hover:underline dark:text-blue-400"

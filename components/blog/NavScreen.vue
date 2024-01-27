@@ -8,18 +8,21 @@
         <NuxtLink
           class="link"
           href="/tags/all"
+          rel="nofollow"
         >
           Tags
         </NuxtLink>
         <NuxtLink
           class="link"
           href="/about-me"
+          rel="nofollow"
         >
           About me
         </NuxtLink>
         <NuxtLink
           class="link"
           href="/sponsor-me"
+          rel="nofollow"
         >
           Sponsor me
         </NuxtLink>
@@ -31,12 +34,14 @@
           @click="logout"
         />
         <NuxtLink
+          rel="nofollow"
           :to="`/post-edit/${uuid()}`"
           title="create a post"
           class="i-lucide-file-plus-2 w-[22px] h-[22px] mr-3 ml-3"
         />
         <NuxtLink
           to="https://github.com/jerrywu001"
+          rel="nofollow"
           external
           target="_blank"
           class="i-mdi-github w-[24px] h-[24px] mr-3"

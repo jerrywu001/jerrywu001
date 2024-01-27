@@ -1,0 +1,14 @@
+User-Agent: *
+
+Allow: /
+Disallow: /tags
+Disallow: /about-me
+Disallow: /sponsor-me
+Disallow: /post-edit
+Disallow: /login
+Disallow: /signup
+Disallow: /update-profile
+Disallow: /forgot-password
+Disallow: /create-password
+
+Sitemap: https://www.js-bridge.com/sitemap.xml

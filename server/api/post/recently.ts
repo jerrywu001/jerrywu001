@@ -1,5 +1,5 @@
 import { prisma } from '~~/utils/server';
-import { IBlog } from '~~/types';
+import type { IBlog } from '~~/types';
 
 export default defineEventHandler(async (event) => {
   let result: IBlog[] = [];

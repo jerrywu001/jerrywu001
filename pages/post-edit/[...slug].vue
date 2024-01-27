@@ -10,9 +10,10 @@
       :title="title"
       :source="source"
       :saving="saving"
-      :blog="blog"
+      :blog="(blog as IBlog)"
       @on-cover-change="(val) => { cover = val; }"
       @on-desc-change="(val) => { description = val; }"
+      @on-keywords-change="(val) => { keywords = val; }"
       @on-tags-change="(tags) => { selectdTags = tags; }"
       @on-title-change="(val) => { title = val; }"
       @on-save="savePost"
@@ -72,6 +73,7 @@ const theme = ref('light' as 'light' | 'dark');
 const title = ref('');
 const cover = ref('');
 const description = ref('');
+const keywords = ref('');
 const source = ref('');
 const saving = ref(false);
 
@@ -103,6 +105,7 @@ const savePost = async () => {
     content,
     cover: cover.value,
     description: description.value.trim(),
+    keywords: keywords.value.trim(),
     tocs,
     tags: toRaw(selectdTags.value),
     prevTags: toRaw(blog.value?.tags || []),
@@ -129,6 +132,7 @@ const onChange = async () => {
     blog.value.title = title.value;
     blog.value.source = source.value;
     blog.value.tocs = tocs;
+    // @ts-ignore
     blog.value.content = content;
   }
 };

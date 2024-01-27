@@ -22,7 +22,7 @@ import { html2hast } from 'unified-remark-prismjs/src/core.js';
 import { reporter } from 'vfile-reporter';
 import { unified } from 'unified';
 import parse2json from './parse2json';
-import { IElement, IHast } from '~~/types';
+import type { IElement, IHast } from '~~/types';
 
 function resolveContainerSyntax(str: string) {
   const regex = /::: ([a-z]+)(.*?)\n(.*?)\n:::/gs;

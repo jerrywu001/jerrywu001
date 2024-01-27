@@ -7,6 +7,7 @@
   />
   <NuxtLink
     :to="`/post-edit/${uuid()}`"
+    rel="nofollow"
     title="create a post"
     class="i-lucide-file-plus-2 w-[22px] h-[22px] mr-3 ml-3 max-md:hidden"
   />

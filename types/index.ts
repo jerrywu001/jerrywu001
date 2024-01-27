@@ -107,6 +107,7 @@ export enum Role {
 export interface IBlog {
   postId: string;
   title: string;
+  keywords?: string;
   description?: string;
   source: string;
   content: IElement[];
@@ -163,6 +164,7 @@ export interface ISavePost {
   tocs: any[];
   cover?: string;
   description?: string;
+  keywords?: string;
 }
 
 export interface IQueyPosts {

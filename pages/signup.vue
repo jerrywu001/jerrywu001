@@ -68,6 +68,7 @@
 
       <div class="mt-6 text-center">
         <NuxtLink
+          rel="nofollow"
           to="/login"
           replace
           class="text-sm text-blue-500 hover:underline dark:text-blue-400"

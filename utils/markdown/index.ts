@@ -1,7 +1,7 @@
 import chalk from 'chalk';
 import matter from 'gray-matter';
 import { getResolvedMarkdown } from './remark';
-import { IElement, ITableOfContent } from '~~/types';
+import type { IElement, ITableOfContent } from '~~/types';
 
 export async function getTransformedVNode(fileStr: string) {
   const { content } = matter(fileStr);

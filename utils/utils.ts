@@ -1,6 +1,6 @@
 import type { VNode } from 'vue';
-import { User } from '@supabase/supabase-js';
-import { MarkdownNode, SiteUser } from '~~/types';
+import type { User } from '@supabase/supabase-js';
+import type { MarkdownNode, SiteUser } from '~~/types';
 import mermaid from 'mermaid';
 
 export function isCDNAvatar(avatar: string | null) {

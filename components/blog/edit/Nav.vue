@@ -119,6 +119,19 @@
           </div>
 
           <div class="col-span-full">
+            <label for="about" class="block text-sm font-medium leading-6">Keywords</label>
+            <div class="mt-2">
+              <textarea
+                v-model="keywords"
+                name="desc"
+                rows="3"
+                placeholder="post description"
+                class="px-3 !outline-none block resize-none w-full bg-transparent rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              ></textarea>
+            </div>
+          </div>
+
+          <div class="col-span-full">
             <label for="about" class="block text-sm font-medium leading-6">Description</label>
             <div class="mt-2">
               <textarea
@@ -129,6 +142,7 @@
                 class="px-3 !outline-none block resize-none w-full bg-transparent rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               ></textarea>
             </div>
+
             <p class="mt-3 text-sm leading-6 mb-6">Write a few sentences about Post.</p>
           </div>
         </div>
@@ -153,7 +167,8 @@
       </div>
       <div data-popper-arrow></div>
     </div>
-  </div></template>
+  </div>
+</template>
 
 <script lang="ts" setup>
 import type { IBlog, Tag } from '~~/types';
@@ -169,6 +184,7 @@ const emit = defineEmits<{
   (e: 'on-save'): void
   (e: 'on-cover-change', val: string): void
   (e: 'on-desc-change', val: string): void
+  (e: 'on-keywords-change', val: string): void
   (e: 'on-tags-change', tags: Tag[]): void
   (e: 'on-title-change', val: string): void
 }>();
@@ -183,6 +199,7 @@ const defaultId = slug?.[0];
 const tagInputRef = ref<HTMLInputElement>();
 const blogTitle = ref('');
 const desc = ref('');
+const keywords = ref('');
 const cover = ref('');
 const creating = ref(false);
 const uploading = ref(false);
@@ -296,6 +313,13 @@ watch(
 );
 
 watch(
+  () => props.blog?.keywords,
+  () => {
+    keywords.value = keywords.value || props.blog?.keywords || '';
+  },
+);
+
+watch(
   () => props.blog?.cover,
   () => {
     cover.value = props.blog?.cover || '';
@@ -317,6 +341,13 @@ watch(
 );
 
 watch(
+  keywords,
+  () => {
+    emit('on-keywords-change', keywords.value);
+  },
+);
+
+watch(
   cover,
   () => {
     emit('on-cover-change', cover.value);
@@ -328,6 +359,7 @@ watch(
   () => {
     selected.value = toRaw(props.blog?.tags || []);
     desc.value = desc.value || props.blog?.description || '';
+    keywords.value = keywords.value || props.blog?.keywords || props.blog?.tags?.map(v => v.name).join(',') || '';
     cover.value = props.blog?.cover || '';
   },
 );
