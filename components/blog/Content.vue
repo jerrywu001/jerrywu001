@@ -16,7 +16,7 @@
       <Meta property="og:title" :content="props.data?.title"></Meta>
       <Meta property="og:description" :content="props.data?.description || defdaultDesc"></Meta>
       <Meta property="og:locale" content="zh-CN"></Meta>
-      <Meta property="og:url" :content="'https://www.js-bridge.com/' + props.data?.postId"></Meta>
+      <Meta property="og:url" :content="'https://www.js-bridge.com/post/' + props.data?.postId"></Meta>
       <Meta property="og:site_name" content="Blog of Jerrywu001"></Meta>
       <Meta property="og:image" content="https://www.js-bridge.com/head.jpg"></Meta>
       <Meta property="og:type" content="website"></Meta>
