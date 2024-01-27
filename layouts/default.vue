@@ -10,6 +10,24 @@ defineOptions({
   inheritAttrs: false,
 });
 
+useHead({
+  script: [
+    {
+      src: 'https://www.googletagmanager.com/gtag/js?id=G-5DW1SX7BV1',
+      async: true,
+    },
+    {
+      innerHTML: `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-5DW1SX7BV1');
+      `,
+    },
+  ],
+});
+
 const { siteUser } = useSyncUser();
 const supabase = useSupabaseClient();
 
