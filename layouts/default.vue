@@ -13,7 +13,7 @@ defineOptions({
 useHead({
   script: [
     {
-      src: 'https://www.googletagmanager.com/gtag/js?id=G-5DW1SX7BV1',
+      src: 'https://www.googletagmanager.com/gtag/js?id=G-V510Z4K7RM',
       async: true,
     },
     {
@@ -22,7 +22,7 @@ useHead({
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
 
-        gtag('config', 'G-5DW1SX7BV1');
+        gtag('config', 'G-V510Z4K7RM');
       `,
     },
   ],
