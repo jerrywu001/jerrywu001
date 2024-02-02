@@ -1,7 +1,7 @@
 <template>
   <Html lang="zh-CN">
     <Head>
-      <Title>{{ props.data?.title }}</Title>
+      <Title>{{ props.data?.title || 'loading...' }}</Title>
       <Meta name="description" :content="props.data?.description || defdaultDesc"></Meta>
       <Meta name="keywords" :content="props.data?.keywords || props.data?.tags?.map((t) => t.name).join(',')"></Meta>
       <Meta name="author" :content="author.nickname || 'jerrywu001'"></Meta>
@@ -18,14 +18,14 @@
       <Meta property="og:locale" content="zh-CN"></Meta>
       <Meta property="og:url" :content="'https://www.js-bridge.com/post/' + props.data?.postId"></Meta>
       <Meta property="og:site_name" content="Blog of Jerrywu001"></Meta>
-      <Meta property="og:image" content="https://www.js-bridge.com/head.jpg"></Meta>
+      <Meta property="og:image" :content="props.data?.cover || 'https://www.js-bridge.com/head.jpg'"></Meta>
       <Meta property="og:type" content="website"></Meta>
 
       <Meta name="twitter:card" content="summary_large_image"></Meta>
       <Meta name="twitter:site" content="@jerrywu185"></Meta>
       <Meta name="twitter:title" :content="props.data?.title"></Meta>
       <Meta name="twitter:description" :content="props.data?.description || defdaultDesc"></Meta>
-      <Meta name="twitter:image" content="https://www.js-bridge.com/head.jpg"></Meta>
+      <Meta name="twitter:image" :content="props.data?.cover || 'https://www.js-bridge.com/head.jpg'"></Meta>
 
       <Link rel="stylesheet" :href="prismLink" />
     </Head>
