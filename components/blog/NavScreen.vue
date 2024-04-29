@@ -28,7 +28,7 @@
         </NuxtLink>
       </nav>
       <div class="mt-6 flex items-center justify-center">
-        <a
+        <!-- <a
           v-if="siteUser?.userId"
           class="i-lucide-log-out w-[22px] h-[22px] ml-3 cursor-pointer"
           @click="logout"
@@ -38,7 +38,7 @@
           :to="`/post-edit/${uuid()}`"
           title="create a post"
           class="i-lucide-file-plus-2 w-[22px] h-[22px] mr-3 ml-3"
-        />
+        /> -->
         <NuxtLink
           to="https://github.com/jerrywu001"
           rel="nofollow"
@@ -52,10 +52,10 @@
 </template>
 
 <script setup lang="ts">
-import { uuid } from '~~/utils/utils';
+// import { uuid } from '~~/utils/utils';
 
-const { siteUser } = useSyncUser();
-const { logout } = useLogout();
+// const { siteUser } = useSyncUser();
+// const { logout } = useLogout();
 
 defineProps({
   blog: {

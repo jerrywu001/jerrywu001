@@ -1,21 +1,21 @@
 <template>
   <algola-search :index="index" />
-  <a
+  <!-- <a
     v-if="siteUser?.userId"
     class="i-lucide-log-out w-[22px] h-[22px] ml-3 cursor-pointer max-md:mr-3 max-md:hidden"
     @click="logout"
-  />
-  <NuxtLink
+  /> -->
+  <!-- <NuxtLink
     :to="`/post-edit/${uuid()}`"
     rel="nofollow"
     title="create a post"
     class="i-lucide-file-plus-2 w-[22px] h-[22px] mr-3 ml-3 max-md:hidden"
-  />
+  /> -->
   <NuxtLink
     to="https://github.com/jerrywu001"
     external
     target="_blank"
-    class="i-mdi-github w-[24px] h-[24px] mr-3 max-md:hidden"
+    class="i-mdi-github w-[24px] h-[24px] mr-3 md:ml-3 max-md:hidden"
   />
   <blog-switch-theme />
 
@@ -35,7 +35,7 @@
 </template>
 
 <script setup lang="ts">
-import { uuid } from '~~/utils/utils';
+// import { uuid } from '~~/utils/utils';
 
 defineProps({
   index: {
@@ -49,8 +49,8 @@ defineProps({
 });
 
 const route = useRoute();
-const { siteUser } = useSyncUser();
-const { logout } = useLogout();
+// const { siteUser } = useSyncUser();
+// const { logout } = useLogout();
 
 const visible = ref(false);
 
