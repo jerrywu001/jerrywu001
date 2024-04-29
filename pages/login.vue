@@ -175,6 +175,7 @@ async function loginWithEmailPassword() {
       password: password.value,
     });
 
+  // @ts-ignore
   authError = resError;
   // @ts-ignore
   authData = (resData || {}) as OAuthResponse;

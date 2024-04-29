@@ -52,6 +52,10 @@ import { toolbars, getDefaultMdVnodes, fileToBase64, uuid, isUUID } from '~~/uti
 import type { IBlog, IElement, ISavePost, ITableOfContent, Tag } from '~~/types';
 import 'md-editor-v3/lib/style.css';
 
+definePageMeta({
+  layout: 'postedit',
+});
+
 let content: Array<IElement> = [];
 let tocs: Array<ITableOfContent> = [];
 

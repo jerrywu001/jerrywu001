@@ -27,3 +27,9 @@ yarn build
 ```
 
 Checkout the [deployment documentation](https://v3.nuxtjs.org/docs/deployment).
+
+# mark
+
+default.vue
+NavTools.vue
+NavScreen.vue

@@ -90,7 +90,7 @@
 <script setup lang="ts">
 import { type IBlog } from '~~/types';
 
-definePageMeta({ layout: false });
+definePageMeta({ layout: 'home' });
 
 const { posts, scrollTop } = usePostCache();
 const blogs = ref<IBlog[]>([]);
