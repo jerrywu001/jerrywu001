@@ -92,10 +92,12 @@ const getDefaultFileName = () => {
 const getFiles = () => {
   const items = {} as SandpackFiles;
   const codeItems = slots.default!().filter((v) => v.type === 'div');
+
   if (Array.isArray(codeItems)) {
     codeItems.forEach((v) => {
       const { active, hidden, code = '', readonly, readOnly } = v.props || {};
       let filename = v.props?.filename as string;
+
       filename = filename || getDefaultFileName();
       filename = filename.startsWith('/') ? filename : `/${filename}`;
       if (
@@ -106,6 +108,7 @@ const getFiles = () => {
         const editable = !(
           typeof readonly !== 'undefined' || typeof readOnly !== 'undefined'
         );
+
         items[filename] = {
           code,
           active: typeof active !== 'undefined',
@@ -130,8 +133,10 @@ onMounted(() => {
       const target = document.documentElement;
       const mb = new MutationObserver((mutationRecord) => {
         const dom = mutationRecord[0].target as HTMLDivElement;
+
         theme.value = (dom.className === 'dark' ? levelUp : githubLight) as SandpackThemeProp;
       });
+
       mb.observe(target, {
         attributes: true, // 观察node对象的属性
         attributeFilter: ['class'], // 只观察class属性

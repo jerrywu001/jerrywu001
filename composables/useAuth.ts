@@ -44,6 +44,7 @@ export function useAuthCallbackError() {
 export function getAuthErrorMsg(error: AuthError | null) {
   let errorMsg = '';
   const msg = error?.message || '';
+
   if (msg) {
     errorMsg =
       msg === 'Invalid login credentials' ? 'email or password error' : msg;

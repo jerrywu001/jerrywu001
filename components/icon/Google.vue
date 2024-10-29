@@ -1,3 +1,4 @@
+<!-- eslint-disable @stylistic/js/max-len -->
 <template>
   <svg class="w-6 h-6 mx-2" viewBox="0 0 40 40">
     <path

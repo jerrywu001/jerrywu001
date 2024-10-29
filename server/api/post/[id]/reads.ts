@@ -10,12 +10,8 @@ export default defineEventHandler(async (event) => {
       await prisma.post.update({
         where: { postId: id },
         data: {
-          totalReads: {
-            increment: 1,
-          },
-          reads: {
-            create: { ip },
-          },
+          totalReads: { increment: 1 },
+          reads: { create: { ip } },
         },
       });
     }

@@ -12,7 +12,6 @@
 
 <script setup lang="ts">
 const route = useRoute();
-const { public: runtimeConfig } = useRuntimeConfig();
 
 const { params: { slug } } = route;
 const [id] = slug || [];

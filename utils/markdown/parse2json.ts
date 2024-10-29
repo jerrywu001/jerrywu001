@@ -32,6 +32,7 @@ function parse2json(node: any, parent: any) {
       const templateContent: any[] = [];
       const childList = node.children || [];
       const contentNode = childList[0] ? childList[0] : {};
+
       (contentNode.children || []).forEach((templateNode: any) => parse2json(templateNode, templateContent));
       // @ts-ignore
       filtered.content = templateContent;
@@ -69,13 +70,14 @@ function parse2json(node: any, parent: any) {
 /**
  * JSON compiler
  */
-export default function (root: any[] = []) {
+export default function(root: any[] = []) {
   /**
    * We do not use `map` operation, since each node can be expanded to multiple top level
    * nodes. Instead, we need an array to fill in as many elements inside a single
    * iteration
    */
   const result: any[] = [];
+
   parse2json(root, result);
 
   return {

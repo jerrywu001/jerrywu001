@@ -2,7 +2,9 @@
   <Html>
     <Title>{{ title }}</Title>
   </Html>
-  <div v-show="!loaded" class="flex pt-6 items-center justify-center">loading...</div>
+  <div v-show="!loaded" class="flex pt-6 items-center justify-center">
+    loading...
+  </div>
   <div v-show="loaded && id && isUUID(id)" class="overflow-hidden w-screen h-screen bg-white dark:bg-slate-900 dark:text-slate-100">
     <!-- title input -->
     <blog-edit-nav
@@ -11,11 +13,11 @@
       :source="source"
       :saving="saving"
       :blog="(blog as IBlog)"
-      @on-cover-change="(val) => { cover = val; }"
-      @on-desc-change="(val) => { description = val; }"
-      @on-keywords-change="(val) => { keywords = val; }"
-      @on-tags-change="(tags) => { selectdTags = tags; }"
-      @on-title-change="(val) => { title = val; }"
+      @on-cover-change="(val: string) => { cover = val; }"
+      @on-desc-change="(val: string) => { description = val; }"
+      @on-keywords-change="(val: string) => { keywords = val; }"
+      @on-tags-change="(tags: Tag[]) => { selectdTags = tags; }"
+      @on-title-change="(val: string) => { title = val; }"
       @on-save="savePost"
     />
 
@@ -52,9 +54,7 @@ import { toolbars, getDefaultMdVnodes, fileToBase64, uuid, isUUID } from '~~/uti
 import type { IBlog, IElement, ISavePost, ITableOfContent, Tag } from '~~/types';
 import 'md-editor-v3/lib/style.css';
 
-definePageMeta({
-  layout: 'postedit',
-});
+definePageMeta({ layout: 'postedit' });
 
 let content: Array<IElement> = [];
 let tocs: Array<ITableOfContent> = [];
@@ -83,14 +83,19 @@ const saving = ref(false);
 
 const loaded = computed(() => !!blog.value?.title);
 const enableEdit = computed(() => {
-  return (siteUser?.value?.userId && blog.value?.authorId === siteUser?.value?.userId)
-    || (siteUser?.value?.userId && !blog.value?.authorId);
+  return siteUser?.value?.userId && blog.value?.authorId === siteUser?.value?.userId
+    || siteUser?.value?.userId && !blog.value?.authorId;
 });
 
 const queryPost = async () => {
-  const { data } = await useFetch(`/api/post/${id}`, { key: id, method: 'POST', cache: 'reload' });
+  const { data } = await useFetch(`/api/post/${id}`, {
+    key: id,
+    method: 'POST',
+    cache: 'reload',
+  });
   // @ts-ignore
   const v = toRaw<IBlog>(data.value || getDefaultMdVnodes());
+
   if (!v.authorId) v.authorId = siteUser.value.userId;
   v.title = v.title || `untitled-${id}`;
   // @ts-ignore
@@ -114,8 +119,13 @@ const savePost = async () => {
     tags: toRaw(selectdTags.value),
     prevTags: toRaw(blog.value?.tags || []),
   };
+
   saving.value = true;
-  const { data } = await useFetch('/api/post/save', { method: 'POST', body: reqBody });
+  const { data } = await useFetch('/api/post/save', {
+    method: 'POST',
+    body: reqBody,
+  });
+
   saving.value = false;
 
   if (navRef.value) navRef.value.toggleConfirm();
@@ -127,7 +137,11 @@ const savePost = async () => {
 };
 
 const onChange = async () => {
-  const { data } = await useFetch('/api/post/transform', { method: 'POST', body: { source: source.value } });
+  const { data } = await useFetch('/api/post/transform', {
+    method: 'POST',
+    body: { source: source.value },
+  });
+
   // save for submit
   content = toRaw(data.value?.content as IElement[]);
   tocs = toRaw(data.value?.tocs as ITableOfContent[]);
@@ -153,20 +167,27 @@ const insertImage = async (str: string, select = false) => {
 };
 
 const onUploadImg = async (files: File[]) => {
-  const items: Array<{ name: string, base64: string }> = [];
+  const items: Array<{ name: string; base64: string }> = [];
 
   insertImage('\nuploading...', true);
   for await (const file of files) {
     const base64 = await fileToBase64(file);
-    items.push({ name: file.name, base64 });
+
+    items.push({
+      name: file.name,
+      base64,
+    });
   }
 
   const { data } = await useFetch('/api/upload/md-image', {
     method: 'POST',
-    body: { files: items, blogId: id },
+    body: {
+      files: items,
+      blogId: id,
+    },
   });
 
-  for (const url of (data.value || [])) {
+  for (const url of data.value || []) {
     insertImage(`\n<img src=\"${url}\" style="max-width: 300px" alt="img" />\n`);
   }
 };

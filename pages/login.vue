@@ -1,6 +1,8 @@
 <template>
   <NuxtLayout name="auth" title="Sign In">
-    <template #header>Sign In</template>
+    <template #header>
+      Sign In
+    </template>
 
     <label
       class="mt-6 block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
@@ -148,9 +150,7 @@ async function doAuth(provider = 'github') {
   if (provider === 'azure') {
     ({ authError, authData } = await login({
       provider: 'azure',
-      authOptions: {
-        scopes: 'email',
-      },
+      authOptions: { scopes: 'email' },
     }));
   }
 
@@ -161,6 +161,7 @@ async function doAuth(provider = 'github') {
   }
 
   const errMsg = getAuthErrorMsg(authError);
+
   if (errMsg) {
     $toast.error(errMsg);
   }
@@ -186,6 +187,7 @@ async function loginWithEmailPassword() {
   }
 
   const errMsg = getAuthErrorMsg(authError);
+
   if (errMsg) {
     $toast.error(errMsg);
   }

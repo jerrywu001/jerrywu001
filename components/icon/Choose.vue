@@ -1,3 +1,4 @@
+<!-- eslint-disable @stylistic/js/max-len -->
 <template>
   <svg
     class="h-5 w-5 text-gray-400"

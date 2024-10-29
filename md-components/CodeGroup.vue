@@ -49,6 +49,7 @@ function updateHighlightUnderlinePosition() {
   if (box) {
     const btns = box.querySelectorAll('button');
     const activeTab = btns[index];
+
     highlightUnderline.value.style.left = `${activeTab.offsetLeft}px`;
     highlightUnderline.value.style.top = `${activeTab.offsetTop}px`;
     highlightUnderline.value.style.width = `${activeTab.clientWidth}px`;
@@ -66,12 +67,14 @@ const tabs = getTabs();
 
 function getTabs() {
   const list = [];
+
   for (const box of slotBoxs.value) {
     const children = box.children || [];
     // @ts-ignore
     const dom = children.find(
       (v: VNode) => v.props && v.props.class && v.props.class.includes('filename'),
     );
+
     if (dom && dom.children && dom.children[0]) {
       list.push(dom.children[0].children);
     }
@@ -85,6 +88,7 @@ function updateTabs(index = 0) {
     const boxs = codeRef.value.querySelectorAll(
       '.remark-highlight',
     ) as NodeListOf<HTMLElement>;
+
     if (boxs) {
       boxs.forEach((element: HTMLElement, idx) => {
         element.style.display = idx === index ? 'block' : 'none';

@@ -1,5 +1,3 @@
-import type { HTMLAttributes } from 'nuxt/dist/app/compat/capi';
-
 export interface ITableOfContent {
   archor: string;
   label: string;
@@ -8,7 +6,7 @@ export interface ITableOfContent {
   depth?: number;
 }
 
-export interface IElementProps extends HTMLAttributes {
+export interface IElementProps extends Record<string, any> {
   id?: string;
   className?: string[];
   href?: string;
@@ -90,13 +88,13 @@ export interface MarkdownNode {
 }
 
 export interface SiteUser {
-  role?: Role
-  userId: string
-  email: string
-  nickname: string | null
-  avatar: string | null
-  createdAt?: Date | null
-  updatedAt?: Date | null
+  role?: Role;
+  userId: string;
+  email: string;
+  nickname: string | null;
+  avatar: string | null;
+  createdAt?: Date | null;
+  updatedAt?: Date | null;
 }
 
 export enum Role {
@@ -114,8 +112,8 @@ export interface IBlog {
   tags: Tag[];
   tocs: ITableOfContent[];
   cover?: string;
-  likes?: BlogLike[]
-  comments?: BlogComment[]
+  likes?: BlogLike[];
+  comments?: BlogComment[];
   published: boolean;
   createdAt: Date;
   updatedAt: Date;
@@ -149,9 +147,7 @@ export interface BlogComment {
 export interface Tag {
   id?: string;
   name: string;
-  _count?: {
-    blogs: number;
-  };
+  _count?: {blogs: number};
 }
 
 export interface ISavePost {

@@ -3,14 +3,8 @@ export default defineNuxtConfig({
   // https://github.com/nuxt/framework/issues/1600
   // node_modules/@nuxt/schema/dist/index.d.ts 2239
   vite: {
-    server: {
-      hmr: {
-        overlay: false,
-      },
-    },
-    define: {
-      'process.env.LOG': {},
-    },
+    server: { hmr: { overlay: false } },
+    define: { 'process.env.LOG': {} },
   },
 
   components: {
@@ -44,11 +38,7 @@ export default defineNuxtConfig({
       callback: '/login',
       exclude: ['/*'],
     },
-    clientOptions: {
-      auth: {
-        persistSession: true,
-      },
-    },
+    clientOptions: { auth: { persistSession: true } },
   },
 
   modules: [
@@ -59,15 +49,9 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode', // https://color-mode.nuxtjs.org/
   ],
 
-  colorMode: {
-    classSuffix: '',
-  },
+  colorMode: { classSuffix: '' },
 
-  devtools: {
-    timeline: {
-      enabled: true,
-    },
-  },
+  devtools: { timeline: { enabled: true } },
 
   compatibilityDate: '2024-10-29',
 });

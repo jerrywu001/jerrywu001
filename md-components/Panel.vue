@@ -3,7 +3,9 @@
     <summary>{{ props.title }}</summary>
     <div class="panel-content">
       <div>
-        <p class="leading-none !m-0"><slot></slot></p>
+        <p class="leading-none !m-0">
+          <slot></slot>
+        </p>
       </div>
     </div>
   </details>

@@ -17,7 +17,7 @@
     "source.fixAll.stylelint": "explicit"
   },
   "eslint.options": {
-    "overrideConfigFile": "./.eslintrc.js"
+    "overrideConfigFile": "./eslint.config.cjs"
   },
   "eslint.validate": [
     "javascript",
@@ -25,6 +25,7 @@
     "typescript",
     "typescriptreact"
   ],
+  "scss.lint.unknownAtRules": "ignore",
   "[prisma]": {
     "editor.defaultFormatter": "Prisma.prisma"
   },

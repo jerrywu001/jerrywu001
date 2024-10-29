@@ -47,19 +47,20 @@ const slots = useSlots();
 const getLists = () => {
   const slotNodes = (slots.default && slots.default()) ?? [];
   const node = slotNodes.find((v) => v.type === tag);
+
   // @ts-ignore
   return flatUnwrap(node?.children || [], [tag]).map((li) => unwrap(li, ['li']));
 };
 
 const iconName = computed(() => props.icon !== 'none'
   ? props.icon ||
-      {
-        primary: 'i-carbon-align-box-middle-center',
-        info: 'i-carbon-information',
-        success: 'i-carbon-checkmark-outline',
-        warning: 'i-carbon-tropical-warning',
-        danger: 'i-carbon-warning-alt',
-      }[props.type]
+    {
+      primary: 'i-carbon-align-box-middle-center',
+      info: 'i-carbon-information',
+      success: 'i-carbon-checkmark-outline',
+      warning: 'i-carbon-tropical-warning',
+      danger: 'i-carbon-warning-alt',
+    }[props.type]
   : '');
 
 const isSvgIconStr = computed(

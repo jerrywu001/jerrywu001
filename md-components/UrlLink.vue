@@ -26,7 +26,5 @@ const props = defineProps({
 
 const outLink = computed(() => props.to.includes('//'));
 
-const linkAttrs = computed(() => ({
-  target: outLink.value ? '_blank' : undefined,
-}));
+const linkAttrs = computed(() => ({ target: outLink.value ? '_blank' : undefined }));
 </script>

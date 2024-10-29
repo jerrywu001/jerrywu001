@@ -1,6 +1,8 @@
 <template>
   <NuxtLayout name="auth" title="Forgot Passowrd">
-    <template #header>Forgot Passowrd</template>
+    <template #header>
+      Forgot Passowrd
+    </template>
 
     <div class="w-full max-w-md mx-auto mt-6">
       <label
@@ -51,9 +53,7 @@ const disabledSubmit = computed(() => !validEmail(email.value));
 
 async function resetPassword() {
   loading.value = true;
-  const { data, error } = await supabase.auth.resetPasswordForEmail(email.value, {
-    redirectTo: `${runtimeConfig.baseUrl}/create-password`,
-  });
+  const { data, error } = await supabase.auth.resetPasswordForEmail(email.value, { redirectTo: `${runtimeConfig.baseUrl}/create-password` });
 
   loading.value = false;
   resolveSuccess(error);
@@ -62,13 +62,12 @@ async function resetPassword() {
 /** see: https://supabase.com/docs/reference/javascript/auth-resetpasswordforemail */
 function resolveSuccess(resError: AuthError | null) {
   const errMsg = getAuthErrorMsg(resError);
+
   if (errMsg) {
     $toast.error(errMsg);
   } else {
     email.value = '';
-    $toast.success('A reset link has been sent to your email, please check it.', {
-      autoClose: 5000,
-    });
+    $toast.success('A reset link has been sent to your email, please check it.', { autoClose: 5000 });
   }
 }
 

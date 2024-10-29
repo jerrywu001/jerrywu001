@@ -2,7 +2,7 @@ import ImageKit from 'imagekit';
 
 export default defineEventHandler(async (event) => {
   const { imageKitPublickey, imageKitPrivatekey, imageKitUrlEndpoint } = useRuntimeConfig();
-  const { files, blogId } = await readBody<{ blogId: string; files: Array<{ base64: string; name: string }>; }>(event);
+  const { files, blogId } = await readBody<{ blogId: string; files: Array<{ base64: string; name: string }> }>(event);
 
   if (!files || !files.length) return [];
 

@@ -24,7 +24,7 @@
       class="w-10 h-10 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
       :class="{ 'mx-5': !enableEdit }"
       :src="(siteUser?.avatar as string)"
-    />
+    >
   </div>
 
   <!-- popover -->
@@ -36,7 +36,9 @@
     :class="{ '!visible !opacity-100': showDialog }"
   >
     <div class="p-3 space-y-2 text-gray-900 dark:text-white">
-      <h3 class="font-semibold text-lg px-3">Save Post</h3>
+      <h3 class="font-semibold text-lg px-3">
+        Save Post
+      </h3>
       <!-- props -->
       <div class="p-3">
         <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -67,7 +69,7 @@
                     class="py-1 outline-none px-3 rounded-md border border-solid border-cyan-800 bg-transparnet placeholder:text-slate-800 dark:placeholder:text-slate-600 dark:bg-white mx-3 w-full inset-0 text-indigo-600 dark:text-slate-600 focus:ring-indigo-500"
                     :readonly="creating"
                     @keyup.prevent.enter="createTag"
-                  />
+                  >
                 </li>
                 <template v-if="tags?.length > 0">
                   <li
@@ -127,7 +129,7 @@
                 rows="3"
                 placeholder="post description"
                 class="px-3 !outline-none block resize-none w-full bg-transparent rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              ></textarea>
+              />
             </div>
           </div>
 
@@ -140,10 +142,12 @@
                 rows="3"
                 placeholder="post description"
                 class="px-3 !outline-none block resize-none w-full bg-transparent rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              ></textarea>
+              />
             </div>
 
-            <p class="mt-3 text-sm leading-6 mb-6">Write a few sentences about Post.</p>
+            <p class="mt-3 text-sm leading-6 mb-6">
+              Write a few sentences about Post.
+            </p>
           </div>
         </div>
 
@@ -165,14 +169,14 @@
           />
         </div>
       </div>
-      <div data-popper-arrow></div>
+      <div data-popper-arrow />
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import type { IBlog, Tag } from '~~/types';
-
+ 
 const props = defineProps({
   title: String,
   source: String,
@@ -181,12 +185,12 @@ const props = defineProps({
 });
 
 const emit = defineEmits<{
-  (e: 'on-save'): void
-  (e: 'on-cover-change', val: string): void
-  (e: 'on-desc-change', val: string): void
-  (e: 'on-keywords-change', val: string): void
-  (e: 'on-tags-change', tags: Tag[]): void
-  (e: 'on-title-change', val: string): void
+  (e: 'on-save'): void;
+  (e: 'on-cover-change', val: string): void;
+  (e: 'on-desc-change', val: string): void;
+  (e: 'on-keywords-change', val: string): void;
+  (e: 'on-tags-change', tags: Tag[]): void;
+  (e: 'on-title-change', val: string): void;
 }>();
 
 const { siteUser } = useSyncUser();
@@ -212,14 +216,15 @@ const disabled = computed(() => !blogTitle.value?.trim() || !props.source?.trim(
 const disabledConfirm = computed(() => !selected.value?.length);
 
 const enableEdit = computed(() => {
-  return (siteUser?.value?.userId && props.blog?.authorId === siteUser?.value?.userId)
-    || (siteUser?.value?.userId && !props.blog?.authorId);
+  return siteUser?.value?.userId && props.blog?.authorId === siteUser?.value?.userId
+    || siteUser?.value?.userId && !props.blog?.authorId;
 });
 
 const toggleConfirm = () => showDialog.value = !showDialog.value;
 
 const toogleSelected = (item: Tag) => {
-  const index = selected.value.findIndex(v => v.name === item.name);
+  const index = selected.value.findIndex((v) => v.name === item.name);
+
   if (index > -1) {
     selected.value.splice(index, 1);
   } else {
@@ -229,7 +234,12 @@ const toogleSelected = (item: Tag) => {
 };
 
 const fetchTags = async () => {
-  const { data } = await useFetch('/api/tag/all', { key: 'tags', method: 'POST', cache: 'reload' });
+  const { data } = await useFetch('/api/tag/all', {
+    key: 'tags',
+    method: 'POST',
+    cache: 'reload',
+  });
+
   tags.value = data.value as Tag[];
 };
 
@@ -241,6 +251,7 @@ const createTag = async () => {
     method: 'POST',
     body: { name: tagInputRef.value?.value },
   });
+
   creating.value = false;
 
   if (data.value?.msg) {
@@ -253,25 +264,34 @@ const createTag = async () => {
 };
 
 const onUploadImg = async (file: File) => {
-  const items: Array<{ name: string, base64: string }> = [];
+  const items: Array<{ name: string; base64: string }> = [];
+
   if (!file || uploading.value) return;
 
   uploading.value = true;
   const base64 = await fileToBase64(file);
-  items.push({ name: file.name, base64 });
+
+  items.push({
+    name: file.name,
+    base64,
+  });
 
   const { data } = await useFetch('/api/upload/md-image', {
     method: 'POST',
-    body: { files: items, blogId: props.blog?.postId || defaultId },
+    body: {
+      files: items,
+      blogId: props.blog?.postId || defaultId,
+    },
   });
+
   uploading.value = false;
 
-  // eslint-disable-next-line prefer-destructuring
   cover.value = (data.value as string[] || [])[0];
 };
 
 const popoverClick = (e: MouseEvent) => {
   const popover = document.getElementById('popover');
+
   if (!popover?.contains(e.target as Node) && !document.querySelector('#toggle-popover')?.contains(e.target as Node)) {
     showDialog.value = false;
   }
@@ -282,9 +302,7 @@ const popoverClick = (e: MouseEvent) => {
 
 fetchTags();
 
-defineExpose({
-  toggleConfirm,
-});
+defineExpose({ toggleConfirm });
 
 watchEffect(() => {
   emit('on-cover-change', cover.value || props.blog?.cover || '');
@@ -359,7 +377,7 @@ watch(
   () => {
     selected.value = toRaw(props.blog?.tags || []);
     desc.value = desc.value || props.blog?.description || '';
-    keywords.value = keywords.value || props.blog?.keywords || props.blog?.tags?.map(v => v.name).join(',') || '';
+    keywords.value = keywords.value || props.blog?.keywords || props.blog?.tags?.map((v) => v.name).join(',') || '';
     cover.value = props.blog?.cover || '';
   },
 );

@@ -6,7 +6,7 @@
       allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen
     >
-      {{ slots.default() }}
+      {{ slots.default?.() }}
     </iframe>
   </div>
 </template>

@@ -8,7 +8,7 @@
       alt="avatar"
       class="rounded-full w-full h-full"
       :class="[{ 'opacity-0': !avatar }]"
-    />
+    >
   </div>
 </template>
 

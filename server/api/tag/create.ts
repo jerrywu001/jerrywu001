@@ -8,16 +8,13 @@ export default defineEventHandler(async (event) => {
   let msg = '';
 
   try {
-    const selected = await prisma.tag.findFirst({
-      where: {
-        name,
-      },
-    });
+    const selected = await prisma.tag.findFirst({ where: { name } });
 
     if (selected) {
       msg = 'tag exists';
     } else {
       const rs = await prisma.tag.create({ data: { name } });
+
       tag = rs as Tag;
     }
   } catch (e) {

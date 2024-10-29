@@ -1,6 +1,9 @@
+<!-- eslint-disable @stylistic/js/max-len -->
 <template>
   <NuxtLayout name="auth" title="Set Your Passowrd">
-    <template #header>Hello, {{ email }}</template>
+    <template #header>
+      Hello, {{ email }}
+    </template>
 
     <div class="flex items-center mt-6">
       <div class="flex items-center mx-2">
@@ -56,23 +59,22 @@ const loading = ref(false);
 
 const email = computed(() => user.value?.role === 'authenticated' ? user.value?.email ?? '' : '');
 
-const disabledSubmit = computed(() => (
+const disabledSubmit = computed(() =>
   !email.value ||
-    password.value.length < 6 ||
-    rePassword.value !== password.value
-));
+  password.value.length < 6 ||
+  rePassword.value !== password.value,
+);
 
 const submit = async () => {
   loading.value = true;
 
   // https://supabase.com/docs/guides/auth/auth-password-reset#update-password
-  const { error: resError } = await supabase.auth.updateUser({
-    password: password.value,
-  });
+  const { error: resError } = await supabase.auth.updateUser({ password: password.value });
 
   loading.value = false;
 
   const errMsg = getAuthErrorMsg(resError);
+
   if (errMsg) {
     $toast.error(errMsg);
   } else {

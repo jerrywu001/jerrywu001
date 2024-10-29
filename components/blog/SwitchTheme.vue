@@ -110,6 +110,7 @@ function switchTheme() {
 function getLastThemePreference() {
   const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
   const systemPreference = isDark ? 'dark' : 'light';
+
   if (localStorage.getItem(storageKey) === 'system') {
     localStorage.setItem(storageKey, systemPreference);
   }
@@ -119,6 +120,7 @@ function getLastThemePreference() {
 onMounted(() => {
   if (typeof window !== 'undefined') {
     const preference = getLastThemePreference();
+
     colorMode.preference = preference;
     localStorage.setItem(storageKey, preference);
     syncDatasetTheme();
@@ -126,6 +128,7 @@ onMounted(() => {
     window.matchMedia('(prefers-color-scheme: dark)')
       .addEventListener('change', ({ matches: inDark }) => {
         const preferenceColor = inDark ? 'dark' : 'light';
+
         colorMode.preference = preferenceColor;
         localStorage.setItem(storageKey, preferenceColor);
         syncDatasetTheme();

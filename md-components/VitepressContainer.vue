@@ -1,6 +1,8 @@
 <template>
   <div v-if="type !== 'details'" class="custom-block vc" :class="[type]">
-    <p class="custom-block-title">{{ title || type.toUpperCase() }}</p>
+    <p class="custom-block-title">
+      {{ title || type.toUpperCase() }}
+    </p>
     <div class="py-2">
       <Markdown :use="$slots.default" unwrap="p" />
     </div>

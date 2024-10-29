@@ -7,15 +7,10 @@ export default defineEventHandler(async (event) => {
 
   try {
     const rs = await prisma.post.findMany({
-      where: {
-        NOT: {
-          content: { equals: [] },
-        },
-      },
-      orderBy: {
-        createdAt: 'desc',
-      },
+      where: { NOT: { content: { equals: [] } } },
+      orderBy: { createdAt: 'desc' },
     });
+
     // @ts-ignore
     result = rs as IBlog[];
   } catch (e) {

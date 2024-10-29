@@ -9,7 +9,5 @@ export default defineNuxtPlugin((nuxtApp) => {
     theme: 'auto',
   } as ToastOptions);
 
-  return {
-    provide: { toast },
-  };
+  return { provide: { toast } };
 });

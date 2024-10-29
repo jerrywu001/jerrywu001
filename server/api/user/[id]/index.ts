@@ -4,19 +4,14 @@ export default defineEventHandler(async (event) => {
   const userId = getRouterParam(event, 'id') as string;
 
   let result = {} as any;
+
   try {
     result = await prisma.user.findUnique({
-      where: {
-        userId,
-      },
+      where: { userId },
       include: {
         posts: {
           include: {
-            tags: {
-              include: {
-                blogs: true,
-              },
-            },
+            tags: { include: { blogs: true } },
             favorites: true,
             likes: true,
             comments: true,

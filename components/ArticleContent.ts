@@ -68,9 +68,7 @@ export default defineComponent({
         ...restProps,
         ...this.$attrs,
       },
-      {
-        default: createSlotFunction(childList),
-      },
+      { default: createSlotFunction(childList) },
     );
   },
 });
@@ -85,9 +83,9 @@ function renderNode(
   const originalTag = node.tag;
   // `_ignoreMap` is an special prop to disables tag-mapper
   const renderTag: string =
-    (typeof node.props?.__ignoreMap === 'undefined' &&
-      documentMeta.tags &&
-      documentMeta.tags[node.tag]) ||
+    typeof node.props?.__ignoreMap === 'undefined' &&
+    documentMeta.tags &&
+    documentMeta.tags[node.tag] ||
     node.tag;
 
   /**
@@ -98,6 +96,7 @@ function renderNode(
   }
 
   const component = resolveVueComponent(renderTag);
+
   if (typeof component === 'object') {
     component.tag = originalTag;
   }
@@ -135,14 +134,13 @@ function renderSlots(
       }
 
       const slotName = getSlotName(mnode);
+
       // @ts-ignore
       data[slotName] = mnode.children.map((child) => renderNode(child, documentMeta));
 
       return data;
     },
-    {
-      [DEFAULT_SLOT]: [],
-    },
+    { [DEFAULT_SLOT]: [] },
   );
 
   return Object.fromEntries(
@@ -158,6 +156,7 @@ function renderSlots(
  */
 function propsToData(node: MarkdownNode, documentMeta: ParsedContentMeta) {
   const { tag = '', props = {} } = node;
+
   return Object.keys(props).reduce((data, key) => {
     // Ignore internal `__ignoreMap` prop.
     if (key === '__ignoreMap') {
@@ -228,9 +227,10 @@ function propsToDataRxModel(
   const field = 'value';
   const event = mods.lazy ? 'change' : 'input';
   const processor = mods.number ? number : mods.trim ? trim : noop;
+
   data[field] = evalInContext(value, documentMeta);
   data.on = data.on || {};
-  data.on[event] = (e: any) => ((documentMeta as any)[value] = processor(e));
+  data.on[event] = (e: any) => (documentMeta as any)[value] = processor(e);
 
   return data;
 }
@@ -245,6 +245,7 @@ function propsToDataVBind(
   documentMeta: ParsedContentMeta,
 ) {
   const val = evalInContext(value, documentMeta);
+
   data = Object.assign(data, val);
   return data;
 }
@@ -288,6 +289,7 @@ const resolveVueComponent = (component: string) => {
     (!htmlTags.includes(component as any) || component === 'embed')
   ) {
     const componentFn = resolveComponent(pascalCase(component), false);
+
     // If component exists
     if (typeof componentFn === 'object') {
       return componentFn;
@@ -303,7 +305,7 @@ function evalInContext(code: string, context: any) {
   // Retrive value from context
   const result = code
     .split('.')
-    .reduce((o: any, k) => (typeof o === 'object' ? o[k] : undefined), context);
+    .reduce((o: any, k) => typeof o === 'object' ? o[k] : undefined, context);
 
   return typeof result === 'undefined' ? destr(code) : result;
 }
@@ -313,14 +315,15 @@ function evalInContext(code: string, context: any) {
  */
 function getSlotName(node: MarkdownNode) {
   let name = '';
+
   for (const propName of Object.keys(node.props || {})) {
     // Check if prop name correspond to a slot
     if (!propName.startsWith('#') && !propName.startsWith('v-slot:')) {
-      // eslint-disable-next-line no-continue
+       
       continue;
     }
     // Get slot name
-    // eslint-disable-next-line prefer-destructuring
+     
     name = propName.split(/[:#]/, 2)[1];
     break;
   }

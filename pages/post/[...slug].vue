@@ -39,7 +39,9 @@
       :visible="loaded"
       :data="post"
     >
-      <div class="tocs-tag">On this page</div>
+      <div class="tocs-tag">
+        On this page
+      </div>
     </blog-tocs>
   </main>
 
@@ -82,7 +84,11 @@ const queryPost = async () => {
     post.value = toRaw(postMap.value[id]);
   } else {
     post.value = null;
-    const { data } = await useFetch(`${runtimeConfig.baseUrl}/api/post/${id}`, { key: id, method: 'POST' });
+    const { data } = await useFetch(`${runtimeConfig.baseUrl}/api/post/${id}`, {
+      key: id,
+      method: 'POST', 
+    });
+
     post.value = toRaw<IBlog>(data.value as any);
 
     if (post.value?.postId) {
@@ -105,6 +111,7 @@ const tocsEvent = (e: MouseEvent) => {
   const target = e.target as HTMLElement;
   const tocs = document.getElementById('tocs-app-container');
   const clickOnTag = document.querySelector('#small-tocs-tag')?.contains(target) || !!tocs?.contains(target);
+
   toggleVisibleAnimation(clickOnTag && !!tocs?.classList?.contains('hidden'), tocs);
 };
 

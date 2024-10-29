@@ -35,9 +35,15 @@
     >
       <header class="sticky top-0 flex justify-end py-5 px-3 z-50">
         <div class="h-ls flex gap-3 text-sm max-md:hidden">
-          <NuxtLink class="h-l" to="/tags/all" rel="nofollow">Tags</NuxtLink>
-          <NuxtLink class="h-l" to="/about-me" rel="nofollow">About me</NuxtLink>
-          <NuxtLink class="h-l" to="/sponsor-me" rel="nofollow">Sponsor me</NuxtLink>
+          <NuxtLink class="h-l" to="/tags/all" rel="nofollow">
+            Tags
+          </NuxtLink>
+          <NuxtLink class="h-l" to="/about-me" rel="nofollow">
+            About me
+          </NuxtLink>
+          <NuxtLink class="h-l" to="/sponsor-me" rel="nofollow">
+            Sponsor me
+          </NuxtLink>
         </div>
         <blog-nav-tools :index="true" />
       </header>
@@ -67,7 +73,9 @@
               <img class="w-[180px] h-28 rounded-md object-cover shadow-md" :src="item.cover" alt="cover">
             </div>
             <div class="flex flex-col flex-1 gap-2 items-start relative">
-              <div class="title text-base font-medium text-slate-900 dark:text-slate-100">{{ item.title }}</div>
+              <div class="title text-base font-medium text-slate-900 dark:text-slate-100">
+                {{ item.title }}
+              </div>
               <p
                 class="text-slate-500 text-sm dark:text-slate-400"
               >
@@ -103,6 +111,7 @@ const fetchAllPosts = async () => {
   } else {
     loading.value = true;
     const { data } = await useFetch('/api/post/recently', { method: 'POST' });
+
     // @ts-ignore
     blogs.value = data.value as IBlog[];
     // @ts-ignore
@@ -115,6 +124,7 @@ const fetchAllPosts = async () => {
       if (process.client) {
         initHoverClasses();
         const scroller = document.querySelector('.bg-white');
+
         if (scroller) {
           scroller.scrollTop = scrollTop.value;
         }
@@ -144,9 +154,11 @@ const initHoverClasses = () => {
 
     // create style tag, inject styleStr
     const styleTag = document.getElementById('hover-classes');
+
     if (styleTag) styleTag.remove();
 
     const style = document.createElement('style');
+
     style.id = 'hover-classes';
     style.innerHTML = styleStr;
     document.head.appendChild(style);
@@ -155,6 +167,7 @@ const initHoverClasses = () => {
 
 const scrollHandler = () => {
   const scroller = document.querySelector('.bg-white');
+
   scrollTop.value = scroller?.scrollTop || 0;
 };
 
@@ -162,6 +175,7 @@ const resolveHandler = (unmount = false) => {
   if (process.client) {
     nextTick(() => {
       const scroller = document.querySelector('.bg-white');
+
       if (scroller) {
         scroller[unmount ? 'removeEventListener' : 'addEventListener']('scroll', scrollHandler, false);
       }

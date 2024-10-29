@@ -31,6 +31,7 @@ async function syncUserToDB() {
   try {
     useFetch('/api/user/sync').then((r) => {
       const rs = r.data?.value as SiteUser;
+
       if (rs && rs.userId) {
         siteUser.value = rs;
       }

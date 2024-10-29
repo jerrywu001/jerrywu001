@@ -31,6 +31,7 @@ function resolveContainerSyntax(str: string) {
   // const replacement2 = ':::vitepress-container{type=$1 title="$2"}';
 
   const newString = str.replace(regex, replacement);
+
   return newString;
 }
 
@@ -71,9 +72,7 @@ export const getResolvedMarkdown = async (content = '') => {
     .use(rehypeToc, {
       headings: ['h2', 'h3', 'h4'],
       nav: false,
-      cssClasses: {
-        toc: 'table-of-contents',
-      },
+      cssClasses: { toc: 'table-of-contents' },
     })
     .use(rehypeAutolinkHeadings, {
       behavior: 'wrap',
@@ -85,7 +84,10 @@ export const getResolvedMarkdown = async (content = '') => {
     .process(str);
 
   const hast = html2hast(String(file)) as IHast[];
-  const res = parse2json({ type: 'root', children: hast } as any);
+  const res = parse2json({
+    type: 'root',
+    children: hast, 
+  } as any);
 
   if (reporter(file as any)
     && !String(reporter(file as any)).includes('no issues found')) {

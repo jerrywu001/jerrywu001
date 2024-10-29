@@ -3,22 +3,18 @@ import { serverSupabaseUser } from '#supabase/server';
 
 export default defineEventHandler(async (event) => {
   const userSession = await serverSupabaseUser(event);
+
   if (!userSession?.id) return null;
 
   let result = [] as any[];
+
   try {
     const rs = await prisma.user.findMany({
-      where: {
-        userId: userSession.id,
-      },
+      where: { userId: userSession.id },
       include: {
         posts: {
           include: {
-            tags: {
-              include: {
-                blogs: true,
-              },
-            },
+            tags: { include: { blogs: true } },
             favorites: true,
             likes: true,
             comments: true,
@@ -29,6 +25,7 @@ export default defineEventHandler(async (event) => {
         },
       },
     });
+
     result = rs as any[];
   } catch (e) {
     console.error(e);

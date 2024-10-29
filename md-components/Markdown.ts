@@ -1,5 +1,4 @@
 import type { Slot } from 'vue';
-import { type ComponentInternalInstance } from 'nuxt/dist/app/compat/capi';
 import {
   defineComponent,
   getCurrentInstance,
@@ -33,7 +32,7 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const { parent } = getCurrentInstance() as ComponentInternalInstance;
+    const { parent } = getCurrentInstance() as any;
     const { between } = useSlots();
 
     const tags = computed(() => {

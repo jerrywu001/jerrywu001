@@ -11,6 +11,7 @@ export async function getTransformedVNode(fileStr: string) {
   try {
     const res = await getResolvedMarkdown(content);
     const toc = res.find((v) => isToc(v));
+
     children = res;
     tocElements = toc ? toc.children : [];
   } catch (error) {
@@ -52,6 +53,7 @@ function getTableOfContents(
     const p = tocs[i];
     const item = {} as ITableOfContent;
     const children = p.children || [];
+
     item.depth = depth;
 
     for (const c of children) {

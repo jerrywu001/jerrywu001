@@ -1,6 +1,8 @@
 <template>
   <aside id="siderbar" class="aside aside-lg-xl" :class="{ 'slide-in': slideIn }">
-    <div class="pb-8 text-slate-800 font-semibold dark:text-slate-200">All Tags</div>
+    <div class="pb-8 text-slate-800 font-semibold dark:text-slate-200">
+      All Tags
+    </div>
     <blog-tags v-if="!loading" :data="tags" />
 
     <blog-skeleton :visible="loading" :padding="false" />
@@ -38,6 +40,7 @@ const fetchTags = async () => {
 
   loading.value = true;
   const { data } = await useFetch<Tag[]>('/api/tag/all', { method: 'POST' });
+
   tags.value = data.value as Tag[];
   tagList.value = data.value as Tag[];
   loading.value = false;

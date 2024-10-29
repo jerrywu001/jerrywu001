@@ -1,8 +1,10 @@
 export function toggleTocs() {
   const container = document.querySelector('.tocs');
+
   if (container) {
     const { classList } = container;
     const isOpen = classList.contains('h-auto');
+
     if (isOpen) {
       container.classList.remove('h-auto');
       container.classList.add('h-10');
@@ -42,7 +44,11 @@ export function updateArchorOffsetTop(
   const escapedId = id.replace(/\./g, '\\.').replace('#', '');
   const archor = document.getElementById(decodeURIComponent(escapedId));
   const offsetTop = (archor?.offsetTop as number) - (isPc ? (tocs?.clientHeight as number) : 20);
-  container.scrollTo({ top: offsetTop, behavior: 'smooth' });
+
+  container.scrollTo({
+    top: offsetTop,
+    behavior: 'smooth', 
+  });
   autoHighlightArchor();
 
   if (autoClose && !isPc) {
@@ -60,6 +66,7 @@ export function autoHighlightArchor() {
 
   for (const entry of targets) {
     const target = entry as HTMLDivElement;
+
     target.classList.remove('active');
 
     if (
@@ -72,6 +79,7 @@ export function autoHighlightArchor() {
       const links = document.querySelectorAll(
         `.toc-link[href="#${target.id}"]`,
       );
+
       for (const v of links) {
         v.classList.add('active');
       }
@@ -91,6 +99,7 @@ export function scrollToHeading(event: MouseEvent, id = '') {
 
 export function initScrollTopByHash() {
   const container = getScrollContainer();
+
   if (window.location.hash) {
     setTimeout(() => {
       updateArchorOffsetTop();
@@ -104,12 +113,14 @@ export function doHeadScroll(e: any) {
   e.preventDefault();
   if (e.target.href) {
     const archor = '#' + e.target.href.split('#').pop();
+
     scrollToHeading(e, archor);
   }
 }
 
 export function addArchorClickEvent() {
   const headings = getHeadings();
+
   initScrollTopByHash();
 
   headings.forEach((heading) => {
@@ -146,14 +157,20 @@ export function useArticleScroll() {
 
   function onBack2TopClick() {
     const container = getScrollContainer();
-    container.scrollTo({ top: 0, behavior: 'smooth' });
+
+    container.scrollTo({
+      top: 0,
+      behavior: 'smooth', 
+    });
   }
 
   function hideTocs(e: MouseEvent) {
     const tocs = document.querySelector('.tocs-sm');
+
     if (tocs) {
       const { classList } = tocs;
       const isOpen = classList.contains('h-auto');
+
       if (isOpen && !tocs.contains(e.target as HTMLElement)) {
         tocs.classList.remove('h-auto');
         tocs.classList.add('h-10');
@@ -167,6 +184,7 @@ export function useArticleScroll() {
       const target = e.currentTarget as HTMLDivElement;
       const x = e.clientX || e.touches[0]?.clientX;
       const y = e.clientY || e.touches[0]?.clientY;
+
       target.style.bottom = 'auto';
       target.style.right = 'auto';
       target.style.top = `${y - target.clientHeight / 2}px`;
@@ -179,6 +197,7 @@ export function useArticleScroll() {
   tryOnMounted(() => {
     const container = getScrollContainer();
     const topIcon = getTopIcon();
+
     topIcon.addEventListener('click', onBack2TopClick, false);
     topIcon.addEventListener('touchmove', onMove, false);
     topIcon.addEventListener('drag', onMove, false);
@@ -191,6 +210,7 @@ export function useArticleScroll() {
   tryOnBeforeUnmount(() => {
     const container = getScrollContainer();
     const topIcon = getTopIcon();
+
     if (topIcon) {
       topIcon.removeEventListener('click', onBack2TopClick, false);
       topIcon.removeEventListener('touchmove', onMove, false);

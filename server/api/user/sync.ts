@@ -5,6 +5,7 @@ import { prisma, uploadSupabaseAvatar, updateSupabaseAvatar } from '~~/utils/ser
 // save supabase user to postgrel database, and uoload auth avatar(eg. github/google) to imagekit
 export default defineEventHandler(async (event) => {
   const userSession = await serverSupabaseUser(event);
+
   if (!userSession?.id) return null;
 
   let result = null;
@@ -13,9 +14,7 @@ export default defineEventHandler(async (event) => {
     let dbAvatar: string | null = null;
     const user = formatSiteUser(userSession);
 
-    const dbUser = await prisma.user.findUnique({
-      where: { userId: user.userId },
-    });
+    const dbUser = await prisma.user.findUnique({ where: { userId: user.userId } });
 
     if (dbUser?.userId) {
       dbAvatar = dbUser.avatar;

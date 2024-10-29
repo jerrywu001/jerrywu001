@@ -93,6 +93,7 @@ export function nodeTextContent(node: VNode | MarkdownNode): string {
 
   // Walk through node children
   const children = nodeChildren(node);
+
   if (Array.isArray(children)) {
     return children.map(nodeTextContent).join('');
   }
@@ -167,12 +168,14 @@ export function getDateTimeStr(date: Date) {
 export function isUUID(str?: string) {
   const uuidRegex =
     /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+
   return uuidRegex.test(str || '');
 }
 
 /** a function to generate a uuid */
 export function uuid() {
   let d = Date.now();
+
   if (
     typeof performance !== 'undefined' &&
     typeof performance.now === 'function'
@@ -180,10 +183,11 @@ export function uuid() {
     d += performance.now();
   }
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
-    const r = ((d + Math.random() * 16) % 16) | 0;
+    const r = (d + Math.random() * 16) % 16 | 0;
+
     d = Math.floor(d / 16);
 
-    return (c === 'x' ? r : (r & 0x3) | 0x8).toString(16);
+    return (c === 'x' ? r : r & 0x3 | 0x8).toString(16);
   });
 }
 
@@ -273,12 +277,13 @@ export function fileToBase64(file: File): Promise<string> {
   return new Promise((resolve) => {
     const reader = new FileReader();
 
-    reader.onload = function (event: any) {
+    reader.onload = function(event: any) {
       const base64String = event.target.result.split(',')[1];
+
       resolve(base64String);
     };
 
-    reader.onerror = function (event: any) {
+    reader.onerror = function(event: any) {
       resolve('');
     };
 
@@ -299,10 +304,12 @@ export function replaceMdSyntax(resolveMd = false) {
   if (resolveMd) {
     setTimeout(() => {
       const pres = document.querySelectorAll('pre.language-md');
-      const items = [...(pres || [])];
+      const items = [...pres || []];
+
       items.forEach((pre) => {
         const html = pre.innerHTML.replace(/\\`\\`\\`/g, '```');
         const newDom = parseDomFromString(html);
+
         pre.innerHTML = '';
         pre.appendChild(newDom as HTMLElement);
       });
@@ -355,6 +362,7 @@ export function initMermaid() {
     pres.forEach((pre: HTMLPreElement) => {
       const div = pre.parentElement as HTMLDivElement;
       const codeContent = div.getAttribute('code');
+
       pre.classList.add('mermaid');
       pre.classList.remove('line-numbers');
       pre.innerHTML = codeContent || '';

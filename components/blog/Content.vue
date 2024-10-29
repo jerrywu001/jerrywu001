@@ -60,7 +60,9 @@
           <div v-if="author?.avatar">
             <img class="w-10 h-10 rounded-full" :src="author.avatar" alt="avatar" />
           </div>
-          <div class="text-sm text-slate-600 dark:text-slate-300">{{ author?.nickname }}</div>
+          <div class="text-sm text-slate-600 dark:text-slate-300">
+            {{ author?.nickname }}
+          </div>
         </div>
       </div>
       <div>
@@ -74,12 +76,13 @@
           编辑
         </NuxtLink>
       </div>
-
     </template>
 
     <article-content :children="content" />
 
-    <div class="py-6">&nbsp;</div>
+    <div class="py-6">
+&nbsp;
+    </div>
   </article>
 </template>
 
@@ -118,6 +121,7 @@ const enableEdit = computed(() => siteUser?.value?.userId && author.value.userId
 
 const createTime = computed(() => {
   const date = props.data?.createdAt;
+
   if (date) {
     return getDateTimeStr(date);
   }
@@ -127,6 +131,7 @@ const createTime = computed(() => {
 const getRandomColor = () => {
   const letters = '0123456789ABCDEF';
   let color = '#';
+
   for (let i = 0; i < 6; i++) {
     color += letters[Math.floor(Math.random() * 16)];
   }

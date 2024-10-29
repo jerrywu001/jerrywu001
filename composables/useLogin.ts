@@ -40,8 +40,11 @@ export async function login<T = OAuthResponse>(
 
   const authData = data || ({} as T);
 
-  // @ts-ignore
-  return { authData, authError };
+  return {
+    // @ts-ignore
+    authData,
+    authError,
+  };
 }
 
 export default function useLoginAuth<T = OAuthResponse>() {
@@ -55,6 +58,7 @@ export default function useLoginAuth<T = OAuthResponse>() {
     () => {
       if (user.value) {
         const redirectTo = getRedirectPath();
+
         navigateTo(decodeURIComponent(redirectTo));
       }
     },

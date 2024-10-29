@@ -5,13 +5,8 @@ export default defineEventHandler(async (event) => {
   let result = [] as Tag[];
 
   try {
-    const rs = await prisma.tag.findMany({
-      include: {
-        _count: {
-          select: { blogs: true },
-        },
-      },
-    });
+    const rs = await prisma.tag.findMany({ include: { _count: { select: { blogs: true } } } });
+
     // @ts-ignore
     result = rs as Tag[];
   } catch (e) {

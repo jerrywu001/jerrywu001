@@ -15,11 +15,8 @@ export const defaultAvatar = 'https://ik.imagekit.io/jerrywu001/supabases/defaul
  */
 export async function updateSupabaseAvatar(avatar: string | null, event: any) {
   const supabase = await serverSupabaseClient(event);
-  supabase.auth.updateUser({
-    data: {
-      avatar_url: avatar || defaultAvatar,
-    },
-  });
+
+  supabase.auth.updateUser({ data: { avatar_url: avatar || defaultAvatar } });
 }
 
 /**
@@ -51,6 +48,7 @@ export async function uploadSupabaseAvatar(data: {
   }
 
   let url = defaultAvatar;
+
   if (!!avatar && typeof avatar === 'string' && !isCDNAvatar(avatar)) {
     const { imageKitPublickey, imageKitPrivatekey, imageKitUrlEndpoint } = useRuntimeConfig();
 

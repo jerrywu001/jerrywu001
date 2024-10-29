@@ -12,11 +12,13 @@ export default function useImgSwipe() {
         setTimeout(() => {
           getAllImgsLoaded(() => {
             const box = document.querySelector('article');
+
             if (box) {
-              const items = (box.querySelectorAll('img') || []);
+              const items = box.querySelectorAll('img') || [];
+
               items.forEach((img) => {
                 if (img.id !== 'cover' && !img.classList.contains('w-10')) {
-                  (function (prevImg: HTMLImageElement) {
+                  (function(prevImg: HTMLImageElement) {
                     const a = document.createElement('a');
                     let newImg = document.createElement(
                       'img',
@@ -76,7 +78,10 @@ export default function useImgSwipe() {
     }
   }
 
-  return { destroyImageSwipe, initImageSwipe };
+  return {
+    destroyImageSwipe,
+    initImageSwipe, 
+  };
 }
 
 function getAllImgsLoaded(callback: () => void) {
@@ -85,6 +90,7 @@ function getAllImgsLoaded(callback: () => void) {
 
   const promises = Array.prototype.slice.call(images || []).map((node) => new Promise((resolve) => {
     const loadImg = new Image();
+
     loadImg.src = node.src;
     loadImg.onload = () => {
       resolve(node);

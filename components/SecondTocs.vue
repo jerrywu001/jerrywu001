@@ -29,9 +29,7 @@ defineProps({
 </script>
 
 <script lang="ts">
-export default {
-  name: 'SecondTocs',
-};
+export default { name: 'SecondTocs' };
 </script>
 
 <style lang="postcss">

@@ -1,6 +1,8 @@
 <template>
   <NuxtLayout name="auth" title="Sign Up">
-    <template #header>Sign Up</template>
+    <template #header>
+      Sign Up
+    </template>
 
     <div class="relative flex items-center mt-6">
       <span class="absolute">
@@ -122,9 +124,7 @@ async function signUpWithEmail() {
 
   const { error: resError } = await supabase.auth.signInWithOtp({
     email: email.value,
-    options: {
-      emailRedirectTo: `${runtimeConfig.baseUrl}/create-password`,
-    },
+    options: { emailRedirectTo: `${runtimeConfig.baseUrl}/create-password` },
   });
 
   resolveSuccess(resError);
@@ -136,15 +136,14 @@ function resolveSuccess(resError: AuthError | null) {
   loading.value = false;
 
   const errMsg = getAuthErrorMsg(resError);
+
   if (errMsg) {
     $toast.error(errMsg);
   } else {
     email.value = '';
     password.value = '';
     rePassword.value = '';
-    $toast.success('A confirm link has been sent to your email, please check it.', {
-      autoClose: 5000,
-    });
+    $toast.success('A confirm link has been sent to your email, please check it.', { autoClose: 5000 });
   }
 }
 

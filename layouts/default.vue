@@ -6,9 +6,7 @@
 // import { type SiteUser } from '~~/types';
 // import { isCDNAvatar } from '~~/utils/utils';
 
-defineOptions({
-  inheritAttrs: false,
-});
+defineOptions({ inheritAttrs: false });
 
 useHead({
   script: [

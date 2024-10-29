@@ -32,9 +32,7 @@ const props = defineProps({
   },
 });
 
-const state = reactive({
-  visible: false,
-});
+const state = reactive({ visible: false });
 
 const emojiHandler = (emoji: string) => {
   // @ts-ignore
@@ -53,9 +51,7 @@ const onChange = (visible: boolean) => {
 </script>
 
 <script lang="ts">
-export default {
-  name: 'EmojiExtension',
-};
+export default { name: 'EmojiExtension' };
 </script>
 
 <style lang="postcss" scoped>
