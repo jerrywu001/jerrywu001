@@ -15,7 +15,7 @@ import remarkGemoji from 'remark-gemoji';
 // @ts-ignore
 import remarkPrism from 'unified-remark-prismjs';
 import remarkRehype from 'remark-rehype';
-import remarkSlug from 'remark-slug';
+import rehypeSlug from 'rehype-slug';
 import remarkSqueezeParagraphs from 'remark-squeeze-paragraphs';
 // @ts-ignore
 import { html2hast } from 'unified-remark-prismjs/src/core.js';
@@ -49,7 +49,7 @@ export const getResolvedMarkdown = async (content = '') => {
     .use(remarkGfm)
     .use(remarkSqueezeParagraphs)
     .use(remarkHeadingId)
-    .use(remarkSlug)
+    .use(rehypeSlug)
     .use(remarkDirective)
     .use(remarkDirectiveRehype)
     .use(remarkPrism, {
@@ -86,7 +86,7 @@ export const getResolvedMarkdown = async (content = '') => {
   const hast = html2hast(String(file)) as IHast[];
   const res = parse2json({
     type: 'root',
-    children: hast, 
+    children: hast,
   } as any);
 
   if (reporter(file as any)
