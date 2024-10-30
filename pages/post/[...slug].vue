@@ -86,7 +86,7 @@ const queryPost = async () => {
     post.value = null;
     const { data } = await useFetch(`${runtimeConfig.baseUrl}/api/post/${id}`, {
       key: id,
-      method: 'POST', 
+      method: 'POST',
     });
 
     post.value = toRaw<IBlog>(data.value as any);
@@ -119,14 +119,14 @@ queryPost();
 
 onMounted(() => {
   nextTick(() => {
-    if (process.client) {
+    if (import.meta.client) {
       document.body.addEventListener('click', tocsEvent, false);
     }
   });
 });
 
 onBeforeUnmount(() => {
-  if (process.client) {
+  if (import.meta.client) {
     destroyImageSwipe();
     document.body.removeEventListener('click', tocsEvent, false);
   }

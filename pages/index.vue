@@ -57,38 +57,44 @@
         <span class="i-lucide-mouse-pointer-click mr-1" /> RECENTLY POSTS
       </div>
 
-      <blog-skeleton
-        v-if="loading"
-        :visible="loading"
-        class="mt-8"
-      />
-      <div v-else class="mt-5 relative">
+      <div class="mt-5 relative">
         <div
           v-for="item in blogs"
           :key="item.postId"
-          class="block sm:h-[170px] transition-colors pt-6 px-5 w-full select-none all:transition-400 max-sm:active:bg-gray-100/80 max-sm:dark:active:bg-slate-800"
+          class="flex h-[170px] blog-block items-center justify-between cursor-pointer max-sm:h-auto"
         >
-          <NuxtLink class="flex gap-5" :to="`/post/${item.postId}`">
-            <div v-if="item.cover" class="w-[180px] h-28 max-sm:hidden">
-              <img class="w-[180px] h-28 rounded-md object-cover shadow-md" :src="item.cover" alt="cover">
-            </div>
-            <div class="flex flex-col flex-1 gap-2 items-start relative">
-              <div class="title text-base font-medium text-slate-900 dark:text-slate-100">
+          <div class="w-[180px] h-[112px] mr-[16px] max-sm:hidden">
+            <NuxtLink class="w-full h-full" :to="`/post/${item.postId}`" rel="follow">
+              <img
+                class="w-full h-full rounded-md object-cover shadow-md"
+                :src="item.cover || 'https://ik.imagekit.io/jerrywu001/supabases-blogs/default_cover.jpg'"
+                alt="cover"
+              >
+            </NuxtLink>
+          </div>
+
+          <div
+            class="blog-content flex-1 w-full h-full flex flex-col justify-between py-[20px]"
+            @click="router.push(`/post/${item.postId}`)"
+          >
+            <div>
+              <div class="text-base font-medium text-slate-900 select-none dark:text-slate-100">
                 {{ item.title }}
               </div>
-              <p
-                class="text-slate-500 text-sm dark:text-slate-400"
-              >
+              <div class="text-slate-500 text-sm select-none dark:text-slate-400 pt-[8px]">
                 {{ item.description || '暂无描述' }}
-              </p>
-              <a class="flex items-center text-xs text-slate-400 pt-1 sm:absolute bottom-0 left-0">
+              </div>
+            </div>
+
+            <div class="flex justify-between items-end max-sm:pt-2">
+              <a class="items-center text-xs text-slate-400 select-none">
                 {{ getDateTimeStr(item.createdAt) }}
               </a>
-              <a class="flex items-center text-sm pt-1 font-semibold absolute bottom-0 right-0 max-sm:block">
+              <a class="items-center text-sm pt-1 font-semibold select-none">
                 read more <icon-more class="ml-1 w-4 h-4 inline-block transition-transform duration-300" />
               </a>
             </div>
-          </NuxtLink>
+          </div>
         </div>
       </div>
     </div>
@@ -101,6 +107,8 @@ import { type IBlog } from '~~/types';
 definePageMeta({ layout: 'home' });
 
 const { posts, scrollTop } = usePostCache();
+const router = useRouter();
+
 const blogs = ref<IBlog[]>([]);
 const loading = ref(false);
 
@@ -121,7 +129,7 @@ const fetchAllPosts = async () => {
 
   nextTick(() => {
     setTimeout(() => {
-      if (process.client) {
+      if (import.meta.client) {
         initHoverClasses();
         const scroller = document.querySelector('.bg-white');
 
@@ -134,19 +142,19 @@ const fetchAllPosts = async () => {
 };
 
 const initHoverClasses = () => {
-  if (process.client && blogs.value?.length > 0) {
+  if (import.meta.client && blogs.value?.length > 0) {
     const count = blogs.value?.length;
     let styleStr = '@media (min-width: 640px) {';
 
     for (let i = 0, len = count; i <= len - 1; i++) {
       styleStr += `
-        .block:nth-child(${i + 1}):hover~.block:last-child:before {
+        .blog-block:nth-child(${i + 1}):hover~.blog-block:last-child:before {
           --y: calc(var(--height) * ${i});
         }
       `;
     }
 
-    styleStr += `.block:nth-child(${count}):hover::before {
+    styleStr += `.blog-block:nth-child(${count}):hover::before {
       --y: calc(var(--height) * ${count - 1});
         opacity: .06;
       }
@@ -172,7 +180,7 @@ const scrollHandler = () => {
 };
 
 const resolveHandler = (unmount = false) => {
-  if (process.client) {
+  if (import.meta.client) {
     nextTick(() => {
       const scroller = document.querySelector('.bg-white');
 
@@ -197,14 +205,27 @@ onBeforeUnmount(() => {
 </script>
 
 <style lang="postcss" scoped>
-.block {
+.blog-content {
+  position: relative;
+
   &::after {
     content: '';
     display: block;
     height: 1px;
     background-color: #d9dde2;
     transform: scaleY(0.3);
-    margin-top: 22px;
+    position: absolute;
+    width: calc(100% + 200px);
+    bottom: -7px;
+    left: -194px;
+  }
+}
+
+.blog-block {
+  padding: 8px 22px;
+
+  a {
+    display: block;
   }
 
   p {
@@ -233,7 +254,7 @@ a {
 }
 
 @screen sm {
-  .block {
+  .blog-block {
     --height: 170px;
     --surface-2: #767676;
     --surface-0: #181818;
@@ -261,7 +282,7 @@ a {
     }
   }
 
-  .block:hover~.block:last-child:before {
+  .blog-block:hover~.blog-block:last-child:before {
     opacity: .06;
     transform: scale(1);
   }
@@ -269,8 +290,31 @@ a {
 
 .dark {
   @screen sm {
-    .block:hover~.block:last-child:before {
+    .blog-block:hover~.blog-block:last-child:before {
       opacity: .2;
+    }
+  }
+}
+
+@media not all and (min-width: 640px) {
+  .blog-content {
+    padding-top: 12px;
+
+    &::after {
+      left: 0;
+      width: 100%;
+    }
+  }
+
+  .blog-block {
+    &:active {
+      background-color: rgba(243, 244, 246, .8);
+    }
+
+    &:first-child {
+      .blog-content {
+        padding-top: 0;
+      }
     }
   }
 }

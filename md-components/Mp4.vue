@@ -20,7 +20,7 @@ const props = defineProps({
 });
 
 const host = computed(() => {
-  return process.client ? `${window.location.origin}/videos/` : '/';
+  return import.meta.client ? `${window.location.origin}/videos/` : '/';
 });
 
 const vedioUrl = computed(() => {

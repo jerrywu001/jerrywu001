@@ -7,7 +7,7 @@ export default function useImgSwipe() {
 
   async function initImageSwipe() {
     await destroyImageSwipe();
-    if (process.client) {
+    if (import.meta.client) {
       nextTick(() => {
         setTimeout(() => {
           getAllImgsLoaded(() => {
@@ -80,7 +80,7 @@ export default function useImgSwipe() {
 
   return {
     destroyImageSwipe,
-    initImageSwipe, 
+    initImageSwipe,
   };
 }
 

@@ -4,7 +4,7 @@ export default function useAuth(saveCurrentPath = true) {
   const user = useSupabaseUser() as Ref<User>;
 
   function toLogin() {
-    if (!user.value && process.client) {
+    if (!user.value && import.meta.client) {
       const withCurrentPathUrl = `${encodeURIComponent(
         window.location.href.split(window.location.host)[1],
       )}`;

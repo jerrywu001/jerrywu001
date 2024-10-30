@@ -176,7 +176,7 @@
 
 <script lang="ts" setup>
 import type { IBlog, Tag } from '~~/types';
- 
+
 const props = defineProps({
   title: String,
   source: String,
@@ -383,13 +383,13 @@ watch(
 );
 
 onBeforeMount(() => {
-  if (process.client) {
+  if (import.meta.client) {
     document.body.removeEventListener('click', popoverClick, false);
   }
 });
 
 onMounted(() => {
-  if (process.client) {
+  if (import.meta.client) {
     document.body.addEventListener('click', popoverClick, false);
   }
 });

@@ -143,7 +143,7 @@ watch(
   () => {
     nextTick(() => {
       setTimeout(() => {
-        if (process.client && props.data?.title) {
+        if (import.meta.client && props.data?.title) {
           replaceMdSyntax(!props.preview);
         }
       }, 100);
@@ -156,7 +156,7 @@ watch(
   () => props.data?.content,
   () => {
     nextTick(() => {
-      if (process.client && props.data?.content) {
+      if (import.meta.client && props.data?.content) {
       // https://mermaid.nodejs.cn/
         initMermaid();
       }

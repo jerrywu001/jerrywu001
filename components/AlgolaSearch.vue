@@ -15,7 +15,7 @@ defineProps({
 
 onMounted(() => {
   nextTick(() => {
-    if (process.client) {
+    if (import.meta.client) {
       docsearch({
         appId: 'SKCYNAKILD',
         apiKey: 'eda24ec76be8debf3862d6ecbfa13b3c',
