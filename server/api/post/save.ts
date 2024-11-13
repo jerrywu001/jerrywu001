@@ -74,7 +74,7 @@ export default defineEventHandler(async (event) => {
         result = await prisma.post.update({
           where: {
             postId,
-            authorId: user.userId, 
+            authorId: user.userId,
           },
           data,
         });

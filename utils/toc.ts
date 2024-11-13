@@ -47,7 +47,7 @@ export function updateArchorOffsetTop(
 
   container.scrollTo({
     top: offsetTop,
-    behavior: 'smooth', 
+    behavior: 'smooth',
   });
   autoHighlightArchor();
 
@@ -160,7 +160,7 @@ export function useArticleScroll() {
 
     container.scrollTo({
       top: 0,
-      behavior: 'smooth', 
+      behavior: 'smooth',
     });
   }
 

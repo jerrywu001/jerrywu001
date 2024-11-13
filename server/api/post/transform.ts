@@ -7,6 +7,6 @@ export default defineEventHandler(async (event) => {
 
   return {
     tocs,
-    content, 
+    content,
   };
 });

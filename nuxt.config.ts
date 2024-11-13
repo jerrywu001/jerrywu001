@@ -42,12 +42,23 @@ export default defineNuxtConfig({
   },
 
   modules: [
+    '@sentry/nuxt/module',
     '@vueuse/nuxt',
     '@nuxt/devtools',
     '@nuxtjs/supabase',
     '@nuxtjs/tailwindcss',
     '@nuxtjs/color-mode', // https://color-mode.nuxtjs.org/
   ],
+
+  sourcemap: { client: true },
+
+  sentry: {
+    sourceMapsUploadOptions: {
+      org: 'personal-qt1',
+      project: 'jerrywu-blog',
+      authToken: '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',
+    },
+  },
 
   colorMode: { classSuffix: '' },
 

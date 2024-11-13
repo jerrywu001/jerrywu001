@@ -319,11 +319,11 @@ function getSlotName(node: MarkdownNode) {
   for (const propName of Object.keys(node.props || {})) {
     // Check if prop name correspond to a slot
     if (!propName.startsWith('#') && !propName.startsWith('v-slot:')) {
-       
+
       continue;
     }
     // Get slot name
-     
+
     name = propName.split(/[:#]/, 2)[1];
     break;
   }
