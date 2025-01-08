@@ -38,9 +38,9 @@
           <NuxtLink class="h-l" to="/tags/all" rel="nofollow">
             Tags
           </NuxtLink>
-          <a class="h-l" @click="triggerError">
+          <NuxtLink class="h-l" to="/about-me" rel="nofollow">
             About me
-          </a>
+          </NuxtLink>
           <NuxtLink class="h-l" to="/sponsor-me" rel="nofollow">
             Sponsor me
           </NuxtLink>
@@ -111,10 +111,6 @@ const router = useRouter();
 
 const blogs = ref<IBlog[]>([]);
 const loading = ref(false);
-
-const triggerError = () => {
-  throw new Error('Nuxt Button Error');
-};
 
 const fetchAllPosts = async () => {
   if (posts.value.length) {
