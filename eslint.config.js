@@ -1,20 +1,20 @@
-// import stylisticTs from '@stylistic/eslint-plugin-ts';
-// import stylisticJs from '@stylistic/eslint-plugin-js';
-// import stylisticJsx from '@stylistic/eslint-plugin-jsx';
-// import stylisticPlus from '@stylistic/eslint-plugin-plus';
-// import parserTs from '@typescript-eslint/parser';
-// import vueParser from 'vue-eslint-parser';
-// import eslintVue from 'eslint-plugin-vue';
+import stylisticTs from '@stylistic/eslint-plugin-ts';
+import stylisticJs from '@stylistic/eslint-plugin-js';
+import stylisticJsx from '@stylistic/eslint-plugin-jsx';
+import stylisticPlus from '@stylistic/eslint-plugin-plus';
+import parserTs from '@typescript-eslint/parser';
+import vueParser from 'vue-eslint-parser';
+import eslintVue from 'eslint-plugin-vue';
 
-const eslintVue = require('eslint-plugin-vue');
-const vueParser = require('vue-eslint-parser');
-const parserTs = require('@typescript-eslint/parser');
-const stylisticJs = require('@stylistic/eslint-plugin-js');
-const stylisticTs = require('@stylistic/eslint-plugin-ts');
-const stylisticJsx = require('@stylistic/eslint-plugin-jsx');
-const stylisticPlus = require('@stylistic/eslint-plugin-plus');
+// const eslintVue = require('eslint-plugin-vue');
+// const vueParser = require('vue-eslint-parser');
+// const parserTs = require('@typescript-eslint/parser');
+// const stylisticJs = require('@stylistic/eslint-plugin-js');
+// const stylisticTs = require('@stylistic/eslint-plugin-ts');
+// const stylisticJsx = require('@stylistic/eslint-plugin-jsx');
+// const stylisticPlus = require('@stylistic/eslint-plugin-plus');
 
-module.exports = [
+export default [
   ...eslintVue.configs['flat/recommended'],
   {
     plugins: {
