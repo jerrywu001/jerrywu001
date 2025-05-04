@@ -7,6 +7,10 @@ export default defineNuxtConfig({
     define: { 'process.env.LOG': {} },
   },
 
+  routeRules: {
+    '/api/bilibili/**': { cors: true },
+  },
+
   components: {
     global: true,
     dirs: [
