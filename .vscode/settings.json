@@ -17,7 +17,7 @@
     "source.fixAll.stylelint": "explicit"
   },
   "eslint.options": {
-    "overrideConfigFile": "./eslint.config.cjs"
+    "overrideConfigFile": "./eslint.config.js"
   },
   "eslint.validate": [
     "javascript",

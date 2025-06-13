@@ -1,5 +1,6 @@
 async function queryClassifications() {
   return new Promise((resolve, reject) => {
+
     fetch(
       'https://api.bilibili.com/pugv/app/web/classifications/new',
       {
@@ -8,8 +9,8 @@ async function queryClassifications() {
           'sec-fetch-mode': 'cors',
         },
         referrer: 'https://www.bilibili.com',
-        referrerPolicy: 'strict-origin-when-cross-origin'
-      }
+        referrerPolicy: 'strict-origin-when-cross-origin',
+      },
     )
       .then((res) => res.json())
       .then((res) => {
@@ -24,6 +25,7 @@ async function queryClassifications() {
 export default defineEventHandler(async () => {
   try {
     const res = await queryClassifications();
+
     return res;
   } catch (err) {
     return err;

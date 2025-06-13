@@ -6,11 +6,7 @@ export default defineNuxtConfig({
     server: { hmr: { overlay: false } },
     define: { 'process.env.LOG': {} },
   },
-
-  routeRules: {
-    '/api/bilibili/**': { cors: true },
-  },
-
+  routeRules: { '/api/bilibili/**': { cors: true } },
   components: {
     global: true,
     dirs: [
@@ -19,7 +15,6 @@ export default defineNuxtConfig({
       '~/sandpack-demos',
     ],
   },
-
   runtimeConfig: {
     imageKitPublickey: process.env.IMAGEKIT_PUBLIC,
     imageKitPrivatekey: process.env.IMAGEKIT_SECRET,
@@ -31,7 +26,6 @@ export default defineNuxtConfig({
       baseUrl: process.env.BASE_URL,
     },
   },
-
   // https://supabase.nuxtjs.org/
   supabase: {
     url: `https://${process.env.NUXT_SUPABASE_PROJECT}.supabase.co`,
@@ -44,7 +38,6 @@ export default defineNuxtConfig({
     },
     clientOptions: { auth: { persistSession: true } },
   },
-
   modules: [
     '@sentry/nuxt/module',
     '@vueuse/nuxt',
@@ -53,9 +46,7 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@nuxtjs/color-mode', // https://color-mode.nuxtjs.org/
   ],
-
   sourcemap: { client: true },
-
   sentry: {
     sourceMapsUploadOptions: {
       org: 'personal-qt1',
@@ -63,10 +54,7 @@ export default defineNuxtConfig({
       authToken: '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',
     },
   },
-
   colorMode: { classSuffix: '' },
-
   devtools: { timeline: { enabled: true } },
-
   compatibilityDate: '2024-10-29',
 });
