@@ -1,6 +1,6 @@
 import ImageKit from 'imagekit';
 import { isCDNAvatar } from './utils';
-import { PrismaClient } from '@prisma/client/.prisma/client';
+import { PrismaClient } from '@prisma/client';
 import { serverSupabaseClient } from '#supabase/server';
 
 export const prisma = new PrismaClient();

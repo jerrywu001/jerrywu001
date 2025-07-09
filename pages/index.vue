@@ -113,7 +113,7 @@ const blogs = ref<IBlog[]>([]);
 const loading = ref(false);
 
 const fetchAllPosts = async () => {
-  if (posts.value.length) {
+  if (posts.value?.length) {
     // @ts-ignore
     blogs.value = posts.value as IBlog[];
   } else {
