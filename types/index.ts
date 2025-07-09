@@ -147,7 +147,7 @@ export interface BlogComment {
 export interface Tag {
   id?: string;
   name: string;
-  _count?: {blogs: number};
+  _count?: { blogs: number };
 }
 
 export interface ISavePost {

@@ -167,7 +167,10 @@ const insertImage = async (str: string, select = false) => {
 };
 
 const onUploadImg = async (files: File[]) => {
-  const items: Array<{ name: string; base64: string }> = [];
+  const items: Array<{
+    name: string;
+    base64: string; 
+  }> = [];
 
   insertImage('\nuploading...', true);
   for await (const file of files) {

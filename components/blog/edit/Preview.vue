@@ -1,4 +1,4 @@
-<!-- eslint-disable @stylistic/js/max-len -->
+<!-- eslint-disable @stylistic/max-len -->
 <template>
   <div class="flex-1 w-1/2 border-stone-300 border dark:border-slate-500">
     <main class="main !pt-0 flex flex-col">

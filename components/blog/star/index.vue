@@ -1,4 +1,4 @@
-<!-- eslint-disable @stylistic/js/max-len -->
+<!-- eslint-disable @stylistic/max-len -->
 <!-- eslint-disable max-len -->
 <template>
   <div class="star-container">

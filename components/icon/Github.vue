@@ -1,4 +1,4 @@
-<!-- eslint-disable @stylistic/js/max-len -->
+<!-- eslint-disable @stylistic/max-len -->
 <template>
   <svg
     t="1691666989169"

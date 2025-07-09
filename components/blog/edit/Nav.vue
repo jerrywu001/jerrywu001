@@ -264,7 +264,10 @@ const createTag = async () => {
 };
 
 const onUploadImg = async (file: File) => {
-  const items: Array<{ name: string; base64: string }> = [];
+  const items: Array<{
+    name: string;
+    base64: string; 
+  }> = [];
 
   if (!file || uploading.value) return;
 

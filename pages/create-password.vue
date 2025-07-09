@@ -1,4 +1,4 @@
-<!-- eslint-disable @stylistic/js/max-len -->
+<!-- eslint-disable @stylistic/max-len -->
 <template>
   <NuxtLayout name="auth" title="Set Your Passowrd">
     <template #header>

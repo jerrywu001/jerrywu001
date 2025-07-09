@@ -24,7 +24,10 @@ function getRedirectPath() {
 
 export async function login<T = OAuthResponse>(
   props?: LoginOptions<T>,
-): Promise<{ authError: AuthError | null; authData: T }> {
+): Promise<{
+  authError: AuthError | null;
+  authData: T; 
+}> {
   const supabase = useSupabaseClient();
   const { public: runtimeConfig } = useRuntimeConfig();
 
