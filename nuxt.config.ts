@@ -39,7 +39,7 @@ export default defineNuxtConfig({
     clientOptions: { auth: { persistSession: true } },
   },
   modules: [
-    '@sentry/nuxt/module',
+    // '@sentry/nuxt/module',
     '@vueuse/nuxt',
     '@nuxt/devtools',
     '@nuxtjs/supabase',
@@ -47,13 +47,13 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode', // https://color-mode.nuxtjs.org/
   ],
   sourcemap: { client: true },
-  sentry: {
-    sourceMapsUploadOptions: {
-      org: 'personal-qt1',
-      project: 'jerrywu-blog',
-      authToken: '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',
-    },
-  },
+  // sentry: {
+  //   sourceMapsUploadOptions: {
+  //     org: 'personal-qt1',
+  //     project: 'jerrywu-blog',
+  //     authToken: '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',
+  //   },
+  // },
   colorMode: { classSuffix: '' },
   devtools: { timeline: { enabled: true } },
   compatibilityDate: '2024-10-29',
