@@ -2,6 +2,7 @@
   "editor.cursorSmoothCaretAnimation": "on",
   "editor.guides.bracketPairs": "active",
   "editor.renderWhitespace": "boundary",
+  "files.eol": "\n",
   "errorLens.enabledDiagnosticLevels": [
     "warning",
     "error"
@@ -52,7 +53,6 @@
   "typescript.updateImportsOnFileMove.enabled": "always",
   "typescript.tsdk": "./node_modules/typescript/lib",
   "svg.preview.mode": "svg",
-  "workbench.sideBar.location": "left",
   "javascript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": true,
   "javascript.format.semicolons": "insert",
 }

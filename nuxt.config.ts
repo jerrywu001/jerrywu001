@@ -30,7 +30,7 @@ export default defineNuxtConfig({
   supabase: {
     url: `https://${process.env.NUXT_SUPABASE_PROJECT}.supabase.co`,
     key: process.env.NUXT_SUPABASE_CLIENT_KEY,
-    serviceKey: process.env.NUXT_SUPABASE_SERVER_KEY,
+    secretKey: process.env.NUXT_SUPABASE_SERVER_KEY,
     redirectOptions: {
       login: '/login',
       callback: '/login',

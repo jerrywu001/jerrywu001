@@ -105,7 +105,6 @@ export default [
       '@stylistic/jsx-newline': ['error', { 'prevent': false }],
       '@stylistic/jsx-indent-props': [2, 2],
       '@stylistic/jsx-one-expression-per-line': 'error',
-      '@stylistic/jsx-props-no-multi-spaces': 'error',
       '@stylistic/jsx-max-props-per-line': [1, { 'when': 'multiline' }],
       '@stylistic/jsx-equals-spacing': [2, 'never'],
       '@stylistic/jsx-first-prop-new-line': ['error', 'multiline'],
