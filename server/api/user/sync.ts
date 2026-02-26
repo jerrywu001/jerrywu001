@@ -1,10 +1,11 @@
-import { serverSupabaseUser } from '#supabase/server';
+import { serverSupabaseClient } from '#supabase/server';
 import { formatSiteUser } from '~~/utils/utils';
 import { prisma, uploadSupabaseAvatar, updateSupabaseAvatar } from '~~/utils/server';
 
 // save supabase user to postgrel database, and uoload auth avatar(eg. github/google) to imagekit
 export default defineEventHandler(async (event) => {
-  const userSession = await serverSupabaseUser(event);
+  const client = await serverSupabaseClient(event);
+  const { data: { user: userSession } } = await client.auth.getUser();
 
   if (!userSession?.id) return null;
 

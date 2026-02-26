@@ -1,8 +1,9 @@
 import { prisma } from '~~/utils/server';
-import { serverSupabaseUser } from '#supabase/server';
+import { serverSupabaseClient } from '#supabase/server';
 
 export default defineEventHandler(async (event) => {
-  const userSession = await serverSupabaseUser(event);
+  const client = await serverSupabaseClient(event);
+  const { data: { user: userSession } } = await client.auth.getUser();
 
   if (!userSession?.id) return null;
 

@@ -1,10 +1,11 @@
-import { serverSupabaseUser } from '#supabase/server';
+import { serverSupabaseClient } from '#supabase/server';
 import { formatSiteUser } from '~~/utils/utils';
 import { prisma } from '~~/utils/server';
 import type { ISavePost } from '~~/types';
 
 export default defineEventHandler(async (event) => {
-  const userSession = await serverSupabaseUser(event);
+  const client = await serverSupabaseClient(event);
+  const { data: { user: userSession } } = await client.auth.getUser();
   const body = await readBody<ISavePost>(event);
 
   if (!userSession?.id) {

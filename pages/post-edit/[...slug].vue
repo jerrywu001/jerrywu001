@@ -48,7 +48,7 @@
 </template>
 
 <script setup lang="ts">
-import pkg from 'lodash';
+import { debounce } from 'lodash-es';
 import { type ExposeParam, MdEditor } from 'md-editor-v3';
 import { toolbars, getDefaultMdVnodes, fileToBase64, uuid, isUUID } from '~~/utils/utils';
 import type { IBlog, IElement, ISavePost, ITableOfContent, Tag } from '~~/types';
@@ -63,8 +63,6 @@ const colorMode = useColorMode();
 const { siteUser } = useSyncUser();
 const { $toast } = useNuxtApp();
 const route = useRoute();
-
-const { debounce } = pkg;
 const { params: { slug } } = route;
 
 const id = slug?.[0] || uuid();
