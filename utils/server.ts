@@ -1,9 +1,18 @@
 import ImageKit from 'imagekit';
 import { isCDNAvatar } from './utils';
+import { PrismaPg } from '@prisma/adapter-pg';
 import { PrismaClient } from '@prisma/client';
 import { serverSupabaseClient } from '#supabase/server';
 
-export const prisma = new PrismaClient();
+const connectionString = process.env.POSTGREL_URL;
+
+if (!connectionString) {
+  throw new Error('Missing required env: POSTGREL_URL');
+}
+
+const adapter = new PrismaPg({ connectionString });
+
+export const prisma = new PrismaClient({ adapter });
 
 export const defaultAvatar = 'https://ik.imagekit.io/jerrywu001/supabases/default-avatar.png';
 
