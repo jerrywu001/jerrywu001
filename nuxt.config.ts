@@ -2,6 +2,17 @@
 export default defineNuxtConfig({
   // https://github.com/nuxt/framework/issues/1600
   // node_modules/@nuxt/schema/dist/index.d.ts 2239
+  app: {
+    head: {
+      script: [
+        {
+          async: true,
+          crossorigin: 'anonymous',
+          src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3356706482286142',
+        },
+      ],
+    },
+  },
   vite: {
     server: { hmr: { overlay: false } },
     define: { 'process.env.LOG': {} },
